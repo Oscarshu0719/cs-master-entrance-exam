@@ -1,0 +1,75 @@
+\item \begin{theorem}{(2.8, 2.10)} \quad\quad
+    \begin{itemize}
+        \item 若$A, B, C$為三集合，$R \subseteq A \times B, S \subseteq B \times C$為二關係，則$\mat{M}_{S \circ R} = \mat{M}_{RS} = \mat{M}_{R}\mat{M}_{S}$。
+        \item 若$R$為一關係，則$\mat{M}_{R^{-1}} = \mat{M}_{R}^\intercal$。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(2.18, 2.25)} \quad\quad
+    \begin{itemize}
+        \item 非對稱性（asymmetric）：若$A$為集合，$R \subseteq A \times A$為一關係，則$\forall a, b \in A$，$aRb \Rightarrow \lnot(bRa)$。
+        \item 反對稱性（antisymmetric）：若$A$為集合，$R \subseteq A \times A$為一關係，則$\forall a, b \in A$，$aRb \land bRa \Rightarrow a = b$。
+        \item 非對稱性\textbf{不}允許對角線上元素為$1$，反對稱性則允許對角線上元素為$1$。
+        \item 若$A$為集合，$R \subseteq A \times A$為一關係，則$R$具遞移性$\iff$$R^n \subseteq R, \ \forall n \in \N$。
+        \item 若$A$為集合，$R, S \subseteq A \times A$為二關係，則
+        \begin{itemize}
+            \item 若$R, S$具反身性，則$R \cap S$與$R \cup S$亦具反身性。
+            \item 若$R, S$具對稱性，則$R \cap S$與$R \cup S$亦具對稱性。
+            \item 若$R, S$具遞移性，則$R \cap S$亦具遞移性。
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(2.42)} 若$P_i$表示$i \ge 1$個元素上相異的等價關係個數，假設$P_0 = 1$，則$P_n = \sum_{i = 0}^{n - 1}\binom{n - 1}{i}P_i$。
+\end{theorem}
+
+\item \begin{theorem}{(2.52, 2.53, 2.55)} \quad\quad
+    \begin{itemize}
+        \item 若$|A| = n$，則$\mat{M}_{t(R)} = \mat{M}_{R} \lor \mat{M}_{R}^2 \lor \cdots \lor \mat{M}_{R}^n$。
+        \item $t(s(r(R)))$\textbf{未必}等於$t(R) \cup r(R) \cup r(R)$。
+        \item 若$R_1, R_2$為二等價關係，其分割分別為$\pi_1$與$\pi_2$，則
+            \begin{itemize}
+                \item $R_1 \cap R_2$為等價關係，且分割為$\pi_1 \cdot \pi_2$。
+                \item $R_1 \cup R_2$\textbf{未必}為等價關係，因為$R_1 \cup R_2$\textbf{未必}具遞移性，而$t(R_1 \cup R_2)$為等價關係，且分割為$\pi_1 + \pi_2$。
+            \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(2.63, 2.66, 2.67, 2.69, 2.70, 2.71, 2.74)} \quad\quad
+    \begin{itemize}
+        \item 定義域中所有值都必須有對應到對應域的一個值。
+        \item 若$f: \ A \rightarrow B$，$A_1, A_2 \subseteq A$，則
+            \begin{itemize}
+                \item 若$A_1 \subseteq A_2$，則$f(A_1) \subseteq f(A_2)$。
+                \item $f(A_1 \cup A_2) = f(A_1) \cup f(A_2)$。
+                \item $f(A_1 \cap A_2) \subseteq f(A_1) \cap f(A_2)$。
+                \item $f$為一對一$\iff$$f(A_1 \cap A_2) = f(A_1) \cap f(A_2)$
+            \end{itemize}
+        \item 若$f: \ A \rightarrow B, g: \ B \rightarrow C$，則
+            \begin{itemize}
+                \item 若$f, g$為一對一，則$g \circ f$亦是一對一，反之不然。
+                \item 若$f, g$為映成，則$g \circ f$亦是映成，反之不然。
+                \item 若$f, g$可逆，則$g \circ f$亦可逆，反之不然。
+                \item 若$g \circ f$為一對一，則$f$亦是一對一。
+                \item 若$g \circ f$為映成，則$g$亦是映成。
+            \end{itemize}
+        \item 若$f: \ A \rightarrow B$，$B_1, B_2 \subseteq B$，則
+            \begin{itemize}
+                \item 若$B_1 \subseteq B_2$，則$f^{-1}(B_1) \subseteq f^{-1}(B_2)$。
+                \item $f^{-1}(B_1 \cup B_2) = f^{-1}(B_1) \cup f^{-1}(B_2)$。
+                \item $f^{-1}(B_1 \cap B_2) = f^{-1}(B_1) \cap f^{-1}(B_2)$。
+            \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(2.96, 2.99, 2.100, 2.101, 2.102)} \quad\quad
+    \begin{itemize}
+        \item 若$A$為一集合，若$A = \emptyset$或$\exists n \in \N$使得$A \sim \{1, 2, \ \cdots, n\}$，則稱$A$為有限集。
+        \item 若$A$為一集合，且$A$為有限集或$A \sim \N$，則稱$A$為可數集。
+        \item 若$A, B$為可數集，則$A \times B$為可數集。
+        \item 若$\{A_i\}_{i \in \N}$為可數集，則$\bigcup_{i \in \N}A_i$為可數集。
+        \item $\Qp, \Q, \N \times \N$皆為可數集。
+        \item $(0, 1) \sim \R, \R, \overline{\Q}, \C \sim \R$皆為不可數集。
+        \item $|\mathbb{Z}| = |\N| = |\Q| < |\overline{Q}| = |\R| = |\C|$
+    \end{itemize}
+\end{theorem}

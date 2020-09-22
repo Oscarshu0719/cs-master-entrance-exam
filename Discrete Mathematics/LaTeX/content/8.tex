@@ -1,0 +1,22 @@
+\item \begin{theorem}{(8.8, 6.15, 8.21)} \quad\quad
+    \begin{itemize}
+        \item Dijkstra's：\begin{itemize}
+            \item 單源。
+            \item 需在所有\textbf{邊非負權重}情況才能正確工作。
+            \item 生成的生成樹\textbf{未必}是最小生成樹。
+            \item 時間複雜度：$O(|\V|^2)$。
+        \end{itemize}
+        \item Floyd-Warshall：\begin{itemize}
+            \item 多源。
+            \item 可以處理負權的情況，但\textbf{負權迴圈仍不行}正確工作。
+            \item 時間複雜度：$O(|\V|^3)$。
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(8.43)} \quad\quad
+    \begin{itemize}
+        \item 若圖中含有完美配對（配對含有圖中所有點），圖中必含\textbf{偶數}頂點數。
+        \item 若$n$為奇數時，$K_n$\textbf{不}具完美配對；若$n$為偶數時，$K_n$具完美配對。
+    \end{itemize}
+\end{theorem}

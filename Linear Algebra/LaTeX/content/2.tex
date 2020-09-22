@@ -1,0 +1,37 @@
+% \item \begin{theorem}{(2.17)} （方陣，$\det$）
+%     若$\mat{A}$為方陣，
+%     \begin{equation}
+%         \sum_{j = 1}^{n} a_{ij} \cof(a_{kj}) = 
+%         \begin{cases}
+%             \det(\mat{A}), & i = k \\
+%             0, & i \neq k
+%         \end{cases}
+%     \end{equation}
+%     \begin{equation}
+%         \sum_{i = 1}^{n} a_{ij} \cof(a_{ik}) = 
+%         \begin{cases}
+%             \det(\mat{A}), & j = k \\
+%             0, & j \neq k
+%         \end{cases}
+%     \end{equation}
+% \end{theorem}
+
+\item \begin{theorem}{(2.26)} （方陣，$\det$）
+    若$\mat{A}, \mat{B}$\textbf{不}為方陣，$\det(\mat{AB}) = \det(\mat{A})\det(\mat{B})$\textbf{未必}成立。
+\end{theorem}
+
+\item \begin{theorem}{(2.43, 2.44, 2.45, 2.47)} （可逆，$\det$）
+    \begin{itemize}
+        \item $\mat{A} \cdot \adj{A} = \det(\mat{A}) \cdot \mat{I}$
+        \item $\mat{A}\inv = \frac{1}{\det(\mat{A})}\adj{A}$
+        \item $\adj{A}\inv = \frac{1}{\det(\mat{A})}\mat{A} = \adj{A\inv}$
+        \item $\mat{A}$可逆$\iff$$\adj{A}$可逆。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(2.48)} （可逆，$\det$）Cramer's rule： \\
+    若$\mat{A}$可逆且$\vec{x}$為$\mat{A}\vec{x} = \vec{b}$的唯一解，$\mat{A}_i(\vec{b})$為將$\mat{A}$的第$i$行改為$\vec{b}$，$\Delta = \det(\mat{A}), \Delta_i = \det(\mat{A}_i(\vec{b}))$，則
+    \begin{equation}
+        \vec{x}_i = \frac{\Delta_i}{\Delta}
+    \end{equation}
+\end{theorem}

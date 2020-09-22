@@ -1,0 +1,118 @@
+\documentclass[12pt]{article}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{answers}
+\usepackage{authblk}
+\usepackage{ctex}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{mathrsfs}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{makecell}
+\usepackage{url}
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage[bottom]{footmisc}
+\usepackage{hologo}
+\usepackage{wallpaper}
+
+\CenterWallPaper{.50}{img/zju_logo.png}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+	urlcolor=magenta,
+	citecolor=red      
+}
+
+\newcommand{\ver}{\textmd{Version} 1.2} % Version number.
+
+\newcommand{\mat}[1]{\boldsymbol{#1}}
+\newcommand{\spc}[1]{\textit{#1}}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\textit{F}}
+\newcommand{\T}{\textit{T}}
+\renewcommand{\P}{\textit{P}}
+\newcommand{\J}[1]{\textit{J}_{\mat{#1}}}
+\newcommand{\V}{\spc{V}}
+\renewcommand{\L}{\mathcal{L}}
+
+\newcommand{\inv}{^{\mathsf{-1}}}
+\newcommand{\herm}{^{\mathsf{H}}}
+
+\newcommand{\adj}[1]{\operatorname{adj}(\mat{#1})}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\rnk}{rank}
+\DeclareMathOperator{\nul}{nullity}
+\DeclareMathOperator{\Ker}{N} % Capital, since \ker is already defined.
+\DeclareMathOperator{\lker}{Lker}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\cs}{CS}
+\DeclareMathOperator{\rs}{RS}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\cof}{cof}
+\DeclareMathOperator{\am}{am}
+\DeclareMathOperator{\gm}{gm}
+\newcommand{\ii}{{i\mkern1mu}}
+\newcommand{\dotp}[2]{<#1, #2>}
+\newcommand{\proj}[2]{\operatorname{proj}_{#1}\vec{#2}}
+
+\newcommand{\tnr}{\fontspec{Times New Roman}}
+\newcommand{\con}{\fontspec{Consolas}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2}]}{\end{trivlist}}
+
+\renewcommand{\contentsname}{Table of Contents}
+\renewcommand{\refname}{References}
+
+\begin{document}
+
+\title{\Huge{\textbf{線性代數}} \\
+	\LARGE{\textbf{Linear Algebra}}
+}
+\newcommand*{\affaddr}[1]{#1}
+\newcommand*{\affmark}[1][*]{\textsuperscript{#1}}
+\author{
+	TZU-CHUN HSU\affmark[1] \\
+	\affmark[1]\href{mailto:vm3y3rmp40719@gmail.com}{vm3y3rmp40719@gmail.com} \\
+	\affaddr{\affmark[1]Department of Computer Science, Zhejiang University
+	}
+}
+
+\date{\mbox{}\vfill\today\\ \ver}
+
+\maketitle
+\pagebreak
+
+\include{content/disclaimer}
+\include{content/overview}
+\begingroup
+\section{Summary}
+\begin{enumerate}
+\let\clearpage\relax
+\include{content/1}
+\include{content/2}
+\include{content/3}
+\include{content/4}
+\include{content/5}
+\include{content/6}
+\include{content/7}
+\include{content/8}
+\end{enumerate}
+\endgroup
+\include{content/bibliography}
+
+\end{document}

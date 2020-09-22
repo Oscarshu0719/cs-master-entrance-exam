@@ -1,0 +1,78 @@
+\item \begin{theorem}{(4.10)} 旋轉矩陣（從左到右分別為繞$x, y, z$軸旋轉的旋轉矩陣）：
+	\begin{equation}
+		{\left[ 
+		\begin{array}{ccc}
+			1 & 0 & 0 \\
+			0 & \cos\theta & -\sin\theta \\
+			0 & \sin\theta & \cos\theta
+		\end{array} 
+		\right]},
+		{\left[ 
+		\begin{array}{ccc}
+			\cos\theta & 0 & \sin\theta \\
+			0 & 1 & 0 \\
+			-\sin\theta & 0 & \cos\theta
+		\end{array} 
+		\right]},
+		{\left[ 
+		\begin{array}{ccc}
+			\cos\theta & -\sin\theta & 0 \\
+			\sin\theta & \cos\theta & 0 \\
+			0 & 0 & 1 \\
+		\end{array} 
+		\right]}
+	\end{equation}
+\end{theorem}
+
+\item \begin{theorem}{(4.30, 4.32)} 若$\T \in \L(\V, \V')$滿足
+	\begin{enumerate}
+		\item 線性映射。
+		\item 一對一。
+		\item 映成。
+	\end{enumerate}
+	則稱$\V$與$\V'$同構（isomorphic），記作$\V \cong \V'$。因為任意n維向量皆與$\F^{n \times 1}$同構，因此\textbf{同維即同構}。
+\end{theorem}
+
+\item \begin{theorem}{(4.73, 4.74)} （線性獨立）若$\T \in \L(\V, \V')$，則
+	\begin{itemize}
+		\item $\T$必保相依。
+		\item $\T$保獨立，即若$\spc{S}$為線性獨立，則$\T(\spc{S})$亦是線性獨立$\iff$$\T$為一對一
+		\item $\T$保生成，即若$\spc{S}$為$\V$生成集，則$\T(\spc{S})$亦是$\V$生成集$\iff$$\T$為映成
+	\end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(4.67, 4.71, 4.93, 4.96, 4.97, 7.69, 7.70, 8.163)} （可逆，解）若$\T(x) = \mat{A}\vec{x}, \T \in \L(\V, \V'), \mat{A} \in \F^{m \times n}$，則
+	\begin{itemize}
+		\item $\mat{A}$為一對一$\iff$
+		$\mat{A}$有左反矩陣$\iff$
+		$\rnk(\mat{A}) = \dim(\V) = n \le \dim(\V') = m, \ \Ker(\mat{A}) = \{\vec{0}\}$$\iff$
+		$n \le m$$\iff$
+		$\mat{A}\vec{x} = \vec{0}$只有$\vec{0}$唯一解$\iff$
+		$\mat{A}$行獨立，列生成$\F^{1 \times n}$$\iff$
+		$\mat{A}\vec{x} = \vec{b}$至多一解$\iff$
+		$\mat{A}\herm \mat{A}$可逆$\iff$
+		$\mat{A}^+ = (\mat{A}^\intercal\mat{A})\inv\mat{A}^\intercal$
+		\item $\mat{A}$為映成$\iff$
+		$\mat{A}$有右反矩陣$\iff$
+		$\rnk(\mat{A}) = \dim(\V') = m \le \dim(\V) = n$$\iff$
+		$m \le n$$\iff$
+		$\mat{A}$列獨立，行生成$\F^{m \times 1}$$\iff$
+		$\mat{A}\vec{x} = \vec{b}$至少一解$\iff$
+		$\mat{A}\mat{A}\herm$可逆$\iff$
+		$\mat{A}^+ = \mat{A}^\intercal(\mat{A}\mat{A}^\intercal)\inv$
+		\item $\T$可逆$\iff$$\T$為雙射
+	\end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(4.90)} （可逆）
+	\begin{itemize}
+		\item $\cs(\mat{AB}) \subseteq \cs(\mat{A})$
+		\item $\rs(\mat{AB}) \subseteq \rs(\mat{B})$
+		\item $\Ker(\mat{B}) \subseteq \Ker(\mat{AB})$。當$\mat{A}$可逆時，$\Ker(\mat{B}) = \Ker(\mat{AB})$
+		\item $\lker(\mat{A}) \subseteq \lker(\mat{AB})$
+	\end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{((4-3)4.3)} 
+	若$\T_1$為繞x軸旋轉的旋轉矩陣，$\T_2$為繞z軸旋轉的旋轉矩陣，則$\T_1\T_2 \neq \T_2\T_1$。
+\end{theorem}

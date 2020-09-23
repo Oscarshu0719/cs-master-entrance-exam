@@ -1,30 +1,10 @@
-\item \begin{theorem}{(1.6)} 
-    \begin{subequations}
-        \begin{align}
-            A \oplus B & = (A \cup B) - (A \cap B) = (A - B) \cup (B - A) \\
-            A - B & = A \cap \overline{B}
-        \end{align}
-    \end{subequations}
+\item \begin{theorem}{(1.6)} $\phi$為任何集合的子集。
 \end{theorem}
 
 \item \begin{theorem}{(1.16)} \begin{subequations}
     \begin{align}
         \P(A \cup B) & \neq \P(A) \cup \P(B) \\
         \P(A \cap B) & = \P(A) \cap \P(B)
-    \end{align}
-    \end{subequations}
-\end{theorem}
-
-\item \begin{theorem}{(1.42)} \begin{equation}
-    \floor*{-x} = - \ceil*{x}, \ \ceil*{-x} = -\floor*{x}
-    \end{equation}
-\end{theorem}
-
-\item \begin{theorem}{(1.50)} 若$a \equiv b \Mod{n}, \ c \equiv d \Mod{n}$，則
-    \begin{subequations}
-    \begin{align}
-        ac & \equiv bd \Mod{n} \\ 
-        ab \Mod{n} & = ((a \Mod{n})(b \Mod{n})) \Mod{n}
     \end{align}
     \end{subequations}
 \end{theorem}
@@ -68,4 +48,22 @@
 \end{theorem}
 
 \item \begin{theorem}{(1.66)} 中國餘數定理（Chinese Remainder Theorem，CRT）中，模的數之間必須互質。
+\end{theorem}
+
+\item \begin{theorem}{(1.71)} RSA公鑰密碼系統（RSA public key cryptosystem）：\begin{itemize}
+        \item 訊息：$M$。
+        \item 加密鑰（encryption key）：\begin{equation}
+            n = pq, \ e
+        \end{equation}
+        其中$p, q$為質數，且$\gcd(e, \phi(n)) = 1, \ \phi(n) = (p - 1)(q - 1)$。
+        \item 加密訊息：\begin{equation}
+            C = M^e \Mod{n}
+        \end{equation}
+        \item 解密鑰（decryption key）：\begin{equation}
+            d \equiv e^{-1} \Mod{\phi(n)}
+        \end{equation}
+        \item 解密訊息：\begin{equation}
+            C^d \equiv M \Mod{n}
+        \end{equation}
+    \end{itemize}
 \end{theorem}

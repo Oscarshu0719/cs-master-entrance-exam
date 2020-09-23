@@ -24,15 +24,15 @@ Run `run.bat`. There is one under each folder.
 
 Run `run.sh`. There is one under each folder.
 
-### Clear useless files
+### Clean useless files
 
 - Windows:
 
-Run `clear.bat`. There is one under each folder.
+Run `clean.bat`. There is one under each folder.
 
 - macOS, Linux:
 
-Run `clear.sh`. There is one under each folder. 
+Run `clean.sh`. There is one under each folder. 
 
 ## License
 

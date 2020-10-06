@@ -1,11 +1,11 @@
-\item \begin{theorem}{(7.5, 7.9, 7.16, 7.20, 7.22, 7.24)} \quad\quad
+\item \begin{theorem}{(7.5, 7.9, 7.15, 7.16, 7.18, 7.20, 7.22, 7.24)} \quad\quad
     \begin{itemize}
         \item 樹：$|\E| = |\V| - 1$。
         \item 森林：$|\E| = |\V| - \kappa(G)$，其中$\kappa(G)$表示樹的個數。
         \item \begin{itemize}
             \item 滿（full）二叉樹：非樹葉節點都有二個兒子。
-            \item 完全（complete）二叉樹：從根節點到倒數第二層皆完美，最後一層樹葉節點靠右。
-            \item 完美（perfect）二叉樹：若樹高為$h$，則有$2^{h + 1} - 1$個節點。
+            \item 完全（complete）二叉樹：所有樹葉節點的階層皆與樹高相同。
+            \item 平衡（balanced）二叉樹：若樹高為$h$，則所有樹葉節點的階層皆為$h$或$h - 1$。
         \end{itemize}
         \item 若$T = (\V, \E), |\V| = n$為$m$-元樹，其中$i, l$分別表示內部節點與樹葉個數，則\begin{itemize}
             \item \begin{equation}
@@ -15,10 +15,7 @@
                 l \le (m - 1)i + 1
             \end{equation}
             \item \begin{equation}
-                \begin{aligned}
-                    i & \ge \frac{l - 1}{m - 1} \\
-                    i & \ge \frac{n - 1}{m}
-                \end{aligned}
+                    i \ge \frac{l - 1}{m - 1} \land i \ge \frac{n - 1}{m}
             \end{equation}
 
             當$T$為\textbf{滿}$m$-元樹時，等號成立。
@@ -35,7 +32,7 @@
                 l & \le m^h \\
                 h & \ge \ceil{log_{m}l}
             \end{aligned}
-        \end{equation} 若$T$為平衡樹時，等號成立。
+        \end{equation} 若$T$為\textbf{平衡樹}時，等號成立。
         \item 一二元樹，$n_0$表示樹葉個數，$n_2$表示二個兒子的節點個數，則\begin{equation}
             n_0 = n_2 + 1
         \end{equation}
@@ -47,7 +44,7 @@
 
 \item \begin{theorem}{(7.30, 7.33, 7.34, 7.35, 7.37, 7.44, 7.46, 7.49)} \quad\quad
     \begin{itemize}
-        \item 若$G$為無向圖，則$G$為聯通圖$\iff$$G$有生成樹。
+        \item 若$G$為無向圖，則$G$為連通圖$\iff$$G$有生成樹。
         \item $K_n$相異生成樹個數為$n^{n - 2}$。
         \item $K_{m, n}$相異生成樹個數為$m^{n - 1}n^{m - 1}$。
         \item 若$G = (\V, \E)$為無向圖，且$e = \{a, b\} \in \E$，$N(G)$為$G$的相異生成樹個數，則\begin{equation}
@@ -59,7 +56,7 @@
             \item 若生成樹切除任意分支，則新圖變不連通，稱$G$中該切集為基本切集（fundamental cut set）。
         \end{itemize}
         \item 一無向連通圖，其任意切集與環路必含\textbf{偶數}個共同邊。
-        \item Prim's只能找相鄰的邊，Kruskal's則否。
+        \item Prim's只能找相鄰的邊，Kruskal's則無限制。
         \item Kruskal's時間複雜度為$O(m\log m)$，其中$m$為圖的\textbf{邊}數；Prim's時間複雜度為$O(n^2)$，其中$n$為圖的\textbf{點}數。
         \item 最小生成樹\textbf{未必}唯一，只有在所有邊權重皆不同時，最小生成樹唯一。
     \end{itemize}

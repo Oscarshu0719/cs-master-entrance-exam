@@ -1,40 +1,24 @@
 \item \begin{theorem}{(6.6, 6.7, 6.8, 6.9, 6.10, 6.11, 6.12, 6.16, 6.18)} \quad\quad
     \begin{itemize}
-        \item 不含重複\textbf{邊}的路（walk）稱作路線（trail）。封閉路線（trail）稱作迴路（circuit）。
-        \item 不含重複\textbf{點}的路（walk）稱作路徑（path）。封閉路徑（path）稱作環路（cycle），其中重複的點不包含起終點，且至少含$3$邊。
         \item 單方向（unilaterally）連通圖：$\forall x, y \in \V, \ x \neq y$，在$x, y$之間存在一條由某一點到另一點的有向路徑。
         \begin{itemize}
             \item 強連通圖必為單方向連通圖，反之不然。
             \item 單方向連同圖必微弱連通圖，反之不然。
         \end{itemize}
         \item 誘導子圖（Induced subgraph）：子圖所含原圖之點，皆保留其原有的邊。
-        \item 一無向圖，且未必為連通圖，其極大連通誘導子圖稱連通分量圖（Connected component）。
-        \item 若在一連通圖上去除一點，使該圖變為不連通圖，則稱該點為切點（cut point或articulation point）。
-        \item 若在一連通圖上去除一邊集，使該圖變為不連通圖，且若去除該邊集的真子集不使該圖變為不連通圖，則稱該邊集為切集（cut set）。若切集只含一邊，則稱該邊為切邊（cut edge）或橋（bridge）。
         \item 雙連通圖：無迴圈的連通無向圖且\textbf{不含切點}。
-        \item 一無迴圈的連通無向圖，且未必為雙連通圖，其極大雙連通誘導子圖稱雙連通分量圖（Biconnected component）。
-        \item 補圖須包含所有點。
         \item 度數為一的點稱懸吊點（pendant）。
         \item 迴圈的度數為$2$。
-        \item 一無向圖，所有點的度數皆為$k$，則稱$k$-規則（$k$-regular）圖。
         \item 若$G = (\V, \E), \ |\V| = n$，則\begin{equation}
             |\E| \ge \binom{n - 1}{2} + 1
         \end{equation}
         時，$G$為連通圖。
-        \item 團（clique）：完全子圖，任兩點皆有邊相連。
-        \item 獨立集（independent set）：補圖的團，任兩點無邊相連。
-        \item 支配集（dominating set）：支配集中的點與圖上所有點皆有邊相連。
-        \item 覆蓋（covering）：覆蓋中的點與圖上所有邊相連。
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(6.44, 6.45, 6.47, 6.55)} \quad\quad
+\item \begin{theorem}{(6.44, 6.47, 6.55)} \quad\quad
     \begin{itemize}
         \item 一簡單無向圖，若所有點的度數至數為$k$，則圖上必含一個長度至少為$k + 1$的環路（cycle）。
-        \item 若$G = (\V, \E), \ |\V| \ge 1$為一連通無向圖，則\begin{equation}
-            |\E| \ge |\V| - 1
-        \end{equation}
-        \item 若$A$為一鄰接矩陣，則$A^r$的第$(i, j)$項為$v_i$到$v_j$長度為$r$路的個數。
         \item 一無向圖，為雙分圖$\iff$圖中不含奇數長度的環路。
         \item 若$A$為一鄰接矩陣，則$\frac{1}{6}\tr(A^3)$為圖上三角形個數。
     \end{itemize}
@@ -59,25 +43,35 @@
             \item 度數為$2$的點，與其相鄰的邊必在漢米爾頓環路中。
             \item 度數$\ge 2$的點，除了前一條件已知在漢米爾頓環路中的邊之外，其他的邊必不在漢米爾頓環路中。
         \end{itemize}
-        \item 有向完全圖必有有向漢米爾頓路徑。
+        \item 有向完全圖必有有向漢米爾頓\textbf{路徑}。
         \item 若$G = (\V, \E), \ |\V| = n \ge 3$為一無迴圈無向圖，
         \begin{itemize}
-            \item 若$\deg(x) + \deg(y) \ge n - 1, \ \forall x, y \in \V, x \neq y$，則$G$有漢米爾頓路徑。
-            \item 若$\deg(x) + \deg(y) \ge n, \ \forall x, y \in \V, x, y\text{不相鄰}$，則$G$有漢米爾頓環路。
-            \item 若$\deg(v) \ge \frac{n - 1}{2}, \ \forall v \in \V$，則$G$有漢米爾頓路徑。
-            \item 若$\deg(v) \ge \frac{n}{2}, \ \forall v \in \V$，則$G$有漢米爾頓環路。
+            \item 若\begin{equation}
+                \begin{aligned}
+                    \deg(x) + \deg(y) & \ge n - 1, \ \forall x, y \in \V, x \neq y \ \lor \\
+                    \deg(v) & \ge \frac{n - 1}{2}, \ \forall v \in \V
+                \end{aligned}
+            \end{equation}
+            ，則$G$有漢米爾頓\textbf{路徑}。
+            \item 若\begin{equation}
+                \begin{aligned}
+                    \deg(x) + \deg(y) & \ge n, \ \forall x, y \in \V, x, y\ \text{不相鄰} \ \lor \\
+                    \deg(v) & \ge \frac{n}{2}, \ \forall v \in \V
+                \end{aligned}
+            \end{equation}
+            ，則$G$有漢米爾頓\textbf{環路}。
         \end{itemize}
-        \item $K_n, n \ge 3$必有漢米爾頓環路。
+        \item $K_n, n \ge 3$必有漢米爾頓\textbf{環路}。
         \item 若一圖有漢米爾頓環路，則該圖中任兩點至少有兩條路徑相連。
-        \item 一連通雙分圖，若圖中有漢米爾頓環路，則兩邊的頂點數相同。$K_{m, n}, \ \forall m, n \ge 2$有漢米爾頓環路$\iff$$m = n$。
-        \item 一連通雙分圖，若圖中有漢米爾頓路徑，則兩邊的頂點數相差$\le 1$。$K_{m, n}, \ \forall m, n \ge 2$有漢米爾頓路徑$\iff$$|m - n| \le 1$。
+        \item 一連通雙分圖，若圖中有漢米爾頓\textbf{環路}，則兩邊的頂點數相同。
+        \item 一連通雙分圖，若圖中有漢米爾頓\textbf{路徑}，則兩邊的頂點數相差$\le 1$。
         \item $K_n$有$\frac{(n - 1)!}{2}$個相異漢米爾頓環路。
         \item $K_n$，$n$為奇數，有$\le \frac{n - 1}{2}$個\textbf{不共邊}的漢米爾頓環路。
         \item $K_{n, n}$有$\frac{1}{2}n!(n - 1)!$個相異漢米爾頓環路。
         \item 若$G = (\V, \E), \ |\V| = n$，則\begin{equation}
             |\E| \ge \binom{n - 1}{2} + 2
         \end{equation}
-        時，$G$有漢米爾頓環路。
+        時，$G$有漢米爾頓\textbf{環路}。
     \end{itemize}
 \end{theorem}
 
@@ -87,12 +81,12 @@
         \item 二無迴圈無向圖，若二圖同構或皆可由某個圖經由數次基本區分得到，稱二圖同胚（homeomorphic）。
         \item Kuratowski's theorem：平面圖$\iff$\textbf{不}含子圖與$K_5$或$K_{3, 3}$同胚。
         \item 當一個邊在一個區域出現二次，該邊的度數為二。
-        \item Euler formula：若$G = (\V, \E), |\V| = v, |\E| = e, r\text{為區域個數}, M\text{為分量圖數}$為平面圖，則$v - e + r = 1 + M$。
-        \item 若$G = (\V, \E), |\V| = v, |\E| = e \ge 2, r\text{為區域個數}$為無迴圈簡單\textbf{連通}平面圖，則\begin{itemize}
+        \item Euler formula：若$G = (\V, \E), |\V| = v, |\E| = e, r\text{為區域個數}, M\text{為分量圖數}$，且$G$為平面圖，則$v - e + r = 1 + M$。
+        \item 若$G = (\V, \E), |\V| = v, |\E| = e \ge 2, r\text{為區域個數}$，且$G$為無迴圈簡單\textbf{連通}平面圖，則\begin{itemize}
             \item \begin{equation}
                 \frac{3}{2}r \le e \le 3v - 6
             \end{equation}
-            \item 若$G$不含任何三角形，則\begin{equation}
+            \item 若$G$\textbf{不含任何三角形}，則\begin{equation}
                 e \le 2v - 4
             \end{equation}
             \item 若每個環路$\ge k \ge 3$邊組成，則\begin{equation}

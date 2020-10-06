@@ -1,0 +1,111 @@
+\item \begin{theorem}{(335)} 0/1 Knapsack problem (Branch-and-Bound)：\begin{itemize}
+        \item 依物品的單位價值從大到小排序。
+        \item Bounding function為\textbf{目前價值}加上通過Fractional Knapsack problem在總重不超過限制的情況下，拿\textbf{剩下物品}得到的值。
+        \item 使用Priority queue。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(89)} Longest Common Subsequence (LCS)：\begin{itemize}
+        \item \begin{equation}
+            c[i, j] = \begin{cases}
+                0 &, i = 0 \lor j = 0 \\
+                c[i - 1, j - 1] + 1 &, i, j > 0 \land x_i = y_j \\
+                \max(c[i, j - 1], c[i - 1, j]) &, i, j > 0 \land x_i \neq y_j
+            \end{cases}
+        \end{equation}
+        \item $c[0 \cdots \len(X)][0 \cdots \len(Y)]$，$c[0, 0]$表示空字串，並初始化第一行及第一列為$0$。
+        \item 字符不同時，標示左邊或上面較大值方向，數值相同時預設$\uparrow$；字符相同時標示$\nwarrow$。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(94)} Longest Common Substring：\begin{itemize}
+        \item \begin{equation}
+            c[i, j] = \begin{cases}
+                0 &, i = 0 \lor j = 0 \lor x_i \neq y_j \\
+                c[i - 1, j - 1] + 1 &, x_i = y_j
+            \end{cases}
+        \end{equation}
+        \item $c[0 \cdots \len(X)][0 \cdots \len(Y)]$，$c[0, 0]$表示空字串，並初始化第一行及第一列為$0$。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(94)} Minimum Edit Distance：\begin{itemize}
+        \item \begin{equation}
+            c[i, j] = \min\begin{cases}
+                c[i - 1, j] + 1 &, a_i \neq b_j \\
+                c[i, j - 1] + 1 &, a_i \neq b_j \\
+                c[i - 1, j - 1] + 1 &, a_i \neq b_j \\
+                c[i - 1, j - 1] &, a_i = b_j \\
+            \end{cases}
+        \end{equation}
+        \item 各情況依序表示刪除$\uparrow$、插入$\leftarrow$、替換$\nwarrow$以及匹配$\nwarrow^2$。
+        \item $c[0 \cdots \len(X)][0 \cdots \len(Y)]$，$c[0, 0]$表示空字串，並初始化第$i$行為$i$並標示$\uparrow$，第$j$列為$j$並標示$\leftarrow$。
+        \item 字符不同時，標示左邊（刪除）、上面（插入）與左上（替換）較小值方向；字符相同時標示$\nwarrow^2$。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(100)} Matrix-chain Multiplication：\begin{itemize}
+        \item \begin{equation}
+            m[i, j] = \begin{cases}
+                0 &, i = j \\
+                \min_{i \le k \le j - 1}\{m[i, k] + m[k + 1, j] + p_{i - 1}p_kp_j\} &, i < j
+            \end{cases}
+        \end{equation} 
+        \item $p[0 \cdots \num(\text{Matrices})]$，存入矩陣大小。
+        \item $m[1 \cdots \num(\text{Matrices})][1 \cdots \num(\text{Matrices})]$，初始化對角線上元素為$0$。
+        \item $s[1 \cdots \num(\text{Matrices}) - 1][2 \cdots \num(\text{Matrices})]$，$s[i, j]$存入$m[i, j]$中最小值對應的$k$。
+        \item 理解：$m[i, k]$為拆分的前部分，$m[k + 1, j]$為拆分的後部分，$p_{i - 1}p_kp_j$為前後部分相乘。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(111)} Optimal Binary Search Tree (OBST)：\begin{itemize}
+        \item \begin{equation}
+            \begin{aligned}
+                e[i, j] & = \begin{cases}
+                    q_{i - 1} &, j = i - 1 \\
+                    \min_{i \le r \le j}\{e[i, r - 1] + e[r + 1, j] + w[i, j]\} &, i \le j
+                \end{cases} \\
+                w[i, j] & = w[i, j - 1] + p_j + q_j
+            \end{aligned}
+        \end{equation} 其中，$p_j$為key（內部節點）機率，$q_j$為dummy key（外部節點）機率。
+        \item $w[1 \cdots \num(\text{Key}) + 1][0 \cdots \num(\text{Key})]$，初始化對角線上元素$w[j + 1, j]$為$q_j$。
+        \item $e[1 \cdots \num(\text{Key}) + 1][0 \cdots \num(\text{Key})]$，初始化對角線上元素$e[j + 1, j]$為$q_j$。
+        \item $r[1 \cdots \num(\text{Key})][1 \cdots \num(\text{Key})]$，$r[i, j]$存入$e[i, j]$中最小值對應的$r$。
+        \item 理解：$e[i, r - 1]$為左子樹，$e[r + 1, j]$為右子樹，$w[i, j]$為節點權重和，因為計算cost時是節點階層加一。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(76, 78, 84, 91, 93, 98, 109, 115, 335)} \quad\quad
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            \multicolumn{4}{|c|}{Dynamic Programming} \\
+            \Xhline{3\arrayrulewidth}
+            Problem & Time complexity & Space complexity & Remark \\
+            \Xhline{2\arrayrulewidth}
+            Making change & $O(kn)$ & $O(n)$ & \\
+            \hline
+            Fractional Knapsack problem & $\Theta(n\log n)$ & $O(n)$ & Greedy \\
+            \hline
+            0/1 Knapsack problem (DP) & $O(n2^{\log W})$ & $O(n2^{\log W})$ & \\
+            \hline
+            0/1 Knapsack problem (Branch-and-Bound) & $O(2^n)$ & & \\
+            \hline
+            Longest Common Subsequence (LCS) & $O(mn)$ & $O(mn)$ & 不必連續 \\
+            \hline
+            Longest Increasing Subsequence (LIS) & $O(n^2)$ & $O(n^2)$ & \\
+            \hline
+            Longest Common Substring & $O(mn)$ & $O(mn)$ & 必須連續 \\
+            \hline
+            Minimum Edit Distance & $O(mn)$ & $O(mn)$ & \\
+            \hline
+            Matrix-chain Multiplication & $O(n^3)$ & $O(n^2)$ & \\
+            \hline
+            Traveling Salesperson problem & $\Theta(n^22^n)$ & $O(n2^n)$ & \\
+            \hline
+            Optimal Binary Search Tree (OBST) & $\Theta(n^3)$ & $\Theta(n^2)$ & \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{theorem}

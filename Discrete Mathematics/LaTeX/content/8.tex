@@ -4,12 +4,10 @@
             \item 單源。
             \item 需在所有\textbf{邊非負權重}情況才能正確工作。
             \item 生成的生成樹\textbf{未必}是最小生成樹。
-            \item 時間複雜度：$O(|\V|^2)$。
         \end{itemize}
         \item Floyd-Warshall：\begin{itemize}
             \item 多源。
-            \item 可以處理負權的情況，但\textbf{負權迴圈仍不行}正確工作。
-            \item 時間複雜度：$O(|\V|^3)$。
+            \item 可以處理負權邊，但不能處理\textbf{負權迴圈}。
         \end{itemize}
     \end{itemize}
 \end{theorem}

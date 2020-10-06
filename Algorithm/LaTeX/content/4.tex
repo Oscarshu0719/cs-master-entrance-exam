@@ -1,0 +1,94 @@
+\item \begin{theorem}{(149)} \quad\quad
+    \begin{itemize}
+        \item 團（clique）：任兩點皆有邊相連，即完全子圖。
+        \item 獨立集（independent set）：獨立集中任兩點無邊相連，補圖的團。
+        \item 支配集（dominating set）：圖中支配集外的\textbf{點}皆與支配集相連。
+        \item 點覆蓋（vertex cover）：點覆蓋中的點為圖中所有\textbf{邊}的端點。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(159)} Kosaraju's algorithm： \begin{itemize}
+        \item 找strongly connected component。
+        \item 步驟：\begin{itemize}
+            \item 對原圖做DFS。
+            \item 從結束時間最晚者開始，對反向圖做DFS。
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(162, 164, 167)} Minimum Spanning Tree： \begin{itemize}
+        \item Prim's只能找相鄰的邊，Kruskal's則無限制。
+        \item 一cycle中權重最大邊必\textbf{不}在最小生成樹中。
+        \item 圖中權重第二小的邊必屬於某最小生成樹。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(171, 178, 183, 193, 195)} Shortest path： \begin{itemize}
+        \item Dijkstra's不能處理負權邊。
+        \item Bellman-Ford可以處理負權邊和負權cycle，但不能處理負權環。
+        \item Floyd-Warshall可以處理負權邊，但不能處理負權cycle；All-pair；sparse時，也不能提升性能。
+        \item Johnson's在sparse時，性能較Floyd-Warshall好；Reweight後圖上所有邊權重皆$>0$，且最短路徑與原圖相同。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(159, 172, 179, 183, 193, 204, 206)} \quad\quad
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \multicolumn{3}{|c|}{Graph} \\
+            \Xhline{3\arrayrulewidth}
+            Problem & Time complexity & Remark \\
+            \Xhline{2\arrayrulewidth}
+            Depth-First Search (DFS) & $O(|\V| + |\E|)$ & \\
+            \hline
+            Kosaraju's & $O(|\V| + |\E|)$ & \\
+            \hline
+            Kruskal's & $O(|\E|\log |\E|)$ & \\
+            \hline
+            Prim's & $O(|\V|^2)$ & \\
+            \hline
+            Dijkstra's (Min-heap) & $\Theta((|\V| + |\E|)\log |\V|)$ & Greedy \\
+            \hline
+            Dijkstra's (Fibonacci-heap) & $\Theta(|\E| + |\V|\log|\V|)$ & Greedy \\
+            \hline
+            Bellman-Ford & $O(|\V||\E|)$ & DP \\
+            \hline
+            Floyd-Warshall & $\Theta(|\V|^3)$ & DP \\
+            \hline
+            Johnson's & $\Theta(|\V||\E| + |\V|^2\log |\V|)$ & \\
+            \hline
+            Ford-Fulkerson & $O(|\E||f^*|)$ & Greedy，$f^*$為最大流 \\
+            \hline
+            Edmond-Karp & $O(|\V||\E|^2)$ & \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{theorem}
+
+\item \begin{theorem}{()} \quad\quad
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            \multicolumn{2}{|c|}{Type of common problems} \\
+            \Xhline{3\arrayrulewidth}
+            Problem & Type \\
+            \Xhline{2\arrayrulewidth}
+            Longest path problem (graph) & NPC \\
+            \hline
+            Longest path problem (tree) & Linear \\
+            \hline
+            Minimum vertex cover (graph) & NPC \\
+            \hline
+            Minimum vertex cover (tree) & Linear \\ 
+            \hline
+            Max-cut & NPC \\
+            \hline
+            Euler circuit & P \\
+            \hline
+            Hamiltonian path & NPC \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{theorem}

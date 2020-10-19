@@ -1,0 +1,87 @@
+\item \begin{theorem}{(184, 188, 190, 192, 195, 200, 203, 206, 208, 210, 213)} Sorting：\begin{itemize}
+        \item Internal/External sorting：\begin{itemize}
+            \item Internal sorting：一次在memory sorting。
+            \item External sorting：資料量太大，無法一次sorting，例如Merge sort + selection tree，$m$-way search tree。
+        \end{itemize}
+        \item Shell sort使用insertion sort。
+        \item 基於comparison的sorting algorithm time complexity上限$\Omega(nlog n)$，因為有$n!$種排序，生成decision tree高度$\ge n\log n$。
+        \item Quick sorting：
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{QuickSort}{Array $A$, index $p$, $r$} \Comment{Sorting from $A[p]$ to $A[r]$}
+                    \If {$p < r$}
+                        \State $q$ := \Call{Partition}{$A$, $p$, $r$}
+                        \State \Call{QuickSort}{$A$, $p$, $q - 1$}
+                        \State \Call{QuickSort}{$A$, $q + $, $r$}
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{Partition}{Array $A$, index $p$, $r$}
+                    \State $x$ := $A[r]$ \Comment{Pivot.}
+                    \State $i$ := $p - 1$
+                    \For {$j$ := $p$ to $r - 1$}
+                        \If {$A[j] \le x$}
+                            \State $i$ := $i + 1$
+                            \State \Call{Swap}{$A[i]$, $A[j]$}
+                        \EndIf
+                    \EndFor
+                    \State \Call{Swap}{$A[r]$, $A[i + 1]$}
+                    \State \Return $i + 1$
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \item Slection tree：分Winner/Loser tree，time complexity皆為$O(n\log k)$，但後者比較次數較少，只需要跟父節點比較。
+        \item Heap sort：
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{HeapSort}{Array $s$, length $n$} \Comment{$s[1 \cdots n]$}
+                    \For {$i$ := $\ceil{\frac{n}{2}}$ to $1$} \Comment{Build heap.}
+                        \State \Call{AdjustHeap}{$s$, $i$, $n$} 
+                    \EndFor
+                    \For {$i$ := $n - 1$ to $1$} 
+                        \State \Call{Swap}{$s[1]$, $s[i + 1]$} \Comment{Swap root and the last node.}
+                        \State \Call{AdjustHeap}{$s$, $1$, $i$} 
+                    \EndFor
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \item Counting sort：若位數較大，從個位開始一個個位數做counting sort，輸出作為下一輪的輸入。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} \quad\quad \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            \multicolumn{6}{|c|}{Comparison between sorting methods} \\
+            \Xhline{3\arrayrulewidth}
+            \multirow{2}{*}{Method} & \multicolumn{3}{c|}{Time complexity} & \multirow{2}{*}{Space complexity} & \multirow{2}{*}{Stable} \\
+            \cline{2-4}
+            & Best & Worst & Average & & \\
+            \Xhline{2\arrayrulewidth}
+            Insertion & $O(n)$ & \multicolumn{2}{c|}{$O(n^2)$} & $O(1)$ & $\surd$ \\
+            \hline
+            Selection & \multicolumn{3}{c|}{$O(n^2)$} & $O(1)$ & $\texttimes$ \\
+            \hline
+            Bubble & $O(n)$ & \multicolumn{2}{c|}{$O(n^2)$} & $O(1)$ & $\surd$ \\
+            \hline
+            Shell & $O(n^{1.5})$ & \multicolumn{2}{c|}{$O(n^2)$} & $O(1)$ & $\texttimes$ \\
+            \hline
+            Quick & $O(n\log n)$ & $O(n^2)$ & $O(n\log n)$ & $O(n\log n) \sim O(n)$ & $\texttimes$ \\
+            \hline
+            Merge & \multicolumn{3}{c|}{$O(n\log n)$} & $O(n)$ & $\surd$ \\
+            \hline
+            Heap & \multicolumn{3}{c|}{$O(n\log n)$} & $O(1)$ & $\texttimes$ \\
+            \hline
+            LSD Radix & \multicolumn{3}{c|}{$O(n \times k)$} & $O(n + k)$ & $\surd$ \\
+            \hline
+            Bucket/MSD Radix & $O(n)$ & $O(n^2)$ & $O(n + k)$ & $O(n \times k)$ & $\surd$ \\
+            \hline
+            Counting & \multicolumn{4}{c|}{$O(n + k)$} & $\surd$ \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{theorem}

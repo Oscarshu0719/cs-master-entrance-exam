@@ -1,0 +1,40 @@
+\item \begin{theorem}{(221, 223, 224, 225, 227)} Hashing： \begin{itemize}
+        \item 若$T$為所有identifier個數，$n$為目前使用的identifier個數，$B \times S$為hash table size，則\begin{equation}
+            \begin{aligned}
+                \text{identifier density} & = \frac{n}{T} \\
+                \text{loading density} & = \frac{n}{B \times S} = \alpha
+            \end{aligned}
+        \end{equation}
+        \item Perfect hashing function：保證無collision。
+        \item Uniform hashing function：使資料量$n$大致平均分布在所有$B$個bucket，每個bucket內資料量大約$\frac{n}{B} = \alpha$，則\begin{itemize}
+            \item 成功搜尋平均比較次數為$\frac{1 + 2 + \cdots + \alpha}{\alpha} = \frac{1 + \alpha}{2} \approx 1 + \frac{\alpha}{2}$。
+            \item 失敗搜尋平均比較次數為$\alpha$。
+        \end{itemize}
+        \item Hash function design：\begin{itemize}
+            \item Middle square：平方後取中間適當位數值。
+            \item Division：\begin{equation}
+                \begin{aligned}
+                    & H(x) = x \ \% \ M \\
+                    & \text{s.t.} \ M \ \text{is prime} \land M \nmid (r^k \pm \alpha), \ k, a \ \text{are small integers}
+                \end{aligned}
+            \end{equation}
+            \item Folding addition：\begin{itemize}
+                \item Shift：切成相同長度的片段，再將所有片段相加。
+                \item Boundary：切成相同長度的片段，將偶數片段反過來，再將所有片段相加。
+            \end{itemize}
+            \item Digits analysis：分析每個位數分布情況，若集中，則捨棄該位數，反之選擇該位數。
+        \end{itemize}
+        \item Linear probing：易發生primary clustering problem，即相同hashing address的data易儲存在附近，增加searching time。
+        \item Quadratic probing：Overflow發生時，改變hashing function為\begin{equation}
+            (H(x) \pm i^2) \ \% \ B, \ \forall i = 1, 2, \ \cdots, \ceil{\frac{B - 1}{2}}
+        \end{equation} 其中$B$為bucket數，$i$找到有空bucket或是所有格皆滿為止。解決primary clustering problem，但易發生secondary clustering problem，即相同hashing address的data overflow probe的位置距規律性，增加searching time。
+        \item Double hashing：Overflow發生時，改變hashing function為\begin{equation}
+            \begin{aligned}
+                & (H(x) + i \times H'(x)) \ \% \ B, \ \forall i = 1, 2, \ \cdots \\
+                & H'(x) = R - (x \ \% \ R), \ R \ \text{is prime}
+            \end{aligned}
+        \end{equation} 其中$B$為bucket數，$i$找到有空bucket或是所有格皆滿為止。解決secondary clustering problem，但不保證table充分利用。
+        \item Rehashing：提供一系列hashing functions，一個個試，直到有空bucket或是所有格皆滿為止。
+        \item 除了chain是close addressing mode，其他皆是open addressing mode。
+    \end{itemize}
+\end{theorem}

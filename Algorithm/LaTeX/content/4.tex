@@ -44,9 +44,15 @@
             \hline
             Kosaraju's & $O(|\V| + |\E|)$ & \\
             \hline
-            Kruskal's & $O(|\E|\log |\E|)$ & \\
+            Kruskal's & $O(|\E|\log |\V|)$ & \\
             \hline
-            Prim's & $O(|\V|^2)$ & \\
+            Prim's (Adjacency matrix) & $O(|\V|^2)$ & \\
+            \hline
+            Prim's (Heap, Adjacency lists) & $O(|\E|\log |\V|)$ & \\
+            \hline
+            Prim's (Fibonacci heap, Adjacency lists) & $O(|\E| + |\V|\log |\V|)$ & \\
+            \hline
+            Sollin's (Borůvka's) & $O(|\E|\log |\V|)$ & \\
             \hline
             Dijkstra's (Min-heap) & $\Theta((|\V| + |\E|)\log |\V|)$ & Greedy \\
             \hline

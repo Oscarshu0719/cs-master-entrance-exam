@@ -1,0 +1,427 @@
+\item \begin{theorem}{(129, 130, 131)} Min-max heap： \label{min-maxheap}\begin{itemize}
+        \item Complete。
+        \item Root為最小值。
+        \item 最大值在第二層其中一個。
+        \item 越下層min-level越大，越下層max-level越小。
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{InsertMinMaxHeap}{MinMaxHeap $s$, Element $x$}
+                    \State Put $x$ at the last position $n$, which has parent $p$.
+                    \If {$p$ is at min-level} 
+                        \If {$s[n].data < s[p].data$}
+                            \State \Call{Swap}{$s[n]$, $s[p]$}
+                            \State \Call{VerifyMin}{$s$, $p$, $x$}
+                        \Else
+                            \State \Call{VerifyMax}{$s$, $n$, $x$}
+                        \EndIf
+                    \Else \Comment{$p$ is at max-level.}
+                        \If {$s[n].data > s[p].data$}
+                            \State \Call{Swap}{$s[n]$, $s[p]$}
+                            \State \Call{VerifyMax}{$s$, $p$, $x$}
+                        \Else
+                            \State \Call{VerifyMin}{$s$, $n$, $x$}
+                        \EndIf
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm} 
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{DeleteMinMinMaxHeap}{MinMaxHeap $s$}
+                    \State Copy the data of the last node to the root and remove the last node.
+                    \If {Root has no children}
+                        \State Exit.
+                    \ElsIf {Root has no grandchildren}
+                        \If {Children $k$ is smaller than the root}
+                            \State \Call{Swap}{root, $s[k]$}
+                        \EndIf
+                    \ElsIf {Min grandchildren $k$ and its parent $p$}
+                        \If {root $> s[k]$}
+                            \State \Call{Swap}{root, $s[k]$}
+                            \If {root $> s[p]$}
+                                \State \Call{Swap}{root, $s[p]$}
+                                \State Recursively run the previous process.
+                            \EndIf
+                        \EndIf
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(133, 134, 135)} Deap（Double-ended heap）： \label{deap}\begin{itemize}
+        \item Complete。
+        \item root不存data，root左子樹是min-heap，右子樹是max-heap。
+        \item root左子樹中一節點必須$<$右子樹中對應的節點。
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{InsertDeap}{Deap $s$, Element $x$}
+                    \State Put $x$ at the last position $n$.
+                    \If {$n$ is at min-heap} 
+                        \State $j$ is the corresponding position in the max-heap.
+                        \If {$s[n].data > s[j].data$}
+                            \State \Call{Swap}{$s[n]$, $s[j]$}
+                            \State \Call{InsertMaxHeap}{$s$, $j$, $x$}
+                        \Else
+                            \State \Call{InsertMinHeap}{$s$, $n$, $x$}
+                        \EndIf
+                    \Else \Comment{$n$ is at max-heap.}
+                        \State $j$ is the corresponding position in the min-heap.
+                        \If {$s[n].data < s[j].data$}
+                            \State \Call{Swap}{$s[n]$, $s[j]$}
+                            \State \Call{InsertMinHeap}{$s$, $j$, $x$}
+                        \Else
+                            \State \Call{InsertMaxHeap}{$s$, $n$, $x$}
+                        \EndIf
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm} 
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{DeleteMinDeap}{Deap $s$}
+                    \State Replace the data of the left child of the root with the smaller of its children and recursively run the same process to its subtree, making an empty node $n$ at the last level. 
+                    \State Copy the data of the last node as $x$ and remove the node.
+                    \State \Call{InsertDeap}{$x$} to position $n$.
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(136, 137)} SMMH（Symmetric min-max heap）： \label{smmh}\begin{itemize}
+        \item Complete。
+        \item root不存data。
+        \item 左兄弟節點$\le$右兄弟節點。
+        \item 對一節點$x$，祖父節點的左子節點$\le x$，祖父節點的右子節點$\ge x$。
+        \item 以一節點為root，則該子樹最小值（不含root）為左子節點，最大值（不含root）為右子節點。
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{InsertSMMH}{SMMH $s$, Element $x$}
+                    \State Put $x$ at the last position.
+                    \State Recursively swap those nodes which break the rules.
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{DeleteMinSMMH}{SMMH $s$}
+                    \State Copy the data of the last node as $x$ and remove the node.
+                    \State Replace the left child of the root with the smaller of the leftmost grandchild and the third grandchild of the root and replace the chosen the node with $x$.
+                    \State Recursively swap those nodes which break the rules.
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} \quad\quad \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            \multicolumn{2}{|c|}{Operations of Min-max heap, Deap, SMMH} \\
+            \Xhline{3\arrayrulewidth}
+            Operation & Time complexity \\
+            \Xhline{2\arrayrulewidth}
+            Insert & $O(\log n)$ \\
+            \hline
+            Delete min/max & $O(\log n)$ \\
+            \hline
+            Find min/max & $O(1)$ \\
+            \hline
+        \end{tabular}
+    \end{table} 
+\end{theorem}
+
+\item \begin{theorem}{(144)} Huffman's algorithm：$O(n\log n)$，採用Greedy，但可以求出最佳解。
+\end{theorem}
+
+\item \begin{theorem}{(145, 151)} AVL tree： \label{avltree}\begin{itemize}
+        \item Height balanced BST.
+        \item 平衡係數：左子樹高度減去右子樹高度。
+        \item 左右子樹高度相差不超過$1$，即平衡係數只能為$-1$, $0$, $1$。
+        \item 若不符合條件，根據父節點和祖父節點類型（$LL$, $LR$, $RL$, $RR$）調整樹。
+        \item 高度為$h$的AVL tree且節點數為$n$，則\begin{equation}
+            F_{n + 2} - 1 \le n \le 2^h - 1
+        \end{equation} 其中$F$是費氏數列，最大值為Full。 
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(154, 155, 156, 158, 161)} $m$-way search tree： \label{m-wayst}\begin{itemize}
+        \item 節點表示data block，從左到右為小到大，每個節點有$m - 1$個key。
+        \item 用於external search/sort，資料量大時，需要分批載入search，因為無法全部放memory。
+        \item B tree：\begin{itemize}
+            \item Balanced $m$-way search tree。
+            \item 所有failure nodes都在同一層。
+            \item $m = 3$，$2$-$3$ tree；$m = 4$，$2$-$3$-$4$ tree。
+            \item 若order $m$、高度$h$且節點數為$n$，則\begin{equation}
+                1 + 2\frac{\ceil{\frac{m}{2}}^{h - 1} - 1}{\ceil{\frac{m}{2}} - 1} \le n \le 2\ceil{\frac{m}{2}}^{h - 1} - 1
+            \end{equation}
+            \item \begin{equation}
+                \begin{aligned}
+                    2 \le \deg(v) \le m &, v \ \text{is root} \\
+                    \ceil{\frac{m}{2}} \le \deg(v) \le m &, v \ \text{is NOT root or failure nodes}
+                \end{aligned}
+            \end{equation}
+            \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \Function{InsertBTree}{BTree $s$, Element $x$}
+                        \State Put $x$ at proper position, which is at position $n$.
+                        \While {$n$ overflow}
+                            \State Choose the $\ceil{\frac{m}{2}}$-th key of $n$ (started from $1$), move it to its parent, and split $n$.
+                            \State $n$ := $n.parent$
+                        \EndWhile
+                    \EndFunction
+                \end{algorithmic}
+            \end{algorithm}
+            \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \Function{DeleteBTree}{BTree $s$, Element $x$}
+                        \State $n$ := \Call{SearchBTree}{$s$, $x$}
+                        \If {$n$ is leaf}
+                            \State Delete $n$.
+                            \While {$n$ underflow} 
+                                \If {Can be rotated}
+                                    \State Rotate.
+                                    \State Break.
+                                \Else
+                                    \State Combine.
+                                    \State $n$ := $n.parent$
+                                \EndIf
+                            \EndWhile
+                        \Else \Comment{Non-leaf}
+                            \State Replace $n$ with the max key of the left subtree, which is at position $m$.
+                            \While {$m$ underflow} \Comment{Same as leaf deletion.}
+                                \If {Can be rotated}
+                                    \State Rotate.
+                                    \State Break.
+                                \Else
+                                    \State Combine.
+                                    \State $m$ := $m.parent$
+                                \EndIf
+                            \EndWhile
+                        \EndIf
+                    \EndFunction
+                \end{algorithmic}
+            \end{algorithm}
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(162)} Red-black tree： \label{rbt}\begin{itemize}
+        \item BST.
+        \item root和NIL皆黑色，紅色節點的兩個子節點必定是黑色。
+        \item root到不同樹葉節點路徑上皆有相同數量黑色節點。
+        \item 若一Red-black tree高度為$h$且節點數為$n$的，則\begin{equation}
+            h \le 2\log (n + 1)
+        \end{equation}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{InsertRedBlackTree}{RedBlackTree $s$, Element $x$}
+                    \State $n$ := \Call{SearchRedBlackTree}{$s$, $x$} \Comment{If a node has two red children during the path to $n$, change the node to red and two children to black.}
+                    \While {Adjacent red nodes exist}
+                        \State Rotate. \Comment{Parent is black and two children are red.}
+                    \EndWhile
+                    \State $n.data$ := $x$
+                    \State $n.color$ := red
+                    \While {Adjacent red nodes exist}
+                        \State Rotate.
+                    \EndWhile
+                    \If {root is red}
+                        \State Mark root black.
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+    \end{itemize}
+\end{theorem}
+    
+\item \begin{theorem}{(170, 171)} Splay Tree： \label{splaytree}\begin{itemize}
+        \item BST.
+        \item 每一次splay運算都將splay起點最終變為root。
+        \item Rotation和AVL tree不同。
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{InsertSplayTree}{SplayTree $s$, Element $x$}
+                    \State $n$ := \Call{InsertBST}{$x$}
+                    \State \Call{Splay}{$n$}
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{SearchSplayTree}{SplayTree $s$, Element $x$}
+                    \State $n$ := \Call{SearchBST}{$x$}
+                    \State \Call{Splay}{$n$}
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{DeleteSplayTree}{SplayTree $s$, Element $x$}
+                    \State $n$ := \Call{SearchBST}{$x$}
+                    \State \Call{Splay}{$n$}
+                    \State Remove $n$ and get its left and right subtrees $T_L$ and $T_R$.
+                    \State $max$ := \Call{FindMaxBST}{$T_L$}
+                    \State \Call{Splay}{$max$}
+                    \State $max.rchild$ := $T_R$
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \multicolumn{3}{|c|}{Comparison between AVL tree, B tree, and Splay tree} \\
+                \Xhline{3\arrayrulewidth}
+                & AVL tree and B tree & Splay tree \\
+                \Xhline{2\arrayrulewidth}
+                Worst & $O(\log n)$ & $O(n)$ \\
+                \hline
+                Amortized & $O(\log n)$ & $O(\log n)$ \\
+                \hline
+            \end{tabular}
+        \end{table}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            \multicolumn{2}{|c|}{Operations of AVL tree, B tree, Red-black tree, and Splay tree} \\
+            \Xhline{3\arrayrulewidth}
+            Operation & Time complexity \\
+            \Xhline{2\arrayrulewidth}
+            Insert $x$ & \multirow{3}{*}{$O(\log_m n)$} \\
+            \cline{1-1}
+            Delete $x$ & \\
+            \cline{1-1}
+            Search $x$ & \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{theorem}
+
+\item \begin{theorem}{(172, 173, 174)} Leftist heap： \label{leftistheap}\begin{itemize}
+        \item \begin{equation}
+            shortest(x) = \begin{cases}
+                0 &, x \ \text{is external node} \\
+                1 + \min\{shortest(x.lchild), shortest(x.rchild)\} &, x \ \text{is internal node}
+            \end{cases}
+        \end{equation}
+        \item $\forall n \in$ leftist tree，$shortest(n.lchild) \ge shortest(n.rchild)$。
+        \item Min(Max)-leftist heap：leftist tree and min(max)-tree.
+        \item 一$n$個節點的leftist tree，root距離$\le \log (n + 1) - 1$。
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{MergeLeftistHeap}{LeftistHeap $s$, $t$}
+                    \If {$s.data < t.data)$}
+                        \State \Call{MergeLeftistHeap}{$s.rchild$, $t$}
+                    \Else 
+                        \State \Call{MergeLeftistHeap}{$t.rchild$, $s$}
+                    \EndIf
+                    \State Check the $shortest$ value of each node, if breaking the rule, swap the node and its sibling.
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{DeltetMinLeftistHeap}{LeftistHeap $s$}
+                    \State Remove root and get its left and right subtrees $T_L$ and $T_R$.
+                    \State \Call{MergeLeftistHeap}{$T_L$, $T_R$}
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{InsertLeftistHeap}{LeftistHeap $s$, Element $x$}
+                    \State Let $x$ be a tree $n$.
+                    \State \Call{MergeLeftistHeap}{$s$, $n$}
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \multicolumn{3}{|c|}{Comparison between heap and leftist heap} \\
+                \Xhline{3\arrayrulewidth}
+                Operation & Heap & Leftist heap \\
+                \Xhline{2\arrayrulewidth}
+                Insert $x$ & \multicolumn{2}{c|}{\multirow{2}{*}{$O(\log n)$}} \\
+                \cline{1-1}
+                Delete min & \multicolumn{2}{c|}{} \\
+                \hline
+                Merge one or two heaps & $O(n)$ & $O(\log n)$ \\
+                \hline
+            \end{tabular}
+        \end{table}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(174, 175, 176)} Binomial heap： \label{binomialheap}\begin{itemize}
+        \item root level為$0$。
+        \item $B_k$為高度為$k$的binomial tree，由兩個高度$k - 1$的$B_{k - 1}$組成，其中$B_0$只有root一個節點。
+        \item $B_k$第$i$level的節點數為$\binom{k}{i}$，總共$2^k$個節點。
+        \item Binomial heap：一組binomial tree且皆為min-tree組成的forest。
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{MergeBinomialHeap}{BinomialHeap $s$, $t$}
+                    \State Merge all trees with same height recursively by choosing the smaller root as new root.
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{DeleteMinBinomialHeap}{BinomialHeap $s$}
+                    \State Delete the smallest root from tree $p$ and get new trees $u$, and the others are $q$.
+                    \State \Call{MergeBinomialHeap}{$q$, $u$}
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{InsertBinomialHeap}{BinomialHeap $s$, Element $x$}
+                    \State Let $x$ be a tree $n$.
+                    \State \Call{MergeBinomialHeap}{$s$, $n$}
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(179)} Fibonacci heap： \label{fibheap}\begin{itemize}
+        \item Binomial heap的superset，又稱Extended binomial heap。
+        \item 比binomial heap多DeleteNode和DecreaseKey。
+        \item 與binomial heap差異：\begin{itemize}
+            \item insert與delete皆不合併。
+            \item 所有節點用一個double-linked circular linked list連結起來，同時紀錄左右兄弟、父節點。
+            \item DecreaseKey若使該節點小於其父節點，則將該子樹獨立出來。
+        \end{itemize}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \multicolumn{3}{|c|}{Comparison between binomial heap and Fibonacci heap} \\
+                \Xhline{3\arrayrulewidth}
+                Operation & Binomial heap & Fibonacci heap \\
+                \Xhline{2\arrayrulewidth}
+                Insert $x$ & $O(\log n), O(1)^*$ & $O(1)^*$ \\
+                \hline
+                Delete $x$/min & $O(\log n)$ & $O(\log n)^*$ \\
+                \hline
+                Merge & $O(\log n)$ & $O(1)^*$ \\
+                \hline
+                Decrease key & $O(\log n)$ & $O(1)^*$ \\
+                \hline
+                Find min & $O(\log n)$ & $O(1)$ \\
+                \hline
+                Remark & \makecell{Find min can be\\down to $O(1)$.} & \makecell{Decrease key is faster\\than binomial heap} \\
+                \hline
+            \end{tabular}
+        \end{table}
+    \end{itemize}
+\end{theorem}

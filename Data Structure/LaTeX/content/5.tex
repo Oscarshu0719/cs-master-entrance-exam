@@ -1,0 +1,328 @@
+\item \begin{theorem}{(87)} 節點數：\begin{equation}
+        \begin{aligned}
+            n & = (\sum_{i = 1}^{\deg}i \times n_i) + 1 \\
+            n_0 & = n_2 + 1 \ \text{（二叉樹）}
+        \end{aligned}
+    \end{equation}
+\end{theorem}
+
+\item \begin{theorem}{(89, 92)} 二叉樹種類：\begin{itemize}
+        \item Full（完滿）：最後一層有最多的樹葉節點，不能在更多。
+        \item Complete（完整）：最後一層全靠左，非最後一層為Full。若對節點從左而右，從上而下編號，則對節點$i$有\begin{itemize}
+            \item 左子節點：$2i$，但若$2i > n$，則無左子節點。
+            \item 右子節點：$2i + 1$，但若$2i + 1 > n$，則無右子節點。
+            \item 父節點：$\floor{\frac{i}{2}}$，但若$\floor{\frac{i}{2}} < 1$，則無父節點。
+        \end{itemize}
+        \item Strict（嚴格）：所有非樹葉節點皆有兩個子節點。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(95, 97, 98)} \quad\quad \begin{itemize}
+        \item 可以確定二叉樹，其他則否：\begin{itemize}
+            \item Preorder、Inorder。
+            \item Postorder、Inorder。
+            \item Level-order、Inorder。
+            \item Complete和任意排序。
+        \end{itemize}
+        \item Preoder = Inoder：Empty、Root、Right-skewed tree。
+        \item Postoder = Inoder：Empty、Root、Left-skewed tree。
+        \item Preoder = Postoder：Empty、Root。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(100, 101, 102, 103, 104)} \quad\quad \begin{itemize}
+        \item 複製二叉樹：\begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{Copy}{Tree $s$}
+                    \If {$s =$ NIL}
+                        \State $t$ := NIL
+                    \Else 
+                        \State $t.data$ := $s.data$
+                        \State $t.lchild$ := \Call{Copy}{$s.lchild$}
+                        \State $t.rchild$ := \Call{Copy}{$s.rchild$}
+                    \EndIf
+                    \State \Return $t$
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \item 判斷二二叉樹是否相同：\begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{Equal}{Tree $s, t$}
+                    \State $res$ := False
+                    \If {$s =$ NIL $\land$ $t =$ NIL}
+                        \State $res$ := True
+                    \ElsIf {$s \neq$ NIL $\land$ $t \neq$ NIL}
+                        \If {$s.data = t.data$}
+                            \If {\Call{Equal}{$s.lchild$, $t.lchild$}}
+                                \State $res$ := \Call{Equal}{$s.rchild$, $t.rchild$}
+                            \EndIf
+                        \EndIf
+                    \EndIf
+                    \State \Return $res$
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \item 計算節點個數：\begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{Count}{Tree $s$}
+                    \If {$s =$ NIL}
+                        \State \Return $0$
+                    \Else
+                        \State \Return \Call{Count}{$s.lchild$} + \Call{Count}{$s.rchild$} + 1
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \item 計算二叉樹高：\begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{Height}{Tree $s$}
+                    \If {$s =$ NIL}
+                        \State \Return $0$
+                    \Else
+                        \State $n_l$ := \Call{Height}{$s.lchild$}
+                        \State $n_r$ := \Call{Height}{$s.rchild$}
+                        \State \Return \Call{Max}{$n_l$, $n_r$} + 1
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \item 計算樹葉節點個數：\begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{Leaf}{Tree $s$}
+                    \If {$s =$ NIL}
+                        \State \Return $0$
+                    \Else
+                        \State $tmp$ := \Call{Leaf}{$s.lchild$} + \Call{Leaf}{$s.rchild$}
+                        \If {$tmp > 0$}
+                            \State \Return $tmp$
+                        \Else
+                            \State \Return $1$
+                        \EndIf
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \item 交換左右子樹：\begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{SwapBT}{Tree $s$}
+                    \If {$s \neq$ NIL}
+                        \State \Call{SwapBT}{$s.lchild$}
+                        \State \Call{SwapBT}{$s.rchild$}
+                        \State \Call{Swap}{$s.lchild$, $s.rchild$}
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(107)} Binary Search Tree (BST)： \label{bst}\begin{itemize}
+        \item Inoder即是從小到大排序。
+        \item CRUD：\begin{itemize}
+            \item \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \Function{SearchBST}{Tree $s$, Element $x$}
+                        \If {$s =$ NIL}
+                            \State \Return NIL
+                        \ElsIf {$x < s.data$}
+                            \State \Return \Call{SearchBST}{$s.lchild$, $x$}
+                        \ElsIf {$x > s.data$}
+                            \State \Return \Call{SearchBST}{$s.rchild$, $x$}
+                        \Else
+                            \State \Return $s$
+                        \EndIf
+                    \EndFunction
+                \end{algorithmic}
+            \end{algorithm}
+            \item \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \Function{InsertBST}{Tree $s$, Element $x$}
+                        \If {$s =$ NIL}
+                            \State $s.data$ := $x$
+                            \State $s.lchild$ := NIL
+                            \State $s.rchild$ := NIL
+                        \Else
+                            \If {$x < s.data$} \Comment{Do nothing while $x$ is already in the tree.}
+                                \State $s.lchild$ := \Call{InsertBST}{$s.lchild$, $x$}
+                            \ElsIf {$x > s.data$}
+                                \State $s.rchild$ := \Call{InsertBST}{$s.rchild$, $x$}
+                            \EndIf
+                        \EndIf
+                        \State \Return $s$
+                    \EndFunction
+                \end{algorithmic}
+            \end{algorithm}
+            \item \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \Function{DeleteBST}{Tree $s$, Element $x$}
+                        \If {$s =$ NIL}
+                            \State \Return Error
+                        \ElsIf {$x < s.data$}
+                            \State $s.lchild$ = \Call{DeleteBST}{$s.lchild$, $x$}
+                        \ElsIf {$x > s.data$}
+                            \State $s.rchild$ = \Call{DeleteBST}{$s.rchild$, $x$}
+                        \Else \Comment{Found $x$.}
+                            \If {$s.lchild \neq$ NIL $\land$ $s.rchild \neq$ NIL} \Comment{$2$ children.}
+                                \State $min$ := \Call{SearchMin}{$s.rchild$}
+                                \State $s.data$ = $min.data$
+                                \State $s.rchild$ = \Call{DeleteBST}{$s.rchild$, $s.data$}
+                            \Else \Comment{$0$ or $1$ child.}
+                                \If {$s.lchild =$ NIL}
+                                    \State $s$ := $s.rchild$
+                                \ElsIf {$s.rchild =$ NIL}
+                                    \State $s$ := $s.lchild$
+                                \EndIf
+                            \EndIf
+                        \EndIf
+                        \State \Return $s$
+                    \EndFunction
+                \end{algorithmic}
+            \end{algorithm}
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{|c|c|c|c|}
+                    \hline
+                    \multicolumn{4}{|c|}{Operations of BST} \\
+                    \Xhline{3\arrayrulewidth}
+                    \multirow{2}{*}{Operation} & \multicolumn{2}{c|}{Time complexity} & \multirow{2}{*}{Remark} \\
+                    \cline{2-3}
+                    & Average & Worst & \\
+                    \Xhline{2\arrayrulewidth}
+                    Insert $x$ & \multirow{3}{*}{$O(\log n)$} & \multirow{3}{*}{$O(n)$} & \multirow{4}{*}{\makecell{(Based on Height)\\Skewed: $O(n)$,\\Full: $O(\log n)$}} \\
+                    \cline{1-1}
+                    Delete $x$ & & & \\
+                    \cline{1-1}
+                    Search $x$ & & & \\
+                    \cline{1-3}
+                    Create & $O(n\log n)$ & $O(n^2)$ & \\
+                    \hline
+                \end{tabular}
+            \end{table}
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(112, 113, 116, 117)} Heap： \label{heap}\begin{itemize}
+        \item Complete。
+        \item 適合用Array保存。
+        \item CRUD （Use Min-Heap as example）：\begin{itemize}
+            \item \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \Function{CreateMinHeap}{Tree $s$, size $n$}
+                        \For {$i$ := $n / 2$ to 1} \Comment{Start from parent of the last node.}
+                            \State $tmp$ := $s[i]$
+                            \State $j$ := $2 \times i$ \Comment{Left child of $i$.}
+                            \While {$j \le n$} \Comment{There is a child.}
+                                \If {$j < n$} \Comment{Right child exists.}
+                                    \If {$s[j] > s[j + 1]$} \Comment{Choose the smaller child.}
+                                        \State $j$ := $j + 1$
+                                    \EndIf
+                                \EndIf
+                                \If {$tmp \le s[j]$}
+                                    \State Break.
+                                \Else \Comment{Percolate one level.}
+                                    \State $s[j / 2]$ := $s[j]$
+                                    \State $j$ := $j \times 2$
+                                \EndIf
+                            \EndWhile
+                            \State $s[j / 2]$ := $tmp$
+                        \EndFor
+                    \EndFunction
+                \end{algorithmic}
+            \end{algorithm} 
+            \item \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \Function{InsertMinHeap}{PriorityQueue $s$, Element $x$}
+                        \If {\Call{isFull}{$s$}}
+                            \State Queue is full.
+                            \State \Return 
+                        \EndIf
+                        \State $s.size$ := $s.size + 1$
+                        \State $i$ := $s.size$ \Comment{Put at the last position.}
+                        \While {$s.data[i / 2] > x$} \Comment{Check if the parent is larger.}
+                            \State $s.data[i]$ := $s.data[i / 2]$
+                            \State $i$ := $i / 2$
+                        \EndWhile
+                        \State $s.data[i]$ := $x$
+                    \EndFunction
+                \end{algorithmic}
+            \end{algorithm} 
+            \item \begin{algorithm}[H]
+                \begin{algorithmic}[1]
+                    \Function{DeleteMinMinHeap}{PriorityQueue $s$}
+                        \If {\Call{isEmpty}{$s$}}
+                            \State Queue is empty.
+                            \State \Return $s.data[0]$
+                        \EndIf
+                        \State $min$ := $s.data[1]$
+                        \State $last$ := $s.data[s.size]$
+                        \State $s.size$ := $s.size - 1$
+                        \State $i$ := 1
+                        \While {$i \times 2 \le s.size$}
+                            \State $child$ := $i \times 2$
+                            \If {$child \neq s.size \land s.data[child + 1] < s.data[child]$} \Comment{Choose the smaller child.}
+                                \State $child$ := $child + 1$
+                            \EndIf
+                            \If {$last > s.data[child]$} \Comment{Percolate one level.}
+                                \State $s.data[i]$ := $s.data[child]$
+                            \Else
+                                \State Break.
+                            \EndIf
+                            \State $i$ := $child$
+                        \EndWhile
+                        \State $s.data[i]$ := $last$
+                        \State \Return $min$
+                    \EndFunction
+                \end{algorithmic}
+            \end{algorithm} 
+        \end{itemize}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|}
+                \hline
+                \multicolumn{2}{|c|}{Operations of Max(Min)-Heap} \\
+                \Xhline{3\arrayrulewidth}
+                Operation & Time complexity \\
+                \Xhline{2\arrayrulewidth}
+                Insert $x$ & $O(\log n)$ \\
+                \hline
+                Delete max (min) & $O(\log n)$ \\
+                \hline
+                Search max (min) & $O(1)$ \\
+                \hline
+                Create (Bottom-up) & $O(n)$ \\
+                \hline
+            \end{tabular}
+        \end{table}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(118, 119, 120)} 樹、森林和二叉樹之間轉換：\begin{itemize}
+        \item Tree to binary tree：添加兄弟節點之間的邊；只留最左子節點與父節點的邊，其餘刪除。
+        \item Binary tree to tree：將所有right-skewed subtree作為其root的兄弟節點，補齊所有subtree中父節點與子節點的邊，並且刪除兄弟節點之間的邊。
+        \item Forest to binary tree：各個樹轉換為二叉樹，並將所有二叉樹的root作為兄弟節點，添加與旁邊兄弟的邊。
+        \item Binary tree to forest：將root右子樹及其所有右子樹，作為root的兄弟節點，刪除兄弟節點之間的邊。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(122, 123, 124, 125))} Disjoint set： \begin{itemize}
+        \item $Simple-Find(x)$：從$x$往上找root，並回傳root。
+        \item $Find-with-path-compression(x)$：從$x$往上找root，並且將路徑上經過除了root的節點的link改為連到root。
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \multicolumn{3}{|c|}{Operations of disjoint set} \\
+                \Xhline{3\arrayrulewidth}
+                Combination & Union & Find \\
+                \Xhline{2\arrayrulewidth}
+                \makecell{Arbitrary Union \&\\Simple find} & $O(1)$ & \makecell{$O(h)$\\Worst: $O(n)$} \\
+                \hline
+                \makecell{Union-by-height \&\\Simple find} & $O(1)$ & $O(\log n)$ \\
+                \hline
+                \makecell{Union-by-height \&\\Find with path compression} & $O(1)$ & \makecell{$O(\alpha(m, n)) = O(\log^* n)$\\close to $O(1)$} \\
+                \hline
+            \end{tabular}
+        \end{table}
+    \end{itemize}
+\end{theorem}

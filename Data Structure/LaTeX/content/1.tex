@@ -1,0 +1,32 @@
+\item \begin{theorem}{(12)} Ackerman's function：\begin{equation}
+        A(m, n) = \begin{cases}
+            n + 1 &, m = 0 \\
+            A(m - 1, 1) &, n = 0 \\
+            A(m - 1, A(m, n - 1)) &, \text{otherwise}
+        \end{cases}
+    \end{equation}
+\end{theorem}
+
+\item \begin{theorem}{(17)} Permutation：
+    \begin{algorithm}[H]
+        \begin{algorithmic}[1]
+            \Function{Perm}{$list, i, n$}
+                \If {$i == n$}
+                    \State \Call{Print}{$list$}
+                \Else
+                    \For {$j$ := $i$ to $n$}
+                        \State \Call{Swap}{$list$, $i$, $j$}
+                        \State \Call{Perm}{$list$, $i + 1$, $n$}
+                        \State \Call{Swap}{$list$, $i$, $j$}
+                    \EndFor
+                \EndIf
+            \EndFunction
+        \end{algorithmic}
+    \end{algorithm}
+\end{theorem}
+
+\item \begin{theorem}{(21)} Stirling's formula：\begin{equation}
+        \lim_{n \rightarrow \infty}\frac{n!}{\sqrt{2\pi n}(\frac{n}{e})^n} = 1
+    \end{equation}
+\end{theorem}
+

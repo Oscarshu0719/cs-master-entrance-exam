@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 
 \usepackage{algorithm}
+\usepackage{float}
 \usepackage{algpseudocode}
 \usepackage{algorithmicx}
 \usepackage{algpseudocode}
@@ -24,6 +25,7 @@
 \usepackage[bottom]{footmisc}
 \usepackage{hologo}
 \usepackage{wallpaper}
+\usepackage{makecell}
 
 \CenterWallPaper{.50}{img/zju_logo.png}
 \hypersetup{
@@ -33,7 +35,7 @@
 	citecolor=red      
 }
 
-\newcommand{\ver}{\textmd{Version} 1.2.1} % Version number.
+\newcommand{\ver}{\textmd{Version} 1.0} % Version number.
 
 \newcommand{\mat}[1]{\boldsymbol{#1}}
 \newcommand{\spc}[1]{\textit{#1}}
@@ -69,6 +71,8 @@
 \DeclareMathOperator{\cof}{cof}
 \DeclareMathOperator{\am}{am}
 \DeclareMathOperator{\gm}{gm}
+\DeclareMathOperator{\len}{Length}
+\DeclareMathOperator{\num}{Number}
 \newcommand{\ii}{{i\mkern1mu}}
 \newcommand{\dotp}[2]{<#1, #2>}
 \newcommand{\proj}[2]{\operatorname{proj}_{#1}\vec{#2}}
@@ -84,11 +88,13 @@
 
 \renewcommand{\contentsname}{Table of Contents}
 \renewcommand{\refname}{References}
+\renewcommand{\tablename}{Table}
+\renewcommand{\figurename}{Figure}
 
 \begin{document}
 
-\title{\Huge{\textbf{離散數學}} \\
-	\LARGE{\textbf{Discrete Mathematics}}
+\title{\Huge{\textbf{資料結構}} \\
+	\LARGE{\textbf{Data Structure}}
 }
 \newcommand*{\affaddr}[1]{#1}
 \newcommand*{\affmark}[1][*]{\textsuperscript{#1}}
@@ -111,13 +117,13 @@
 \begin{enumerate}
 \let\clearpage\relax
 \include{content/1}
-\include{content/2}
 \include{content/3}
-\include{content/4}
 \include{content/5}
-\include{content/6}
+\include{content/9}
 \include{content/7}
 \include{content/8}
+\include{content/6}
+\include{content/2_4}
 \end{enumerate}
 \endgroup
 \include{content/bibliography}

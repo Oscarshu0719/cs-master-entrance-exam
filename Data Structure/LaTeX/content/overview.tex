@@ -1,0 +1,118 @@
+\section{Overview}
+
+\begin{enumerate}
+    \item 本文頁碼標記依照TKB筆記\cite{1}的頁碼。
+    \item TKB筆記\cite{1}章節頁碼：
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Chapter & Page No. & Importance \\
+            \Xhline{2\arrayrulewidth}
+            1 & 3 & $\star\star\star$ \\
+            \hline
+            2 & 259 & $\star$ \\
+            \hline
+            3 & 52 & $\star\star\star$ \\
+            \hline
+            4 & 259 & $\star$ \\
+            \hline
+            5 & 82 & $\star\star\star\star\star$ \\
+            \hline
+            6 & 228 & $\star\star\star \ \star$ \\
+            \hline
+            7 & 180 & $\star\star\star \ \star$ \\
+            \hline
+            8 & 221 & $\star\star\star$ \\
+            \hline
+            9 & 129 & $\star\star\star \ \star$ \\
+            \hline
+        \end{tabular}
+    \end{table}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            Data structure & Page No. \\
+            \Xhline{2\arrayrulewidth}
+            BST & \pageref{bst} \\
+            \hline
+            Heap & \pageref{heap} \\
+            \hline
+            Min-max heap & \pageref{min-maxheap} \\
+            \hline
+            Deap & \pageref{deap} \\
+            \hline
+            SMMH & \pageref{smmh} \\
+            \hline
+            AVL tree & \pageref{avltree} \\
+            \hline
+            $m$-way ST & \pageref{m-wayst} \\
+            \hline
+            Red-black tree & \pageref{rbt} \\
+            \hline
+            Splay tree & \pageref{splaytree} \\
+            \hline
+            Leftist heap & \pageref{leftistheap} \\
+            \hline
+            Binomial heap & \pageref{binomialheap} \\
+            \hline
+            Fibonacci heap & \pageref{fibheap} \\
+            \hline
+        \end{tabular}
+    \end{table}
+    \item 缺少Red-black tree刪除。
+    \item OBST在「演算法」中，不再贅述。
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            \multicolumn{5}{|c|}{Comparison between trees.} \\
+            \Xhline{3\arrayrulewidth}
+            Tree & Insert $x$ & Delete $x$ & Search $x$ & Remark \\
+            \Xhline{2\arrayrulewidth}
+            BST & \multicolumn{3}{c|}{$O(\log n) \sim O(n)$} & Create: $O(n\log n) \sim O(n^2)$ \\
+            \hline
+            AVL tree & \multicolumn{3}{c|}{\multirow{4}{*}{$O(\log_m n)$}} & $F_{n + 2} - 1 \le n \le 2^h - 1$ \\
+            \cline{1-1}\cline{5-5}
+            B tree & \multicolumn{3}{c|}{} & $1 + 2\frac{\ceil{\frac{m}{2}}^{h - 1} - 1}{\ceil{\frac{m}{2}} - 1} \le n \le 2\ceil{\frac{m}{2}}^{h - 1} - 1$ \\
+            \cline{1-1}\cline{5-5}
+            RBT & \multicolumn{3}{c|}{} & $h \le 2\log (n + 1)$ \\
+            \cline{1-1}\cline{5-5}
+            Splay tree & \multicolumn{3}{c|}{} & Worst: $O(n)$ \\
+            \hline
+        \end{tabular}
+    \end{table}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            \multicolumn{6}{|c|}{Comparison between priority queues.} \\
+            \Xhline{3\arrayrulewidth}
+            Operations & Max (Min) & \makecell{Min-max \&\\Deap \&\\SMMH} & Leftist & Binomial & Fibonacci \\
+            \Xhline{2\arrayrulewidth}
+            Insert $x$ & $O(\log n)$ & $O(\log n)$ & $O(\log n)$ & $O(\log n), O(1)^*$ & $O(1)^*$ \\
+            \hline
+            Delete max & $O(\log n)$ & $O(\log n)$ & & & \\
+            \hline
+            Delete min & $O(n)$ & $O(\log n)$ & $O(\log n)$ & $O(\log n)$ & $O(\log n)^*$ \\
+            \hline
+            Delete $x$ & & & & $O(\log n)$ & $O(\log n)^*$ \\
+            \hline
+            Merge & $O(n)$ & & $O(\log n)$ & $O(\log n)$ & $O(1)^*$ \\
+            \hline
+            Decrease key & & & & $O(\log n)$ & $O(1)^*$ \\
+            \hline
+            Search $x$ & $O(n)$ & & & & \\
+            \hline
+            Find max & $O(1)$ & $O(1)$ & & & \\
+            \hline
+            Find min & & $O(1)$ & & $O(\log n)$ & $O(1)$ \\
+            \hline
+            Remark & & & \makecell{Merge faster\\than heap.} & \makecell{Find min can be\\down to $O(1)$.} & \makecell{Decrease key is faster\\than binomial heap} \\
+            \hline
+        \end{tabular}
+    \end{table} 
+\end{enumerate}
+
+\pagebreak

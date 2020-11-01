@@ -11,7 +11,11 @@ This repository is used to keep notes for Computer Science graduate school entra
 
 - [Algorithm (ALGO)](https://github.com/Oscarshu0719/cs-master-entrance-exam/tree/master/Algorithm/LaTeX)
 
+- [Computer Architecture (CA)](https://github.com/Oscarshu0719/cs-master-entrance-exam/tree/master/Computer%20Architecture/LaTeX)
+
 - [Data Structure (DS)](https://github.com/Oscarshu0719/cs-master-entrance-exam/tree/master/Data%20Structure/LaTeX)
+
+- [Data Structure and Algorithm (DSA)](https://github.com/Oscarshu0719/cs-master-entrance-exam/tree/master/Data%20Structure%20and%20Algorithm/LaTeX)
 
 - [Discrete Mathematics (DM)](https://github.com/Oscarshu0719/cs-master-entrance-exam/tree/master/Discrete%20Mathematics/LaTeX)
 

@@ -120,7 +120,7 @@
         \centering
         \begin{tabular}{|c|c|}
             \hline
-            \multicolumn{2}{|c|}{Operations of Min-max heap, Deap, SMMH} \\
+            \multicolumn{2}{|c|}{Min-max heap, Deap, and SMMH} \\
             \Xhline{3\arrayrulewidth}
             Operation & Time complexity \\
             \Xhline{2\arrayrulewidth}
@@ -219,18 +219,79 @@
         \begin{algorithm}[H]
             \begin{algorithmic}[1]
                 \Function{InsertRedBlackTree}{RedBlackTree $s$, Element $x$}
-                    \State $n$ := \Call{SearchRedBlackTree}{$s$, $x$} \Comment{If a node has two red children during the path to $n$, change the node to red and two children to black.}
-                    \While {Adjacent red nodes exist}
-                        \State Rotate. \Comment{Parent is black and two children are red.}
+                    \State $x.color$ := $red$.
+                    \State \Call{InsertBST}{$x$}.\
+                    \While {$x.parent.color = red$}
+                        \If {$x.parent$ is left child}
+                            \If {$x.parent.sibling.color = red$}
+                                \State $x.parent.color$ := $black$
+                                \State $x.parent.sibling.color$ := $black$
+                                \State $x.parent.parent.color$ := $red$
+                                \State $x$ := $x.parent.parent$
+                            \ElsIf {$x$ is right child}
+                                \State $x$ := $x.parent$
+                                \State \Call{LeftRotate}{$s$, $x$}
+                            \Else
+                                \State $x.parent.color$ := $black$
+                                \State $x.parent.parent.color$ := $red$
+                                \State \Call{RightRotate}{$s$, $x.parent.parent$}
+                            \EndIf
+                        \Else
+                            \State Similar to the process above, just change \Call{LeftRotate}{} and \Call{RightRotate}{}.
+                        \EndIf
                     \EndWhile
-                    \State $n.data$ := $x$
-                    \State $n.color$ := red
-                    \While {Adjacent red nodes exist}
-                        \State Rotate.
-                    \EndWhile
-                    \If {root is red}
-                        \State Mark root black.
+                    \State $s.root$ := $black$
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{DeleteRedBlackTree}{RedBlackTree $s$, Element $x$}
+                    \State $org-color$ := $x.color$
+                    \If {$x$ is leaf} 
+                        \State Set link from $x.parent$ to $x$ as NIL.
+                    \ElsIf {$x$ has $1$ child}
+                        \State Replace $x$ with its child. 
+                    \Else \Comment{$x$ has $2$ children}
+                        \State Replace $x$ with largest in left subtree or smallest in right subtree.
                     \EndIf
+                    \If {$org-color = black$}
+                        \State \Call{DeleteFixRedBlackTree}{$s$, $x$}
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{DeleteFixRedBlackTree}{RedBlackTree $s$, Element $x$}
+                    \While {$x \neq s.root \land x.color = black$}
+                        \If {$x$ is left child}
+                            \State $w$ := $x.sibling$
+                            \If {$w.color = red$}
+                                \State $w.color$ := $black$
+                                \State $x.parent.color$ := $red$
+                                \State \Call{LeftRotate}{$s$, $x.parent$}
+                                \State $w$ := $x.sibling$
+                            \ElsIf {$w.lchild.color = black \land w.rchild.color = black$}
+                                \State $w.color$ := $red$
+                                \State $x$ := $x.parent$
+                            \ElsIf {$w.rchild.color = black$}
+                                \State $w.lchild.color$ := $black$
+                                \State $w.color$ := $red$
+                                \State \Call{RightRotate}{$s$, $w$}
+                                \State $w$ := $x.sibling$
+                            \Else
+                                \State $w.color$ := $x.parent.color$
+                                \State $x.parent.color$ := $black$
+                                \State $w.rchild.color$ := $black$
+                                \State \Call{LeftRotate}{$s$, $x.parent$}
+                                \State $x$ = $s.root$
+                            \EndIf
+                        \Else
+                            \State Similar to the process above, just change \Call{LeftRotate}{} and \Call{RightRotate}{}.
+                        \EndIf
+                    \EndWhile
+                    \State $x.color = black$
                 \EndFunction
             \end{algorithmic}
         \end{algorithm}
@@ -273,7 +334,7 @@
             \centering
             \begin{tabular}{|c|c|c|}
                 \hline
-                \multicolumn{3}{|c|}{Comparison between AVL tree, B tree, and Splay tree} \\
+                \multicolumn{3}{|c|}{AVL tree, B tree, and Splay tree} \\
                 \Xhline{3\arrayrulewidth}
                 & AVL tree and B tree & Splay tree \\
                 \Xhline{2\arrayrulewidth}
@@ -291,7 +352,7 @@
         \centering
         \begin{tabular}{|c|c|}
             \hline
-            \multicolumn{2}{|c|}{Operations of AVL tree, B tree, Red-black tree, and Splay tree} \\
+            \multicolumn{2}{|c|}{AVL tree, B tree, Red-black tree, and Splay tree} \\
             \Xhline{3\arrayrulewidth}
             Operation & Time complexity \\
             \Xhline{2\arrayrulewidth}
@@ -347,7 +408,7 @@
             \centering
             \begin{tabular}{|c|c|c|}
                 \hline
-                \multicolumn{3}{|c|}{Comparison between heap and leftist heap} \\
+                \multicolumn{3}{|c|}{Heap and Leftist heap} \\
                 \Xhline{3\arrayrulewidth}
                 Operation & Heap & Leftist heap \\
                 \Xhline{2\arrayrulewidth}
@@ -405,7 +466,7 @@
             \centering
             \begin{tabular}{|c|c|c|}
                 \hline
-                \multicolumn{3}{|c|}{Comparison between binomial heap and Fibonacci heap} \\
+                \multicolumn{3}{|c|}{Binomial heap and Fibonacci heap} \\
                 \Xhline{3\arrayrulewidth}
                 Operation & Binomial heap & Fibonacci heap \\
                 \Xhline{2\arrayrulewidth}

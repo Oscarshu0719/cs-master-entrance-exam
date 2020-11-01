@@ -24,9 +24,7 @@
 \end{theorem}
 
 \item \begin{theorem}{(171, 178, 183, 193, 195)} Shortest path： \begin{itemize}
-        \item Dijkstra's不能處理負權邊。
-        \item Bellman-Ford可以處理負權邊和負權cycle，但不能處理負權環。
-        \item Floyd-Warshall可以處理負權邊，但不能處理負權cycle；All-pair；sparse時，也不能提升性能。
+        \item Floyd-Warshall：sparse時，也不能提升性能。
         \item Johnson's在sparse時，性能較Floyd-Warshall好；Reweight後圖上所有邊權重皆$>0$，且最短路徑與原圖相同。
     \end{itemize}
 \end{theorem}
@@ -36,7 +34,7 @@
         \centering
         \begin{tabular}{|c|c|c|}
             \hline
-            \multicolumn{3}{|c|}{Graph} \\
+            \multicolumn{3}{|c|}{Graph algorithms} \\
             \Xhline{3\arrayrulewidth}
             Problem & Time complexity & Remark \\
             \Xhline{2\arrayrulewidth}
@@ -54,15 +52,15 @@
             \hline
             Sollin's (Borůvka's) & $O(|\E|\log |\V|)$ & \\
             \hline
-            Dijkstra's (Min-heap) & $\Theta((|\V| + |\E|)\log |\V|)$ & Greedy \\
+            Dijkstra's (Min-heap) & $\Theta((|\V| + |\E|)\log |\V|)$ & \multirow{2}{*}{\makecell{Greedy, no negative\\edges or cycles}} \\
+            \cline{1-2}
+            Dijkstra's (Fibonacci-heap) & $\Theta(|\E| + |\V|\log|\V|)$ &  \\
             \hline
-            Dijkstra's (Fibonacci-heap) & $\Theta(|\E| + |\V|\log|\V|)$ & Greedy \\
+            Bellman-Ford & $O(|\V||\E|)$ & DP, no negative cycles \\
             \hline
-            Bellman-Ford & $O(|\V||\E|)$ & DP \\
+            Floyd-Warshall & $\Theta(|\V|^3)$ & DP, no negative cycles \\
             \hline
-            Floyd-Warshall & $\Theta(|\V|^3)$ & DP \\
-            \hline
-            Johnson's & $\Theta(|\V||\E| + |\V|^2\log |\V|)$ & \\
+            Johnson's & $\Theta(|\V||\E| + |\V|^2\log |\V|)$ & No negative cycles \\
             \hline
             Ford-Fulkerson & $O(|\E||f^*|)$ & Greedy，$f^*$為最大流 \\
             \hline

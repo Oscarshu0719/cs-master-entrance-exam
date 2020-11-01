@@ -1,0 +1,61 @@
+\item \begin{theorem}{(284)} 軟硬體影響性能：
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+             & IC & CPI & Clock rate \\
+            \Xhline{2\arrayrulewidth}
+            Algorithm & $\surd$ & $\surd$ & \\
+            \hline
+            Programming language & $\surd$ & $\surd$ & \\
+            \hline
+            Compiler & $\surd$ & $\surd$ & \\
+            \hline
+            ISA & $\surd$ & $\surd$ & $\surd$ \\
+            \hline
+            Computer organization & & $\surd$ & $\surd$ \\
+            \hline
+            VLSI & & & $\surd$ \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{theorem}
+
+\item \begin{theorem}{(284)} \quad\quad
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+             & IC & CPI & Clock rate \\
+            \Xhline{2\arrayrulewidth}
+            RISC & 大 & 小 & 小 \\
+            \hline
+            CISC & 小 & 大 & 大 \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{theorem}
+
+\item \begin{theorem}{(292)} MIPS： \begin{itemize}
+        \item \begin{equation}
+            \begin{aligned}
+                MIPS & = \frac{\text{IC}}{\text{execution time} \times 10^6} \\
+                & = \frac{\text{clock rate}}{\text{CPI} \times 10^6}
+            \end{aligned}
+        \end{equation}
+        \item MIPS不考慮指令的能力。
+        \item 在同一台電腦上的程式，MIPS也可能不同。
+        \item MIPS可能與效能成反比。
+    \end{itemize} 
+\end{theorem}
+
+\item \begin{theorem}{(306)} \quad\quad \begin{itemize}
+        \item \begin{equation}
+            SPECratio = \frac{\text{execution time referenced}}{\text{execution time measured}}
+        \end{equation} SPECratio越大代表效能越好。
+        \item 若$A$以$B$為基準取norm，值為$\frac{B}{A}$。
+        \item 先取geometric mean再norm和先norm再geometric mean結果相同。
+        \item Geometric mean和execution time、norm的基準皆無關。
+        \item Geometric mean無法預測execution time。
+    \end{itemize} 
+\end{theorem}

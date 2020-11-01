@@ -1,50 +1,60 @@
-\item \begin{theorem}{(7, 8, 10, 12)} System types：\begin{itemize}
-        \item Multiprogramming system：\begin{itemize}
-            \item Multiprogramming degree：存在系統內執行的process個數。
-            \item 執行方式：\begin{itemize}
-                \item Concurrent（並行）：CPU在多個processes之間切換，同一時間只有一個process執行。
-                \item Parallel（平行）：同一時間多個processes在不同CPU上執行。
-            \end{itemize}
+\subsection{System types}
+
+\begin{theorem}{(7)} Multiprogramming system：\begin{itemize}
+        \item Multiprogramming degree：存在系統內執行的process個數。
+        \item 執行方式：\begin{itemize}
+            \item Concurrent（並行）：CPU在多個processes之間切換，同一時間只有一個process執行。
+            \item Parallel（平行）：同一時間多個processes在不同CPU上執行。
         \end{itemize}
-        \item Time-sharing (Multitasking) system：\begin{itemize}
-            \item 屬於Multiprogramming的一種。
-            \item CPU頻繁在任務間切換，response time短，適合interactive computing，經常採用Round-Robin scheduling。
-            \item 採用virtual memory。
-            \item 採用spooling (Simultaneous Peripheral Operations On-Line processing)，將disk當作buffer，將輸出檔先儲存在disk，直到device取走，達到多個I/O devices的效果。
-        \end{itemize}
-        \item Multiprocessors (Tightly-coupled, Parallel) system：\begin{itemize}
-            \item Processors溝通通常採用shared memory。
-            \item Graceful degradation (Fail-soft)：系統不會因為某些軟硬體元件故障而停頓。具備此能力的系統稱為Fault-tolerant。
-            \item Multicores，即一晶片多核，相較multiprocessors速度快且省電。
-            \item 類型：\begin{itemize}
-                \item SMP (Symmetric MultiProcessors)：所有processors能力與權利相同，troughput與reliability較ASMP好，但OS設計較ASMP複雜。
-                \item ASMP (ASymmetric MultiProcessors)：Master-slave架構，master負責工作與資源分配，其餘為slave。
-            \end{itemize}
-        \end{itemize}
-        \item Distributed (Loosely-coupled) system：\begin{itemize}
-            \item Processors的clock和OS未必相同。
-            \item Processors溝通通常採用message passing，透過network連接。
-            \item C/S model達到resources sharing；P2P (Peer-to-peer)不區分C/S。
-        \end{itemize}
-        \item Real-time system：\begin{itemize}
-            \item 類型：\begin{itemize}
-                \item Hard real-time system：\begin{itemize}
-                    \item 若工作未在deadline前完成，即為失敗。
-                    \item 處理時間過長或無法預測的設備少用，disk少用，virtual memory不用。
-                    \item 不與time-sharing system並存。
-                    \item 減少kernel介入時間。
-                \end{itemize}
-                \item Soft real-time sharing：\begin{itemize}
-                    \item real-time processes必須持續保有最高priority直到結束。
-                    \item 必須支援preemptive priority scheduling。
-                    \item 不提供Aging。
-                    \item 減少kernel的dispatch latency。
-                    \item 可與virtual memory共存，但是real-time processes不能被swapped out直到完工。
-                    \item 可與time-sharing並存。
-                    \item 現行OS皆支援。
-                \end{itemize}
-            \end{itemize}
-        \end{itemize}
-        \item Batch system：非急迫或週期性的任務一起執行，提高資源使用率，不適用real-time及user-interactive。
     \end{itemize}
+\end{theorem}
+
+\begin{theorem}{(7)} Time-sharing (Multitasking) system：\begin{itemize}
+        \item 屬於Multiprogramming的一種。
+        \item CPU頻繁在任務間切換，response time短，適合interactive computing，經常採用Round-Robin scheduling。
+        \item 採用virtual memory。
+        \item 採用spooling (Simultaneous Peripheral Operations On-Line processing)，將disk當作buffer，將輸出檔先儲存在disk，直到device取走，達到多個I/O devices的效果。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Multiprocessors (Tightly-coupled, Parallel) system：\begin{itemize}
+        \item Processors溝通通常採用shared memory。
+        \item Graceful degradation (Fail-soft)：系統不會因為某些軟硬體元件故障而停頓。具備此能力的系統稱為Fault-tolerant。
+        \item Multicores，即一晶片多核，相較multiprocessors速度快且省電。
+        \item 類型：\begin{itemize}
+            \item SMP (Symmetric MultiProcessors)：所有processors能力與權利相同，troughput與reliability較ASMP好，但OS設計較ASMP複雜。
+            \item ASMP (ASymmetric MultiProcessors)：Master-slave架構，master負責工作與資源分配，其餘為slave。
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{(8)} Distributed (Loosely-coupled) system：\begin{itemize}
+        \item Processors的clock和OS未必相同。
+        \item Processors溝通通常採用message passing，透過network連接。
+        \item C/S model達到resources sharing；P2P (Peer-to-peer)不區分C/S。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{(10)} Real-time system：\begin{itemize}
+        \item 類型：\begin{itemize}
+            \item Hard real-time system：\begin{itemize}
+                \item 若工作未在deadline前完成，即為失敗。
+                \item 處理時間過長或無法預測的設備少用，disk少用，virtual memory不用。
+                \item 不與time-sharing system並存。
+                \item 減少kernel介入時間。
+            \end{itemize}
+            \item Soft real-time sharing：\begin{itemize}
+                \item real-time processes必須持續保有最高priority直到結束。
+                \item 必須支援preemptive priority scheduling。
+                \item 不提供Aging。
+                \item 減少kernel的dispatch latency。
+                \item 可與virtual memory共存，但是real-time processes不能被swapped out直到完工。
+                \item 可與time-sharing並存。
+                \item 現行OS皆支援。
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Batch system：非急迫或週期性的任務一起執行，提高資源使用率，不適用real-time及user-interactive。
 \end{theorem}

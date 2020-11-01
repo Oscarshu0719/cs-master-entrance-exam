@@ -1,7 +1,21 @@
-\item \begin{theorem}{(34)} Virtual machine：\begin{itemize}
+\subsection{Virtual machine}
+
+\begin{theorem}{(34)} Virtual machine：\begin{itemize}
         \item Host：Underlying hardware system.
         \item Virtual Machine Manager (VMM, Hypervisor).
         \item Guest：Process provided by VM, for example, OS, applications.
+        \item 優點：\begin{itemize}
+            \item 提供Cloud computing。
+            \item 測試中的OS掛了，視為一個user process掛掉，其他user processes以及real system不受影響。
+        \end{itemize}
+        \item 缺點：\begin{itemize}
+            \item 不易開發VMM，因為要複製與底層host hardware一模一樣的VM非常困難，例如modes control and transition、資源調度和I/O device and controller之模擬。
+            \item 效能比host hardware差。
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} \quad\quad \begin{itemize}
         \item Implementations：\begin{itemize}
             \item Type 0：Hardware.
             \item Type 1：Kernel mode. \begin{itemize}
@@ -16,21 +30,12 @@
             \item Application containment (container)：Not virtualization at all, but provides segregating applications from the OS.
         \end{itemize}
         \item Java Virtual Machine (JVM)：只提供規格（class loader，class verifier和Java interpreter），並非實現。
-        \item 優點：\begin{itemize}
-            \item 提供Cloud computing。
-            \item 測試中的OS掛了，視為一個user process掛掉，其他user processes以及real system不受影響。
-        \end{itemize}
-        \item 缺點：\begin{itemize}
-            \item 不易開發VMM，因為要複製與底層host hardware一模一樣的VM非常困難，例如modes control and transition、資源調度和I/O device and controller之模擬。
-            \item 效能比host hardware差。
-        \end{itemize}
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(52)} \quad\quad \begin{itemize}
+\begin{theorem}{(52)} \quad\quad \begin{itemize}
         \item Software as a service（SaaS）：Applications, e.g. Dropbox, Gmail.
         \item Platform as a service（PaaS）：Software stack, i.e. APIs for softwares, e.g. DB server.
         \item Infrastructure as a service（IaaS）：Servers or storage, e.g. storage for backup.
     \end{itemize}
 \end{theorem}
-

@@ -1,0 +1,39 @@
+\item \begin{theorem}{(10)} Endianness：\begin{itemize}
+        \item Big Endian：最左邊或MSB放在最低address，e.g. MIPS。
+        \item Little Endian：最右邊或LSB放在最低address，e.g. x86。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(15)} 轉譯（Translation）：\begin{itemize}
+        \item 流程：compiler, assembler, linker, loader。
+        \item Linker：連結多個模組解決位址的參考問題。
+        \item Loader：將機械碼放在適當address。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(29)} \code{lb}和\code{lbu}皆取LSB，只差在\code{lb}要擴展；\code{sb}存入LSB。
+\end{theorem}
+
+\item \begin{theorem}{(39)} \code{swap $s0, $s1}： \begin{lstlisting}
+        xor $s0, $s0, $s1
+        xor $s1, $s0, $s1
+        xor $s0, $s0, $s1
+    \end{lstlisting}
+\end{theorem}
+
+\item \begin{theorem}{(42))} 常數邏輯類運算用$0$擴充，e.g. andi；常數算術類運算用sign擴充，e.g. addi。
+\end{theorem}
+
+\item \begin{theorem}{(47)} \quad\quad \begin{lstlisting}
+        srl rd, rt, shamt // rs = 5'0
+        lw/sw rt, imm(rs)
+        beq/bne rs, rt, addr
+        addi rt, rs, imm
+    \end{lstlisting}
+\end{theorem}
+
+\item \begin{theorem}{(49, 51)} \quad\quad \begin{itemize}
+        \item \code{branch}：\code{imm}填入與$PC + 4$距離除以$4$，range：$PC - 2^{17} \sim PC + 2^{17} - 4$。
+        \item \code{jump}：\code{addr}填入地址第$[27 - 2]$，及去除最左$4$位和最右$2$位，實際地址：$PC[31 - 28] + addr + 2'0$，只能在同一個block，即看最左$4$位。
+    \end{itemize}
+\end{theorem}

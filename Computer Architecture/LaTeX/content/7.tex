@@ -1,0 +1,38 @@
+\item \begin{theorem}{(203)} \begin{equation}
+        \text{Rotational time} = \frac{0.5}{\text{RPS}}
+    \end{equation} 
+\end{theorem}
+
+\item \begin{theorem}{(207)} Falsh：\begin{itemize}
+        \item NOT lost info if it loses power.
+        \item Write is much slower than read.
+        \item NOR flash：Read access time computation is similar to DRAM. 
+        \item NAND flash：Read bandwidth computation is similar to disk. Much cheaper per GB.
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(210, 213, 278, 289)} RAID：\begin{itemize}
+        \item Dependability：服務品質。
+        \item Reliabilitiy：時間區間內可以正確執行其功能的機率。
+        \item Availability：某時間點可以正確執行其功能的機率。\begin{equation}
+            \text{Availability} = \frac{\text{MTTF}}{\text{MTTF} + \text{MTTR}}
+        \end{equation}
+        \item Data stripping：Data分散到不同disks，一次data存取會使多個disks存取，提升performance。
+        \item Redundancy：利用多餘disks提升availablity，但不能改善reliability。
+        \item RAID 0：Stipping，非容錯，沒有多餘disks。
+        \item RAID 1：Mirroring (shadowing)，最貴，data總是有$2$copies，disks數量為RAID 0兩倍。
+        \item RAID 2：Hamming code，Write需要讀取所有disks，從新計算Hamming code並寫入ECC disks，效率差。
+        \item RAID 3：\begin{itemize}
+            \item Bit-interleaved parity.
+            \item 不做備份，花費較多時間恢復data，較少disks。
+            \item 當$1$個disk出錯可救回來，多個則否。
+            \item Availability cost為$\frac{1}{N}$，其中$N$為protection group disks數量。
+        \end{itemize}
+        \item RAID 4：Block-interleaved parity，只對protection group其中一disk做small reads。
+        \item RAID 5：Distributed Block-interleaved parity，parity被分散到所有disks，Write就不會有單一disk瓶頸。
+        \item Read latency：RAID 3最短；Write latency：RAID 0 或 RAID 3最短。
+        \item RAID 3 has worst throuhput for small writes.
+        \item RAID 3, 4, 5 have same throughput for large writes.
+        \item RAID 4, 5 perform same for parallel small reads and small writes, but RAID 3 can NOT for both access.
+    \end{itemize}
+\end{theorem}

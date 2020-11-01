@@ -1,0 +1,22 @@
+\item \begin{theorem}{(309, 319)} Shared-memory Multiprocessor (SMP)：\begin{itemize}
+        \item UMA：通過bus傳輸，因此同質CPU；NUMA：Netwrok傳輸，can scale to larger sizes and have lower latency to local memory。
+        \item Snooping解決UMA和NUMA中cache coherence problem：\begin{itemize}
+            \item Write-invalidate：先將其他caches invalidate後，在update自己的cache，降低bus bandwidth需求。
+            \item Write-update (broadcast)：通過bus broadcast最新的值。
+        \end{itemize}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(325)} Multithreading： \begin{itemize}
+        \item Fine-grained multithreading：Switches between threads on each instruction pack, but slows down the execution of individual threads. 隱藏long/short stalls造成的throughput損失。
+        \item Coarse-grained multithreading：Switches only on costly stalls, e.g. L2 cache misses, but cost at startup because of flush and refill on thread switches.
+        \item Simultaneous Multithreading (SMT)：Hardware multithreading. Multiple-issue, dynamically scheduled processor (superscalar) to exploit ILP and Thread-level parallelism (TLP).
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(332)} GPU：\begin{itemize}
+        \item NOT rely on multilevel caches, but rely on enough threads to hide the latency to memory.
+        \item GPU towards bandwidth rather than latency.
+        \item NO support for double precision floating-point arithmetic.
+    \end{itemize}
+\end{theorem}

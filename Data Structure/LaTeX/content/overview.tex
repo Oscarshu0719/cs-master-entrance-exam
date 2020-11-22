@@ -35,10 +35,6 @@
             \hline
             Data structure & Page No. \\
             \Xhline{2\arrayrulewidth}
-            BST & \pageref{bst} \\
-            \hline
-            Heap & \pageref{heap} \\
-            \hline
             Min-max heap & \pageref{min-maxheap} \\
             \hline
             Deap & \pageref{deap} \\
@@ -61,6 +57,14 @@
             \hline
         \end{tabular}
     \end{table}
+    \item \begin{equation}
+        \begin{aligned}
+            \log 2 & = 0.3010 \\
+            \log 3 & = 0.4771 \\
+            \log 5 & = 0.6990 \\
+            \log 7 & = 0.8451
+        \end{aligned}
+    \end{equation}
     \item OBST在「演算法」中，不再贅述。
     \begin{table}[H]
         \centering
@@ -108,10 +112,42 @@
             \hline
             Find min & & $O(1)$ & & $O(\log n)$ & $O(1)$ \\
             \hline
-            Remark & & & \makecell{Merge faster\\than heap.} & \makecell{Find min can be\\down to $O(1)$.} & \makecell{Decrease key is faster\\than binomial heap} \\
+            Remark & \makecell{Create:\\$O(n)$} & & \makecell{Merge faster\\than Max\\(Min) heap.} & \makecell{Find min\\can be down\\to $O(1)$.} & \makecell{Decrease key is\\faster than\\binomial heap} \\
             \hline
         \end{tabular}
     \end{table} 
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            \multicolumn{6}{|c|}{Sorting algorithms} \\
+            \Xhline{3\arrayrulewidth}
+            \multirow{2}{*}{Method} & \multicolumn{3}{c|}{Time complexity} & \multirow{2}{*}{Space complexity} & \multirow{2}{*}{Stable} \\
+            \cline{2-4}
+            & Best & Worst & Average & & \\
+            \Xhline{2\arrayrulewidth}
+            Insertion & $O(n)$ & \multicolumn{2}{c|}{$O(n^2)$} & $O(1)$ & $\surd$ \\
+            \hline
+            Selection & \multicolumn{3}{c|}{$O(n^2)$} & $O(1)$ & $\texttimes$ \\
+            \hline
+            Bubble & $O(n)$ & \multicolumn{2}{c|}{$O(n^2)$} & $O(1)$ & $\surd$ \\
+            \hline
+            Shell & $O(n^{1.5})$ & \multicolumn{2}{c|}{$O(n^2)$} & $O(1)$ & $\texttimes$ \\
+            \hline
+            Quick & $O(n\log n)$ & $O(n^2)$ & $O(n\log n)$ & $O(n\log n) \sim O(n)$ & $\texttimes$ \\
+            \hline
+            Merge & \multicolumn{3}{c|}{$O(n\log n)$} & $O(n)$ & $\surd$ \\
+            \hline
+            Heap & \multicolumn{3}{c|}{$O(n\log n)$} & $O(1)$ & $\texttimes$ \\
+            \hline
+            LSD Radix & \multicolumn{3}{c|}{$O(n \times k)$} & $O(n + k)$ & $\surd$ \\
+            \hline
+            Bucket/MSD Radix & $O(n)$ & $O(n^2)$ & $O(n + k)$ & $O(n \times k)$ & $\surd$ \\
+            \hline
+            Counting & \multicolumn{4}{c|}{$O(n + k)$} & $\surd$ \\
+            \hline
+        \end{tabular}
+    \end{table}
 \end{enumerate}
 
 \pagebreak

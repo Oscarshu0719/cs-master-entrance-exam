@@ -33,12 +33,12 @@
 \end{theorem}
 
 \item \begin{theorem}{(183)} \quad\quad \begin{itemize}
-        \item MIPS乘法：\begin{lstlisting}
+        \item MIPS乘法：\begin{lstlisting}[language={[x86masm]Assembler}]
             mult $s2, $s3
             mfhi $s0
             mflo $s1
         \end{lstlisting} 
-        \item MIPS除法：\begin{lstlisting}
+        \item MIPS除法：\begin{lstlisting}[language={[x86masm]Assembler}]
             # Lo = $s2 / $s3
             # Hi = $s2 % $s3
             div $s2, $s3

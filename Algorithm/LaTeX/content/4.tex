@@ -11,21 +11,20 @@
         \item 找strongly connected component。
         \item 步驟：\begin{itemize}
             \item 對原圖做DFS。
-            \item 從結束時間最晚者開始，對反向圖做DFS。
+            \item 從\textbf{結束時間最晚者}開始，對反向圖做DFS。
         \end{itemize}
-    \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(162, 164, 167)} Minimum Spanning Tree： \begin{itemize}
-        \item Prim's只能找相鄰的邊，Kruskal's則無限制。
-        \item 一cycle中權重最大邊必\textbf{不}在最小生成樹中。
-        \item 圖中權重第二小的邊必屬於某最小生成樹。
     \end{itemize}
 \end{theorem}
 
 \item \begin{theorem}{(171, 178, 183, 193, 195)} Shortest path： \begin{itemize}
         \item Floyd-Warshall：sparse時，也不能提升性能。
         \item Johnson's在sparse時，性能較Floyd-Warshall好；Reweight後圖上所有邊權重皆$>0$，且最短路徑與原圖相同。
+        \item Bellman-Ford：\begin{equation}
+            D[v, k] = \min \{D[v, k - 1], \min_{(u, v) \in \E} \{D[u, k - 1] + wt(u, v)\}\}
+        \end{equation}
+        \item Floyd-Warshall：\begin{equation}
+            D^k[i, j] = \min\{D^{k - 1}[i, j], D^{k - 1}[i, k] + D^{k - 1}[k, j]\}
+        \end{equation}
     \end{itemize}
 \end{theorem}
 

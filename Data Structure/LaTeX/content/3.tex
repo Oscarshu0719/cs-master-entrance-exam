@@ -1,53 +1,24 @@
 \item \begin{theorem}{(58, 59)} \quad\quad
-    \begin{itemize}
-        \item Infix：Compiler需scan多次，耗時。
-        \item Postfix：Compiler\textbf{左到右}scan一次即可。
-        \item Prefix：Compiler\textbf{右到左}scan一次即可，但效率比Postfix差，Infix轉Postfix只需\textbf{1}個stack，而Infix轉Prefix需要\textbf{2}個stack。
-        \item Infix轉Postfix（Prefix）：\begin{itemize}
-            \item 手算：\begin{enumerate}
-                \item 加上完整括號。
-                \item 運算元取代最近的右（左）括號。
-                \item 刪去左（右）括號。
-                \item 從左至右即是Infix。
-            \end{enumerate}
-            \item 演算法：\begin{enumerate}
-                \item 數字直接print。
-                \item 運算元依照優先級比較；若小於等於stack中的運算元，pop直到大於為止；若大於或相同於stack中的運算元，push；若為$)$，pop直到$($為止，但不print。
-                \begin{table}[H]
-                    \centering
-                    \begin{tabular}{|c|c|}
-                        \hline
-                        \multicolumn{2}{|c|}{Priority} \\
-                        \Xhline{3\arrayrulewidth}
-                        Priority & Operator \\
-                        \Xhline{2\arrayrulewidth}
-                        1 & $($ out of stack \\
-                        \hline
-                        2 & $\uparrow$ out of stack \\
-                        \hline
-                        3 & $\uparrow$ in stack \\
-                        \hline
-                        4 & $*$, $/$ \\
-                        \hline
-                        5 & $+$, $-$ \\
-                        \hline
-                        6 & empty stack, $($ in stack \\
-                        \hline
-                    \end{tabular}
-                \end{table}
-            \end{enumerate}
-        \end{itemize}
-    \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(80, 81)} Stack與Queue相互製作：\begin{itemize}
-        \item 利用Stack製作Queue：\begin{itemize}
-            \item Enqueue：利用Push代替。
-            \item Dequeue：額外使用一個Stack，將原本Stack全部Pop並且Push到另一個Stack，最後Pop掉top。
-        \end{itemize}
-        \item 利用Queue製作Stack：\begin{itemize}
-            \item Push：利用Enqueue代替。
-            \item Pop：除了rear皆Dequeue並且Enqueue進Queue，最後Dequeue掉front（原本的rear）。
-        \end{itemize}
-    \end{itemize}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            \multicolumn{2}{|c|}{Priority} \\
+            \Xhline{3\arrayrulewidth}
+            Priority & Operator \\
+            \Xhline{2\arrayrulewidth}
+            1 & $($ out of stack \\
+            \hline
+            2 & $\uparrow$ out of stack \\
+            \hline
+            3 & $\uparrow$ in stack \\
+            \hline
+            4 & $*$, $/$ \\
+            \hline
+            5 & $+$, $-$ \\
+            \hline
+            6 & empty stack, $($ in stack \\
+            \hline
+        \end{tabular}
+    \end{table}
 \end{theorem}

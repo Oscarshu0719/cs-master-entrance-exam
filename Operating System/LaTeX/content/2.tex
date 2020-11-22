@@ -1,47 +1,32 @@
-\subsection{I/O運作方式}
-
-\begin{theorem}{(16)} Polling (Busy-waiting, Programmed)：CPU需不斷polling I/O device controller直到完成。
-\end{theorem}
-
 \begin{theorem}{(16)} Interrupted：\begin{itemize}
-        \item I/O完成時，I/O device controller會interrupt，使CPU暫停目前process放到ready state queue。
         \item CPU親自監督I/O完成。
         \item 若頻繁interrupt CPU使用率仍會很低，因此若I/O時間不長，polling反而可能較有利。
         \item 分類：\begin{itemize}
-            \item \begin{itemize}
-                \item External interrupt：CPU外的周邊設備發出，例如device controller發出I/O-completed。
-                \item Internal interrupt：CPU執行process遭遇重大error，例如Divide-by-zero，執行priviledged instruction in user mode。
-                \item Software interrupt：Process需要OS提供服務，呼叫system call。
-            \end{itemize}
-            \item \begin{itemize}
-                \item Interrupt：Hardware-generated，例如device controller發出I/O-completed。
-                \item Trap：Software-generated。Catch arithmetic error，即CPU執行process遭遇重大error，例如Divide-by-zero。Process需要OS提供服務，會先發trap通知OS。
-            \end{itemize}
-            \item Interrupt要分priority。\begin{itemize}
-                \item Non-maskable interrupt：通常是重大error引起，需要立即處理，例如internal interrupt。
-                \item Maskable interrupt：可以忽略或是延後處理，例如software interrupt。
-            \end{itemize}
+            \item External interrupt：CPU外的周邊設備發出，例如device controller發出I/O-completed。
+            \item Internal interrupt：CPU執行process遭遇重大error，例如Divide-by-zero，執行priviledged instruction in user mode。
+            \item Software interrupt：Process需要OS提供服務，呼叫system call。
+            \item Trap：Software-generated。Catch arithmetic error，即CPU執行process遭遇重大error，例如Divide-by-zero。Process需要OS提供服務，會先發trap通知OS。
+        \end{itemize}
+        \item Interrupt要分priority。\begin{itemize}
+            \item Non-maskable interrupt：通常是重大error引起，需要立即處理，例如internal interrupt。
+            \item Maskable interrupt：可以忽略或是延後處理，例如software interrupt。
         \end{itemize}
     \end{itemize}
 \end{theorem}
 
 \begin{theorem}{(17)} DMA (Direct Memory Access)：\begin{itemize}
         \item DMA controller代替CPU負責I/O與memory間的傳輸。
-        \item 適用block-transfer。
-        \item interrupt頻率較低，但設計較複雜。
+        \item 適用block-transfer，interrupt頻率較低，一個block才中斷一次，但設計較複雜。
         \item 造成resource contention（IF、MEM和WB週期），因此採用interleaving (cycle stealing)，與CPU輪流使用memory與bus。
         \item DMA比CPU有更高priority (SJF)。
     \end{itemize}
 \end{theorem}
 
-\begin{theorem}{(18)} \quad\quad \begin{itemize}
+\begin{theorem}{(18)} I/O： \begin{itemize}
         \item Non-blocking I/O與Asynchronous I/O差異：前者會有多少通知多少，後者會等I/O全部完成才通知process。
-        \item I/O種類：\begin{itemize}
+        \item 種類：\begin{itemize}
             \item Memory-mapped I/O：無專門I/O指令，但特別分一塊memory給I/O，寫入該塊memory視為I/O操作。
             \item Isolated I/O：有專門I/O指令。
         \end{itemize}
     \end{itemize}
-\end{theorem}
-
-\begin{theorem}{(22)} CPU protection：利用timer，時間到timer發出timer-out interrupt通知OS，讓OS強制取回CPU。
 \end{theorem}

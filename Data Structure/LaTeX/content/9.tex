@@ -28,20 +28,25 @@
         \begin{algorithm}[H]
             \begin{algorithmic}[1]
                 \Function{DeleteMinMinMaxHeap}{MinMaxHeap $s$}
-                    \State Copy the data of the last node to the root and remove the last node.
-                    \If {Root has no children}
-                        \State Exit.
-                    \ElsIf {Root has no grandchildren}
-                        \If {Children $k$ is smaller than the root}
-                            \State \Call{Swap}{root, $s[k]$}
+                    \State Remove the data of root. Copy the data of the last node as $x$ and remove the last node.
+                    \If {Root has no children} \Comment{Start.}
+                        \State Set $x$ as root and exit.
+                    \ElsIf {Min is one of root's children $k$}
+                        \If {$s[k].data < x.data$}
+                            \State \Call{Swap}{$s[k]$, $x$}
+                        \Else
+                            \State Set $x$ as root.
                         \EndIf
+                        \State Exit.
                     \ElsIf {Min grandchildren $k$ and its parent $p$}
-                        \If {root $> s[k]$}
-                            \State \Call{Swap}{root, $s[k]$}
-                            \If {root $> s[p]$}
-                                \State \Call{Swap}{root, $s[p]$}
-                                \State Recursively run the previous process.
+                        \If {$s[k].data < x.data$}
+                            \State \Call{Swap}{$s[k]$, $x$}
+                            \If {$x.data > s[p].data$}
+                                \State \Call{Swap}{$x$, $s[p]$}
                             \EndIf
+                            \State Go to start.
+                        \Else
+                            \State Set $x$ as root and exit.
                         \EndIf
                     \EndIf
                 \EndFunction
@@ -81,9 +86,9 @@
         \begin{algorithm}[H]
             \begin{algorithmic}[1]
                 \Function{DeleteMinDeap}{Deap $s$}
-                    \State Replace the data of the left child of the root with the smaller of its children and recursively run the same process to its subtree, making an empty node $n$ at the last level. 
+                    \State Replace the data of the left child of the root with the smaller of its children and recursively run the same process to its subtree, making an empty node $i$ at the last level. 
                     \State Copy the data of the last node as $x$ and remove the node.
-                    \State \Call{InsertDeap}{$x$} to position $n$.
+                    \State \Call{InsertDeap}{$x$, $i$}
                 \EndFunction
             \end{algorithmic}
         \end{algorithm}
@@ -116,96 +121,69 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{()} \quad\quad \begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|}
-            \hline
-            \multicolumn{2}{|c|}{Min-max heap, Deap, and SMMH} \\
-            \Xhline{3\arrayrulewidth}
-            Operation & Time complexity \\
-            \Xhline{2\arrayrulewidth}
-            Insert & $O(\log n)$ \\
-            \hline
-            Delete min/max & $O(\log n)$ \\
-            \hline
-            Find min/max & $O(1)$ \\
-            \hline
-        \end{tabular}
-    \end{table} 
-\end{theorem}
-
-\item \begin{theorem}{(144)} Huffman's algorithm：$O(n\log n)$，採用Greedy，但可以求出最佳解。
-\end{theorem}
-
 \item \begin{theorem}{(145, 151)} AVL tree： \label{avltree}\begin{itemize}
         \item Height balanced BST.
         \item 平衡係數：左子樹高度減去右子樹高度。
         \item 左右子樹高度相差不超過$1$，即平衡係數只能為$-1$, $0$, $1$。
         \item 若不符合條件，根據父節點和祖父節點類型（$LL$, $LR$, $RL$, $RR$）調整樹。
         \item 高度為$h$的AVL tree且節點數為$n$，則\begin{equation}
-            F_{n + 2} - 1 \le n \le 2^h - 1
+            F_{h + 2} - 1 \le n \le 2^h - 1
         \end{equation} 其中$F$是費氏數列，最大值為Full。 
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(154, 155, 156, 158, 161)} $m$-way search tree： \label{m-wayst}\begin{itemize}
-        \item 節點表示data block，從左到右為小到大，每個節點有$m - 1$個key。
-        \item 用於external search/sort，資料量大時，需要分批載入search，因為無法全部放memory。
-        \item B tree：\begin{itemize}
-            \item Balanced $m$-way search tree。
-            \item 所有failure nodes都在同一層。
-            \item $m = 3$，$2$-$3$ tree；$m = 4$，$2$-$3$-$4$ tree。
-            \item 若order $m$、高度$h$且節點數為$n$，則\begin{equation}
-                1 + 2\frac{\ceil{\frac{m}{2}}^{h - 1} - 1}{\ceil{\frac{m}{2}} - 1} \le n \le 2\ceil{\frac{m}{2}}^{h - 1} - 1
-            \end{equation}
-            \item \begin{equation}
-                \begin{aligned}
-                    2 \le \deg(v) \le m &, v \ \text{is root} \\
-                    \ceil{\frac{m}{2}} \le \deg(v) \le m &, v \ \text{is NOT root or failure nodes}
-                \end{aligned}
-            \end{equation}
-            \begin{algorithm}[H]
-                \begin{algorithmic}[1]
-                    \Function{InsertBTree}{BTree $s$, Element $x$}
-                        \State Put $x$ at proper position, which is at position $n$.
-                        \While {$n$ overflow}
-                            \State Choose the $\ceil{\frac{m}{2}}$-th key of $n$ (started from $1$), move it to its parent, and split $n$.
-                            \State $n$ := $n.parent$
+\item \begin{theorem}{(154, 155, 156, 158, 161)} B tree： \label{m-wayst}\begin{itemize}
+        \item Balanced $m$-way search tree。
+        \item 若order $m$、高度$h$且有$k$個key，則\begin{equation}
+            1 + 2\frac{\ceil{\frac{m}{2}}^{h - 1} - 1}{\ceil{\frac{m}{2}} - 1} \le k \le 2\ceil{\frac{m}{2}}^{h - 1} - 1
+        \end{equation}
+        \item \begin{equation}
+            \begin{aligned}
+                2 \le \deg(v) \le m &, v \ \text{is root} \\
+                \ceil{\frac{m}{2}} \le \deg(v) \le m &, v \ \text{is NOT root or failure nodes}
+            \end{aligned}
+        \end{equation}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{InsertBTree}{BTree $s$, Element $x$}
+                    \State Put $x$ at proper position $n$.
+                    \While {$n$ overflow}
+                        \State Choose the $\ceil{\frac{m}{2}}$-th key of $n$ (started from $1$), move it to its parent, and split $n$.
+                        \State $n$ := $n.parent$
+                    \EndWhile
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
+        \begin{algorithm}[H]
+            \begin{algorithmic}[1]
+                \Function{DeleteBTree}{BTree $s$, Element $x$}
+                    \State $n$ := \Call{SearchBTree}{$s$, $x$}
+                    \If {$n$ is leaf}
+                        \State Delete $n$.
+                        \While {$n$ underflow} 
+                            \If {Can be rotated}
+                                \State Rotate.
+                                \State Break.
+                            \Else
+                                \State Combine.
+                                \State $n$ := $n.parent$
+                            \EndIf
                         \EndWhile
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm}
-            \begin{algorithm}[H]
-                \begin{algorithmic}[1]
-                    \Function{DeleteBTree}{BTree $s$, Element $x$}
-                        \State $n$ := \Call{SearchBTree}{$s$, $x$}
-                        \If {$n$ is leaf}
-                            \State Delete $n$.
-                            \While {$n$ underflow} 
-                                \If {Can be rotated}
-                                    \State Rotate.
-                                    \State Break.
-                                \Else
-                                    \State Combine.
-                                    \State $n$ := $n.parent$
-                                \EndIf
-                            \EndWhile
-                        \Else \Comment{Non-leaf}
-                            \State Replace $n$ with the max key of the left subtree, which is at position $m$.
-                            \While {$m$ underflow} \Comment{Same as leaf deletion.}
-                                \If {Can be rotated}
-                                    \State Rotate.
-                                    \State Break.
-                                \Else
-                                    \State Combine.
-                                    \State $m$ := $m.parent$
-                                \EndIf
-                            \EndWhile
-                        \EndIf
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm}
-        \end{itemize}
+                    \Else \Comment{Non-leaf}
+                        \State Replace $n$ with the max key of the left subtree, which is at position $m$.
+                        \While {$m$ underflow} \Comment{Same as leaf deletion.}
+                            \If {Can be rotated}
+                                \State Rotate.
+                                \State Break.
+                            \Else
+                                \State Combine.
+                                \State $m$ := $m.parent$
+                            \EndIf
+                        \EndWhile
+                    \EndIf
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
     \end{itemize}
 \end{theorem}
 
@@ -301,7 +279,6 @@
 \item \begin{theorem}{(170, 171)} Splay Tree： \label{splaytree}\begin{itemize}
         \item BST.
         \item 每一次splay運算都將splay起點最終變為root。
-        \item Rotation和AVL tree不同。
         \begin{algorithm}[H]
             \begin{algorithmic}[1]
                 \Function{InsertSplayTree}{SplayTree $s$, Element $x$}
@@ -347,25 +324,6 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{()}
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|}
-            \hline
-            \multicolumn{2}{|c|}{AVL tree, B tree, Red-black tree, and Splay tree} \\
-            \Xhline{3\arrayrulewidth}
-            Operation & Time complexity \\
-            \Xhline{2\arrayrulewidth}
-            Insert $x$ & \multirow{3}{*}{$O(\log_m n)$} \\
-            \cline{1-1}
-            Delete $x$ & \\
-            \cline{1-1}
-            Search $x$ & \\
-            \hline
-        \end{tabular}
-    \end{table}
-\end{theorem}
-
 \item \begin{theorem}{(172, 173, 174)} Leftist heap： \label{leftistheap}\begin{itemize}
         \item \begin{equation}
             shortest(x) = \begin{cases}
@@ -379,7 +337,7 @@
         \begin{algorithm}[H]
             \begin{algorithmic}[1]
                 \Function{MergeLeftistHeap}{LeftistHeap $s$, $t$}
-                    \If {$s.data < t.data)$}
+                    \If {$s.data < t.data$}
                         \State \Call{MergeLeftistHeap}{$s.rchild$, $t$}
                     \Else 
                         \State \Call{MergeLeftistHeap}{$t.rchild$, $s$}
@@ -426,7 +384,7 @@
 \item \begin{theorem}{(174, 175, 176)} Binomial heap： \label{binomialheap}\begin{itemize}
         \item root level為$0$。
         \item $B_k$為高度為$k$的binomial tree，由兩個高度$k - 1$的$B_{k - 1}$組成，其中$B_0$只有root一個節點。
-        \item $B_k$第$i$level的節點數為$\binom{k}{i}$，總共$2^k$個節點。
+        \item $B_k$第$i$ level的節點數為$\binom{k}{i}$，總共$2^k$個節點。
         \item Binomial heap：一組binomial tree且皆為min-tree組成的forest。
         \begin{algorithm}[H]
             \begin{algorithmic}[1]

@@ -14,13 +14,13 @@
 			\begin{itemize}
 				\item $\{\vec{0}\} \subseteq \Ker(\T) \subseteq \Ker(\T^2) \subseteq \cdots \subseteq \V$
 				\item $\exists \min k \in \N, \ \Ker(\T^{k}) = \Ker(\T^{k + 1}) = \cdots$
-				\item $\spc{W} = \bigcup_{i = 1}^{\infty} \Ker(\T^i) = \Ker(\T^k)$為最大冪零區。
+				\item $\spc{W} = \bigcup\limits_{i = 1}^{\infty} \Ker(\T^i) = \Ker(\T^k)$為最大冪零區。
 			\end{itemize}
 		\item 像集鏈定理：
 			\begin{itemize}
 				\item $\V \supseteq \im(\T) \supseteq \im(\T^2) \supseteq \cdots \supseteq \{\vec{0}\}$
 				\item $\exists \min k \in \N, \ \im(\T^{k}) = \im(\T^{k + 1}) = \cdots$
-				\item $\spc{W} = \bigcap_{i = 1}^{\infty} \im(\T^i) = \im(\T^k)$為最大可逆區。
+				\item $\spc{W} = \bigcap\limits_{i = 1}^{\infty} \im(\T^i) = \im(\T^k)$為最大可逆區。
 			\end{itemize}
 	\end{itemize}
 \end{theorem}
@@ -39,7 +39,7 @@
 			\item 反之，$\dim(C_{\vec{v}}(\T)) = k$\textbf{不能}保證$\vec{v} \in \Ker(\T^k) - \Ker(\T^{k - 1})$。
 			\item 反之，$\dim(C_{\vec{v}}(\T)) = k$保證$\beta = \{\vec{v}, \T(\vec{v}), \ \cdots, \T^{k - 1}(\vec{v})\}$為$C_{\vec{v}}(\T)$的基底。
 			\item 反之，$\dim(C_{\vec{v}}(\T)) = k$\textbf{不能}保證$\T^k(\vec{v}) = 0$。\\
-				令$\T^k(\vec{v}) = -a_0\vec{v} + \sum_{i = 1}^{k - 1}(-a_{i})\T^{i}(\vec{v})$，有
+				令$\T^k(\vec{v}) = -a_0\vec{v} + \sum\limits_{i = 1}^{k - 1}(-a_{i})\T^{i}(\vec{v})$，有
 				\begin{equation}
 					\mat{A} = [\T_{\spc{W}}]_{\beta} = 
 					{\left[ 
@@ -93,10 +93,6 @@
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(6.68)} （方陣，特徵）Cayley-Hamilton theorem： \\
-	若$\mat{A} \in \F^{n \times n}$為方陣，$f(x) = p_{\mat{A}}(x) = \det(\mat{A} - x\mat{I})$，則$f(\mat{A}) = \mat{O}$。
-\end{theorem}
-
 \item \begin{theorem}{(6.69, 6.115, 6.116)} （方陣，特徵，對角化）若$\T \in \L(\V, \V)$，$\spc{W}$為$\T$-不變子空間，則
 	\begin{itemize}
 		\item $\T_\spc{W}$的特徵多項式整除$\T$的特徵多項式。
@@ -105,22 +101,7 @@
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(6.99, 6.100, 6.111)} （方陣，特徵，對角化）若$\mat{A} \in \F^{n \times n}$為方陣，$m(x) \in \P$滿足
-	\begin{enumerate}
-		\item $m(x)$為首一（monic）多項式，即$\deg(m(x)) \ge 1$，且最高項係數為$1$。
-		\item $m(\mat{A}) = \mat{O}$
-		\item $f(x) \in \P, \ f(\mat{A}) = \mat{O}$，則$\deg(f(x)) \le \deg(m(x))$。
-	\end{enumerate}
-	稱$m(x)$為極小（minimal）多項式，則
-	\begin{itemize}
-		\item $f(x) \in \P, \ f(\mat{A}) = \mat{O}$，則$m(x) | f(x)$。
-		\item $m(x) | p_{\mat{A}}(x)$
-		\item $m(x)$唯一。
-		\item 若$\lambda_1, \lambda_2, \ \cdots, \lambda_r$為$\T$相異特徵根，則
-		\begin{itemize}
-			\item $(\T - \lambda\mat{I})_{\textit{K}(\lambda_i)}$有指標$k_i$，即點圖的第一列點數，則
-			$m(x) = (x - \lambda_1)^{k_1}(x - \lambda_2)^{k_2}\cdots(x - \lambda_r)^{k_r}$
-			\item $\T$可對角化$\iff$$m(x) = (x - \lambda_1)(x - \lambda_2)\cdots(x - \lambda_r)$
-		\end{itemize}
-	\end{itemize}
+\item \begin{theorem}{((6-55)6.88)} （方陣，特徵）若$\mat{A}, \mat{B} \in \R^{n \times n}$為實方陣，當$\mat{AB} = \mat{BA}$時，\begin{equation}
+		e^{A}e^{B} = e^{A + B}
+	\end{equation} 可通過泰勒展開式證明。
 \end{theorem}

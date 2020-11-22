@@ -33,7 +33,30 @@
 	\texttt{\textcolor{blue}{#1}}
 }
 
-\lstset{language=bash, keywordstyle={\bfseries \color{blue}}}
+\lstdefinestyle{customcpp}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=L,
+	xleftmargin=\parindent,
+	language=C++,
+	showstringspaces=false,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customasm}{
+	belowcaptionskip=1\baselineskip,
+	frame=L,
+	xleftmargin=\parindent,
+	language=[x86masm]Assembler,
+	basicstyle=\footnotesize\ttfamily,
+	commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstset{escapechar=@, style=customcpp}
 
 \CenterWallPaper{.50}{img/zju_logo.png}
 \hypersetup{
@@ -98,6 +121,7 @@
 \renewcommand{\refname}{References}
 \renewcommand{\tablename}{Table}
 \renewcommand{\figurename}{Figure}
+\renewcommand{\proof}{\textit{Proof. }}
 
 \begin{document}
 
@@ -131,6 +155,9 @@
 \include{content/5}
 \include{content/6}
 \include{content/7}
+\include{content/8}
+\include{content/9}
+\include{content/10}
 % \end{enumerate}
 \endgroup
 \include{content/bibliography}

@@ -1,6 +1,5 @@
-\item \begin{theorem}{(233, 236, 240)} Graph：\begin{itemize}
+\item \begin{theorem}{(234, 236, 240)} Graph：\begin{itemize}
         \item Adjacency multilists：每個節點儲存$v_i$，$v_j$，$link\_for\_v_i$指向$v_i$下一個相鄰的點所在的節點，$link\_for\_v_j$指向$v_j$下一個相鄰的點所在的節點。% 例子：\ref{img:adj_multilists}。
-        \item 無向圖只有tree edge和back edge。判斷無向圖back edge（cycle）：兩個點都gray，但是不為父子節點。
         \begin{table}[H]
             \centering
             \begin{tabular}{|c|c|c|}
@@ -12,20 +11,6 @@
                 Lots of vertices & & $\surd$ \\
                 \hline
                 \makecell{\# of edges or \\if it's connected, etc.} & & $\surd \ (O(|\V| + |\E|))$ \\
-                \hline
-            \end{tabular}
-        \end{table}
-        \begin{table}[H]
-            \centering
-            \begin{tabular}{|c|c|c|}
-                \hline
-                \multicolumn{3}{|c|}{DFS/BFS using Adjacency matrix and Adjacency lists} \\
-                \Xhline{3\arrayrulewidth}
-                Data structure & DFS & BFS \\
-                \Xhline{2\arrayrulewidth}
-                Adjacency matrix & \multicolumn{2}{c|}{$O(|\V|^2)$} \\
-                \hline
-                Adjacency lists & \multicolumn{2}{c|}{$O(|\V| + |\E|)$} \\
                 \hline
             \end{tabular}
         \end{table}

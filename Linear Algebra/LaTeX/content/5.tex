@@ -21,7 +21,7 @@
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(5.10, 5.11, 5.34, 6.7, 6.22, 6.34)} （方陣，特徵）若$\T \in \L(\V, \V)$，$\spc{W}_i, \ \forall i = 1, \ \cdots, k$為$\V$子空間且$\spc{W}_i$為$\T$-不變子空間，$\lambda$為$\T$的特徵跟，則
+\item \begin{theorem}{(5.10, 5.11, 5.34, 6.7, 6.22, 6.34)} （方陣，特徵）若$\T \in \L(\V, \V)$，$\spc{W}_i, \ \forall i = 1, \ \cdots, k$為$\V$子空間且$\spc{W}_i$為$\T$-不變子空間，$\lambda$為$\T$的特徵根，則
 	\begin{itemize}
 		\item $\{\vec{0}\}$
 		\item $\V$
@@ -31,39 +31,9 @@
 		\item $\spc{W}_1 + \spc{W}_2 + \cdots + \spc{W}_k$
 		\item 特徵空間$\V(\lambda) = \Ker(\T - \lambda\mat{I})$
 		\item $\T$-循環子空間$C_{\vec{v}}(\T) = \spn\{\vec{v}, \T(\vec{v}), \T^2(\vec{v}), \ \cdots\}$
-		\item 廣義特徵空間$\textit{K}(\lambda) = \bigcup_{i = 1}^{\infty}\Ker((\T - \lambda\mat{I})^i)$
+		\item 廣義特徵空間$\textit{K}(\lambda) = \bigcup\limits_{i = 1}^{\infty}\Ker((\T - \lambda\mat{I})^i)$
 	\end{itemize}
 	皆為$\T$-不變子空間。
-\end{theorem}
-
-% \item \begin{theorem}{(5.10, 5.11)} （方陣）若$\T \in \L(\V, \V)$，$\spc{W}_i, \ \forall i = 1, \ \cdots, k$為$\T$-不變子空間且$\V = \spc{W}_1 \oplus \spc{W}_2 \oplus \cdots \oplus \spc{W}_k$，
-% 	$\beta_i$為$\spc{W}_i$基底，則$\beta = \beta_1 \cup \beta_2 \cup \cdots \cup \beta_k$為$\V$基底，且
-% 	\begin{equation}
-% 		\begin{pmatrix}
-% 			\begin{matrix} 
-% 				\mat{A}_1 &  \\
-% 				& \mat{A}_2 
-% 			\end{matrix} & \Large{\mat{O}} \\
-% 			\Large{\mat{O}} & \begin{matrix} 
-% 				\ddots &  \\ 
-% 				& \mat{A}_k 
-% 			\end{matrix}
-% 		\end{pmatrix}
-% 	\end{equation}
-% 	，其中$\mat{A}_i = [\T_{\spc{W}_i}]_{\beta_i}$。
-% \end{theorem}
-
-\item \begin{theorem}{(5.23)} （特徵）特徵多項式：
-	\begin{equation}
-		p_{\mat{A}}(x) = (-1)^nx^n + (-1)^{n - 1}\tr(\mat{A})x^{n - 1} + \cdots + \det(\mat{A})
-	\end{equation}
-\end{theorem}
-
-\item \begin{theorem}{(5.34)} （特徵，線性獨立，方陣）若$\mat{A}$為方陣，$\lambda_i, \ \forall i = 1, \ \cdots, k$為$\mat{A}$相異特徵根，則
-	\begin{itemize}
-		\item $\V(\lambda_1), \V(\lambda_2), \ \cdots, \V(\lambda_k)$為獨立子空間。
-		\item 若$\vec{v}_i$為$\lambda_i$的特徵向量，則$\vec{v}_1, \vec{v}_2, \ \cdots, \vec{v}_k$線性獨立。
-	\end{itemize}
 \end{theorem}
 
 \item \begin{theorem}{(5.38)} （特徵，方陣）若$\mat{A}, \mat{B}$為方陣，則$\mat{AB}$與$\mat{BA}$有相同的
@@ -81,37 +51,9 @@
 		\item $\alpha\mat{A}$
 		\item $\mat{A} + \alpha\mat{I}$
 		\item $f(\mat{A}), \ f(x) \in \P$
-		\item 若$\mat{A}$為正規矩陣，即$\mat{A}\mat{A}\herm = \mat{A}\herm\mat{A}$。
+		\item $\mat{A}\herm$，若$\mat{A}$為正規矩陣，即$\mat{A}\mat{A}\herm = \mat{A}\herm\mat{A}$。
 	\end{itemize}
 	特徵向量\textbf{不}改變。
-\end{theorem}
-
-\item \begin{theorem}{(5.55, 5.57)} （對角化，特徵，線性獨立，方陣）若$\mat{A} \in \F^{n \times n}$為方陣，則
-	$\mat{A}$可對角化$\iff$$\mat{A}$有$n$個線性獨立特徵向量；當$< n$個線性獨立特徵向量時，稱$\mat{A}$有缺陷（defective），即$\mat{A}$不可對角化。
-\end{theorem}
-
-\item \begin{theorem}{(5.59, 5.61)} （方陣，特徵）若$\T \in \L(\V, \V)$，$\lambda$為$\T$特徵根，則
-	\begin{itemize}
-		\item $\am(\lambda)$為$\lambda$在特徵多項式$p_{\T}(x)$的重根數。
-		\item $\gm(\lambda) = \dim(\V(\lambda)) = \nul(\T - \lambda\mat{I}) = \dim(\V) - \rnk(\T - \lambda\mat{I})$
-		\item $1 \le \gm(\lambda) \le \am(\lambda) \le \dim(\V)$
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(5.64)} （方陣，$\tr$，$\det$）若$\mat{A} \in \F^{n \times n}$為方陣且$\lambda_i, \ \forall i = 1, \ \cdots, n$為$\mat{A}$特徵根，則
-	\begin{itemize}
-		\item $\det(\mat{A}) = \PI_{i = 1}^{n}\lambda_i$（含重根）
-		\item $\tr(\mat{A}) = \sum_{i = 1}^{n}\lambda_i$（含重根）
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(5.71, 5.75)} （方陣，特徵，對角化）若$\T \in \L(\V, \V)$，$\dim(\V) = n$，$\lambda_i, \ \forall i = 1, \ \cdots, r$為相異特徵根，則以下等價
-	\begin{itemize}
-		\item $\T$可對角化。
-		\item $\gm(\lambda_i) = \am(\lambda_i)$
-		\item $\V = \V(\lambda_1) \oplus \V(\lambda_2) \oplus \cdots \oplus \V(\lambda_r)$
-	\end{itemize}
-	若有$n$個相異特徵根，即$r = n$，則$\T$可對角化，反之不然。
 \end{theorem}
 
 \item \begin{theorem}{(5.79)} （方陣，對角化）若$\T, \textit{U} \in \L(\V, \V)$，存在$\V$基底$\beta$使得$[\T]_{\beta} = \mat{D}_1, [\textit{U}]_{\beta} = \mat{D}_2$，且$\mat{D}_1, \mat{D}_2$為對角矩陣，則
@@ -119,7 +61,10 @@
 		\item $\T, \textit{U}$稱可同步對角化。\label{sim_diag}
 		\item $\T\textit{U} = \textit{U}\T$
 	\end{itemize}
-	反之不然，因為$\T$或$\textit{U}$\textbf{未必}能對角化。當$\T$與$\textit{U}$皆能對角化時，Theorem \ref{sim_diag}的兩個敘述等價。
+	反之不然，因為$\T$或$\textit{U}$\textbf{未必}皆能對角化。當$\T$與$\textit{U}$皆能對角化時，Theorem \ref{sim_diag}的兩個敘述等價。
+\end{theorem}
+
+\item \begin{theorem}{()} （方陣，對角化）若$\mat{A}$可對角化，則$\rnk(\mat{A}) = $不為$0$的特徵根個數。
 \end{theorem}
 
 \item \begin{theorem}{(5.97, 5.100, 5.102, 5.103)} （方陣，特徵，對角化，$\tr$）若$\T \in \L(\V, \V)$，且$\T^2 = \T$，稱$\T$為$\V$上的冪等（idempotent）算子，則
@@ -133,8 +78,7 @@
 			\Large{\mat{I}_r} & \Large{\mat{O}} \\
 			\Large{\mat{O}} & \Large{\mat{O}_{n - r}}
 		\end{array} 
-		\right]}$，其中$r = \rnk(\T)$。
-		\item $\rnk(\T) = \tr(\T)$
+		\right]}$，其中$r = \rnk(\T) = \tr(\T)$。
 	\end{itemize}
 \end{theorem}
 
@@ -156,28 +100,15 @@
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(5.148, 5.150, 5.151, 5.153, 5.155)} （方陣，特徵，對角化）若$\mat{P} \in \F^{n \times n}$為方陣且$\mat{P}$為Markov矩陣，則
+\item \begin{theorem}{(5.148, 5.150, 5.151, 5.153, 5.155)} （方陣，特徵，對角化）若$\mat{P} \in \F^{n \times n}$為方陣且$\mat{P}$為正則轉移矩陣，則
 	\begin{itemize}
-		\item 若$\lambda$為$\mat{P}$的特徵根，則$|\lambda| \le 1$，且$\mat{P}$必定含$1$特徵根。
-		\item 若$\mat{Q} \in \F^{n \times n}$為方陣，則$\mat{PQ}$仍為Markov矩陣。
-		\item 若存在$k \in \N$使得$\mat{P}^k$中元素皆$> 0$，則稱$\mat{P}$為正則轉移矩陣，則
-		\begin{itemize}
-			\item 若$\lambda$為$\mat{P}$特徵根且$\lambda \neq 1$，則$|\lambda| < 1$。
-			\item 若$\mat{P}$可對角化，則$\am(1) = 1$。
-			\item $\lim_{k \rightarrow \infty} \mat{P}^k = 
-			{\left[ 
-			\begin{array}{cccc}
-				\vec{x} & \vec{x} & \cdots & \vec{x}
-			\end{array} 
-			\right]}$
-			，其中$\vec{x}$為穩定狀態向量。
-		\end{itemize}
+		\item 若$\mat{P}$可對角化，則$\am(1) = 1$。
+		\item $\lim_{k \rightarrow \infty} \mat{P}^k = 
+		{\left[ 
+		\begin{array}{cccc}
+			\vec{x} & \vec{x} & \cdots & \vec{x}
+		\end{array} 
+		\right]}$
+		，其中$\vec{x}$為穩定狀態向量，即$\vec{x} \in \Ker(\mat{P} - \mat{I})$。
 	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(5.153)} （方陣，特徵）若$\mat{P} \in \F^{n \times n}$為方陣且$\mat{P}$為Markov矩陣，$\vec{x}$為機率向量，有
-	\begin{equation}
-		\mat{P}\vec{x} = \vec{x}
-	\end{equation}
-	則$\vec{x}$為$\mat{P}$的一個穩定狀態向量，且$\vec{x} \in \Ker(\mat{P} - \mat{I})$，$\vec{x}$為$\mat{P}$相對於$1$的特徵向量。
 \end{theorem}

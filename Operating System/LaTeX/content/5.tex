@@ -1,33 +1,18 @@
-\subsection{Deadlock}
-
 \begin{theorem}{(136)} Deadlock：\begin{itemize}
-        \item \textbf{必要}條件：\begin{itemize}
-            \item Mutual exclusion：同一個時間點資源只允許一個process持有。
-            \item Hold and wait：持有部分資源又在等待其他process持有的資源。
-            \item No preemption：process不可任意搶奪其他process持有的資源，必須等他自願釋放，才有機會取得。
-            \item Circular wait：多個processes形成循環等待的關係。
-        \end{itemize}
-        \item deadlock throughput低，但starvation與效能差無必然關係，例如SRTF有starvation，但scheduling效益最佳。
+        \item \textbf{必要}條件：Mutual exclusion, hold and wait, no preemption, circular wait.
         \item 資源分配圖：\begin{itemize}
             \item No cycle一定no deadlock。
-            \item 有cycle不一定deadlock。
+            \item 有cycle\textbf{不}一定deadlock。
             \item 若每一類resources皆single-instance，則有cycle一定deadlock。
         \end{itemize}
     \end{itemize}
 \end{theorem}
 
 \begin{theorem}{(139)} Deadlock prevention：\begin{itemize}
-        \item 保證no deadlock。
-        \item Utilization和throughput較低。
-        \item 可能starvation。
         \item 打破必要條件：\begin{itemize}
             \item Mutual exclusion：無法破除，這是與生俱來的性質。
-            \item Hold and wait：除非可以一次獲得所有資源，否則不得持有任何資源；或可持有部分資源，但申請其他資源前，需先放掉所持有的資源。
-            \item No preemption：改為preemption。\begin{itemize}
-                \item 須防止race condition。
-                \item Resource recovery.
-                \item 可能starvation。
-            \end{itemize}
+            \item Hold and wait：除非可以一次獲得所有資源，否則不得持有任何資源；或可持有部分資源，但申請其他資源前，需先放掉所持有的所有資源。
+            \item No preemption：改為preemption，但可能starvation。
             \item Circular wait：\begin{itemize}
                 \item 每個資源有unique resource ID。
                 \item process需依照resource ID依序遞增提出申請，及持有的resource ID，不能大於提出申請的resource ID。
@@ -37,81 +22,75 @@
 \end{theorem}
 
 \begin{theorem}{(141)} Deadlock avoidance：\begin{itemize}
-        \item 保證no deadlock。
-        \item Utilization和throughput較低。
-        \item 可能starvation。
-        \item Banker's algorithm：\begin{itemize}
-            \item $n$ processes, $m$ resources.
-            \item $Request_i$: $P_i$提出的資源申請量。
-            \item $Max$：processes完成工作所需最大的各種資源數量。
-            \item $Allocation$：processes所持有的各種資源數量。
-            \item $Need$：processes所缺少的各種資源數量。
-            \item $Available$：目前可用的各種資源數量。
-            \item Procedures：\begin{itemize}
-                \item Check $Request_i \le Need_i$，若不成立直接終止。
-                \item Check $Request_i \le Available$，若不成立須等到資源足夠。
-                \item 暫時更新狀態，執行safety algorithm。
-            \end{itemize}
-            \item Safety algorithm：\begin{itemize}
-                \item $Work$：即$Available$。
-                \item $Finish$：表示是否可完工，初始值為$False$。
-                \item Procedures：Recursively check所有未完工的processes，若滿足$Finish_i = False \land Need_i \le Work$，則$Finish_i = True; \ Work \mathrel{+}= Allocation_i$；否則若$Finish$皆為$True$，返回$safe$，反之返回$unsafe$。
-            \end{itemize}
-            \item Time complexity: $O(n^2 \times m)$.
-        \end{itemize}
+        \item Banker's algorithm：Unsafe未必deadlock。
         \item 若$n$ processes，$m$ resources（單一種類），若滿足\begin{equation} \label{eq:deadlock}
             \begin{aligned}
                 1 \le \ & Max_i \le m \\
                 & \sum_{i = 1}^{n} Max_i < n + m
             \end{aligned}
-        \end{equation} 則保證不會deadlock。證明：若所有資源都分配給processes，即$\sum_{i = 1}^{n} Allocation_i = m$，因為$\sum_{i = 1}^{n} Need_i = \sum_{i = 1}^{n} Max_i - \sum_{i = 1}^{n} Allocation_i \rightarrow \sum_{i = 1}^{n} Max_i = \sum_{i = 1}^{n} Need_i + m$，
-        根據第二條件，$\sum_{i = 1}^{n} Max_i < n + m$，有$\sum_{i = 1}^{n} Need_i < n$，表示至少一個process $P_i$，$Need_i = 0$，因為$Max_i \ge 1 \land Need_i = 0 \rightarrow Allocation_i \ge 1$，在$P_i$完工後，會產生$\ge 1$ resources給其他processes使用，又可以使$\ge 1$ processes $P_j$有$Need_j = 0$，依此類推，所有processes皆可完工。
+        \end{equation} 則NO deadlock。\\ \begin{proof}
+            若所有資源都分配給processes，即\begin{equation}
+                \sum_{i = 1}^{n} Allocation_i = m
+            \end{equation} 又\begin{equation}
+                \begin{aligned}
+                    & \sum_{i = 1}^{n} Need_i = \sum_{i = 1}^{n} Max_i - \sum_{i = 1}^{n} Allocation_i \\
+                    \rightarrow & \sum_{i = 1}^{n} Max_i = \sum_{i = 1}^{n} Need_i + m
+                \end{aligned}
+            \end{equation}
+            根據第二條件，有\begin{equation}
+                \begin{aligned}
+                    & \sum_{i = 1}^{n} Max_i < n + m \\
+                    \rightarrow & \sum_{i = 1}^{n} Need_i < n
+                \end{aligned}
+            \end{equation}表示至少一個process $P_i$，$Need_i = 0$，又\begin{equation}
+                \begin{aligned}
+                    & Max_i \ge 1 \land Need_i = 0 \\
+                    \rightarrow & Allocation_i \ge 1
+                \end{aligned}
+            \end{equation}在$P_i$完工後，會產生$\ge 1$ resources給其他processes使用，又可以使$\ge 1$ processes $P_j$有$Need_j = 0$，依此類推，所有processes皆可完工。
+        \end{proof}
         \item 若所有類型資源皆為single-instance，可用畫圖簡化procedure。\begin{itemize}
             \item claim edge：未來process $P_i$會對resource $R_j$提出申請。
             \item Procedures：\begin{itemize}
                 \item 檢查是否有claim edge，若無終止$P_i$。
                 \item 檢查$R_j$是否available，若不成立須等到資源足夠。
-                \item 暫時將claim edge改為allocation edge，檢查是否有cycle存在，若無表示safe；若有則unsafe，並改回claim edge。
+                \item 暫時將claim edge改為allocation edge，檢查是否有cycle存在（包含其他claim edges），若無表示safe；若有則unsafe，並改回claim edge。
             \end{itemize}
         \end{itemize}
-        \item Unsafe未必deadlock。
     \end{itemize}
 \end{theorem}
 
 \begin{theorem}{(145, 148)} Deadlock detection and recovery：\begin{itemize}
-        \item 不保證no deadlock。
-        \item Utilization和throughput較高。
-        \item 偵測系統\textbf{目前}是否deadlock，若有則recovery。
-        \item Deadlock detection algorithm：\begin{itemize}
-            \item $n$ processes，$m$ resources. 
-            \item $Allocation$, $Request$, $Available$, $Work$, $Finish$
-            \item Procedures：\begin{itemize}
-                \item 設定初始值：\begin{equation}
-                    \begin{aligned}
-                        Work & = Available \\
-                        Finish_i & = \begin{cases}
-                            False &, Allocation_i \neq 0 \\
-                            True &, Allocation_i = 0
-                        \end{cases}
-                    \end{aligned}
-                \end{equation}
-                \item Recursively check $Finish_i = False \land Request_i \le Work$，則$Finish_i = True; Work \mathrel{+}= Allocation_i$；否則 check $Finish$ 皆為 $True$，則no deadlock，否則$Finish_i = False$，$P_i$ deadlock。
-            \end{itemize}
-            \item Detection一次 time complexity $O(n^2 \times m)$，另位還要考慮偵測頻率，因此cost極高。
-        \end{itemize}
         \item 若所有類型資源皆為single-instance，可用畫圖簡化procedure。\begin{itemize}
             \item 使用Wait-for graph，省略resources。
-            \item No cycle, no deadlock; 有cycles，deadlock。
+            \item NO cycle, NO deadlock; 有cycles，deadlock。
         \end{itemize}
         \item Recovery：\begin{itemize}
             \item Process termination：\begin{itemize}
-                \item Abort all deadlocked processes：cost高，先前工作白費。
+                \item Abort all deadlocked processes：Cost high，先前工作白費。
                 \item Abort one process at a time until deadlock is eliminated：每終止一個deadlocked process，都要執行一次deadlock detection alogrithm，cost high。
             \end{itemize}
             \item Resource preemption：\begin{itemize}
-                \item Selecting a victim：Minimizing cost，cost高，注意starvation。
+                \item Selecting a victim：Cost high，注意starvation。
                 \item Rolling back：Difficult, returning to safe state.
             \end{itemize}
         \end{itemize}
     \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} \quad\quad \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            Method & Deadlock & \makecell{Utilization \&\\throughput} & Starvation & Time complexity \\
+            \Xhline{2\arrayrulewidth}
+            \hline
+            Deadlock prevention & & Low & \multirow{3}{*}{$\surd$} & \\
+            \cline{1-3}\cline{5-5}
+            Deadlock avoidance & & Low & & $O(n^2 \times m)$ \\
+            \cline{1-3}\cline{5-5}
+            \makecell{Deadlock detection\\and recovery} & $\surd$ & High & & \makecell{$O(n^2 \times m)$\\each time} \\
+            \hline
+        \end{tabular}
+    \end{table}
 \end{theorem}

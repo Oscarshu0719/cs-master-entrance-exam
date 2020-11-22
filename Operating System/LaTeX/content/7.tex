@@ -1,38 +1,39 @@
-\subsection{Memory management}
-
-\begin{theorem}{(222)} Binding：\begin{itemize}
-        \item 決定在process執行在memory起始address。
-        \item 時間點：\begin{itemize}
-            \item Compiling time by compiler. 通常只有OS commands採用，e.g. COM file。
-            \item Loading/Linking time by linking loader.
-            \item Execution time by OS, so called dynamic binding. MMU (Memory Management Unit)：Translation from logical (virtual) to physical address.
-        \end{itemize}
+\begin{theorem}{(223)} \quad\quad \begin{itemize}
+        \item Dynamic loading：不需要OS協助，programmer責任。
+        \item Dynamic linking：需要OS協助，因為processes間無法access彼此的memory。
     \end{itemize}
 \end{theorem}
 
-\begin{theorem}{(223)} Dynamic loading：\begin{itemize}
-        \item Load-on-call，execution time需要才load。
-        \item Process execution time較久，且牽扯到I/O。
-        \item 不需要OS協助，programmer責任。
-    \end{itemize}
-\end{theorem}
-
-\begin{theorem}{(223)} Dynamic linking：\begin{itemize}
-        \item Modules code在execution time需要才link。
-        \item 節省object code space。
-        \item Shared library，助於library更新。
-        \item 需要OS協助，因為processes間無法access彼此的memory。
-    \end{itemize}
-\end{theorem}
-
-\begin{theorem}{(229, 230)} Contiguous allocation：\begin{itemize}
-        \item 被占用的space也稱partition，通常是variable，也稱variable partition。Partititon數量也是process數量，即multiprogramming degree。
-        \item Process利用linked list管理free memory blocks (holes)，稱作Available list (AV-list)。
+\begin{theorem}{(229, 230, 238)} Contiguous allocation：\begin{itemize}
         \item External fragmentation：\begin{itemize}
-            \item Free memory blocks總和夠大，但各自不夠。
-            \item Compaction：移動執行中的process，使不連續memory blocks變連續。不易制定optimal policy，且process必須是dynamic binding才行在execution time移動memory blocks。
-            \item Page memory management：
+            \item Compaction：\begin{itemize}
+                \item 不易制定optimal policy。
+                \item process必須是dynamic binding才行在execution time移動memory blocks。
+            \end{itemize}
+            \item Page memory management：\begin{itemize}
+                \item 但有internal fragmentation problem，page size越大越嚴重。
+                \item Support memory sharing, memory protection, dynamic loading and dynamic linking.
+                \item Effective Memory Access Time (EMAT) 較久。
+                \item \begin{equation}
+                    \begin{aligned}
+                        \text{EMAT} & = p \times (\text{TLB time} + \text{Memory access time}) \\
+                        & + (1 - p) \times (\text{TLB time} + 2 \times \text{Memory access time})
+                    \end{aligned}
+                \end{equation} $p$ is TLB hit rate.
+            \end{itemize}
         \end{itemize}
-        \item Internal fragmentation：配給process的space過多。
+        \item Internal fragmentation：\begin{itemize}
+            \item Segment memory management：\begin{itemize}
+                \item 但有external fragmentation problem。
+                \item Support memory sharing and memory protection, 但比paging容易實施。
+                \item EMAT更久，因為多了checking $offset < limit$。
+            \end{itemize}
+        \end{itemize}
+        \item Paged segment memory management：\begin{itemize}
+            \item 先segment再page。
+            \item Segment table紀錄limit和page table address，且每個segment都有各自page table。
+            \item 解決external fragmentation problem，但有internal fragmentation problem。
+            \item EMAT最長，很佔空間。
+        \end{itemize}
     \end{itemize}
 \end{theorem}

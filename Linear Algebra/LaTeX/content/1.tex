@@ -1,18 +1,6 @@
-\item \begin{theorem}{(1.10)} （解）
-    \begin{itemize}
-        \item 若$\mat{A}^2 = \mat{A}$，\textbf{未必}保證$\mat{A} = \mat{I} \lor \mat{A} = \mat{O}$。
-        \item 若$\mat{X}^n = \mat{A}$，\textbf{未必}保證$\mat{X}$有$n$個解。
-    \end{itemize}
-\end{theorem}
-
 \item \begin{theorem}{(1.17)} （$\tr$）
     $\tr(\mat{AB}) = \tr(\mat{BA})$，可非方陣。
 \end{theorem}
-
-% \item \begin{theorem}{(1.55)} （解）
-%     $\vec{x}_0$為$\mat{A}\vec{x} = \vec{b}$之一解，則$\mat{A}\vec{x} = \vec{b}$的解集合為$\{\vec{x}_0 + \vec{u} | \vec{u} \in \spc{U}\}$，
-%     其中$\spc{U} = \{\vec{u} | \mat{A}\vec{u} = \vec{0}\}$，即$\spc{U}$為$\mat{A}$的null space，$\vec{x}_0$為特解、$\vec{u}$為齊次解。此式說明每一個解可表示為特解加上齊次解。
-% \end{theorem}
 
 \item \begin{theorem}{(1.67, 1.92)} （可逆，特徵，解，方陣）
     若$\mat{A}$為\textbf{方陣}，則以下等價
@@ -25,13 +13,3 @@
         \item $0$不為$\mat{A}$的特徵根。
     \end{itemize}
 \end{theorem}
-
-% \item \begin{theorem}{(1.76, 1.80, 1.81)} （分解）
-%     \begin{itemize}
-%         \item LU分解：$\mat{A} = \mat{LU}$，其中$\mat{L}$為下三角方陣，$\mat{U}$為\textbf{pivot未必為$1$}的列梯形形式。
-%         並非所有矩陣都能LU分解，需不經列交換得到列梯形形式$\mat{U}$。
-%         \item LDU分解：$\mat{A} = \mat{LDU}$，其中$\mat{L}$為下三角方陣，$\mat{D}$為對角方陣，$\mat{U}$為列梯形形式。
-%         \item $P^\intercal LU$分解：$\mat{A} = \mat{P^\intercal LU}$，其中$\mat{P}$為排列方陣，$\mat{L}$為下三角方陣，$\mat{U}$為\textbf{pivot未必為$1$}的列梯形形式。
-%         即允許列交換的LU分解。
-%     \end{itemize}
-% \end{theorem}

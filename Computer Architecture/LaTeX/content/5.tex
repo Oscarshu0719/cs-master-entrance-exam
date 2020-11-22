@@ -29,11 +29,11 @@
 \item \begin{theorem}{(450, 455, 457, 458)} Data hazards：\begin{itemize}
         \item Insert NOP：\code{slt $0, $0, 0}，浪費$2$ CC。
         \item Forwarding：Combinational units，放在$EX$因為$ALU$。
-        \begin{lstlisting}[caption={EX hazard.}, captionpos=b, mathescape=true]
+        \begin{lstlisting}[caption={EX hazard.}, captionpos=b, mathescape=true, language={[x86masm]Assembler}]
             if (EX/MEM.RegWrite $\land$ (EX/MEM.Rd $\neq 0$) $\land$ (EX/MEM.Rd $=$ ID/EX.Rs/Rt))
                 ForwardA/B = $10$
         \end{lstlisting}
-        \begin{lstlisting}[caption={MEM hazard.}, captionpos=b, mathescape=true]
+        \begin{lstlisting}[caption={MEM hazard.}, captionpos=b, mathescape=true, language={[x86masm]Assembler}]
             if (MEM/WB.RegWrite $\land$ (MEM/WB.Rd $\neq 0$) $\land$ ($\lnot$ EX_hazard) $\land$ (MEM/WB.Rd $=$ ID/EX.Rs/Rt))
                 ForwardA/B = $01$
         \end{lstlisting}
@@ -44,10 +44,10 @@
             \label{img:pipeline-forward}
         \end{figure}
         \item Stall：\code{}
-        \begin{lstlisting}[caption={Stall.}, captionpos=b, mathescape=true]
+        \begin{lstlisting}[caption={Stall.}, captionpos=b, mathescape=true, language={[x86masm]Assembler}]
             if (ID/EX.MemRead $\land$ (ID/EX.Rt $=$ IF/ID.Rs/Rt))
-                IF/ID.Write := 0
-                PC.Write := 0
+                IF/ID.Write := $0$
+                PC.Write := $0$
         \end{lstlisting}
         \begin{figure}[H]
             \centering

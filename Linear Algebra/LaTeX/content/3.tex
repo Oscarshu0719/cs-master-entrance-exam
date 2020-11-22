@@ -1,11 +1,3 @@
-\item \begin{theorem}{(3.13)} 
-	證明$\spc{W}$為$\spc{V}$的子空間：\begin{enumerate}
-		\item $\vec{0} \in \spc{W}$
-		\item $\spc{W} \subseteq \spc{V}, \spc{W} \neq \emptyset$
-		\item $\forall \alpha, \beta \in \F, \ \vec{u}, \vec{v} \in \spc{W}, \ \alpha\vec{u} + \beta\vec{v} \in \spc{W}$，即加法及純量積封閉。
-	\end{enumerate}
-\end{theorem}
-
 \item \begin{theorem}{(3.19, 3.20, 3.22)} \quad\quad
 	\begin{itemize}
 		\item 若$\spc{W}_i$為$\spc{V}$的子空間，則$\bigcap\spc{W}_i$也是$\spc{V}$的子空間。
@@ -27,25 +19,7 @@
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(3.47)} （$\det$，線性獨立）若$f_1, f_2, \ \cdots, f_n \in C^{(n - 1)}[a, b]$，則
-	\begin{equation}
-		W(x) = \det
-		{\left[ 
-		\begin{array}{cccc}
-			f_1(x) & f_2(x) & \cdots & f_n(x) \\
-			f_1'(x) & f_2'(x) & \cdots & f_n'(x) \\
-			\vdots & \vdots & \ddots & \vdots \\
-			f_1^{(n - 1)}(x) & f_2^{(n - 1)}(x) & \cdots & f_n^{(n - 1)}(x) \\
-		\end{array} 
-		\right]}
-	\end{equation}
-	稱$W(x)$為Wronskian行列式。若$\exists x_0 \in [a, b], W(x_0) \neq 0$，則$f_1, f_2, \ \cdots, f_n$線性獨立，但$W(x_0) = 0$\textbf{不}保證線性相依。
-\end{theorem}
-
-\item \begin{theorem}{(3.59)} \quad\quad
-	\begin{itemize}
-		\item $\spc{V} = \{\vec{0}\}$是唯一一個維度為$0$的空間。
-		\item $$
+\item \begin{theorem}{(3.59)} \quad\quad \begin{equation}
 		{\left[ 
 		\begin{array}{c|c|c|c}
 			\spc{V} & \F & \text{vector space} & \text{dim} \\
@@ -56,8 +30,7 @@
 			\R^n & \C & \texttimes & \texttimes
 		\end{array} 
 		\right]}
-		$$
-	\end{itemize}
+	\end{equation}
 \end{theorem}
 
 \item \begin{theorem}{((3-77)3.153, 3.73)} 若$\spc{W}_1, \spc{W}_2, \spc{W}_3$為$\spc{V}$子空間，但
@@ -77,14 +50,3 @@
 		\end{aligned}
 	\end{equation}
 \end{theorem}
-
-% \item \begin{theorem}{(3.88, 3.89)} 若$\spc{W}_1, \spc{W}_2, \ \cdots, \spc{W}_k$為$\spc{V}$子空間，則以下等價
-% 	\begin{itemize}
-% 		\item $\spc{W}_1, \spc{W}_2, \ \cdots, \spc{W}_k$為獨立子空間。
-% 		\item $\forall w_i \in \spc{W}_i$，若$w_1 + w_2 + \cdots + w_k = 0$，則$w_i = 0, \ \forall i = 1, \ \cdots, k$。
-% 		\item 
-% 		\begin{equation}
-% 			\dim(\spc{W}_1 + \spc{W}_2 + \cdots + \spc{W}_k) = \dim(\spc{W}_1) + \dim(\spc{W}_2) + \cdots + \dim(\spc{W}_k)
-% 		\end{equation}
-% 	\end{itemize}
-% \end{theorem}

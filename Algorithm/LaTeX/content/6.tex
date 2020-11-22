@@ -1,23 +1,13 @@
-\item \begin{theorem}{(262, 265)} \quad\quad
+\item \begin{theorem}{(262, 265, 285)} \quad\quad
     \begin{itemize}
         \item 所有NP問題都能多項式時間reduce到NP-Hard。
         \item 證明NPC：問題屬於NP；已知NPC可以多項式時間reduce到該問題，即證明該問題是NP-Hard。
+        \item 如果可以證明\textbf{lower bound} of \textbf{worst case} of NPC problems is polynomial，則$P=NP$。
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.4]{img/np-conp.png}
+            \caption{Relationship between NP and CO-NP.}
+            \label{img:np-conp}
+        \end{figure}
     \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(276, 280)} \quad\quad
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|c|}
-            \hline
-            \multicolumn{3}{|c|}{Approximation algorithms} \\
-            \Xhline{3\arrayrulewidth}
-            Problem & Time complexity & Approximation ratio \\
-            \Xhline{2\arrayrulewidth}
-            Vertex cover & $\Theta(|\E|)$ & 2 \\
-            \hline
-            Euclidean TSP & $\Theta(|\V|^2)$ & 2 \\
-            \hline
-        \end{tabular}
-    \end{table}
 \end{theorem}

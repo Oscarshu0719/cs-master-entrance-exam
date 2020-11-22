@@ -1,28 +1,5 @@
-\item \begin{theorem}{(7.3, 7.6)} （方陣，$\tr$）若$\vec{u}, \vec{v} \in \V$，$\mat{A}, \mat{B} \in \F^{n \times n}$為方陣，則
+\item \begin{theorem}{(7.64, 7.65, 7.66)} （正交）若$\spc{W}$為$\V$子空間，且$\P$為正交投影向量，則
 	\begin{itemize}
-		\item $\dotp{\vec{u}}{\vec{v}} = \overline{\dotp{\vec{v}}{\vec{u}}}$
-		\item $\dotp{\vec{u}}{\alpha \vec{v}} = \overline{\alpha}\dotp{\vec{u}}{\vec{v}}$
-		\item $\dotp{\mat{A}}{\mat{B}} = \tr(\mat{AB}\herm) = \sum_{i = 1}^{n}\sum_{j = 1}^{n}a_{ij}\overline{b_{ij}}$
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(7.34)} （正交，線性獨立）若$\spc{S} = \{\vec{1}, \vec{2}, \ \cdots, \vec{k}\} \subseteq \V$為不含$\vec{0}$的正交集，
-	則$\spc{S}$線性獨立，反之不然。
-\end{theorem}
-
-% \item \begin{theorem}{(7.44)} （分解，正交）QR分解： \\
-% 	若$\mat{A} = \mat{QR} \in \F^{m \times n}$，其中$\cs(\mat{Q})$為單範正交集，$\mat{R}$為上三角矩陣。
-% \end{theorem}
-
-\item \begin{theorem}{(7.64, 7.65, 7.66)} （正交）若$\spc{W}$為$\V$子空間，$\beta = \{\vec{v}_1, \vec{v}_2, \ \cdots, \vec{v}_k\}$為$\spc{W}$的\textbf{正交}基底，$\vec{v} \in \V$，則
-	稱
-	\begin{equation}
-		\P(\vec{v}) = \proj{\spc{W}}{v} = \sum_{i = 1}^{k}\frac{\dotp{\vec{v}}{\vec{v}_i}}{\dotp{\vec{v}_i}{\vec{v}_i}}\vec{v}_i
-	\end{equation}
-	為$\V$在$\spc{W}$上的正交投影向量，則
-	\begin{itemize}
-		\item $\P$為線性映射。
-		\item $\forall \vec{v} \in \spc{W}, \ \P(\vec{v}) = \vec{v}$
 		\item $\im(\P) = \spc{W}$
 		\item $\P^2 = \P$
 		\item 
@@ -51,12 +28,15 @@
 	為單範正交集。
 \end{theorem}
 
-\item \begin{theorem}{(7.68, 7.69)} （實數）
+\item \begin{theorem}{(7.68, 7.69, 7.70, (7-97)7.174)} （實數，可逆）
 	\begin{itemize}
 		\item $\Ker(\mat{A}\herm \mat{A}) = \Ker(\mat{A})$
 		\item $\rnk(\mat{A}\herm \mat{A}) = \rnk(\mat{A})$
 		\item $\lker(\mat{A} \mat{A}\herm) = \lker(\mat{A})$
 		\item 若$\mat{A} \in \R^{m \times n}$，$\rnk(\mat{A}^\intercal \mat{A}) = \rnk(\mat{A}\mat{A}^\intercal)$
+		\item $\cs(\mat{A}^\intercal\mat{A}) = \cs(\mat{A}^\intercal)$
+		\item $\mat{A}$行獨立$\iff$$\mat{A}\herm\mat{A}$可逆
+		\item $\mat{A}$列獨立$\iff$$\mat{A}\mat{A}\herm$可逆
 	\end{itemize}
 \end{theorem}
 
@@ -67,9 +47,10 @@
 		\begin{itemize}
 			\item 若$\mat{A}$\textbf{不}為行獨立，正規方程式有\textbf{無限多解}，但\textbf{$\proj{\spc{W}}{b}$必定唯一}。
 			\item 若$\mat{A}$為行獨立，$\proj{\spc{W}}{b} = \mat{A}\vec{x} = \mat{A}(\mat{A}\herm\mat{A})\inv\mat{A}\herm\vec{b}$。
+			\item 若$\rnk(\mat{A}) = n$，且$\mat{A} = \mat{QR}$為$\mat{A}$的QR分解，則
+			$\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\mat{R}\vec{x} = \mat{Q}\herm \vec{b}$。
+			\item 若$\cs(\mat{A})$為單範正交集，則$\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\vec{x} = \mat{A}\herm\vec{b}$。
 		\end{itemize}
-		% \item 若$\rnk(\mat{A}) = n$，且$\mat{A} = \mat{QR}$為$\mat{A}$的QR分解，則
-		% $\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\mat{R}\vec{x} = \mat{Q}\herm \vec{b}$
 	\end{itemize}
 \end{theorem}
 
@@ -89,57 +70,7 @@
 	即投影在$\mat{Q}$的正交投影矩陣為$\mat{Q}\mat{Q}\herm$。
 \end{theorem}
 
-\item \begin{theorem}{(7.98)} （正交）若$\spc{S} \subseteq \V$，稱
-	\begin{equation}
-		\spc{S}^{\perp} = \{\vec{v} \in \V | \dotp{\vec{v}}{\vec{s}} = 0, \ \forall \vec{s} \in \spc{S}\}
-	\end{equation}
-	為$\spc{S}$的正交補空間，則
-	\begin{itemize}
-		\item $\{\vec{0}\}^{\perp} = \V$且$\V^{\perp} = \{\vec{0}\}$
-		\item $\spc{S}^{\perp} \subseteq \V$
-		\item $\spc{S} \subseteq \spc{S}^{\perp\perp}$
-		\item $\spc{S} \cap \spc{S}^{\perp} = 
-		\begin{cases}
-			\{\vec{0}\}, & \text{if} \ \{\vec{0}\} \in \spc{S} \\
-			\emptyset, & \text{if} \ \{\vec{0}\} \not\in \spc{S}
-		\end{cases}$
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(7.100, 7.103, 7.104)} （正交）若$\spc{W} \subseteq \V$，$\P$為$\V$在$\spc{W}$上的投影算子，則
-	\begin{itemize}
-		\item $\Ker(\P) = \spc{W}^{\perp}$
-		\item $\V = \spc{W} \oplus \spc{W}^{\perp}$
-		\item $\dim(\V) = \dim(\spc{W}) + \dim(\spc{W}^{\perp})$
-		\item $\spc{W} = \spc{W}^{\perp\perp}$
-		\item $\vec{v} - \P(\vec{v})$為$\vec{v}$在$\spc{W}^{\perp}$上的正交投影向量，即$\proj{\spc{W}^{\perp}}{v} = \vec{v} - \proj{\spc{W}}{v}$。
-		\item $\mat{I} - \P$為$\V$在$\spc{W}^{\perp}$上的正交投影算子。
-		\item $\vec{v}$到$\spc{W}$的距離$ = ||\vec{v} - \proj{\spc{W}}{v}|| = ||\proj{\spc{W}^{\perp}}{v}||$。
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(7.108)} （正交，實數）$\mat{A} \in \R^{m \times n}$，則
-	\begin{itemize}
-		\item $\cs(\mat{A}^{\intercal})^{\perp} = \Ker(\mat{A})$
-		\item $\cs(\mat{A})^{\perp} = \Ker(\mat{A}^{\intercal})$
-		\item $\Ker(\mat{A})^{\perp} = \cs(\mat{A}^{\intercal})$
-		\item $\Ker(\mat{A}^{\intercal})^{\perp} = \cs(\mat{A})$
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(7.110, 7.111)} （正交，實數）若$\mat{A} \in \R^{m \times n}, \vec{v} \in \R^{m}, \vec{u} \in \R^{n}$，則
-	\begin{itemize}
-		\item 若$\rnk(\mat{A}) = n$，則
-			\begin{itemize}
-				\item $\mat{A}(\mat{A}^{\intercal}\mat{A})\inv\mat{A}^{\intercal}$為$\R^m$投影在$\cs(\mat{A})$的正交投影矩陣。
-				\item $\mat{I} - \mat{A}(\mat{A}^{\intercal}\mat{A})\inv\mat{A}^{\intercal}$為$\R^m$投影在$\Ker(\mat{A}^\intercal)$的正交投影矩陣。
-			\end{itemize}
-		\item 若$\rnk(\mat{A}) = m$，則
-			\begin{itemize}
-				\item $\mat{A}^\intercal(\mat{A}\mat{A}^{\intercal})\inv\mat{A}$為$\R^n$投影在$\cs(\mat{A}^\intercal)$的正交投影矩陣。
-				\item $\mat{I} - \mat{A}^\intercal(\mat{A}\mat{A}^{\intercal})\inv\mat{A}$為$\R^n$投影在$\Ker(\mat{A})$的正交投影矩陣。
-			\end{itemize}
-	\end{itemize}
+\item \begin{theorem}{(7.100, 7.103, 7.104)} （正交）若$\spc{W} \subseteq \V$，$\P$為$\V$在$\spc{W}$上的投影算子，則$\Ker(\P) = \spc{W}^{\perp}$。
 \end{theorem}
 
 \item \begin{theorem}{(7.112)} （解，實數）

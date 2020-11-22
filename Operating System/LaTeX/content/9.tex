@@ -1,0 +1,64 @@
+\begin{theorem}{()} Seek time：Head移到track time，通常最長。Latency (Rotation) time：Head移到sector time。
+\end{theorem}
+
+\begin{theorem}{(302)} Disk free space management：\begin{itemize}
+        \item Grouping：Linked list，同時記錄更多free blocks的no.。
+        \item Counting：Linked list，適用於contiguous allocation and free，同時記錄接著的contiguous free blocks。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{(304)} File allocation methods：\begin{itemize}
+        \item Physical directory紀錄。
+        \item Contiguous allocation：\begin{itemize}
+            \item Seek time較短，因為多數落在同一個cylinder。
+            \item Support random (direct) access和sequential access且後者較linked allocation快。
+            \item Reliablity較linked allocation高。
+            \item External fragmentation problem，disk中通過repack解決，類似compaction。
+            \item 檔案大小不易擴增，需事先宣告大小。
+        \end{itemize}
+        \item Linked allocation：\begin{itemize}
+            \item 優缺點與contiguous allocation相反。
+            \item 無法support random access。
+            \item FAT (File Allocation Table)：將linking info存在FAT (memory) 中，不存在allocation disk，加速access。
+        \end{itemize}
+        \item Index allocation：\begin{itemize}
+            \item 不一定連續，需額外allocate index block記錄所有allocated blocks no.。
+            \item Support random access和sequential access。
+            \item 可動態擴充，不事先宣告大小。
+            \item Linking info比linked allocation大很多。
+            \item 若檔案大到一個index block無法紀錄。解決：\begin{itemize}
+                \item 多個index blocks用linking串連，I/O次數大增。
+                \item Multilevel index structure：I/O次數固定，但對小型檔案極不合適，index block甚至比data block還多。
+                \item UNIX的I-Node：對所有大小檔案皆適合。
+            \end{itemize}
+        \end{itemize}
+        \item Internal fragmentation problem所有allocation皆有，可以視而不見。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{(309)} Disk scheduling：\begin{itemize}
+        \item FCFS：公平，no starvation，效果不好。
+        \item SSTF (Shortest Seek-time Track First)：不公平，可能starvation，效果不錯。
+        \item SCAN：效果尚可，適用大量tracks request，獲得較均勻等待時間，不盡公平，但NO starvation。
+        \item C-SCAN (Circular SCAN)：只提供單向服務，回程不服務。
+        \item Look：類似SCAN，服務完該方向最後一個就折返。
+        \item C-Look：只提供單向服務的Look。
+        \item 無最差也無最佳。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{(313)} \quad\quad \begin{itemize}
+        \item Raw I/O：將disk視為大型，不支援file system service，performance佳，但user不方便使用。
+        \item Bootstrap loader：只用在開機時將OS的object code從disk載入RAM，放在disk中固定的boot blocks。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{(314)} Bad sectors處理：\begin{itemize}
+        \item Spare sectors (sector sparing, forwarding)：\begin{itemize}
+            \item e.g. SCSI.
+            \item 在low-level formatting完成，OS看不到。
+            \item 破壞disk scheduling效能。解法：把spare sectors分散到每個cyclinder上，bad sectors利用鄰近的spare sector。
+        \end{itemize}
+        \item Sector slipping：移動其他sectors，空出下一個sector取代bad sector。
+    \end{itemize}
+\end{theorem}

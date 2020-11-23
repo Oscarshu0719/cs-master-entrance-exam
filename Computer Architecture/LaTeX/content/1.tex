@@ -4,13 +4,6 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(15)} 轉譯（Translation）：\begin{itemize}
-        \item 流程：compiler, assembler, linker, loader。
-        \item Linker：連結多個模組解決位址的參考問題。
-        \item Loader：將機械碼放在適當address。
-    \end{itemize}
-\end{theorem}
-
 \item \begin{theorem}{(29)} \code{lb}和\code{lbu}皆取LSB，只差在\code{lb}要擴展；\code{sb}存入LSB。
 \end{theorem}
 
@@ -21,11 +14,11 @@
     \end{lstlisting}
 \end{theorem}
 
-\item \begin{theorem}{(42))} 常數邏輯類運算用$0$擴充，e.g. andi；常數算術類運算用sign擴充，e.g. addi。
+\item \begin{theorem}{(42)} 常數邏輯類運算用$0$擴充，e.g. andi；常數算術類運算用sign擴充，e.g. addi。
 \end{theorem}
 
 \item \begin{theorem}{(47)} \quad\quad \begin{itemize}
-        \item \code{srl rd, rt, shamt # rs = 5'0 }
+        \item \code{srl/sll rd, rt, shamt # rs = 5'0 }
         \item \code{lw/sw rt, imm(rs)}
         \item \code{beq/bne rs, rt, addr}
         \item \code{addi rt, rs, imm}
@@ -33,7 +26,9 @@
 \end{theorem}
 
 \item \begin{theorem}{(49, 51)} \quad\quad \begin{itemize}
-        \item \code{branch}：\code{imm}填入與$PC + 4$距離除以$4$，range：$PC - 2^{17} \sim PC + 2^{17} - 4$。
+        \item \code{branch}：\code{imm}填入與$PC + 4$距離除以$4$，range：\begin{equation}
+            PC - 2^{17} (0\text{x}20000) \sim PC + 2^{17} - 4 (0\text{x}1FFFC)
+        \end{equation}
         \item \code{jump}：\code{addr}填入地址第$[27 - 2]$，及去除最左$4$位和最右$2$位，實際地址：$PC[31 - 28] + addr + 2'0$，只能在同一個block，即看最左$4$位。
     \end{itemize}
 \end{theorem}

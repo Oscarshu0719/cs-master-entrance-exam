@@ -1,10 +1,4 @@
-\item \begin{theorem}{(137)} 1's補數，在overflow時，需額外加$1$修正。
-\end{theorem}
-
-\item \begin{theorem}{(141)} \code{sltu}可以用來判斷負數，因為會大於正數。
-\end{theorem}
-
-\item \begin{theorem}{(144)} \code{add, addi, sub} overflow時會exception，但\code{addu, addiu, subu}則不會，因為較多用於計算address。
+\item \begin{theorem}{(144)} \code{add, addi, sub} overflow時會exception，但\code{addu, addiu, subu}則\textbf{不會}，因為較多用於計算address。
 \end{theorem}
 
 \item \begin{theorem}{(165, 167)} 無號數乘法：\begin{itemize}
@@ -13,16 +7,10 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(171, 173)} 有號數乘法：\begin{itemize}
-        \item Booth's algorithm：\begin{itemize}
-            \item 多一位mythical bit。
-            \item Multiplicand一倍長，product兩倍長、初始為multiplier放低位且操作在高位、右移，無multiplier。
-            \item $01$: $+$, $10$: $-$, $00, 11$: skip.
-        \end{itemize}
-        \item 快速乘法硬體：\begin{itemize}
-            \item 沒有clock，屬於combinational unit，不消耗$1$個clock cycle。
-            \item 容易optimize和pipeline。
-        \end{itemize}
+\item \begin{theorem}{(171, 173)} Booth's algorithm（有號數乘法）：\begin{itemize}
+        \item 多一位mythical bit。
+        \item Multiplicand一倍長，product兩倍長、初始為multiplier放低位且操作在高位、右移，無multiplier。
+        \item $01$: $+$, $10$: $-$, $00, 11$: skip.
     \end{itemize}
 \end{theorem}
 
@@ -89,25 +77,4 @@
             \end{tabular}
         \end{table}
     \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(205)} 四捨五入：\begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|c|c|c|}
-            \hline
-            LSB & Guard & Round & Sticky & Action \\
-            \Xhline{2\arrayrulewidth}
-            $0$ & $1$ & $0$ & $0$ & $\downarrow$ \\
-            \hline
-            $0$ & $1$ & $0$ & $1$ & $\uparrow$ \\
-            \hline
-            $1$ & $1$ & $0$ & $0$ & $\uparrow$ \\
-            \hline
-            $1$ & $1$ & $0$ & $1$ & $\uparrow$ \\
-            \hline
-        \end{tabular}
-    \end{table}
-\end{theorem}
-
-\item \begin{theorem}{(213)} 右移代替除法：若為負數需先加上$2^n - 1$再位移，其中$n$為要右移的位數。
 \end{theorem}

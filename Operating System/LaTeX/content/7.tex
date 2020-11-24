@@ -1,39 +1,5 @@
-\begin{theorem}{(223)} \quad\quad \begin{itemize}
-        \item Dynamic loading：不需要OS協助，programmer責任。
-        \item Dynamic linking：需要OS協助，因為processes間無法access彼此的memory。
-    \end{itemize}
-\end{theorem}
-
-\begin{theorem}{(229, 230, 238)} Contiguous allocation：\begin{itemize}
-        \item External fragmentation：\begin{itemize}
-            \item Compaction：\begin{itemize}
-                \item 不易制定optimal policy。
-                \item process必須是dynamic binding才行在execution time移動memory blocks。
-            \end{itemize}
-            \item Page memory management：\begin{itemize}
-                \item 但有internal fragmentation problem，page size越大越嚴重。
-                \item Support memory sharing, memory protection, dynamic loading and dynamic linking.
-                \item Effective Memory Access Time (EMAT) 較久。
-                \item \begin{equation}
-                    \begin{aligned}
-                        \text{EMAT} & = p \times (\text{TLB time} + \text{Memory access time}) \\
-                        & + (1 - p) \times (\text{TLB time} + 2 \times \text{Memory access time})
-                    \end{aligned}
-                \end{equation} $p$ is TLB hit rate.
-            \end{itemize}
-        \end{itemize}
-        \item Internal fragmentation：\begin{itemize}
-            \item Segment memory management：\begin{itemize}
-                \item 但有external fragmentation problem。
-                \item Support memory sharing and memory protection, 但比paging容易實施。
-                \item EMAT更久，因為多了checking $offset < limit$。
-            \end{itemize}
-        \end{itemize}
-        \item Paged segment memory management：\begin{itemize}
-            \item 先segment再page。
-            \item Segment table紀錄limit和page table address，且每個segment都有各自page table。
-            \item 解決external fragmentation problem，但有internal fragmentation problem。
-            \item EMAT最長，很佔空間。
-        \end{itemize}
-    \end{itemize}
+\begin{theorem}{(229)} TLB使用時，Effective Memory Access Time (EMAT) ：
+    \begin{equation}
+        \text{EMAT\_TLB} = \text{TLB time} + (2 - p) \times \text{Memory access time} 
+    \end{equation} $p$ is TLB hit rate.
 \end{theorem}

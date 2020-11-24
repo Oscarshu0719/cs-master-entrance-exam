@@ -1,8 +1,5 @@
 \begin{theorem}{(242)} Virtual memory：\begin{itemize}
-        \item OS責任。
-        \item Partial loading即可執行，同時間可load process變多，multiprogramming degree和CPU utilization皆上升，thrashing除外。
         \item Less I/O time，但總體I/O time上升，因為次數提升。
-        \item Memory utilization皆上升，thrashing除外。
         \item \begin{equation}
                 \text{EMAT} = (1 - p) \times \text{Memory Access time} + p \times \text{Page fault time}
         \end{equation} $p$ is page fault rate.
@@ -10,60 +7,40 @@
 \end{theorem}
 
 \begin{theorem}{(246)} Page replacement：\begin{itemize}
-        \item 若dirty bit為$1$，則多一次swap out I/O，共兩次。
-        \item Page replacement algorithms：\begin{itemize}
-            \item OPT：選擇將來長期不會使用的page；最佳，但無法實現。
-            \item LRU：reverse OPT；page fault rate可接受，但製作cost很高，需要大量hardware support。
-            \item LRU近似：\begin{itemize}
-                \item Additional reference bit usage：\begin{itemize}
-                    \item 每一個page有一個register紀錄最近$n$次reference bit的值。
-                    \item 每格一段時間將register右移一位，將reference bit作為最高位，並reset reference bit。
-                    \item Victim page為register值最小者，若多個pages相同，則採用FIFO。
-                \end{itemize}
-                \item Second chance (Clock)：先用FIFO挑出一個page，若同時reference bit為$0$，則為victim page，但若為$1$，則reset reference bit，loading time改為現在時間，重新FIFO找page。
-                \item Enchanced second chance：選擇$<reference, dirty>$最小者，若多個pages相同，則採用FIFO。
-            \end{itemize}
-            \item Counting：若多個pages相同，則採用FIFO；page fault rate相當高；製作cost很高。LFU：選擇累計次數最少；MFU：選擇累計次數最多。
+        \item LRU近似：\begin{itemize}
+            \item Second chance (Clock)：先用FIFO挑出一個page，若同時reference bit為$0$，則為victim page，但若為$1$，則reset reference bit，loading time改為現在時間，重新FIFO找page。
+            \item Enchanced second chance：選擇$<reference, dirty>$最小者，若多個pages相同，則採用FIFO。
         \end{itemize}
         \item 所有replacement algorithms沒有最差，只有最佳。
         \item Belady amonaly：分給process的frames增加，但page fualt rate不降反升。
-        \item Stack property：$n$ frames所包含的page set必定是$n + 1$ frames所包含的page set的子集合。且具有stack property的法則，不會發生belady anomaly。只有OPT和LRU有stack property。
+        \item Stack property：$n$ frames所包含的page set必定是$n + 1$ frames所包含的page set的子集合。且具有stack property的法則，不會發生belady anomaly。只有\textbf{OPT}和\textbf{LRU}有。
         \item Page buffering：\begin{itemize}
-            \item Free frames pool：\begin{itemize}
-                \item 將frames分為\begin{itemize}
-                    \item Resident frames分配給process。
-                    \item Free frames pool，OS keep，讓miss pages先行載入，process即可恢復執行，且加入resident frames，完成後再將victim page write back to disk，並歸還free frames pool。
-                \end{itemize} 
-                \item Keep modification list紀錄dirty bit為$1$的所有page no.，等到OS空閒再將list中的pages write back to disk and reset dirty bits。
-                \item 與法一類似，free frames pool的free frames同時記錄process ID及其page no.，因為free frames內放的一定是最新的內容，因此可以先從free frames pool中找。
-            \end{itemize}
+            \item Free frames pool：將frames分為\begin{itemize}
+                \item Resident frames分配給process。
+                \item Free frames pool，OS keep，讓miss pages先行載入，process即可恢復執行，且加入resident frames，完成後再將victim page write back to disk，並歸還free frames pool。
+            \end{itemize} 
+            \item Keep modification list紀錄dirty bit為$1$的所有page no.，等到OS空閒再將list中的pages write back to disk and reset dirty bits。
         \end{itemize}
     \end{itemize}
 \end{theorem}
 
 \begin{theorem}{(253)} Frame allocation：\begin{itemize}
-        \item Process可分配frames數量由harware決定，最多為physical memory size，最少須讓任一machine code完成，即週期中最多可能memory access數量，e.g. $IF$, $MEM$, $WB$共三次。
-        \item Thrashing：\begin{itemize}
-            \item 當process的frames不足經常page fault且要page replacement，若OS採用global page replacement，則可能會造成其他processes也page fault，
-            因此幾乎所有processes page fault，ready queue為空，CPU utilization下降，則system引入更多processes執行，造成情況惡化，同時paging disk異常忙碌。
-            \item 解決thrashing：\begin{itemize}
-                \item 若已發生，只能降低multiprogramming degree。
-                \item 利用page fault frequency control防止thrashing，OS訂定page fault rate合理的上下限，thrashing理當不會發生。若大於上限，應該多分配frames；若小於下限，應該取走一些frames。
-            \end{itemize}
+        \item Process可分配frames數量由hardware決定，最多為physical memory size，最少須讓任一machine code完成，即週期中最多可能memory access數量，e.g. $IF$, $MEM$, $WB$共三次。
+        \item 解決thrashing：\begin{itemize}
+            \item 若已發生，只能降低multiprogramming degree。
+            \item 利用page fault frequency control防止thrashing，OS訂定page fault rate合理的上下限，thrashing理當不會發生。若大於上限，應該多分配frames；若小於下限，應該取走一些frames。
         \end{itemize}
         \item Working-set model：\begin{itemize}
             \item 若符合locality，則可降低page fault rate；違反locality：linked list, hashing, binary search, jump, indirect addressing mode。
             \item 可預防thrashing，對於prepaging也有益。
-            \item 不容易制定精確working set。
-            \item 若前後期working set內容差距太大，可能造成較多I/O。
         \end{itemize}
         \item \begin{itemize}
             \item Bigger paging disk沒幫助。
-            \item Faster paging disk有幫助，因為decrease page fault time。
-            \item Increase page size有幫助。
+            \item \textbf{Faster paging disk有幫助}，因為decrease page fault time。
+            \item \textbf{Increase page size有幫助}。
             \item Decrease page size沒幫助。
-            \item Local repalcement有幫助，因為thrashing不至於擴散。
-            \item Prepaging有幫助，若猜測夠準，decrease page fault rate。
+            \item \textbf{Local repalcement有幫助}，因為thrashing不至於擴散。
+            \item \textbf{Prepaging有幫助}，若猜測夠準，decrease page fault rate。
         \end{itemize}
     \end{itemize}
 \end{theorem}
@@ -84,14 +61,5 @@
         \item \code{fork()} with Copy-on-write：Child process共享parent process memory space，不allocate new frames，降低memory space需求，且不須複製parent process content，process creation較快，但在write時，
         allocate new frame給child process，並複製內容，修改child process的page table指向new frame，最後才write。
         \item \code{vfork()} (Virtual memory \code{fork()})：Child process共享parent process memory space，不allocate new frames，但不提供Copy-on-write，因此在write時，另一方會受影響。適用於child process create後馬上\code{execlp()}，e.g. UNIX shell command interpreter。
-    \end{itemize}
-\end{theorem}
-
-\begin{theorem}{(263)} TLB reach：\begin{itemize}
-        \item 通過TLB可以access的size，希望越大越好。\begin{equation}
-            \text{TLB reach} = \# \text{ of TLB entries} \times \text{page size}
-        \end{equation}
-        \item 增加entry數量：TLB reach增加，但也有可能無法涵蓋working set。
-        \item 加大page size：TLB reach增加，page fault ratio下降，但internal framentation較嚴重。解法：提供多種page size，且在TLB增加page size欄位，因此許多OS改為管理TLB。
     \end{itemize}
 \end{theorem}

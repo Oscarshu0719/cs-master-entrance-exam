@@ -7,8 +7,6 @@
             \item Progress：不想進入critical section時，不能阻礙其他想進入critcal section的process進入，即不能參與進入critical section的decision，且必須在有限時間內決定進入critical section的process。
             \item Bounded waiting：Process提出申請進入critical section後，必須在有限時間內進入，即公平，NO starvation。
         \end{itemize}
-        \item Busy waiting (spinlock) ：若process平均可以在$<$ context switch時間內離開loop，則spinlock則有利。
-        \item Busy waiting\textbf{無法}完全避免，在\code{Entry section}和\code{Exit section}仍是busy waiting實現，然而disable interrupt可以避免busy-waiting，但disable interrupt不適合multiprocessors。
     \end{itemize}
 \end{theorem}
 
@@ -17,7 +15,7 @@
 \begin{theorem}{(171)} Two processes solution：\begin{itemize}
         \item Algorithm 1（錯誤）：\begin{itemize}
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of Algorithm 1 (two processes solution).}, captionpos=b, mathescape=true]
-                int turn := $i \lor j$
+                int turn = $i \lor j$;
             \end{lstlisting}
             \item \textbf{Progress：不成立}，當$P_i$在remainder section且$turn = i$，若$P_j$想進入critical section，但被$P_i$阻礙，須等到$P_i$進入critcal section再出來。
             \begin{algorithm}[H]
@@ -33,28 +31,14 @@
                         \Until {$False$}
                     \EndFunction
                 \end{algorithmic}
-            \end{algorithm} 
-            \begin{algorithm}[H]
-                \caption{$P_j$ of Algorithm 1 (two processes solution).}
-                \begin{algorithmic}[1]
-                    \Function{$P_j$}{}
-                        \Repeat 
-                            \While {$turn \neq j$}
-                            \EndWhile
-                            \State Critical section.
-                            \State $turn$ := $i$
-                            \State Remainder section.
-                        \Until {$False$}
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm} 
+            \end{algorithm}  
         \end{itemize}
         \item Algoroithm 2（錯誤）：\begin{itemize}
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of Algorithm 2 (two processes solution).}, captionpos=b, mathescape=true]
                 // 表示是否想進入critical section。
-                bool flag := $False$
+                bool flag = $False$;
             \end{lstlisting}
-            \item \textbf{Progress：不成立}，當$P_i, P_j$依序將$flag := True$，在\code{while}雙方皆會等待，則deadlock，皆無法進入critcal section。
+            \item \textbf{Progress：不成立}，當$P_i, P_j$依序將$flag := True$，在\code{while}雙方皆會等待，則\textbf{deadlock}，皆無法進入critcal section。
             \begin{algorithm}[H]
                 \caption{$P_i$ of Algorithm 2 (two processes solution).}
                 \begin{algorithmic}[1]
@@ -70,28 +54,13 @@
                     \EndFunction
                 \end{algorithmic}
             \end{algorithm} 
-            \begin{algorithm}[H]
-                \caption{$P_j$ of Algorithm 2 (two processes solution).}
-                \begin{algorithmic}[1]
-                    \Function{$P_j$}{}
-                        \Repeat 
-                            \State $flag[j]$ := $True$
-                            \While {$flag[i]$}
-                            \EndWhile
-                            \State Critical section.
-                            \State $flag[j]$ := $False$
-                            \State Remainder section.
-                        \Until {$False$}
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm} 
         \end{itemize}
         \item Algorithm 3 (Peterson's solution)（正確）：\begin{itemize}
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of Peterson's solution (two processes solution).}, captionpos=b, mathescape=true]
-                int turn := $i \lor j$
-                bool flag := $False$
+                int turn = $i \lor j$;
+                bool flag = $False$;
             \end{lstlisting}
-            \item $flag$或$turn$或兩者值皆互換依然正確，但若將前兩行賦值順序對調，則因為mutual exclusion不成立，而不正確，可以通過hardware、OS support或high-level software APIs提供的synchronization tools。
+            \item $flag$或$turn$或兩者值皆互換依然正確，但若將前兩行賦值順序對調，則因為\textbf{mutual exclusion不成立}，而不正確。
             \item Peterson's solution is NOT guaranteed to work on modern PC, since processors and compiler may reorder read and write operations that have NO dependencies.
             \begin{algorithm}[H]
                 \caption{$P_i$ of Peterson's solution (two processes solution).}
@@ -109,50 +78,24 @@
                     \EndFunction
                 \end{algorithmic}
             \end{algorithm}
-            \begin{algorithm}[H]
-                \caption{$P_j$ of Peterson's solution (two processes solution).}
-                \begin{algorithmic}[1]
-                    \Function{$P_j$}{}
-                        \Repeat 
-                            \State $flag[j]$ := $True$
-                            \State $turn$ := $i$
-                            \While {$flag[i] \land turn = i$}
-                            \EndWhile
-                            \State Critacal section.
-                            \State $flag[j]$ := $False$
-                            \State Remainder section.
-                        \Until {$False$}
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm}
         \end{itemize}
     \end{itemize}
 \end{theorem}
 
 \subsubsection{Hardware support}
 
-\begin{theorem}{()} Memory barrier (fence)：\begin{itemize}
-        \item Strongly ordered：對於memory修改 on $1$ processor is immediately visible to all other processers。
-        \item Weakly ordered：對於memory修改 on $1$ processor may NOT be immediately visible to all other processers。
-        \item System ensures that any L/S operations are completed before any subsequent L/S operations are performed.
-    \end{itemize}
-\end{theorem}
-
 \begin{theorem}{(176)} Test-and-Set：\begin{itemize}
         \item \textsc{Test-and-Set}：
-        \begin{algorithm}[H]
-            \caption{Test-and-Set.}
-            \begin{algorithmic}[1]
-                \Function{Test-and-Set}{bool $*Target$} \Comment{Atomic.}
-                \State bool $rv$ := $*Target$
-                \State $*Target$ := $True$
-                \State \Return $rv$
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
+        \begin{lstlisting}[caption={\textsc{Test-and-Set}.}, captionpos=b, mathescape=true]
+            bool Test-and-Set (bool *Target) { // Atomic.
+                bool rv = *Target;
+                *Target = $True$;
+                return rv;
+            }
+        \end{lstlisting}
         \item Algotihm 1（錯誤）：\begin{itemize}
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of Algorithm 1 (\textsc{Test-and-Set}).}, captionpos=b, mathescape=true]
-                bool lock := $False$ 
+                bool lock = $False$; 
             \end{lstlisting}
             \item \textbf{Bounded waiting：不成立}，可能一直領先另一個process搶到CPU，導致另一個process starvation。
             \begin{algorithm}[H]
@@ -173,15 +116,15 @@
         \end{itemize}
         \item Algotihm 2（正確）：\begin{itemize}
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of Algorithm 2 (\textsc{Test-and-Set}).}, captionpos=b, mathescape=true]
-                bool lock := $False$ 
+                bool lock = $False$;
                 /*
                 True，表示想進但在等；
                 False，表示已在critical section或是初值。
                 */
-                bool waiting[$0 \ \cdots \ (n - 1)$] := $False$
+                bool waiting[$0 \ \cdots \ (n - 1)$] = $False$;
             \end{lstlisting}
-            \item 若移除\code{waiting[i] := False}，則違反progress，若僅$P_i$和$P_j$想進入critical section，$waiting[i], waiting[j] = True$，且$P_i$先進入critical section，$lock, waiting[i] := True$；
-            當$P_i$離開critical section後，將$waiting[j] := False$，$P_j$進入critical section；當$P_j$離開critical section後，因為$waiting[i] = True$，$P_j$將$waiting[i] := False$而$lock = True$，未來沒有processes可以再進入critical section，deadlock。
+            \item 若移除第八行\code{waiting[i] := False}，則\textbf{progress不成立}，若僅$P_i$和$P_j$想進入critical section，此時\code{waiting[i], waiting[j] = True}，且$P_i$先進入critical section，有\code{lock, waiting[i] = True}；
+            當$P_i$離開critical section後，將\code{waiting[j] := False}，$P_j$進入critical section；當$P_j$離開critical section後，因為\code{waiting[i] = True}，$P_j$將\code{waiting[i] := False}，但\code{lock = True}，未來沒有process可以再進入critical section，\textbf{deadlock}。
             \begin{algorithm}[H]
                 \caption{$P_i$ of Algorithm 2 (Test-and-Set).}
                 \label{algo:test-and-set-algo-2}
@@ -213,52 +156,15 @@
     \end{itemize}
 \end{theorem}
 
-\begin{theorem}{(177)} Compare-and-Swap (CAS)：\begin{itemize}
-        \item \textsc{Compare-and-Swap}：
-        \begin{algorithm}[H]
-            \caption{Compare-and-Swap.}
-            \begin{algorithmic}[1]
-                \Function{Compare-and-Swap}{bool $*value$, int $expected$, int $new\_value$} \Comment{Atomic.}
-                    \State int $tmp$ := $*value$
-                    \If {$*value = expected$}
-                        \State $*value$ := $new\_value$
-                    \EndIf
-                    \State \Return $tmp$
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-        \item 共享變數：\begin{lstlisting}[caption={Shared variables of Algorithm 1 (\textsc{Compare-and-Swap}).}, captionpos=b, mathescape=true]
-            int lock := $0$
-        \end{lstlisting}
-        \item 與Test-and-Set Algorithm 1 (\ref{algo:test-and-set-algo-1})類似，\textbf{Bounded waiting不成立}。
-        \item 正確algorithm\label{algo:comp-and-swap}：參考Test-and-Set Algorithm 2 (\ref{algo:test-and-set-algo-2})將\code{key := Test-and-Set(& lock)}改為\code{key := Compare-and-Swap(&lock, 0, 1)}。
-        \begin{algorithm}[H]
-            \caption{$P_i$ (Compare-and-Swap).}
-            \begin{algorithmic}[1]
-                \Function{Compare-and-Swap}{}
-                    \Repeat
-                        \While {\Call{Compare-and-Swap}{$\& lock$, $0$, $1$} $\neq 0$}
-                        \EndWhile
-                        \State Critical section.
-                        \State $lock$ := $0$
-                        \State Remainder section.
-                    \Until {$False$}
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-        \item Atomic value：
-        \begin{algorithm}[H]
-            \caption{$P_i$ (atomic value).}
-            \begin{algorithmic}[1]
-                \Function{Increment}{atomic\_int $*v$}
-                    \State $tmp$ := $*v$
-                    \While {$tmp \neq$ \Call{Compare-and-Swap}{$v$, $tmp$, $tmp + 1$}}
-                        \State $tmp$ := $*v$
-                    \EndWhile
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-    \end{itemize}
+\begin{theorem}{(177)} Compare-and-Swap (CAS)：
+    \begin{lstlisting}[caption={\textsc{Compare-and-Swap}.}, captionpos=b, label=algo:comp-and-swap]
+        bool Compare-and-Swap (bool *value, int expected, int new_value) { // Atomic.
+            int tmp = *value;
+            if (*value == expected)
+                *value = new_value;
+            return tmp;
+        }
+    \end{lstlisting}
 \end{theorem}
 
 \subsubsection{Mutex lock}
@@ -266,7 +172,7 @@
 \begin{theorem}{()} Mutex lock：\begin{itemize}
         \item OS software tools (system call).
         \item 共享變數：\begin{lstlisting}[caption={Shared variables of Mutex lock.}, captionpos=b, mathescape=true]
-            bool Available := $True$
+            bool Available = $True$;
         \end{lstlisting}
         \begin{algorithm}[H]
             \caption{$acquire()$.}
@@ -293,7 +199,6 @@
 
 \begin{theorem}{(178)} Semaphore：\begin{itemize}
         \item OS software tools (system call).
-        \item 為一種integer data type。
         \begin{algorithm}[H]
             \caption{$wait(S)$ ($P(S)$).}
             \begin{algorithmic}[1]
@@ -312,40 +217,16 @@
                 \EndFunction
             \end{algorithmic}
         \end{algorithm}
-        \item 共享變數：\begin{lstlisting}[caption={Shared variables of semaphore.}, captionpos=b, mathescape=true]
-            semaphore mutex := $1$
-        \end{lstlisting}
-        \begin{algorithm}[H]
-            \caption{$P_i$ (semaphore).}
-            \begin{algorithmic}[1]
-                \Function{Semaphore}{}
-                    \Repeat
-                        \State \Call{wait}{$mutex$}
-                        \State Critical section.
-                        \State \Call{signal}{$mutex$}
-                        \State Remainder section.
-                    \Until {$False$}
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-        \item semaphore初值：$1$：互斥控制；$0$：強迫等待其他process；$n$：允許$n$個processes同時運行。
-        \item Liveness：Refers to a set of properties that a system must satisfy to ensure processes make progress, and indefinite waiting is an example of a liveness failure, e.g. deadlock, starvation.
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.75]{img/ex_semaphore.png}
-            \caption{Example of semaphore.}
-            \label{img:ex_semaphore}
-        \end{figure}
     \end{itemize}
 \end{theorem}
 
 \begin{theorem}{(168)} Producer-consumer problem：\begin{itemize}
         \item 共享變數：\begin{lstlisting}[caption={Shared variables of Producer-consumer problem.}, captionpos=b, mathescape=true]
-            semaphore mutex := $1$
-            semaphore empty := $n$ // buffer空格數。
-            semaphore full := $0$ // buffer中item數。
+            semaphore mutex = $1$;
+            semaphore empty = $n$; // buffer空格數。
+            semaphore full = $0$; // buffer中item數。
         \end{lstlisting}
-        \item 若將其中一個或兩個程式的兩行\code{wait}對調，可能會deadlock。
+        \item 若將其中一個或兩個程式的兩行\code{wait}對調，可能會\textbf{deadlock}。
         \begin{algorithm}[H]
             \caption{Producer.}
             \begin{algorithmic}[1]
@@ -380,13 +261,13 @@
 \end{theorem}
 
 \begin{theorem}{(182)} Reader/Writer problem：\begin{itemize}
-        \item Reader和writer以及writer和writer皆要互斥。
+        \item R/W和W/W皆要互斥。
         \item First readers/writers problem：\begin{itemize}
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of First Reader/Writer problem.}, captionpos=b, mathescape=true]
                 // R/W和W/W互斥控制，同時對writer不利之阻擋。
-                semaphore wrt := $1$ 
-                int readcnt := $0$
-                semaphore mutex := $1$ // readcnt互斥控制。
+                semaphore wrt = $1$ ;
+                int readcnt = $0$;
+                semaphore mutex = $1$; // readcnt互斥控制。
             \end{lstlisting}
         \end{itemize}
         \begin{algorithm}[H]
@@ -425,13 +306,13 @@
         \end{algorithm}
         \item Second Reader/Writer problem：\begin{itemize}
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of Second Reader/Writer problem.}, captionpos=b, mathescape=true]
-                int readcnt := $0$
-                semaphore mutex := $1$ // readcnt互斥控制。
-                semaphore wrt := $1$ // R/W和W/W互斥控制。
-                int wrtcnt := $0$
-                semaphore y := $1$ // wrtcnt互斥控制。
-                semaphore rsem := $1$ // 對reader不利之阻擋。
-                semaphore z := $1$ // reader的入口控制，可有可無。
+                int readcnt = $0$;
+                semaphore mutex = $1$; // readcnt互斥控制。
+                semaphore wrt = $1$; // R/W和W/W互斥控制。
+                int wrtcnt = $0$;
+                semaphore y = $1$; // wrtcnt互斥控制。
+                semaphore rsem = $1$; // 對reader不利之阻擋。
+                semaphore z = $1$; // reader的入口控制，可有可無。
             \end{lstlisting}
         \end{itemize}
         \begin{algorithm}[H]
@@ -489,13 +370,13 @@
 
 \begin{theorem}{(184)} The sleeping barber problem：\begin{itemize}
         \item 共享變數：\begin{lstlisting}[caption={Shared variables of The sleeping barber problem.}, captionpos=b, mathescape=true]
-            semaphore customer := $0$ // 強迫barber sleep。
+            semaphore customer = $0$; // 強迫barber sleep。
             // 強迫customer sleep if barber is busy。
-            semaphore barber := $0$ 
-            int waiting := $0$ // 正在等待的customers個數。
-            semaphore mutex := $1$ // waiting互斥控制。
+            semaphore barber = $0$; 
+            int waiting = $0$; // 正在等待的customers個數。
+            semaphore mutex = $1$; // waiting互斥控制。
         \end{lstlisting}
-        \item 若將\textsc{Barber}將兩行\code{wait}對調，可能會deadlock。
+        \item 若將\textsc{Barber}將兩行\code{wait}對調，可能會\textbf{deadlock}。
         \begin{algorithm}[H]
             \caption{Barber.}
             \begin{algorithmic}[1]
@@ -537,9 +418,9 @@
         \item 五位哲學家兩兩間放一根筷子吃中餐（筷子），哲學家需取得左右兩根筷子才能吃飯。若吃西餐（刀叉），必須偶數個哲學家，
         \item Algorithm 1（錯誤）：\begin{itemize}
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of The dining-philosophers problem.}, captionpos=b, mathescape=true]
-                semaphore chopstick[$0 \ \cdots \ 4$] := $1$
+                semaphore chopstick[$0 \ \cdots \ 4$] = $1$;
             \end{lstlisting}
-            \item 會deadlock，若每位哲學家皆取左手邊的筷子，則每個哲學家皆無法拿起右手邊的筷子。
+            \item 會\textbf{deadlock}，若每位哲學家皆取左手邊的筷子，則每個哲學家皆無法拿起右手邊的筷子。
             \begin{algorithm}[H]
                 \caption{Algorithm 1 $P_i$ (The dining-philosophers problem).}
                 \label{algo:din-philo-algo-1}
@@ -561,9 +442,9 @@
         \item Algorithm 2（正確）：\begin{itemize}
             \item 根據公式 (\ref{eq:deadlock})，人數必須$< 5$才不會deadlock。
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of The dining-philosophers problem.}, captionpos=b, mathescape=true]
-                semaphore chopstick[$0 \ \cdots \ 4$] := $1$ 
+                semaphore chopstick[$0 \ \cdots \ 4$] = $1$;
                 // 可拿筷子的哲學家數量互斥控制。
-                semaphore no := $4$ 
+                semaphore no = $4$; 
             \end{lstlisting}
             \begin{algorithm}[H]
                 \caption{Algorithm 2 $P_i$ (The dining-philosophers problem).}
@@ -578,16 +459,16 @@
                 \end{algorithmic}
             \end{algorithm}
         \end{itemize}
-        \item Algorithm 3：只有能夠同時拿左右兩根筷子才允許持有筷子，否則不可持有任何筷子，破除hold and wait，不會deadlock。
-        \item Algorithm 4：當有偶數個哲學家時，偶數號的哲學家先取左邊，再取右邊，奇數號的則反之，破除circular waiting，不會deadlock。與吃西餐先拿刀再拿叉相似。
+        \item Algorithm 3：只有能夠同時拿左右兩根筷子才允許持有筷子，否則不可持有任何筷子，\textbf{破除hold and wait}，不會deadlock。
+        \item Algorithm 4：當有偶數個哲學家時，偶數號的哲學家先取左邊，再取右邊，奇數號的則反之，\textbf{破除circular wait}，不會deadlock。與吃西餐先拿刀再拿叉相似。
     \end{itemize}
 \end{theorem}
 
 \begin{theorem}{()} Binary semaphore製作counting semaphore（若為$-n$表示$n$個process卡在\code{wait}）：\begin{itemize}
         \item 共享變數：\begin{lstlisting}[caption={Shared variables of The dining-philosophers problem.}, captionpos=b, mathescape=true]
-            int c := $n$ // Counting semaphore號誌值。
-            semaphore $s_1$ := $1$ // c互斥控制。
-            binary_semaphore $s_2$ := $0$ // $c < 0$時卡住process
+            int c = $n$; // Counting semaphore號誌值。
+            semaphore $s_1$ = $1$; // $c$互斥控制。
+            binary_semaphore $s_2$ = $0$; // $c < 0$時卡住process
         \end{lstlisting}
         \begin{algorithm}[H]
             \caption{$wait(c)$ (counting semaphore).}
@@ -694,7 +575,6 @@
                     \State Disable interrupt.
                     \While {$S \le 0$}
                         \State Enable interrupt.
-                        \State Nop.
                         \State Disable interrupt.
                     \EndWhile
                     \State $S$ := $S - 1$ 
@@ -720,14 +600,6 @@
 
 \begin{theorem}{(189)} Monitor：\begin{itemize}
         \item High-level abstraction, belongs to programming language.
-        \item Definition：\begin{itemize}
-            \item Shared variables.
-            \item A set of functions.
-            \item Initialization code.
-        \end{itemize} 
-        \item 只有monitor內functions可以直接存取shared memory。
-        \item Monitor本身確保mutual exclusion，同一時間最多允許一個process呼叫monitor的任一function。
-        \item Programmer不需煩惱shared variables的race condition problem，只需解決synchronization problem。
         \item Condition variables：在monitor內的condition type變數，用以解決synchronization problem。提供member functions：\begin{itemize}
             \item \code{wait}：Block process放到各自的waiting queue。
             \item \code{signal}：若有process在其waiting queue則恢復該process執行，否則無作用。
@@ -810,7 +682,7 @@
 \end{theorem}
 
 \begin{theorem}{()} Example of monitor：若有三台printers，且process ID越小，priority越高。
-    \begin{lstlisting}[caption={Data structure of example of monitor)}, captionpos=b, mathescape=true]
+    \begin{lstlisting}[caption={Data structure of example of monitor}, captionpos=b, mathescape=true]
         Monitor PrinterAllocation {
             bool pr[3];
             Condition x;
@@ -899,32 +771,19 @@
     \end{algorithm}
 \end{theorem}
 
-\begin{theorem}{()} Monitor種類：Process $P$ call \code{signal}將process $Q$恢復執行，則\begin{itemize}
-        \item \begin{itemize}
-            \item Type 1：$P$ waits $Q$ until $Q$ finished or $Q$ is blocked again，多一個儲存這種$P$的queue。又稱Hoare monitor。
-            \item Type 2：$Q$ waits $P$ until $P$ finished or $P$ is blocked. 不保證$Q$可以resume execution，因為$P$繼續執行很有可能改變$Q$可以恢復執行的條件。
-            \item Type 3：$P$先離開，放到entry queue的第一位。保證$Q$一定可以恢復執行，但NOT powerful than Hoare monitor，因為只能一進一出。
-        \end{itemize}
-        \item \begin{itemize}
-            \item signal-and-wait：Type 1, Type 3.
-            \item signal-and-continue： Type 2.
-        \end{itemize}
-    \end{itemize}
-\end{theorem}
-
 \begin{theorem}{()} 使用semaphore製作monitor：\begin{itemize}
         \item 共享變數：\begin{lstlisting}[caption={Shared variables of making monitor using semaphore.}, captionpos=b, mathescape=true]
-            semaphore mutex := $1$
+            semaphore mutex = $1$;
             // Block process P if P call signal. 
-            semaphore next := $0$
+            semaphore next = $0$;
             // 統計process P 那種特殊waiting processes的個數。 
-            int next_cnt := $0$ 
+            int next_cnt = $0$;
             // Block process Q if Q call wait.
-            semaphore x_sem := $0$ 
+            semaphore x_sem = $0$;
             // 統計一般waiting processes的個數。
-            int x_cnt := $0$ 
+            int x_cnt = $0$; 
         \end{lstlisting}
-        \item 在functions body前後加入控制碼，類似Entry section和Exit section。
+        \item 在function body前後加入控制碼，類似Entry section和Exit section。
         \begin{algorithm}[H]
             \caption{$f$ (Example for adding control code before and after function body).}
             \begin{algorithmic}[1]
@@ -967,17 +826,5 @@
                 \EndFunction
             \end{algorithmic}
         \end{algorithm}
-    \end{itemize}
-\end{theorem}
-
-\begin{theorem}{()} 因為monitor和semaphore可以互相製作，所以解決synchronization problem能力相同。
-\end{theorem}
-
-\begin{theorem}{(195)} Indirect communication通過shared mailbox；溝通雙方可多條communication links且可與其他processes共享，direct則否。
-\end{theorem}
-
-\begin{theorem}{(197)} Link capacity：\begin{itemize}
-        \item 每一條communication link皆有一個messages queue，而queue size即link capacity。
-        \item receiver：收到訊息才能往下執行；Sender：由link capacity決定synchronization mode (zero (rendezvous，即雙方都在等), bounded, unbounded capacity)。
     \end{itemize}
 \end{theorem}

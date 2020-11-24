@@ -1,5 +1,5 @@
 \begin{theorem}{(136)} Deadlock：\begin{itemize}
-        \item \textbf{必要}條件：Mutual exclusion, hold and wait, no preemption, circular wait.
+        \item \textbf{必要}條件：\textbf{Mutual exclusion}, \textbf{hold and wait}, \textbf{no preemption}, and \textbf{circular wait}.
         \item 資源分配圖：\begin{itemize}
             \item No cycle一定no deadlock。
             \item 有cycle\textbf{不}一定deadlock。
@@ -15,7 +15,7 @@
             \item No preemption：改為preemption，但可能starvation。
             \item Circular wait：\begin{itemize}
                 \item 每個資源有unique resource ID。
-                \item process需依照resource ID依序遞增提出申請，及持有的resource ID，不能大於提出申請的resource ID。
+                \item process需依照resource ID依序\textbf{遞增}提出申請，及持有的resource ID，\textbf{不能大於}提出申請的resource ID。
             \end{itemize}
         \end{itemize}
     \end{itemize}
@@ -49,32 +49,6 @@
                 \end{aligned}
             \end{equation}在$P_i$完工後，會產生$\ge 1$ resources給其他processes使用，又可以使$\ge 1$ processes $P_j$有$Need_j = 0$，依此類推，所有processes皆可完工。
         \end{proof}
-        \item 若所有類型資源皆為single-instance，可用畫圖簡化procedure。\begin{itemize}
-            \item claim edge：未來process $P_i$會對resource $R_j$提出申請。
-            \item Procedures：\begin{itemize}
-                \item 檢查是否有claim edge，若無終止$P_i$。
-                \item 檢查$R_j$是否available，若不成立須等到資源足夠。
-                \item 暫時將claim edge改為allocation edge，檢查是否有cycle存在（包含其他claim edges），若無表示safe；若有則unsafe，並改回claim edge。
-            \end{itemize}
-        \end{itemize}
-    \end{itemize}
-\end{theorem}
-
-\begin{theorem}{(145, 148)} Deadlock detection and recovery：\begin{itemize}
-        \item 若所有類型資源皆為single-instance，可用畫圖簡化procedure。\begin{itemize}
-            \item 使用Wait-for graph，省略resources。
-            \item NO cycle, NO deadlock; 有cycles，deadlock。
-        \end{itemize}
-        \item Recovery：\begin{itemize}
-            \item Process termination：\begin{itemize}
-                \item Abort all deadlocked processes：Cost high，先前工作白費。
-                \item Abort one process at a time until deadlock is eliminated：每終止一個deadlocked process，都要執行一次deadlock detection alogrithm，cost high。
-            \end{itemize}
-            \item Resource preemption：\begin{itemize}
-                \item Selecting a victim：Cost high，注意starvation。
-                \item Rolling back：Difficult, returning to safe state.
-            \end{itemize}
-        \end{itemize}
     \end{itemize}
 \end{theorem}
 

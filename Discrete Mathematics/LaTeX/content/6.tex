@@ -1,14 +1,5 @@
 \item \begin{theorem}{(6.6, 6.7, 6.8, 6.9, 6.10, 6.11, 6.12, 6.16, 6.18)} \quad\quad
     \begin{itemize}
-        \item 單方向（unilaterally）連通圖：$\forall x, y \in \V, \ x \neq y$，在$x, y$之間存在一條由某一點到另一點的有向路徑。
-        \begin{itemize}
-            \item 強連通圖必為單方向連通圖，反之不然。
-            \item 單方向連同圖必微弱連通圖，反之不然。
-        \end{itemize}
-        \item 誘導子圖（Induced subgraph）：子圖所含原圖之點，皆保留其原有的邊。
-        \item 雙連通圖：無迴圈的連通無向圖且\textbf{不含切點}。
-        \item 度數為一的點稱懸吊點（pendant）。
-        \item 迴圈的度數為$2$。
         \item 若$G = (\V, \E), \ |\V| = n$，則\begin{equation}
             |\E| \ge \binom{n - 1}{2} + 1
         \end{equation}
@@ -19,14 +10,12 @@
 \item \begin{theorem}{(6.44, 6.47, 6.55)} \quad\quad
     \begin{itemize}
         \item 一簡單無向圖，若所有點的度數至數為$k$，則圖上必含一個長度至少為$k + 1$的環路（cycle）。
-        \item 一無向圖，為雙分圖$\iff$圖中不含奇數長度的環路。
         \item 若$A$為一鄰接矩陣，則$\frac{1}{6}\tr(A^3)$為圖上三角形個數。
     \end{itemize}
 \end{theorem}
 
 \item \begin{theorem}{(6.57, 6.59, 6.60, 6.62)} \quad\quad
     \begin{itemize}
-        \item 若存在一路線經過圖中每一\textbf{邊}恰一次稱有尤拉路線（Euler trail）。
         \item 圖中有尤拉迴路$\iff$為連接圖且所有點的度數為偶數。
         \item $K_n$有尤拉迴路$\iff$$n$為奇數。
         \item $K_{m, n}$有尤拉迴路$\iff$$m, n$為偶數。
@@ -37,12 +26,6 @@
 
 \item \begin{theorem}{(6.64, 6.68, 6.71, 6.72, 6.73, 6.74, 6.84)} \quad\quad
     \begin{itemize}
-        \item 若存在一路境經過圖中每一\textbf{點}恰一次稱有漢米爾頓路徑（Hamiltonian path）。
-        \item 漢米爾頓環路必要條件：
-        \begin{itemize}
-            \item 度數為$2$的點，與其相鄰的邊必在漢米爾頓環路中。
-            \item 度數$\ge 2$的點，除了前一條件已知在漢米爾頓環路中的邊之外，其他的邊必不在漢米爾頓環路中。
-        \end{itemize}
         \item 有向完全圖必有有向漢米爾頓\textbf{路徑}。
         \item 若$G = (\V, \E), \ |\V| = n \ge 3$為一無迴圈無向圖，
         \begin{itemize}
@@ -77,10 +60,6 @@
 
 \item \begin{theorem}{(6.88, 6.90, 6.93, 6.94, 6.97, 6.98)} \quad\quad
     \begin{itemize}
-        \item 一無迴圈無向圖，在圖中一邊中加上一頂點，使其變為二邊，稱基本區分（elementary subdivision）。
-        \item 二無迴圈無向圖，若二圖同構或皆可由某個圖經由數次基本區分得到，稱二圖同胚（homeomorphic）。
-        \item Kuratowski's theorem：平面圖$\iff$\textbf{不}含子圖與$K_5$或$K_{3, 3}$同胚。
-        \item 當一個邊在一個區域出現二次，該邊的度數為二。
         \item Euler formula：若$G = (\V, \E), |\V| = v, |\E| = e, r\text{為區域個數}, M\text{為分量圖數}$，且$G$為平面圖，則$v - e + r = 1 + M$。
         \item 若$G = (\V, \E), |\V| = v, |\E| = e \ge 2, r\text{為區域個數}$，且$G$為無迴圈簡單\textbf{連通}平面圖，則\begin{itemize}
             \item \begin{equation}
@@ -104,21 +83,10 @@
             2, & n = 2k \\ 3, & n = 2k + 1
         \end{cases}$。
         \item 若$K_n$為一圖$G$的子圖，則$\chi(G) \ge n$。
-        \item 雙分圖$\iff$$2$-著色$\iff$圖中不含奇數長的迴圈。
-        \item 任意平面圖皆為$4$-著色，反之不然。
         \item 若$G = (\V, \E)$為無向圖，$\lambda$為顏色數，則稱$P(G, \lambda)$為著色多項式，表示至多使用$\lambda$種顏色著色的不同方法數，且$\chi(G) = \min\{\lambda | P(G, \lambda) > 0\}$。\begin{itemize}
             \item $P(G, \lambda)$常數項為$0$。
             \item $P(G, \lambda)$係數和為$0$。
             \item $P(G, \lambda)$最高次項係數為$1$。
         \end{itemize}
-        \item 若$G = (\V, \E)$為連通無向圖，$e = \{a, b\} \in \E$，$G \cdot e$為$G - e$中將$a, b$二頂點黏合後的圖，則\begin{equation}
-            P(G, \lambda) = P(G - e, \lambda) - P(G \cdot e, \lambda)
-        \end{equation}
-        \item 若$G = (\V, \E)$為連通無向圖，$e = \{a, b\} \notin \E$，$G \cdot e$為$G + e$中將$a, b$二頂點黏合後的圖，則\begin{equation}
-            P(G, \lambda) = P(G + e, \lambda) + P(G \cdot e, \lambda)
-        \end{equation}
-        \item 若$G = (\V, \E)$為無向圖，且$G_1, G_2$為$G$子圖、$G = G_1 \cup G_2$、$G_1 \cap G_2 = K_n$，則\begin{equation}
-            P(G, \lambda) = \frac{P(G_1, \lambda)P(G_2, \lambda)}{\lambda(\lambda - 1)\cdots(\lambda - (n - 1))}
-        \end{equation}
     \end{itemize}
 \end{theorem}

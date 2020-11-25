@@ -23,9 +23,6 @@
                 h & \ge \ceil{log_{m}l} \quad T\text{為平衡樹時，等號成立}
             \end{aligned}
         \end{equation}
-        \item 一二元樹，$n_0$表示樹葉個數，$n_2$表示二個兒子的節點個數，則\begin{equation}
-            n_0 = n_2 + 1
-        \end{equation}
         \item 一滿$m$-元樹，$i$為內部節點個數，$I, E$分別表示內部及外部路徑長，則\begin{equation}
             E = (m - 1)I + mi
         \end{equation}
@@ -46,8 +43,5 @@
             \item 若生成樹切除任意分支，則新圖變不連通，稱$G$中該切集為基本切集（fundamental cut set）。
         \end{itemize}
         \item 一無向連通圖，其任意切集與環路必含\textbf{偶數}個共同邊。
-        \item Prim's只能找相鄰的邊，Kruskal's則無限制。
-        \item Kruskal's時間複雜度為$O(m\log m)$，其中$m$為圖的\textbf{邊}數；Prim's時間複雜度為$O(n^2)$，其中$n$為圖的\textbf{點}數。
-        \item 最小生成樹\textbf{未必}唯一，只有在所有邊權重皆不同時，最小生成樹唯一。
     \end{itemize}
 \end{theorem}

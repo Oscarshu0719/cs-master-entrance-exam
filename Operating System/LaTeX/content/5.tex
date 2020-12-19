@@ -1,28 +1,4 @@
-\begin{theorem}{(136)} Deadlock：\begin{itemize}
-        \item \textbf{必要}條件：\textbf{Mutual exclusion}, \textbf{hold and wait}, \textbf{no preemption}, and \textbf{circular wait}.
-        \item 資源分配圖：\begin{itemize}
-            \item No cycle一定no deadlock。
-            \item 有cycle\textbf{不}一定deadlock。
-            \item 若每一類resources皆single-instance，則有cycle一定deadlock。
-        \end{itemize}
-    \end{itemize}
-\end{theorem}
-
-\begin{theorem}{(139)} Deadlock prevention：\begin{itemize}
-        \item 打破必要條件：\begin{itemize}
-            \item Mutual exclusion：無法破除，這是與生俱來的性質。
-            \item Hold and wait：除非可以一次獲得所有資源，否則不得持有任何資源；或可持有部分資源，但申請其他資源前，需先放掉所持有的所有資源。
-            \item No preemption：改為preemption，但可能starvation。
-            \item Circular wait：\begin{itemize}
-                \item 每個資源有unique resource ID。
-                \item process需依照resource ID依序\textbf{遞增}提出申請，及持有的resource ID，\textbf{不能大於}提出申請的resource ID。
-            \end{itemize}
-        \end{itemize}
-    \end{itemize}
-\end{theorem}
-
 \begin{theorem}{(141)} Deadlock avoidance：\begin{itemize}
-        \item Banker's algorithm：Unsafe未必deadlock。
         \item 若$n$ processes，$m$ resources（單一種類），若滿足\begin{equation} \label{eq:deadlock}
             \begin{aligned}
                 1 \le \ & Max_i \le m \\
@@ -42,7 +18,7 @@
                     & \sum_{i = 1}^{n} Max_i < n + m \\
                     \rightarrow & \sum_{i = 1}^{n} Need_i < n
                 \end{aligned}
-            \end{equation}表示至少一個process $P_i$，$Need_i = 0$，又\begin{equation}
+            \end{equation}$\exists$ process $P_i$，$Need_i = 0$，又\begin{equation}
                 \begin{aligned}
                     & Max_i \ge 1 \land Need_i = 0 \\
                     \rightarrow & Allocation_i \ge 1
@@ -50,21 +26,4 @@
             \end{equation}在$P_i$完工後，會產生$\ge 1$ resources給其他processes使用，又可以使$\ge 1$ processes $P_j$有$Need_j = 0$，依此類推，所有processes皆可完工。
         \end{proof}
     \end{itemize}
-\end{theorem}
-
-\begin{theorem}{()} \quad\quad \begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|c|c|c|}
-            \hline
-            Method & Deadlock & \makecell{Utilization \&\\throughput} & Starvation & Time complexity \\
-            \Xhline{2\arrayrulewidth}
-            \hline
-            Deadlock prevention & & Low & \multirow{3}{*}{$\surd$} & \\
-            \cline{1-3}\cline{5-5}
-            Deadlock avoidance & & Low & & $O(n^2 \times m)$ \\
-            \cline{1-3}\cline{5-5}
-            \makecell{Deadlock detection\\and recovery} & $\surd$ & High & & \makecell{$O(n^2 \times m)$\\each time} \\
-            \hline
-        \end{tabular}
-    \end{table}
 \end{theorem}

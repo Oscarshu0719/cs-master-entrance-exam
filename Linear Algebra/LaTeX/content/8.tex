@@ -1,19 +1,3 @@
-\item \begin{theorem}{(8.3, 8.4, 8.5, 8.6, 8.8)} （方陣，可逆，特徵）若$\T \in \L(\V, \V)$，且$\T^*$為$\T$的伴隨算子，則
-	\begin{itemize}
-		\item $(\alpha\T + \beta\textit{U})^* = \overline{\alpha}\T^* + \overline{\beta}\textit{U}^*$
-		\item $(\T\textit{U})^* = \textit{U}^*\T^*$
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(8.13)} （方陣，特徵）若$\T \in \L(\V, \V)$為正規算子，則
-	\begin{itemize}
-		\item $||\T(\vec{v})|| = ||\T^*(\vec{v})||, \ \forall \vec{v} \in \V$
-		\item $\T - c\mat{I}, \ \forall c \in \V$仍是正規算子。
-		\item 若$\vec{v}$為$\T$相對於$\lambda$的特徵向量，則$\vec{v}$為$\T^*$相對於$\overline{\lambda}$的特徵向量。
-		\item 若$\vec{v}_1, \vec{v}_2$分別是$\T$相對於$\lambda_1, \lambda_2$\textbf{相異}特徵根的特徵向量，則$\vec{v}_1 \perp \vec{v}_2$。
-	\end{itemize}
-\end{theorem}
-
 \item \begin{theorem}{(8.14, 8.15, 8.17, 8.18, 8.20, 8.21, 8.22, 8.23, 8.54, 8.55, 8.56)} （方陣，正交，特徵，$\tr$，$\det$，可逆，實數，複數）若$\T \in \L(\V, \V)$，則
 	\begin{table}[H]
 		\renewcommand{\arraystretch}{2}
@@ -71,42 +55,6 @@
 		\end{tabular}
 		\renewcommand{\arraystretch}{1}
 	\end{table}
-	\begin{itemize}
-		\item 皆為正規，相異特徵根對應的特徵向量皆正交。
-		\item 若$\mat{A} \in \C^{n \times n}$為複數方陣時，$\mat{A}$為對稱矩陣即$\mat{A}^\intercal = \mat{A}$時，\textbf{不}保證$\mat{A}$為正規。
-		\item 么正矩陣與正交矩陣的特徵值皆可能為\textbf{虛數}（並非$\pm 1$）。
-		\item 正定（over $\R \lor \C$）、么正、正交矩陣皆可逆。
-		\item 若$\mat{A}$為Hermitian矩陣即$\mat{A}\herm = \mat{A}$時，$\mat{A}$的相異特徵根對應的特徵向量必正交（比正規更鬆的條件）。
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(8.27, 8.30)} （方陣，實數，複數）若$\T \in \L(\V, \V)$，則
-	\begin{itemize}
-		\item 若$\dotp{\T(\vec{u})}{\vec{v}} = 0, \ \forall \vec{v}, \vec{u} \in \V$ (over $\C$ or $\R$)，則$\T = \mat{O}$。
-		\item 若$\dotp{\T(\vec{v})}{\vec{v}} = 0, \ \forall \vec{v} \in \V$ (over $\C$)，則$\T = \mat{O}$，\textbf{$\V$ (over $\R$)時不成立}。
-		\item 若$\mat{A}, \mat{B} \in \F^{n \times n}$為方陣，則$\mat{A} = \mat{B}$$\iff$$\vec{y}\herm\mat{A}\vec{x} = \vec{y}\herm\mat{B}\vec{x}, \forall \vec{x}, \vec{y} \in \F^{n \times 1}$
-		\item 若$\mat{A}, \mat{B} \in \C^{n \times n}$為複數方陣，則$\mat{A} = \mat{B}$$\iff$$\vec{x}\herm\mat{A}\vec{x} = \vec{x}\herm\mat{B}\vec{x}, \forall \vec{x} \in \C^{n \times 1}$。\textbf{在$\R$時不成立}。
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(8.31, 8.32, 8.34, 8.35, (8-5)8.10)} （方陣，正交，實數，複數）
-	\begin{itemize}
-		\item 若$\mat{A} \in \C^{n \times n}$為複數方陣，則以下等價
-		\begin{itemize}
-			\item $\mat{A}$么正。
-			\item $\dotp{\mat{A}\vec{x}}{\mat{A}\vec{y}} = \dotp{\vec{x}}{\vec{y}}, \ \forall \vec{x}, \vec{y} \in \C^{n \times 1}$
-			\item $||\mat{A}\vec{x}|| = ||\vec{x}||, \ \forall \vec{x} \in \C^{n \times 1}$
-			\item $\cs(\mat{A})$和$\rs(\mat{A})$皆單範正交。
-			\item 若$\beta = \{\vec{v}_1, \vec{v}_2, \ \cdots, \vec{v}_n\}$為$\C^{n \times 1}$單範正交基底，則$\{\mat{A}\vec{v}_1, \mat{A}\vec{v}_2, \ \cdots, \mat{A}\vec{v}_n\}$亦是單範正交基底。			\end{itemize}
-		\item 若$\mat{A} \in \R^{n \times n}$為實方陣，則以下等價
-		\begin{itemize}
-			\item $\mat{A}$正交。
-			\item $\dotp{\mat{A}\vec{x}}{\mat{A}\vec{y}} = \dotp{\vec{x}}{\vec{y}}, \ \forall \vec{x}, \vec{y} \in \R^{n \times 1}$
-			\item $||\mat{A}\vec{x}|| = ||\vec{x}||, \ \forall \vec{x} \in \R^{n \times 1}$
-			\item $\cs(\mat{A})$和$\rs(\mat{A})$皆單範正交。
-		\end{itemize}
-		\item 若不為$\mat{A}$不為方陣，則$\rs(\mat{A})$\textbf{未必}單範正交。
-	\end{itemize}
 \end{theorem}
 
 \item \begin{theorem}{(8.28)} （實數，複數）Polar identity：
@@ -120,13 +68,17 @@
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{()} （方陣，$\tr$）若$\mat{A}, \mat{B} \in \F^{n \times n}$為方陣，且$\mat{A}$和$\mat{B}$ unitarily equivalent，則$\tr(\mat{A}\herm\mat{A}) = \tr(\mat{B}\herm\mat{B})$。
+\item \begin{theorem}{(8.35, (8-5)8.10)} （方陣，正交）若$\mat{A} \in \F^{n \times n}$為么正或是正交方陣，則\begin{itemize}
+		\item $\cs(\mat{A})$和$\rs(\mat{A})$皆為單範正交集。
+		\item 若$\mat{A}$不為方陣，則$\rs(\mat{A})$\textbf{未必}為單範正交集。
+	\end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} （方陣，$\tr$）若$\mat{A}, \mat{B} \in \F^{n \times n}$為方陣，且$\mat{A}$和$\mat{B}$么正相等，則$\tr(\mat{A}\herm\mat{A}) = \tr(\mat{B}\herm\mat{B})$。
 \end{theorem}
 
 \item \begin{theorem}{(8.60, 8.61, 8.62, 8.63, 8.68, 8.69)} （方陣，正交，相似，對角化，實數，複數）
 	\begin{itemize}
-		\item 么正或正交相似必定相似，反之不然。
-		\item 可么正或正交對角化，則可對角化。
 		\item 若$\mat{A}, \mat{B} \in \C^{n \times n}$為複數方陣，且$\mat{A}$與$\mat{B}$么正相似，則以下$\mat{A}$與$\mat{B}$的性質等價
 			\begin{itemize}
 				\item 正規
@@ -143,92 +95,36 @@
 			\item 正交
 		\end{itemize}
 		\item 若$\mat{A} \in \C^{n \times n}$為複數方陣，則$\mat{A}$為正規且上三角方陣$\iff$$\mat{A}$為對角方陣。
-		\item 若$\mat{A} \in \R^{n \times n}$為實方陣，則$\mat{A}$為對稱且上三角方陣$\iff$$\mat{A}$為對角方陣。
 		\item 若$\mat{A} \in \C^{n \times n}$為複數方陣，則$\mat{A}$為正規方陣$\iff$$\mat{A}$可么正對角化。
 		\item 若$\mat{A} \in \R^{n \times n}$為實方陣，則$\mat{A}$為對稱方陣$\iff$$\mat{A}$可正交對角化。
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(8.83, 8.90, 8.91, 8.92, 8.93, 8.94, 8.95)} （方陣，實數，複數）
+\item \begin{theorem}{(8.89)} （方陣） Cholesky分解必須對稱且正定。
+\end{theorem}
+
+\item \begin{theorem}{(8.94)} （實數，複數）
 	\begin{itemize}
-		\item 若$\mat{A} \in \C^{n \times n}$為複數方陣，則以下等價
-			\begin{itemize}
-				\item $\mat{A}$正定。
-				\item $\exists \mat{B} \in \C^{m \times n}$為複數矩陣且\textbf{$\rnk(\mat{B}) = n$}，使得$\mat{A} = \mat{B}\herm\mat{B}$。
-				\item 存在$\mat{B}$為正定矩陣，使得$\mat{A} = \mat{B}^2$。
-			\end{itemize}
-		\item 若$\mat{A} \in \R^{n \times n}$為對稱實方陣，則以下等價
-			\begin{itemize}
-				\item $\mat{A}$正定。
-				\item $\exists \mat{B} \in \R^{m \times n}$為實矩陣且\textbf{$\rnk(\mat{B}) = n$}，使得$\mat{A} = \mat{B}^\intercal\mat{B}$。
-				\item 主子行列式（principal minors）$\Delta_k(\mat{A}) > 0$（必須為\textbf{對稱實方陣}）。
-				\item 存在$\mat{B}$為正定矩陣，使得$\mat{A} = \mat{B}^2$。
-			\end{itemize}
-		\item 若$\mat{A} \in \C^{n \times n}$為複數方陣，則以下等價
-			\begin{itemize}
-				\item $\mat{A}$正半定。
-				\item $\exists \mat{B} \in \C^{m \times n}$為複數矩陣，使得$\mat{A} = \mat{B}\herm\mat{B}$。
-				\item 存在$\mat{B}$為正半定矩陣，使得$\mat{A} = \mat{B}^2$。
-			\end{itemize}
-		\item 若$\mat{A} \in \R^{n \times n}$對稱實方陣，則以下等價
-			\begin{itemize}
-				\item $\mat{A}$正半定。
-				\item $\exists \mat{B} \in \R^{m \times n}$為實矩陣，使得$\mat{A} = \mat{B}^\intercal\mat{B}$。
-				\item 存在$\mat{B}$為正半定矩陣，使得$\mat{A} = \mat{B}^2$。
-			\end{itemize}
 		\item 若$\mat{A} \in \C^{m \times n}$為複數矩陣，則$\mat{A}\herm\mat{A}$與$\mat{A}\mat{A}\herm$皆正半定。
 		\item 若$\mat{A} \in \R^{m \times n}$為實矩陣，則$\mat{A}^\intercal\mat{A}$與$\mat{A}\mat{A}^\intercal$皆正半定。
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(8.141, 8.142, 8.145)} （實數，方陣）若$\vec{u} \in \R^{n \times 1}, ||\vec{u}|| = 1$，則稱
-	\begin{equation}
-		\mat{H} = \mat{I} - 2\vec{uu}^\intercal
-	\end{equation}
-	為相對於$\vec{u}$的Householder矩陣或基本鏡射算子（elementary reflextor），則
-	\begin{itemize}
-		\item $\mat{H}$為對稱且正交方陣。
-		\item $||\vec{x}|| = ||\vec{y}||, \vec{u} = \frac{\vec{x} - \vec{y}}{||\vec{x} - \vec{y}||}$，則
-		\begin{itemize}
-			\item $||\vec{x} - \vec{y}||^2 = 2(\vec{x} - \vec{y})^\intercal\vec{x}$
-			\item $\mat{H}\vec{x} = \vec{y}$
-		\end{itemize}
-	\end{itemize}
+\item \begin{theorem}{(8.142)} （方陣，正交） Householder矩陣為對稱且正交矩陣。
 \end{theorem}
 
-\item \begin{theorem}{(8.154, 8.157, 8.160, 8.161, 8.163, 8.164, (8-47)8.94)} （正交，方陣，特徵，可逆，解，實數，複數）若$\mat{A} = \mat{U\Sigma V}\herm$為$\mat{A}$的奇異值分解，則
+\item \begin{theorem}{(8.157, (8-47)8.94)} （正交，方陣，特徵）若$\mat{A} = \mat{U\Sigma V}\herm$為$\mat{A}$的奇異值分解，則
 	\begin{itemize}
-		\item 奇異值皆$> 0$且唯一，但$\mat{U}, \mat{V}$\textbf{未必}唯一。
 		\item \begin{equation}
 			\sum_{i = 1}^{r} \sigma^2 = \sum_{i = 1}^{m}\sum_{j = 1}^{n}|a_{ij}|^{2}
 		\end{equation}
 		\item $\cs(\mat{V})$為$\mat{A}\herm\mat{A}$的特徵向量且為單範正交集。
 		\item $\cs(\mat{U})$為$\mat{A}\mat{A}\herm$的特徵向量且為單範正交集。
-		\item 若$\rnk(\mat{A}) = r$為非零奇異值個數，則
-			\begin{itemize}
-				\item $\vec{v}_1, \vec{v}_2, \ \cdots, \vec{v}_r$為$\cs(\mat{A}\herm)$單範正交基底。
-				\item $\vec{v}_{r + 1}, \ \cdots, \vec{v}_n$為$\Ker(\mat{A})$單範正交基底。
-				\item $\vec{u}_1, \vec{u}_2, \ \cdots, \vec{u}_r$為$\cs(\mat{A})$單範正交基底。
-				\item $\vec{u}_{r + 1}, \ \cdots, \vec{u}_m$為$\Ker(\mat{A}\herm)$單範正交基底。 
-			\end{itemize}
-		\item $\mat{A}^+ = \mat{V}\mat{\Sigma}^+\mat{U}\herm$為$\mat{A}$的虛反矩陣（pseudoinverse），則
-			\begin{itemize}
-				\item $(\mat{\Sigma}^+)_{ij} = 0, \ \forall i \neq j$。
-				\item $(\mat{\Sigma}^+)_{ii} = \begin{cases}
-					\frac{1}{\sigma_i}, & \ \text{if} \sigma_i \neq 0 \\
-					0, & \ \text{if} \sigma_i = 0
-				\end{cases}$
-				\item $\mat{O}^+ = \mat{O}$
-				\item 若$\mat{A}$可逆，則$\mat{A}^+ = \mat{A}\inv$。
-				\item $\rnk(\mat{A}) = \rnk(\mat{A}^+)$
-				\item $(c\mat{A})^+ = \frac{1}{c}\mat{A}^+$
-				\item $(\mat{A}^+)^+ = \mat{A}$
-				\item $(\mat{A}^\intercal)^+ = (\mat{A}^+)^\intercal$
-				\item 若$\mat{A} \in \F^{m \times r}, \mat{B} \in \F^{r \times n}, (\mat{AB})^+ = \mat{B}^+\mat{A}^+$，其中$\rnk(\mat{A}) = \rnk(\mat{B}) = r$。
-				\item $\vec{x}_0 = \mat{A}^+\vec{b}$為使$||\mat{A}\vec{x} - \vec{b}||_2$最小的$\vec{x}$，
-				即$||\vec{x}_0||_2$為最小者。
-				\item 若$\mat{A}$行獨立，則$\mat{A}^+ = (\mat{A}^\intercal\mat{A})\inv\mat{A}^\intercal$
-				\item 若$\mat{A}$列獨立，則$\mat{A}^+ = \mat{A}^\intercal(\mat{A}\mat{A}^\intercal)\inv$
-			\end{itemize}
+		\item 若$\rnk(\mat{A}) = r$為非零奇異值個數，則 \begin{itemize}
+			\item $\vec{v}_1, \vec{v}_2, \ \cdots, \vec{v}_r$為$\cs(\mat{A}\herm)$單範正交基底。
+			\item $\vec{v}_{r + 1}, \ \cdots, \vec{v}_n$為$\Ker(\mat{A})$單範正交基底。
+			\item $\vec{u}_1, \vec{u}_2, \ \cdots, \vec{u}_r$為$\cs(\mat{A})$單範正交基底。
+			\item $\vec{u}_{r + 1}, \ \cdots, \vec{u}_m$為$\Ker(\mat{A}\herm)$單範正交基底。 
+		\end{itemize}
 	\end{itemize}
 \end{theorem}

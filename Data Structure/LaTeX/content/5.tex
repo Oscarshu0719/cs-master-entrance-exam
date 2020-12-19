@@ -19,78 +19,6 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(101, 102, 103, 104)} \quad\quad \begin{itemize}
-        \item 判斷二二叉樹是否相同：\begin{algorithm}[H]
-            \begin{algorithmic}[1]
-                \Function{Equal}{Tree $s, t$}
-                    \State $res$ := False
-                    \If {$s =$ NIL $\land$ $t =$ NIL}
-                        \State $res$ := True
-                    \ElsIf {$s \neq$ NIL $\land$ $t \neq$ NIL}
-                        \If {$s.data = t.data$}
-                            \If {\Call{Equal}{$s.lchild$, $t.lchild$}}
-                                \State $res$ := \Call{Equal}{$s.rchild$, $t.rchild$}
-                            \EndIf
-                        \EndIf
-                    \EndIf
-                    \State \Return $res$
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-        \item 計算節點個數：\begin{algorithm}[H]
-            \begin{algorithmic}[1]
-                \Function{Count}{Tree $s$}
-                    \If {$s =$ NIL}
-                        \State \Return $0$
-                    \Else
-                        \State \Return \Call{Count}{$s.lchild$} + \Call{Count}{$s.rchild$} + 1
-                    \EndIf
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-        \item 計算二叉樹高：\begin{algorithm}[H]
-            \begin{algorithmic}[1]
-                \Function{Height}{Tree $s$}
-                    \If {$s =$ NIL}
-                        \State \Return $0$
-                    \Else
-                        \State $n_l$ := \Call{Height}{$s.lchild$}
-                        \State $n_r$ := \Call{Height}{$s.rchild$}
-                        \State \Return \Call{Max}{$n_l$, $n_r$} + 1
-                    \EndIf
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-        \item 計算樹葉節點個數：\begin{algorithm}[H]
-            \begin{algorithmic}[1]
-                \Function{Leaf}{Tree $s$}
-                    \If {$s =$ NIL}
-                        \State \Return $0$
-                    \Else
-                        \State $tmp$ := \Call{Leaf}{$s.lchild$} + \Call{Leaf}{$s.rchild$}
-                        \If {$tmp > 0$}
-                            \State \Return $tmp$
-                        \Else
-                            \State \Return $1$
-                        \EndIf
-                    \EndIf
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-        \item 交換左右子樹：\begin{algorithm}[H]
-            \begin{algorithmic}[1]
-                \Function{SwapBT}{Tree $s$}
-                    \If {$s \neq$ NIL}
-                        \State \Call{SwapBT}{$s.lchild$}
-                        \State \Call{SwapBT}{$s.rchild$}
-                        \State \Call{Swap}{$s.lchild$, $s.rchild$}
-                    \EndIf
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-    \end{itemize}
-\end{theorem}
-
 \item \begin{theorem}{(116)} \quad\quad
     \begin{algorithm}[H]
         \begin{algorithmic}[1]
@@ -116,23 +44,4 @@
             \EndFunction
         \end{algorithmic}
     \end{algorithm} 
-\end{theorem}
-
-\item \begin{theorem}{(122, 123, 124, 125))} Disjoint set： 
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|c|}
-            \hline
-            \multicolumn{3}{|c|}{Disjoint set} \\
-            \Xhline{3\arrayrulewidth}
-            Combination & Union & Find \\
-            \Xhline{2\arrayrulewidth}
-            \makecell{Arbitrary Union \&\\Simple find} & $O(1)$ & \makecell{$O(h)$\\Worst: $O(n)$} \\
-            \hline
-            \makecell{Union-by-height \&\\Simple find} & $O(1)$ & $O(\log n)$ \\
-            \hline
-            \makecell{Union-by-height \&\\Find with path compression} & $O(1)$ & \makecell{$O(\alpha(m, n)) = O(\log^* n)$\\close to $O(1)$} \\
-            \hline
-        \end{tabular}
-    \end{table}
 \end{theorem}

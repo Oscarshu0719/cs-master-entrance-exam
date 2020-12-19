@@ -1,28 +1,5 @@
-\item \begin{theorem}{(3.23, 3.24)} \quad\quad
-    \begin{itemize}
-        \item \begin{equation}
-            \binom{n}{r}  = \binom{n - 1}{r - 1} + \binom{n - 1}{r}   
-        \end{equation}
-        \item Vandermonde's convolution：
-        \begin{equation}
-            \sum_{k = 0}^{n}\binom{r}{k}\binom{s}{n - k} = \binom{r + s}{n}
-        \end{equation}
-    \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(3.50, 3.56, 3.57, 3.59, 3.60)} \quad\quad
-    \begin{itemize}
-        \item $m$個相異物放入$n$個相同箱（\textbf{不}允許空箱）：\begin{equation}
-            \text{S}(m, n) = \frac{\text{onto}(m, n)}{n!} = \frac{\sum_{i = 0}^{n}(-1)^i\binom{n}{i}(n - i)^m}{n!}, \ \forall m \ge n \ge 1 \in \N
-        \end{equation}
-        \item \begin{itemize}
-            \item $m$個相異物放入$n$個相同箱（允許空箱）。
-            \item 若$A$為一集合，且$|A| = m$，則$A$上等價關係的個數，即相異分割數。
-        \end{itemize} \begin{equation}
-            \sum_{i = 1}^{n} \text{S}(m, i)
-        \end{equation}
-        \item \begin{equation}
-            \text{S}(m + 1, n) = \text{S}(m, n - 1) + n\text{S}(m, n), \ \forall m \ge n \ge 2 \in \N
-        \end{equation}
-    \end{itemize}
+\item \begin{theorem}{(3.56)} 若$A$為一集合，且$|A| = m$，則$A$上等價關係的個數，即相異分割數。
+    \begin{equation}
+        \sum_{i = 1}^{n} \text{S}(m, i)
+    \end{equation}
 \end{theorem}

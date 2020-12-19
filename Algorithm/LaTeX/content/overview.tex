@@ -27,11 +27,81 @@
             \hline
         \end{tabular}
     \end{table}
-    \item 必考：（參考TKB筆記\cite{2}中頁碼）
-    \begin{enumerate}
-        \item 4
-    \end{enumerate}
     \item 省略第7章。
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \multicolumn{3}{|c|}{Dynamic Programming algorithms} \\
+            \Xhline{3\arrayrulewidth}
+            Problem & Time complexity & Space complexity \\
+            \Xhline{2\arrayrulewidth}
+            Making change & $O(kn)$ & $O(n)$ \\
+            \hline
+            Fractional Knapsack problem & $\Theta(n\log n)$ & $O(n)$ \\
+            \hline
+            0/1 Knapsack problem (DP) & $O(n2^{\log W})$ & $O(n2^{\log W})$ \\
+            \hline
+            0/1 Knapsack problem (Branch-and-Bound) & $O(2^n)$ & \\
+            \hline
+            Longest Common Subsequence (LCS) & $O(mn)$ & $O(mn)$ \\
+            \hline
+            Longest Increasing Subsequence (LIS) & $O(n^2)$ & $O(n^2)$ \\
+            \hline
+            Longest Common Substring & $O(mn)$ & $O(mn)$ \\
+            \hline
+            Minimum Edit Distance & $O(mn)$ & $O(mn)$ \\
+            \hline
+            Matrix-chain Multiplication & $O(n^3)$ & $O(n^2)$ \\
+            \hline
+            Traveling Salesperson problem & $\Theta(n^22^n)$ & $O(n2^n)$ \\
+            \hline
+            Optimal Binary Search Tree (OBST) & $\Theta(n^3)$ & $\Theta(n^2)$ \\
+            \hline
+        \end{tabular}
+    \end{table}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            \multicolumn{3}{|c|}{Graph algorithms} \\
+            \Xhline{3\arrayrulewidth}
+            Problem & Time complexity & Remark \\
+            \Xhline{2\arrayrulewidth}
+            Depth-First Search (DFS) & $O(|\V| + |\E|)$ & \\
+            \hline
+            Kosaraju's & $O(|\V| + |\E|)$ & \\
+            \hline
+            Kruskal's & $O(|\E|\log |\V|)$ & \\
+            \hline
+            Prim's (Adjacency matrix) & $O(|\V|^2)$ & \\
+            \hline
+            Prim's (Adjacency list) & $O(|\V||\E|)$ & \\
+            \hline
+            Prim's (Min-Heap, Adjacency list) & $O(|\E|\log |\V|)$ & \\
+            \hline
+            Prim's (Fibonacci heap, Adjacency list) & $O(|\E| + |\V|\log |\V|)$ & \\
+            \hline
+            Sollin's (Borůvka's) & $O(|\E|\log |\V|)$ & \\
+            \hline
+            Dijkstra's (Min-heap) & $\Theta((|\E| + |\V|)\log |\V|)$ & \multirow{2}{*}{\makecell{Greedy, no negative\\edges or cycles}} \\
+            \cline{1-2}
+            Dijkstra's (Fibonacci-heap) & $\Theta(|\E| + |\V|\log|\V|)$ &  \\
+            \hline
+            Bellman-Ford & $O(|\V||\E|)$ & DP \\
+            \hline
+            Floyd-Warshall & $\Theta(|\V|^3)$ & DP, no negative cycles \\
+            \hline
+            Johnson's & $\Theta(|\V||\E| + |\V|^2\log |\V|)$ & No negative cycles \\
+            \hline
+            Ford-Fulkerson & $O(|\E||f^*|)$ & Greedy，$f^*$為最大流 \\
+            \hline
+            Edmond-Karp & $O(|\V||\E|^2)$ & \\
+            \hline
+            Push-relabel & $O(|\V|^2|\E|)$ & \\
+            \hline
+        \end{tabular}
+    \end{table}
 \end{enumerate}
 
 \pagebreak

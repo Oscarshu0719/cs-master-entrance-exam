@@ -1,21 +1,3 @@
-\item \begin{theorem}{(149)} \quad\quad
-    \begin{itemize}
-        \item 團（clique）：任兩點皆有邊相連，即完全子圖。
-        \item 獨立集（independent set）：獨立集中任兩點無邊相連，補圖的團。
-        \item 支配集（dominating set）：圖中支配集外的\textbf{點}皆與支配集相連。
-        \item 點覆蓋（vertex cover）：點覆蓋中的點為圖中所有\textbf{邊}的端點。
-    \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(159)} Kosaraju's algorithm： \begin{itemize}
-        \item 找strongly connected component。
-        \item 步驟：\begin{itemize}
-            \item 對原圖做DFS。
-            \item 從\textbf{結束時間最晚者}開始，對反向圖做DFS。
-        \end{itemize}
-    \end{itemize}
-\end{theorem}
-
 \item \begin{theorem}{(171, 178, 183, 193, 195)} Shortest path： \begin{itemize}
         \item Floyd-Warshall：sparse時，也不能提升性能。
         \item Johnson's在sparse時，性能較Floyd-Warshall好；Reweight後圖上所有邊權重皆$>0$，且最短路徑與原圖相同。
@@ -28,70 +10,18 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(159, 172, 179, 183, 193, 204, 206)} \quad\quad
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|c|}
-            \hline
-            \multicolumn{3}{|c|}{Graph algorithms} \\
-            \Xhline{3\arrayrulewidth}
-            Problem & Time complexity & Remark \\
-            \Xhline{2\arrayrulewidth}
-            Depth-First Search (DFS) & $O(|\V| + |\E|)$ & \\
-            \hline
-            Kosaraju's & $O(|\V| + |\E|)$ & \\
-            \hline
-            Kruskal's & $O(|\E|\log |\V|)$ & \\
-            \hline
-            Prim's (Adjacency matrix) & $O(|\V|^2)$ & \\
-            \hline
-            Prim's (Heap, Adjacency lists) & $O(|\E|\log |\V|)$ & \\
-            \hline
-            Prim's (Fibonacci heap, Adjacency lists) & $O(|\E| + |\V|\log |\V|)$ & \\
-            \hline
-            Sollin's (Borůvka's) & $O(|\E|\log |\V|)$ & \\
-            \hline
-            Dijkstra's (Min-heap) & $\Theta((|\V| + |\E|)\log |\V|)$ & \multirow{2}{*}{\makecell{Greedy, no negative\\edges or cycles}} \\
-            \cline{1-2}
-            Dijkstra's (Fibonacci-heap) & $\Theta(|\E| + |\V|\log|\V|)$ &  \\
-            \hline
-            Bellman-Ford & $O(|\V||\E|)$ & DP, no negative cycles \\
-            \hline
-            Floyd-Warshall & $\Theta(|\V|^3)$ & DP, no negative cycles \\
-            \hline
-            Johnson's & $\Theta(|\V||\E| + |\V|^2\log |\V|)$ & No negative cycles \\
-            \hline
-            Ford-Fulkerson & $O(|\E||f^*|)$ & Greedy，$f^*$為最大流 \\
-            \hline
-            Edmond-Karp & $O(|\V||\E|^2)$ & \\
-            \hline
-        \end{tabular}
-    \end{table}
+\item \begin{theorem}{()} Minimum vertex cover (tree)：\begin{equation}
+        \begin{aligned}
+            V(v) = \min \{& 1 + \Sum\{V(c), \ \forall c \in v.child\}, \\
+            & \len\{v.child\} + \Sum\{V(g), \ \forall c \in v.child \ \forall g \in c.child\}
+        \}   
+        \end{aligned}
+    \end{equation}
 \end{theorem}
 
-\item \begin{theorem}{()} \quad\quad
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|}
-            \hline
-            \multicolumn{2}{|c|}{Type of common problems} \\
-            \Xhline{3\arrayrulewidth}
-            Problem & Type \\
-            \Xhline{2\arrayrulewidth}
-            Longest path problem (graph) & NPC \\
-            \hline
-            Longest path problem (tree) & Linear \\
-            \hline
-            Minimum vertex cover (graph) & NPC \\
-            \hline
-            Minimum vertex cover (tree) & Linear \\ 
-            \hline
-            Max-cut & NPC \\
-            \hline
-            Euler circuit & P \\
-            \hline
-            Hamiltonian path & NPC \\
-            \hline
-        \end{tabular}
-    \end{table}
+\item \begin{theorem}{()} Max-cut： \begin{itemize}
+        \item NPC。
+        \item 若所有邊權重皆負，則可乘上$-1$，變為Min-cut。
+        \item 若為平面圖，可轉換為Chinese Postman Problem（若為無向圖，即Euler circuit，若為有向圖，則為NPC）。
+    \end{itemize}
 \end{theorem}

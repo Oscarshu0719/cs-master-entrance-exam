@@ -1,11 +1,6 @@
 \item \begin{theorem}{(213, 278, 289)} RAID：\begin{itemize}
-        \item Data stripping：Data分散到不同disks，一次data存取會使多個disks存取，提升performance，但不能改善reliability。
-        \item Redundancy：提升availablity，但\textbf{不能改善reliability}。
-        \item RAID 0：Block-stripping，非容錯，沒有多餘disks。
-        \item RAID 1：Mirroring (shadowing)，最貴，data總是有額外一個copy，$2n$ disks。
         \item RAID 2：Hamming code，Write需要讀取所有disks，從新計算Hamming code並寫入ECC disks，效率差，$2n - 1$ disks。
         \item RAID 3：\begin{itemize}
-            \item Bit-interleaved parity.
             \item Reliability和RAID 2相同。
             \item 不做備份，花費較多時間恢復data，$n + 1$ disks。
             \item 當$1$個disk出錯可救回來，多個則否。
@@ -13,17 +8,14 @@
             \item Parity集中存放一個disk。
         \end{itemize}
         \item RAID 4：\begin{itemize}
-            \item Block-interleaved parity。
             \item 只對protection group其中一disk做small reads。
             \item $n + 1$ disks，parity集中存放一個disk。
             \item 當$1$個disk出錯可救回來，多個則否。
         \end{itemize}
         \item RAID 5：\begin{itemize}
-            \item Distributed Block-interleaved parity
             \item Write就不會有單一disk瓶頸。
             \item $n + 1$ disks，parity被分散到所有disks。
         \end{itemize}
-        \item RAID 0+1：一個disk壞，需整組copy替換；而RAID 1+0，只需該disk的copy替換。
         \item Read latency：RAID 3最短；Write latency：RAID 0 或 RAID 3最短。
         \item RAID 3 has worst throughput for small writes.
         \item RAID 3, 4, 5 have same throughput for large writes.

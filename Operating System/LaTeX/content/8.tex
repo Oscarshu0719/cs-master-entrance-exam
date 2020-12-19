@@ -1,65 +1,22 @@
-\begin{theorem}{(242)} Virtual memory：\begin{itemize}
-        \item Less I/O time，但總體I/O time上升，因為次數提升。
-        \item \begin{equation}
-                \text{EMAT} = (1 - p) \times \text{Memory Access time} + p \times \text{Page fault time}
-        \end{equation} $p$ is page fault rate.
+\begin{theorem}{(237)} Inverted page table：\begin{itemize}
+        \item $<PID, \ PN>$.
+        \item 不支援memory sharing。
+        \item system只有一份page table。
+        \item Number of entries equals to number of physical memory frames.
     \end{itemize}
 \end{theorem}
 
-\begin{theorem}{(246)} Page replacement：\begin{itemize}
-        \item LRU近似：\begin{itemize}
-            \item Second chance (Clock)：先用FIFO挑出一個page，若同時reference bit為$0$，則為victim page，但若為$1$，則reset reference bit，loading time改為現在時間，重新FIFO找page。
-            \item Enchanced second chance：選擇$<reference, dirty>$最小者，若多個pages相同，則採用FIFO。
-        \end{itemize}
-        \item 所有replacement algorithms沒有最差，只有最佳。
-        \item Belady amonaly：分給process的frames增加，但page fualt rate不降反升。
-        \item Stack property：$n$ frames所包含的page set必定是$n + 1$ frames所包含的page set的子集合。且具有stack property的法則，不會發生belady anomaly。只有\textbf{OPT}和\textbf{LRU}有。
-        \item Page buffering：\begin{itemize}
-            \item Free frames pool：將frames分為\begin{itemize}
-                \item Resident frames分配給process。
-                \item Free frames pool，OS keep，讓miss pages先行載入，process即可恢復執行，且加入resident frames，完成後再將victim page write back to disk，並歸還free frames pool。
-            \end{itemize} 
-            \item Keep modification list紀錄dirty bit為$1$的所有page no.，等到OS空閒再將list中的pages write back to disk and reset dirty bits。
-        \end{itemize}
+\begin{theorem}{(253)} Process可分配frames數量由hardware決定，最多為physical memory size，最少須讓任一machine code完成，即週期中最多可能memory access數量，e.g. $IF$, $MEM$, $WB$共三次。
+\end{theorem}
+
+\begin{theorem}{()} Dirty bit：\begin{itemize}
+        \item MMU：from $0$ to $1$.
+        \item OS：from $1$ to $0$.
     \end{itemize}
 \end{theorem}
 
-\begin{theorem}{(253)} Frame allocation：\begin{itemize}
-        \item Process可分配frames數量由hardware決定，最多為physical memory size，最少須讓任一machine code完成，即週期中最多可能memory access數量，e.g. $IF$, $MEM$, $WB$共三次。
-        \item 解決thrashing：\begin{itemize}
-            \item 若已發生，只能降低multiprogramming degree。
-            \item 利用page fault frequency control防止thrashing，OS訂定page fault rate合理的上下限，thrashing理當不會發生。若大於上限，應該多分配frames；若小於下限，應該取走一些frames。
-        \end{itemize}
-        \item Working-set model：\begin{itemize}
-            \item 若符合locality，則可降低page fault rate；違反locality：linked list, hashing, binary search, jump, indirect addressing mode。
-            \item 可預防thrashing，對於prepaging也有益。
-        \end{itemize}
-        \item \begin{itemize}
-            \item Bigger paging disk沒幫助。
-            \item \textbf{Faster paging disk有幫助}，因為decrease page fault time。
-            \item \textbf{Increase page size有幫助}。
-            \item Decrease page size沒幫助。
-            \item \textbf{Local repalcement有幫助}，因為thrashing不至於擴散。
-            \item \textbf{Prepaging有幫助}，若猜測夠準，decrease page fault rate。
-        \end{itemize}
-    \end{itemize}
-\end{theorem}
-
-\begin{theorem}{(258)} Page size越小：\begin{itemize}
-        \item Page fault rate增加。
-        \item Page table size增加。
-        \item I/O次數增加。
-        \item Internal fragmentation輕微。
-        \item I/O transfer time較小。
-        \item Locality較佳。
-        \item 趨勢：大page size。
-    \end{itemize} 
-\end{theorem}
-
-\begin{theorem}{(261)} Copy-on-write：\begin{itemize}
-        \item \code{fork()} without Copy-on-write：Child and parent processes占用不同空間，且複製parent process content給child process，大幅增加memory space需求，且process creation較慢。
-        \item \code{fork()} with Copy-on-write：Child process共享parent process memory space，不allocate new frames，降低memory space需求，且不須複製parent process content，process creation較快，但在write時，
-        allocate new frame給child process，並複製內容，修改child process的page table指向new frame，最後才write。
-        \item \code{vfork()} (Virtual memory \code{fork()})：Child process共享parent process memory space，不allocate new frames，但不提供Copy-on-write，因此在write時，另一方會受影響。適用於child process create後馬上\code{execlp()}，e.g. UNIX shell command interpreter。
+\begin{theorem}{((343)42, (344)44)} \quad\quad \begin{itemize}
+        \item Solaris ZFS uses checksums to provide fault-tolerance in case pointers are wrong.
+        \item In NFS (Network File System), writing to a file by a user are immediately visible to other users, since it does NOT support session semantics.
     \end{itemize}
 \end{theorem}

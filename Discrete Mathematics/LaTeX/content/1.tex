@@ -1,19 +1,7 @@
-\item \begin{theorem}{(1.16)} \begin{subequations}
-    \begin{align}
-        \P(A \cup B) & \neq \P(A) \cup \P(B) \\
-        \P(A \cap B) & = \P(A) \cap \P(B)
-    \end{align}
-    \end{subequations}
-\end{theorem}
-
 \item \begin{theorem}{(1-42)1.92} $2^{mn} \Mod{2^m - 1} = 1$。
 \end{theorem}
 
-\item \begin{theorem}{(1.58, 1.60)} （質數）
-    \begin{itemize}
-        \item 若$a \in \Z, n \in \N$，且$\gcd(a, n) = 1$，則$a^{-1} \Mod{n}$存在。
-        \item 若$p$為質數，$a \in \Z$，則$a^{-1} \equiv a \Mod{p}$即$a^2 \equiv 1 \Mod{p}$$\iff$$a \equiv \pm 1 \Mod{p}$。
-    \end{itemize}
+\item \begin{theorem}{(1.60)} （質數）若$p$為質數，$a \in \Z$，則$a^{-1} \equiv a \Mod{p}$即$a^2 \equiv 1 \Mod{p}$$\iff$$a \equiv \pm 1 \Mod{p}$。
 \end{theorem}
 
 \item \begin{theorem}{(1.61, 1.62)} （質數）
@@ -31,28 +19,30 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(1.64, 1.65, 1.66)} （質數）
+\item \begin{theorem}{(1.65, 1.66)} （質數）
     \begin{itemize}
-        \item 若$p \in \N$，則$\phi(p) = p - 1$$\iff$$p$為質數。
         \item 若$m \in \Z, n \in \N$，且$\gcd(m, n) = 1$，則$m^{\phi(n)} \equiv 1 \Mod{n}$。
         \item 若$p$為質數，$m \in Z$，且$\gcd(m, p) = 1$，則$m^{-1} \equiv m^{p - 2} \Mod{p}$
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(1.71)} RSA公鑰密碼系統（RSA public key cryptosystem）：\begin{itemize}
-        \item 訊息：$M$。
-        \item 加密鑰（encryption key）：\begin{equation}
-            n = pq, \ e
-        \end{equation}
-        其中$p, q$為質數，且$\gcd(e, \phi(n)) = 1, \ \phi(n) = (p - 1)(q - 1)$。
-        \item 加密訊息：\begin{equation}
-            C = M^e \Mod{n}
-        \end{equation}
-        \item 解密鑰（decryption key）：\begin{equation}
-            d \equiv e^{-1} \Mod{\phi(n)}
-        \end{equation}
-        \item 解密訊息：\begin{equation}
-            C^d \equiv M \Mod{n}
-        \end{equation}
-    \end{itemize}
+\item \begin{theorem}{(.14)} 證明$\N$中質數個數為$\infty$。 \\
+    \begin{proof}
+        若質數個數為有限個，令\begin{equation}
+            P_1, \ P_2, \ \cdots, \ P_k
+        \end{equation} 為所有質數。
+        取\begin{equation}
+            E = P_1P_2\cdots P_k + 1
+        \end{equation} 所以$E$為composite，則
+        \begin{equation}
+            \exists \ P_j \quad \text{s.t.} \ P_j | E
+        \end{equation} 又
+        \begin{equation}
+            \begin{aligned}
+                & P_j | P_1P_2\cdots P_k  \\
+                \Rightarrow & P_j | (E - P_1P_2\cdots P_k) \\
+                \Rightarrow & P_j | 1
+            \end{aligned} 
+        \end{equation} 但質數$P_j$不可能整除$1$，矛盾，因此$P_j = 1$，$E$為質數。得證，$\N$中質數個數為$\infty$。
+    \end{proof}
 \end{theorem}

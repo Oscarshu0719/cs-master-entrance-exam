@@ -1,80 +1,22 @@
-\item \begin{theorem}{(144)} \code{add, addi, sub} overflow時會exception，但\code{addu, addiu, subu}則\textbf{不會}，因為較多用於計算address。
-\end{theorem}
-
-\item \begin{theorem}{(165, 167)} 無號數乘法：\begin{itemize}
-        \item 傳統乘法：Multiplier右移，multiplicand初始放低位、左移且與product皆兩倍長。
-        \item Hardware-friendly multiplication：Multiplicand一倍長，product兩倍長、初始放低位、加到高位且右移，捨去mulitplier。
-    \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(171, 173)} Booth's algorithm（有號數乘法）：\begin{itemize}
-        \item 多一位mythical bit。
-        \item Multiplicand一倍長，product兩倍長、初始為multiplier放低位且操作在高位、右移，無multiplier。
-        \item $01$: $+$, $10$: $-$, $00, 11$: skip.
-    \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(177, 180)} 除法：\begin{itemize}
-        \item 傳統除法：quotient一倍長且左移，divisor兩倍長、初始放高位且右移，remainder兩倍長且初始為dividend放低位。
-        \item Hardware-friendly division：divisor一倍長，remainder兩倍長、初始為divident放低位、初始時左移$1$位、最後高位右移$1$位且左移，無quotient。
-    \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(183)} \quad\quad \begin{itemize}
-        \item MIPS乘法：\begin{lstlisting}[language={[x86masm]Assembler}]
-            mult $s2, $s3
-            mfhi $s0
-            mflo $s1
-        \end{lstlisting} 
-        \item MIPS除法：\begin{lstlisting}[language={[x86masm]Assembler}]
-            # Lo = $s2 / $s3
-            # Hi = $s2 % $s3
-            div $s2, $s3
-        \end{lstlisting}
-    \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(190)} 浮點數： \begin{itemize}
-        \item \begin{equation}
-            \begin{aligned}
-                (-1)^{sign} \times & (0.fraction) \times 2^{(exponent - bias)} \\
-                & bias = 2^{n - 1} - 1
-            \end{aligned}
-        \end{equation}
-        \item Denormalized number：\begin{equation}
-            (-1)^{sign} \times (0.fraction) \times 2^{-126}
-        \end{equation}
-        \begin{table}[H]
-            \centering
-            \begin{tabular}{|c|c|c|c|c|c|}
-                \hline
-                & Sign & Exponent & Fraction & Underflow & Overflow \\
-                \Xhline{2\arrayrulewidth}
-                Single precision & \multirow{2}{*}{$1$} & $8$ & $23$ & $>0, < 2 \times 10^{-38}$ & $> 2 \times 10^{38}$ \\
-                \cline{1-1}\cline{3-6}
-                Double precision &  & $11$ & $52$ & $>0, < 2 \times 10^{-308}$ & $> 2 \times 10^{308}$ \\
-                \hline
-            \end{tabular}
-        \end{table}
-        \begin{table}[H]
-            \centering
-            \begin{tabular}{|c|c|c|c|c|}
-                \hline
-                \multicolumn{2}{|c|}{Single precision} & \multicolumn{2}{c|}{Double precision} & Representation \\
-                \Xhline{2\arrayrulewidth}
-                Exponent & Fraction & Exponent & Fraction & \\
-                \hline
-                $0$ & $0$ & $0$ & $0$ & $\pm 0$ \\
-                \hline
-                $0$ & $\neq 0$ & $0$ & $\neq 0$ & $\pm$ denormalized number \\
-                \hline
-                $1 \sim 254$ & $\texttimes$ & $1 \sim 2046$ & $\texttimes$ & $\pm$ floating-point number \\
-                \hline
-                $255$ & $0$ & $2047$ & $0$ & $\pm \infty$ \\
-                \hline
-                $255$ & $\neq 0$ & $2047$ & $\neq 0$ & NaN \\
-                \hline
-            \end{tabular}
-        \end{table}
-    \end{itemize}
+\item \begin{theorem}{(190)} 浮點數：
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            \multicolumn{2}{|c|}{Single precision} & \multicolumn{2}{c|}{Double precision} & Representation \\
+            \Xhline{2\arrayrulewidth}
+            Exponent & Fraction & Exponent & Fraction & \\
+            \hline
+            $0$ & $0$ & $0$ & $0$ & $\pm 0$ \\
+            \hline
+            $0$ & $\neq 0$ & $0$ & $\neq 0$ & $\pm$ denormalized number \\
+            \hline
+            $1 \sim 254$ & $\texttimes$ & $1 \sim 2046$ & $\texttimes$ & $\pm$ floating-point number \\
+            \hline
+            $255$ & $0$ & $2047$ & $0$ & $\pm \infty$ \\
+            \hline
+            $255$ & $\neq 0$ & $2047$ & $\neq 0$ & NaN \\
+            \hline
+        \end{tabular}
+    \end{table}
 \end{theorem}

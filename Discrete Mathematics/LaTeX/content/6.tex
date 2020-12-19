@@ -1,16 +1,15 @@
-\item \begin{theorem}{(6.6, 6.7, 6.8, 6.9, 6.10, 6.11, 6.12, 6.16, 6.18)} \quad\quad
-    \begin{itemize}
-        \item 若$G = (\V, \E), \ |\V| = n$，則\begin{equation}
-            |\E| \ge \binom{n - 1}{2} + 1
-        \end{equation}
-        時，$G$為連通圖。
-    \end{itemize}
+\item \begin{theorem}{(6.35)} 若$G$與$\overline{G}$同構，且$|\V| = n$，則$n = 4k \lor n = 4k + 1$。
 \end{theorem}
 
-\item \begin{theorem}{(6.44, 6.47, 6.55)} \quad\quad
+\item \begin{theorem}{(6.44, 6.55)} \quad\quad
     \begin{itemize}
-        \item 一簡單無向圖，若所有點的度數至數為$k$，則圖上必含一個長度至少為$k + 1$的環路（cycle）。
-        \item 若$A$為一鄰接矩陣，則$\frac{1}{6}\tr(A^3)$為圖上三角形個數。
+        \item 一簡單無向圖，若所有點的度數$\ge k$，則圖上必含一個長度至少為$k + 1$的環路（cycle）。
+        \item 若$A$為一鄰接矩陣，則\begin{itemize}
+            \item $\frac{1}{6}\tr(A^3)$為圖上三角形個數。
+            \item \begin{equation}
+                \sum_{i = 1}^{n}\sum_{j = 1}^{n} A^2[i, j] = \sum_{i = 1}^{n} \deg(v_i)^2
+            \end{equation}
+        \end{itemize}
     \end{itemize}
 \end{theorem}
 
@@ -21,12 +20,13 @@
         \item $K_{m, n}$有尤拉迴路$\iff$$m, n$為偶數。
         \item 圖中有尤拉路線$\iff$為連通圖且圖中恰含$0$個或$2$個點度數為奇數。
         \item 圖中有尤拉迴路$\iff$為強連通圖且所有點的出度數與入度數相同。
+        \item 若圖中有尤拉迴路，則有尤拉路線。
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(6.64, 6.68, 6.71, 6.72, 6.73, 6.74, 6.84)} \quad\quad
+\item \begin{theorem}{(6.71, 6.72, 6.73, 6.74, 6.84, (6-51)6.81)} \quad\quad
     \begin{itemize}
-        \item 有向完全圖必有有向漢米爾頓\textbf{路徑}。
+        \item 若圖中有漢米爾頓環路，則有漢米爾頓路徑。
         \item 若$G = (\V, \E), \ |\V| = n \ge 3$為一無迴圈無向圖，
         \begin{itemize}
             \item 若\begin{equation}
@@ -58,7 +58,7 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(6.88, 6.90, 6.93, 6.94, 6.97, 6.98)} \quad\quad
+\item \begin{theorem}{(6.93, 6.94, 6.97, 6.98)} \quad\quad
     \begin{itemize}
         \item Euler formula：若$G = (\V, \E), |\V| = v, |\E| = e, r\text{為區域個數}, M\text{為分量圖數}$，且$G$為平面圖，則$v - e + r = 1 + M$。
         \item 若$G = (\V, \E), |\V| = v, |\E| = e \ge 2, r\text{為區域個數}$，且$G$為無迴圈簡單\textbf{連通}平面圖，則\begin{itemize}
@@ -72,21 +72,37 @@
                 e \le \frac{k}{k - 2}(v - 2)
             \end{equation}
         \end{itemize}
-        \item 雙分圖不含三角形。
         \item 一無迴圈簡單平面圖必含一個度數$\le 5$的頂點。
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(6.109, 6.110, 6.113, 6.114, 6.115, 6.116)} \quad\quad
+\item \begin{theorem}{(6.115)} \quad\quad
     \begin{itemize}
-        \item $\chi(K_n) = n$，$\chi(W_n) = 1 + \chi(C_n)$，$\chi(C_n) = \begin{cases}
-            2, & n = 2k \\ 3, & n = 2k + 1
-        \end{cases}$。
-        \item 若$K_n$為一圖$G$的子圖，則$\chi(G) \ge n$。
-        \item 若$G = (\V, \E)$為無向圖，$\lambda$為顏色數，則稱$P(G, \lambda)$為著色多項式，表示至多使用$\lambda$種顏色著色的不同方法數，且$\chi(G) = \min\{\lambda | P(G, \lambda) > 0\}$。\begin{itemize}
+        \item 若$P(G, \lambda)$為著色多項式，則\begin{itemize}
             \item $P(G, \lambda)$常數項為$0$。
             \item $P(G, \lambda)$係數和為$0$。
             \item $P(G, \lambda)$最高次項係數為$1$。
         \end{itemize}
     \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(.129)} 若$G = (\V, \E)$ is connected，則\begin{equation}
+        |\E| \ge |\V| - 1    
+    \end{equation} \begin{proof}
+        用數學歸納法證明： \\
+        當$|\V| = 1$時，成立。 \\
+        設$|\V| < n$時成立。考慮$|\V| = n$時，$\forall \ v, \ \deg(v) = m$，則$G - v$形成$k$個components，有\begin{equation}
+            G_1 = (\V_1, \E_1), \ G_2 = (\V_2, \E_2), \ \cdots, \ G_k = (\V_k, \E_k)
+        \end{equation} 又$G_i, \ 1 \le k \le m$ is connected，且$|\V_i| < n$。根據數學歸納法，\begin{equation}
+            |\E_i| \ge |\V_i| - 1, \ \forall \ i = 1, \ \cdots, k
+        \end{equation} 則 \begin{equation}
+            \begin{aligned}
+                |\E| & = |\E_1| + \cdots + |\E_k| + m \\
+                & \ge (|\V_1| - 1) + \cdots + (|\V_k| - 1) + m \\
+                & = (|\V_1| + \cdots + |\V_k|) + (m - k) \\
+                & = |\V| - 1 + (m - k) \\
+                & \ge |\V| - 1
+            \end{aligned}
+        \end{equation}
+    \end{proof}
 \end{theorem}

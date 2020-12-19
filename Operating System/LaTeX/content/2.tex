@@ -1,8 +1,5 @@
-\begin{theorem}{(16)} Interrupted：\begin{itemize}
-        \item 若頻繁interrupt CPU使用率仍會很低，因此若I/O時間不長，polling反而可能較有利。
-        \item External interrupt：CPU外的周邊設備發出，例如device controller發出I/O-completed。
-        \item Internal interrupt：CPU執行process遭遇重大error，例如Divide-by-zero，執行priviledged instruction in user mode。
-        \item Software interrupt：Process需要OS提供服務，呼叫system call。
-        \item Trap：Software-generated。Catch arithmetic error，即CPU執行process遭遇重大error，例如Divide-by-zero。Process需要OS提供服務，會先發trap通知OS。
+\begin{theorem}{(16)} \quad\quad \begin{itemize}
+        \item Interrupt：Hardward-generated, e.g. I/O-complete, Time-out.
+        \item Trap：Software-generated。Catch arithmetic error或重大error，例如Divide-by-zero，以及process需要OS提供服務，會先發trap通知OS。
     \end{itemize}
 \end{theorem}

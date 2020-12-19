@@ -1,33 +1,3 @@
-\item \begin{theorem}{(7.64, 7.65, 7.66)} （正交）若$\spc{W}$為$\V$子空間，且$\P$為正交投影向量，則
-	\begin{itemize}
-		\item $\im(\P) = \spc{W}$
-		\item $\P^2 = \P$
-		\item 
-		\begin{equation}
-			||\P(\vec{v})||^2 = \sum_{i = 1}^{k}\frac{|\dotp{\vec{v}}{\vec{v}_i}|^2}{||\vec{v_i}||^2}, \ \forall \vec{v} \in \V
-		\end{equation}
-		\item Bessel's Inequality：
-		\begin{equation}
-			||\P(\vec{v})|| \le ||\vec{v}||, \ \forall \vec{v} \in \V
-		\end{equation}
-		\item Parseval's equality：
-		\begin{equation}
-			||\P(\vec{v})|| = ||\vec{v}||, \ \forall \vec{v} \in \spc{W}
-		\end{equation}
-		\item 
-		\begin{equation}
-			||\vec{v} - \P(\vec{v})|| \le  ||\vec{v} - \vec{w}||, \ \forall \vec{w} \in \spc{W}, \vec{v} \in \V
-		\end{equation}
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(7.68)} （正交）
-	\begin{equation}
-		\{\frac{1}{\sqrt{2}}, \cos x, \cos 2x, \ \cdots, \cos nx, \sin x, \sin 2x, \ \cdots, \sin nx\}
-	\end{equation}
-	為單範正交集。
-\end{theorem}
-
 \item \begin{theorem}{(7.68, 7.69, 7.70, (7-97)7.174)} （實數，可逆）
 	\begin{itemize}
 		\item $\Ker(\mat{A}\herm \mat{A}) = \Ker(\mat{A})$
@@ -40,34 +10,24 @@
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(7.73, 7.79)} （正交）若$\mat{A} \in \F^{m \times n}$，$\spc{W} = \cs(\mat{A}), \vec{b} \in \F^{m \times 1}$，則
+\item \begin{theorem}{(7.73, 7.79, 7.81)} （正交）若$\mat{A} \in \F^{m \times n}$，$\spc{W} = \cs(\mat{A}), \vec{b} \in \F^{m \times 1}$，則
 	\begin{itemize}
-		\item $\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\mat{A}\herm\mat{A}\vec{x} = \mat{A}\herm\vec{b}$
-		稱正規方程式（normal equation），正規方程式必有解，則
-		\begin{itemize}
-			\item 若$\mat{A}$\textbf{不}為行獨立，正規方程式有\textbf{無限多解}，但\textbf{$\proj{\spc{W}}{b}$必定唯一}。
-			\item 若$\mat{A}$為行獨立，$\proj{\spc{W}}{b} = \mat{A}\vec{x} = \mat{A}(\mat{A}\herm\mat{A})\inv\mat{A}\herm\vec{b}$。
-			\item 若$\rnk(\mat{A}) = n$，且$\mat{A} = \mat{QR}$為$\mat{A}$的QR分解，則
-			$\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\mat{R}\vec{x} = \mat{Q}\herm \vec{b}$。
-			\item 若$\cs(\mat{A})$為單範正交集，則$\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\vec{x} = \mat{A}\herm\vec{b}$。
-		\end{itemize}
+		\item 若$\mat{A}$行獨立，且$\mat{A} = \mat{QR}$為$\mat{A}$的QR分解，則
+		$\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\mat{R}\vec{x} = \mat{Q}\herm \vec{b}$。
+		\item 若$\cs(\mat{A})$為單範正交集，則$\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\vec{x} = \mat{A}\herm\vec{b}$。
+		\item 若$\mat{Q}$的行向量為\textbf{單範正交集}，$\spc{W} = \cs(\mat{Q})$，則
+		\begin{equation}
+			\proj{\spc{W}}{b} = \mat{Q}\mat{Q}\herm\vec{b}
+		\end{equation}
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(7.80, 7.81)} （正交）若$\mat{A} \in \F^{m \times n}$\textbf{行獨立}，$\P = \mat{A}(\mat{A}\herm\mat{A})\inv\mat{A}\herm$為正交投影矩陣，則
+\item \begin{theorem}{(7.80, 7.81)} （正交，方陣）若$\mat{A} \in \F^{n \times n}$為方陣，且$\mat{A}$\textbf{行獨立}，則
 	\begin{itemize}
-		\item $\P^2 = \P$且$\P\herm = \P$
+		\item $\P^2 = \P$且$\P\herm = \P$$\iff$$\P$為正交投影矩陣
 		\item $\cs(\P) = \cs(\mat{A})$
 		\item $\rnk(\P) = \rnk(\mat{A}) = n$
 	\end{itemize}
-	\item 反之，若$\P^2 = \P$且$\P\herm = \P$，則$\P$為投影在$\cs(\P)$上的正交投影矩陣。
-\end{theorem}
-
-\item \begin{theorem}{(7.81)} （正交）若$\mat{Q}$的行向量為\textbf{單範正交集}，$\spc{W} = \cs(\mat{Q})$，則
-	\begin{equation}
-		\proj{\spc{W}}{b} = \mat{Q}\mat{Q}\herm\vec{b}
-	\end{equation}
-	即投影在$\mat{Q}$的正交投影矩陣為$\mat{Q}\mat{Q}\herm$。
 \end{theorem}
 
 \item \begin{theorem}{(7.100, 7.103, 7.104)} （正交）若$\spc{W} \subseteq \V$，$\P$為$\V$在$\spc{W}$上的投影算子，則$\Ker(\P) = \spc{W}^{\perp}$。
@@ -82,4 +42,25 @@
 				\item 若$\vec{u}$滿足$(\mat{AA}\herm)\vec{u} = \vec{b}$，則$\vec{s} = \mat{A}\herm\vec{u}$。
 			\end{itemize}
 	\end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(.181)} 證明Cauchy-Schwarz inequality：\begin{equation}
+		|<\vec{u}, \vec{v}>| \le ||\vec{u}|| \times ||\vec{v}||
+	\end{equation} \begin{proof}
+		用數學歸納法證明： \\
+		若$\vec{v} = \vec{0}$，成立。 \\
+		若$\vec{v} \neq \vec{0}$，取\begin{equation}
+			\alpha = \frac{<\vec{u}, \vec{v}>}{<\vec{v}, \vec{v}>}
+		\end{equation} 則 \begin{equation}
+			\begin{aligned}
+				0 & \le ||\vec{u} - \alpha\vec{v}||^2 \\
+				& = <\vec{u}, \vec{u}> - \overline{\alpha}<\vec{u}, \vec{v}> - \alpha<\vec{v}, \vec{u}> + \alpha\overline{\alpha}<\vec{v}, \vec{v}> \\
+				& = <\vec{u}, \vec{u}> - \overline{\frac{<\vec{u}, \vec{v}>}{<\vec{v}, \vec{v}>}}<\vec{u}, \vec{v}> - \frac{<\vec{u}, \vec{v}>}{<\vec{v}, \vec{v}>}<\vec{v}, \vec{u}> \\
+				& + \frac{<\vec{u}, \vec{v}>}{<\vec{v}, \vec{v}>}\overline{\frac{<\vec{u}, \vec{v}>}{<\vec{v}, \vec{v}>}}<\vec{v}, \vec{v}> \\
+				& = ||\vec{u}||^2 - \frac{|<\vec{u}, \vec{v}>|^2}{||\vec{v}||^2} \\
+				\Rightarrow & \frac{|<\vec{u}, \vec{v}>|^2}{||\vec{v}||^2} \le ||\vec{u}||^2 \\
+				\Rightarrow & |<\vec{u}, \vec{v}>|^2 \le ||\vec{u}||^2 \times ||\vec{v}||^2 \\
+			\end{aligned}
+		\end{equation}
+	\end{proof}
 \end{theorem}

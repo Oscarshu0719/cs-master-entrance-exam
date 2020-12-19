@@ -24,6 +24,33 @@
 \usepackage[bottom]{footmisc}
 \usepackage{hologo}
 \usepackage{wallpaper}
+\usepackage{listings, lstautogobble}
+\usepackage{color}
+
+\lstdefinestyle{customcpp}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=L,
+	xleftmargin=\parindent,
+	language=Python,
+	showstringspaces=false,
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\bfseries\color{green!40!black},
+	commentstyle=\itshape\color{purple!40!black},
+	identifierstyle=\color{blue},
+	stringstyle=\color{orange},
+}
+
+\lstdefinestyle{customasm}{
+	belowcaptionskip=1\baselineskip,
+	frame=L,
+	xleftmargin=\parindent,
+	language=[x86masm]Assembler,
+	basicstyle=\footnotesize\ttfamily,
+	commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstset{escapechar=@, style=customcpp}
 
 \CenterWallPaper{.50}{img/zju_logo.png}
 \hypersetup{
@@ -33,7 +60,7 @@
 	citecolor=red      
 }
 
-\newcommand{\ver}{\textmd{Version} 2.0} % Version number.
+\newcommand{\ver}{\textmd{Version} 3.0} % Version number.
 
 \newcommand{\mat}[1]{\boldsymbol{#1}}
 \newcommand{\spc}[1]{\textit{#1}}
@@ -71,6 +98,7 @@
 \DeclareMathOperator{\gm}{gm}
 \DeclareMathOperator{\len}{Length}
 \DeclareMathOperator{\num}{Number}
+\DeclareMathOperator{\Sum}{sum}
 \newcommand{\ii}{{i\mkern1mu}}
 \newcommand{\dotp}[2]{<#1, #2>}
 \newcommand{\proj}[2]{\operatorname{proj}_{#1}\vec{#2}}

@@ -11,16 +11,6 @@
 	皆\textbf{相等}，反之不然。但\textbf{特徵向量}不保證相同，且僅\textbf{喬丹型}為充要條件。
 \end{theorem}
 
-\item \begin{theorem}{(5.6)} （相似，方陣）若$\mat{A}, \mat{B}$為方陣且$\mat{A} \sim \mat{B}$，則
-	\begin{itemize}
-		\item $\mat{A}^\intercal \sim \mat{B}^\intercal$
-		\item $\mat{A}^k \sim \mat{B}^k, \ \forall k \in \N$
-		\item $\alpha\mat{A} \sim \alpha\mat{B}, \ \forall \alpha \in \F$
-		\item $\mat{A} + \alpha \mat{I} \sim \mat{B} + \alpha \mat{I}$
-		\item $f(\mat{A}) \sim f(\mat{B}), \ \forall f(x) \in F[x]$
-	\end{itemize}
-\end{theorem}
-
 \item \begin{theorem}{(5.10, 5.11, 5.34, 6.7, 6.22, 6.34)} （方陣，特徵）若$\T \in \L(\V, \V)$，$\spc{W}_i, \ \forall i = 1, \ \cdots, k$為$\V$子空間且$\spc{W}_i$為$\T$-不變子空間，$\lambda$為$\T$的特徵根，則
 	\begin{itemize}
 		\item $\{\vec{0}\}$
@@ -56,38 +46,19 @@
 	特徵向量\textbf{不}改變。
 \end{theorem}
 
-\item \begin{theorem}{(5.79)} （方陣，對角化）若$\T, \textit{U} \in \L(\V, \V)$，存在$\V$基底$\beta$使得$[\T]_{\beta} = \mat{D}_1, [\textit{U}]_{\beta} = \mat{D}_2$，且$\mat{D}_1, \mat{D}_2$為對角矩陣，則
-	\begin{itemize}
-		\item $\T, \textit{U}$稱可同步對角化。\label{sim_diag}
-		\item $\T\textit{U} = \textit{U}\T$
-	\end{itemize}
-	反之不然，因為$\T$或$\textit{U}$\textbf{未必}皆能對角化。當$\T$與$\textit{U}$皆能對角化時，Theorem \ref{sim_diag}的兩個敘述等價。
-\end{theorem}
-
-\item \begin{theorem}{()} （方陣，對角化）若$\mat{A}$可對角化，則$\rnk(\mat{A}) = $不為$0$的特徵根個數。
-\end{theorem}
-
-\item \begin{theorem}{(5.97, 5.100, 5.102, 5.103)} （方陣，特徵，對角化，$\tr$）若$\T \in \L(\V, \V)$，且$\T^2 = \T$，稱$\T$為$\V$上的冪等（idempotent）算子，則
+\item \begin{theorem}{(5.100, 5.102)} （方陣，特徵，對角化，$\tr$）若$\T \in \L(\V, \V)$，且$\T^2 = \T$，稱$\T$為$\V$上的冪等（idempotent）算子，則
 	\begin{itemize}
 		\item $\V = \Ker(\T) \oplus \im(\T)$
-		\item $\T$可能特徵根只有$0$和$1$。
 		\item $\V(0) = \Ker(\T), \V(1) = \im(\T)$
-		\item $\T$可對角化，且存在$\V$基底$\beta$使得$[\T]_{\beta} = 
-		{\left[ 
-		\begin{array}{cc}
-			\Large{\mat{I}_r} & \Large{\mat{O}} \\
-			\Large{\mat{O}} & \Large{\mat{O}_{n - r}}
-		\end{array} 
-		\right]}$，其中$r = \rnk(\T) = \tr(\T)$。
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(5.99)} （方陣）若$\T \in \L(\V, \V)$，以下等價
+\item \begin{theorem}{(5.99, 6.13)} （方陣）若$\T \in \L(\V, \V)$，以下等價
 	\begin{itemize}
 		\item $\im(\T) = \im(\T^2)$
 		\item $\rnk(\T) = \rnk(\T^2)$
 		\item $\nul(\T) = \nul(\T^2)$
-		\item $\Ker(\T) = \Ker(\T^2)$
+		\item $\Ker(\T) = \Ker(\T^2) \iff \V = \ker(\T) \oplus \im(\T)$
 	\end{itemize}
 \end{theorem}
 
@@ -97,18 +68,5 @@
 		\item $\V = \Ker(\T) \oplus \im(\T)$
 		\item $\V = \Ker(\T) + \im(\T)$
 		\item $\Ker(\T) \cap \im(\T) = \{\vec{0}\}$
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(5.148, 5.150, 5.151, 5.153, 5.155)} （方陣，特徵，對角化）若$\mat{P} \in \F^{n \times n}$為方陣且$\mat{P}$為正則轉移矩陣，則
-	\begin{itemize}
-		\item 若$\mat{P}$可對角化，則$\am(1) = 1$。
-		\item $\lim_{k \rightarrow \infty} \mat{P}^k = 
-		{\left[ 
-		\begin{array}{cccc}
-			\vec{x} & \vec{x} & \cdots & \vec{x}
-		\end{array} 
-		\right]}$
-		，其中$\vec{x}$為穩定狀態向量，即$\vec{x} \in \Ker(\mat{P} - \mat{I})$。
 	\end{itemize}
 \end{theorem}

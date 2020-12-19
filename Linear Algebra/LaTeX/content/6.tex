@@ -1,95 +1,25 @@
-\item \begin{theorem}{(6.3, 6.15, 6.17, 6.71)} （方陣，$\det$，特徵，線性獨立）若$\T \in \L(\V, \V)$，存在$k \in N$使得$\T^{k} = \mat{O}$，則稱$\T$為冪零（nilpotent）算子，最小正整數$k$為$\T$的指標，則
-	\begin{itemize}
-		\item $\det(\T) = 0$
-		\item $\T^n = \mat{O}$
-		\item $\T$為冪零算子$\iff$$\T$特徵根\textbf{皆}$0$。
-		\item $\exists \vec{v} \in \V \lor \vec{v} \in \Ker(\T^k) - \Ker(\T^{k - 1})$且$\vec{v} \neq \vec{0}$，
-		$\{\vec{v}, \T(\vec{v}), \ \cdots, \T^{k - 1}(\vec{v})\}$線性獨立。
-	\end{itemize}
+\item \begin{theorem}{(6.17)} （方陣，$\det$，特徵，線性獨立）若$\T \in \L(\V, \V)$為冪零算子，且最小正整數$k$為$\T$的指標，則
+	$\exists \vec{v} \in \V \lor \vec{v} \in \Ker(\T^k) - \Ker(\T^{k - 1})$且$\vec{v} \neq \vec{0}$，
+	$\{\vec{v}, \T(\vec{v}), \ \cdots, \T^{k - 1}(\vec{v})\}$線性獨立。
 \end{theorem}
 
 \item \begin{theorem}{(6.9, 6.11)} （方陣）若$\T \in \L(\V, \V)$，則
 	\begin{itemize}
-		\item 核集鏈定理：
-			\begin{itemize}
-				\item $\{\vec{0}\} \subseteq \Ker(\T) \subseteq \Ker(\T^2) \subseteq \cdots \subseteq \V$
-				\item $\exists \min k \in \N, \ \Ker(\T^{k}) = \Ker(\T^{k + 1}) = \cdots$
-				\item $\spc{W} = \bigcup\limits_{i = 1}^{\infty} \Ker(\T^i) = \Ker(\T^k)$為最大冪零區。
-			\end{itemize}
-		\item 像集鏈定理：
-			\begin{itemize}
-				\item $\V \supseteq \im(\T) \supseteq \im(\T^2) \supseteq \cdots \supseteq \{\vec{0}\}$
-				\item $\exists \min k \in \N, \ \im(\T^{k}) = \im(\T^{k + 1}) = \cdots$
-				\item $\spc{W} = \bigcap\limits_{i = 1}^{\infty} \im(\T^i) = \im(\T^k)$為最大可逆區。
-			\end{itemize}
+		\item $\{\vec{0}\} \subseteq \Ker(\T) \subseteq \Ker(\T^2) \subseteq \cdots \subseteq \V$
+		\item $\spc{W} = \bigcup\limits_{i = 1}^{\infty} \Ker(\T^i) = \Ker(\T^k)$為最大冪零區。
+		\item $\V \supseteq \im(\T) \supseteq \im(\T^2) \supseteq \cdots \supseteq \{\vec{0}\}$
+		\item $\spc{W} = \bigcap\limits_{i = 1}^{\infty} \im(\T^i) = \im(\T^k)$為最大可逆區。
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(6.12)} （方陣）Fitting lemma： \\
-	若$\T \in \L(\V, \V)$，則存在$k \in N$使得$\V = \Ker(\T^k) \oplus \im(\T^k)$。
+\item \begin{theorem}{(6.12)} （方陣）若$\T \in \L(\V, \V)$，則$\exists \ k \in N$使得$\V = \Ker(\T^k) \oplus \im(\T^k)$。
 \end{theorem}
 
-\item \begin{theorem}{(6.20, 6.22, 6.23, 6.24)} （方陣）若$\T \in \L(\V, \V), \vec{v} \in \V$，稱\\$C_{\vec{v}}(\T) = \spn\{\vec{v}, \T(\vec{v}), \T^2(\vec{v}), \ \cdots\}$為由$\vec{v}$生成的$\T$-循環子空間，
-	且$C_{\vec{v}}(\T)$為$\T$-不變子空間，則：
+\item \begin{theorem}{(6.22, 6.23, 6.24)} （方陣）若$\T \in \L(\V, \V), \vec{v} \in \V$，則
 	\begin{itemize}
-		\item 若$\vec{v} \in \Ker(\T^k) - \Ker(\T^{k - 1})$，則稱$\beta = \{\vec{v}, \T(\vec{v}), \ \cdots, \T^{k - 1}(\vec{v})\}$為循環基底，且$\beta$為$\spc{W} = C_{\vec{v}}(\T)$的基底有
-		$[\T_{\spc{W}}]_{\beta} = \mat{S}_k$為下移矩陣，$\dim(C_{\vec{v}}(\T)) = k$，$\T^k(\vec{v}) = 0$。
-		\begin{itemize}
-			\item 當$\beta = \{\T^{k - 1}(\vec{v}), \T^{k - 2}(\vec{v}), \ \cdots, \T(\vec{v}), \vec{v}\}$時，$[\T_{\spc{W}}]_{\beta} = \mat{S}^\intercal_k$為上移矩陣。
-			\item 反之，$\dim(C_{\vec{v}}(\T)) = k$\textbf{不能}保證$\vec{v} \in \Ker(\T^k) - \Ker(\T^{k - 1})$。
-			\item 反之，$\dim(C_{\vec{v}}(\T)) = k$保證$\beta = \{\vec{v}, \T(\vec{v}), \ \cdots, \T^{k - 1}(\vec{v})\}$為$C_{\vec{v}}(\T)$的基底。
-			\item 反之，$\dim(C_{\vec{v}}(\T)) = k$\textbf{不能}保證$\T^k(\vec{v}) = 0$。\\
-				令$\T^k(\vec{v}) = -a_0\vec{v} + \sum\limits_{i = 1}^{k - 1}(-a_{i})\T^{i}(\vec{v})$，有
-				\begin{equation}
-					\mat{A} = [\T_{\spc{W}}]_{\beta} = 
-					{\left[ 
-					\begin{array}{ccccc}
-						0 & 0 & \cdots & 0 & -a_0 \\
-						1 & 0 & \cdots & 0 & -a_1 \\
-						0 & 1 & \cdots & 0 & -a_2 \\
-						\vdots & \vdots & \ddots & \vdots & \vdots \\
-						0 & 0 & \cdots & 1 & -a_{k - 1} \\
-					\end{array} 
-					\right]}
-				\end{equation}
-				有$p_{\mat{A}}(x) = (-1)^k(a_0 + a_1x + \cdots + a_{k - 1}x^{k - 1} + x^k)$，稱$\mat{A}$為$(a_0 + a_1x + \cdots + a_{k - 1}x^{k - 1} + x^k)$的友（companion）矩陣。
-				當$\T^k(\vec{0}) = \vec{0}$時，$a_0 = a_1 = \cdots = a_{k - 1} = 0, \mat{A} = [\T_{\spc{W}}]_{\beta} = \spc{S}_k$。
-		\end{itemize}
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(6.24)} （方陣）循環分解定理（Cyclic decomposition theorem）： \\
-	若$\T \in \L(\V, \V)$為指標為$k$的冪零算子，則存在$\vec{v}_1, \vec{v}_2, \ \cdots, \vec{v}_r \in \V$使得
-	\begin{equation}
-		\V = C_{\vec{v}_1}(\T) \oplus C_{\vec{v}_2}(\T) \oplus \cdots \oplus C_{\vec{v}_r}(\T)
-	\end{equation}
-	其中$\vec{v}_i \in \Ker(\T^{n_i}) - \Ker(\T^{n_i - 1})$，則
-	\begin{itemize}
-		\item $\dim(C_{\vec{v}_i}(\T)) = n_i$，$n_1 \ge n_2 \ge \cdots \ge n_r$，稱$\{n_1, n_2, \ \cdots, n_r\}$為不變集（invariant set）。
-		\item $r = \dim(\Ker(\T))$
-		\item $k = n_1$
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(6.33, 6.34, 6.35, 6.36,  6.38)} （方陣，特徵）若$\T \in \L(\V, \V), \dim(\V) = n$，$\lambda$為$\T$特徵根，
-	稱
-	\begin{equation}
-		\textit{K}(\lambda) = \bigcup_{i = 1}^{\infty}\Ker((\T - \lambda\mat{I})^i)
-	\end{equation}
-	為$\T$相對於$\lambda$的廣義特徵空間，且$\dim(\textit{K}(\lambda)) = m$，則
-	\begin{itemize}
-		\item $\textit{K}(\lambda) = \{\vec{v} \in \V | (\T - \lambda\mat{I})^p(\vec{v}) = 0, \exists p \in \N\} = \Ker((\T - \lambda\mat{I})^n) \supseteq \V(\lambda)$
-		\item $\textit{K}(\lambda) \subseteq \V$，為$\T$-不變子空間。
-		\item $\lambda$為$p_{\T}(x) = 0$的$m$重根，則$\am(\lambda) = m$。
-		\item $(\T - \lambda\mat{I})_{\textit{K}(\lambda)}$為冪零算子。
-		\item 存在$\vec{v}_1, \vec{v}_2, \ \cdots, \vec{v}_k \in \textit{K}(\lambda)$使得
-		\begin{equation}
-			\textit{K}(\lambda) = C_{\vec{v}_1}(\T - \lambda\mat{I}) \oplus C_{\vec{v}_2}(\T - \lambda\mat{I}) \oplus \cdots \oplus C_{\vec{v}_k}(\T - \lambda\mat{I})
-		\end{equation}
-		\item 若$\lambda_1, \lambda_2, \ \cdots, \lambda_r$為$\T$相異特徵根，且$p_{\T}(x)$在$\F$可分解，則
-		\begin{equation}
-			\V = \textit{K}(\lambda_1) \oplus \textit{K}(\lambda_2) \oplus \cdots \oplus \textit{K}(\lambda_r)
-		\end{equation}
+		\item $\dim(C_{\vec{v}}(\T)) = k$\textbf{不能}保證$\vec{v} \in \Ker(\T^k) - \Ker(\T^{k - 1})$。
+		\item $\dim(C_{\vec{v}}(\T)) = k$保證$\beta = \{\vec{v}, \T(\vec{v}), \ \cdots, \T^{k - 1}(\vec{v})\}$為$C_{\vec{v}}(\T)$的基底。
+		\item $\dim(C_{\vec{v}}(\T)) = k$\textbf{不能}保證$\T^k(\vec{v}) = 0$。
 	\end{itemize}
 \end{theorem}
 
@@ -99,6 +29,11 @@
 		\item $\T_\spc{W}$的極小多項式整除$\T$的極小多項式。
 		\item 若$\T$可對角化，則$\T_{\spc{W}}$也可對角化。
 	\end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(6.111)} （方陣，特徵）若$\T \in \L(\V, \V)$，且$\lambda_1, \ \cdots, \ \lambda_r$為相異特徵根，則\begin{equation}
+		\T \ \text{可對角化} \ \iff m_{\T}(x) = (x - \lambda_1)\cdots(x - \lambda_r)
+	\end{equation} 
 \end{theorem}
 
 \item \begin{theorem}{((6-55)6.88)} （方陣，特徵）若$\mat{A}, \mat{B} \in \R^{n \times n}$為實方陣，當$\mat{AB} = \mat{BA}$時，\begin{equation}

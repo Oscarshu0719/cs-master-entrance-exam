@@ -1,20 +1,5 @@
-\item \begin{theorem}{(25, 27, 38, 48, 124)} Cache：\begin{itemize}
-        \item Write：\begin{itemize}
-            \item Write-through：寫入cache和memory。
-            \item Write-buffer：寫入cache和buffer且CPU繼續執行，當buffer滿時，CPU須等到buffer有空位。
-            \item Write-back：只寫入cache。
-            \item Write allocate：從memory拉進cache，在cache中修改。
-            \item Write around (No write allocate)：不拉進cache，只在memory中修改。
-            \item 通常write-though配write around，write-back配write allocate。
-        \end{itemize}
+\item \begin{theorem}{(27, 48)} Cache：\begin{itemize}
         \item Split cache通常有較差hit ratio，提升bandwidth，但不提升speed。
-        \item 增加associativity：降低miss rate，增加hit time。
         \item L1 cache：注重減少hit time；L2 cache：注重減少miss ratio。
-    \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(71, 124)} TLB：\begin{itemize}
-        \item fully associative、lower miss rate，且size較小，lower cost，並採用random。
-        \item TLB miss result in TLB exception.
     \end{itemize}
 \end{theorem}

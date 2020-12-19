@@ -29,34 +29,6 @@
             \hline
         \end{tabular}
     \end{table}
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|}
-            \hline
-            Data structure & Page No. \\
-            \Xhline{2\arrayrulewidth}
-            Min-max heap & \pageref{min-maxheap} \\
-            \hline
-            Deap & \pageref{deap} \\
-            \hline
-            SMMH & \pageref{smmh} \\
-            \hline
-            AVL tree & \pageref{avltree} \\
-            \hline
-            $m$-way ST & \pageref{m-wayst} \\
-            \hline
-            Red-black tree & \pageref{rbt} \\
-            \hline
-            Splay tree & \pageref{splaytree} \\
-            \hline
-            Leftist heap & \pageref{leftistheap} \\
-            \hline
-            Binomial heap & \pageref{binomialheap} \\
-            \hline
-            Fibonacci heap & \pageref{fibheap} \\
-            \hline
-        \end{tabular}
-    \end{table}
     \item \begin{equation}
         \begin{aligned}
             \log 2 & = 0.3010 \\
@@ -76,13 +48,13 @@
             \Xhline{2\arrayrulewidth}
             BST & \multicolumn{3}{c|}{$O(\log n) \sim O(n)$} & Create: $O(n\log n) \sim O(n^2)$ \\
             \hline
-            AVL tree & \multicolumn{3}{c|}{\multirow{4}{*}{$O(\log_m n)$}} & $F_{n + 2} - 1 \le n \le 2^h - 1$ \\
+            AVL tree & \multicolumn{3}{c|}{\multirow{4}{*}{$O(\log_m n)$}} & $F_{h + 2} - 1 \le n \le 2^h - 1$ \\
             \cline{1-1}\cline{5-5}
             B tree & \multicolumn{3}{c|}{} & $1 + 2\frac{\ceil{\frac{m}{2}}^{h - 1} - 1}{\ceil{\frac{m}{2}} - 1} \le n \le 2\ceil{\frac{m}{2}}^{h - 1} - 1$ \\
             \cline{1-1}\cline{5-5}
             RBT & \multicolumn{3}{c|}{} & $h \le 2\log (n + 1)$ \\
             \cline{1-1}\cline{5-5}
-            Splay tree & \multicolumn{3}{c|}{} & Worst: $O(n)$ \\
+            Splay tree & \multicolumn{3}{c|}{} & Worst: $O(n)$, Amortized: $O(\log n)$ \\
             \hline
         \end{tabular}
     \end{table}
@@ -112,7 +84,7 @@
             \hline
             Find min & & $O(1)$ & & $O(\log n)$ & $O(1)$ \\
             \hline
-            Remark & \makecell{Create:\\$O(n)$} & & \makecell{Merge faster\\than Max\\(Min) heap.} & \makecell{Find min\\can be down\\to $O(1)$.} & \makecell{Decrease key is\\faster than\\binomial heap} \\
+            Remark & & & \makecell{$shortest(\text{root})$\\$\le \log (n + 1) - 1$} & & \\
             \hline
         \end{tabular}
     \end{table} 

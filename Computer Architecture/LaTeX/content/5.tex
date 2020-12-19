@@ -12,12 +12,12 @@
 
 \item \begin{theorem}{(450, 455, 457, 458)} Data hazards：\begin{itemize}
         \item Forwarding：Combinational units，放在$EX$因為ALU。
-        \begin{lstlisting}[caption={EX hazard.}, captionpos=b, mathescape=true, language={[x86masm]Assembler}]
+        \begin{lstlisting}[caption={EX hazard.}, captionpos=b, mathescape=true, language={[x86masm]Assembler}, autogobble=true]
             if (EX/MEM.RegWrite $\land$ (EX/MEM.Rd $\neq 0$) $\land$ 
                 (EX/MEM.Rd $=$ ID/EX.Rs/Rt))
                 ForwardA/B = $10$
         \end{lstlisting}
-        \begin{lstlisting}[caption={MEM hazard.}, captionpos=b, mathescape=true, language={[x86masm]Assembler}]
+        \begin{lstlisting}[caption={MEM hazard.}, captionpos=b, mathescape=true, language={[x86masm]Assembler}, autogobble=true]
             if (MEM/WB.RegWrite $\land$ (MEM/WB.Rd $\neq 0$) $\land$ 
                 ($\lnot$ EX_hazard) $\land$ (MEM/WB.Rd $=$ ID/EX.Rs/Rt))
                 ForwardA/B = $01$
@@ -29,7 +29,7 @@
             \label{img:pipeline-forward}
         \end{figure}
         \item Stall：\code{}
-        \begin{lstlisting}[caption={Stall.}, captionpos=b, mathescape=true, language={[x86masm]Assembler}]
+        \begin{lstlisting}[caption={Stall.}, captionpos=b, mathescape=true, language={[x86masm]Assembler}, autogobble=true]
             if (ID/EX.MemRead $\land$ (ID/EX.Rt $=$ IF/ID.Rs/Rt))
                 IF/ID.Write := $0$
                 PC.Write := $0$
@@ -45,8 +45,7 @@
 
 \item \begin{theorem}{(478, 487, 494, 559)} Control hazards：\begin{itemize}
         \item 若分支指令與\textbf{前一個ALU指令}或\textbf{前面第二個}\code{lw}有data dependency，必須stall $1$ CC。
-        \item 若分支指令與\textbf{前一個}\code{lw}有data dependency，必須stall $2$ CC。
-        \item 分支指令通過$XOR$再$NOR$比較是否相同。
+        \item 分支指令通過\code{xor}再\code{nor}比較是否相同。
         \begin{figure}[H]
             \centering
             \includegraphics[scale=0.3]{img/pipeline-flush.png}
@@ -68,10 +67,34 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(498)} Multiple issue：\begin{itemize}
-        \item 大量複製pipeline單元，讓每個stage都可以執行多個指令。
-        \item 可分為static和dynamic，前者在編譯時決策，MIPS64採用，後者在執行時決策，又稱superscaler。
-        \item Static：\textbf{軟體}實現，Code scheduling, loop unrolling, Very Long Instruction Word (VLIW).
-        \item Dynamic：\textbf{硬體}實現，pipeline被分為in-order issue units，out-of-order execute units和in-order commit units。
+\item \begin{theorem}{(499, 505, 511)} \quad\quad \begin{itemize}
+        \item Intel IA-64 (EPIC)：\begin{itemize}
+            \item 支援利用compiler開發的平行度。
+            \item 可以猜測，並利用if-else取代branch。
+        \end{itemize}
+        \item Speculation錯誤復原：\begin{itemize}
+            \item 軟體提供修補程式。
+            \item 硬體CPU將猜測結果暫時儲存，若正確，則將猜測結果寫回register或memory，否則flush buffer。
+        \end{itemize}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|c|c|}
+                \hline
+                \multicolumn{3}{|c|}{Advanced pipeline} \\
+                \Xhline{3\arrayrulewidth}
+                Technique & Hardware & Software \\
+                \Xhline{2\arrayrulewidth}
+                Branch prediction & $\surd$ & $\surd$ \\
+                \hline
+                Speculation & $\surd$ & $\surd$ \\
+                \hline
+                Intel IA-64 (EPIC) & $\surd$ & $\surd$ \\
+                \hline
+                Register renaming & $\surd$ & $\surd$ \\
+                \hline
+                Prediction & & $\surd$ \\
+                \hline
+            \end{tabular}
+        \end{table}
     \end{itemize}
 \end{theorem}

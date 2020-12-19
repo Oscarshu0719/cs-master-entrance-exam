@@ -10,30 +10,13 @@
         \Xhline{2\arrayrulewidth}
         BST & \multicolumn{3}{c|}{$O(\log n) \sim O(n)$} & Create: $O(n\log n) \sim O(n^2)$ \\
         \hline
-        AVL tree & \multicolumn{3}{c|}{\multirow{4}{*}{$O(\log_m n)$}} & $F_{n + 2} - 1 \le n \le 2^h - 1$ \\
+        AVL tree & \multicolumn{3}{c|}{\multirow{4}{*}{$O(\log_m n)$}} & $F_{h + 2} - 1 \le n \le 2^h - 1$ \\
         \cline{1-1}\cline{5-5}
         B tree & \multicolumn{3}{c|}{} & $1 + 2\frac{\ceil{\frac{m}{2}}^{h - 1} - 1}{\ceil{\frac{m}{2}} - 1} \le n \le 2\ceil{\frac{m}{2}}^{h - 1} - 1$ \\
         \cline{1-1}\cline{5-5}
         RBT & \multicolumn{3}{c|}{} & $h \le 2\log (n + 1)$ \\
         \cline{1-1}\cline{5-5}
-        Splay tree & \multicolumn{3}{c|}{} & Worst: $O(n)$ \\
-        \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|c|c|c|}
-        \hline
-        \multicolumn{3}{|c|}{Disjoint set} \\
-        \Xhline{3\arrayrulewidth}
-        Combination & Union & Find \\
-        \Xhline{2\arrayrulewidth}
-        \makecell{Arbitrary Union \&\\Simple find} & $O(1)$ & \makecell{$O(h)$\\Worst: $O(n)$} \\
-        \hline
-        \makecell{Union-by-height \&\\Simple find} & $O(1)$ & $O(\log n)$ \\
-        \hline
-        \makecell{Union-by-height \&\\Find with path compression} & $O(1)$ & \makecell{$O(\alpha(m, n)) = O(\log^* n)$\\close to $O(1)$} \\
+        Splay tree & \multicolumn{3}{c|}{} & Worst: $O(n)$, Amortized: $O(\log n)$ \\
         \hline
     \end{tabular}
 \end{table}
@@ -64,7 +47,7 @@
         \hline
         Find min & & $O(1)$ & & $O(\log n)$ & $O(1)$ \\
         \hline
-        Remark & \makecell{Create:\\$O(n)$} & & \makecell{Merge faster\\than Max\\(Min) heap.} & \makecell{Find min\\can be down\\to $O(1)$.} & \makecell{Decrease key is\\faster than\\binomial heap} \\
+        Remark & & & \makecell{$shortest(\text{root})$\\$\le \log (n + 1) - 1$} & & \\
         \hline
     \end{tabular}
 \end{table}
@@ -106,6 +89,39 @@
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
+        \multicolumn{3}{|c|}{Dynamic Programming algorithms} \\
+        \Xhline{3\arrayrulewidth}
+        Problem & Time complexity & Space complexity \\
+        \Xhline{2\arrayrulewidth}
+        Making change & $O(kn)$ & $O(n)$ \\
+        \hline
+        Fractional Knapsack problem & $\Theta(n\log n)$ & $O(n)$ \\
+        \hline
+        0/1 Knapsack problem (DP) & $O(n2^{\log W})$ & $O(n2^{\log W})$ \\
+        \hline
+        0/1 Knapsack problem (Branch-and-Bound) & $O(2^n)$ & \\
+        \hline
+        Longest Common Subsequence (LCS) & $O(mn)$ & $O(mn)$ \\
+        \hline
+        Longest Increasing Subsequence (LIS) & $O(n^2)$ & $O(n^2)$ \\
+        \hline
+        Longest Common Substring & $O(mn)$ & $O(mn)$ \\
+        \hline
+        Minimum Edit Distance & $O(mn)$ & $O(mn)$ \\
+        \hline
+        Matrix-chain Multiplication & $O(n^3)$ & $O(n^2)$ \\
+        \hline
+        Traveling Salesperson problem & $\Theta(n^22^n)$ & $O(n2^n)$ \\
+        \hline
+        Optimal Binary Search Tree (OBST) & $\Theta(n^3)$ & $\Theta(n^2)$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
         \multicolumn{3}{|c|}{Graph algorithms} \\
         \Xhline{3\arrayrulewidth}
         Problem & Time complexity & Remark \\
@@ -118,17 +134,19 @@
         \hline
         Prim's (Adjacency matrix) & $O(|\V|^2)$ & \\
         \hline
-        Prim's (Heap, Adjacency lists) & $O(|\E|\log |\V|)$ & \\
+        Prim's (Adjacency list) & $O(|\V||\E|)$ & \\
         \hline
-        Prim's (Fibonacci heap, Adjacency lists) & $O(|\E| + |\V|\log |\V|)$ & \\
+        Prim's (Min-Heap, Adjacency list) & $O(|\E|\log |\V|)$ & \\
+        \hline
+        Prim's (Fibonacci heap, Adjacency list) & $O(|\E| + |\V|\log |\V|)$ & \\
         \hline
         Sollin's (Borůvka's) & $O(|\E|\log |\V|)$ & \\
         \hline
-        Dijkstra's (Min-heap) & $\Theta((|\V| + |\E|)\log |\V|)$ & \multirow{2}{*}{\makecell{Greedy, no negative\\edges or cycles}} \\
+        Dijkstra's (Min-heap) & $\Theta((|\E| + |\V|)\log |\V|)$ & \multirow{2}{*}{\makecell{Greedy, no negative\\edges or cycles}} \\
         \cline{1-2}
         Dijkstra's (Fibonacci-heap) & $\Theta(|\E| + |\V|\log|\V|)$ &  \\
         \hline
-        Bellman-Ford & $O(|\V||\E|)$ & DP, no negative cycles \\
+        Bellman-Ford & $O(|\V||\E|)$ & DP \\
         \hline
         Floyd-Warshall & $\Theta(|\V|^3)$ & DP, no negative cycles \\
         \hline
@@ -138,59 +156,7 @@
         \hline
         Edmond-Karp & $O(|\V||\E|^2)$ & \\
         \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-        \multicolumn{4}{|c|}{Dynamic Programming algorithms} \\
-        \Xhline{3\arrayrulewidth}
-        Problem & Time complexity & Space complexity & Remark \\
-        \Xhline{2\arrayrulewidth}
-        Making change & $O(kn)$ & $O(n)$ & \\
-        \hline
-        Fractional Knapsack problem & $\Theta(n\log n)$ & $O(n)$ & Greedy \\
-        \hline
-        0/1 Knapsack problem (DP) & $O(n2^{\log W})$ & $O(n2^{\log W})$ & \\
-        \hline
-        0/1 Knapsack problem (Branch-and-Bound) & $O(2^n)$ & & \\
-        \hline
-        Longest Common Subsequence (LCS) & $O(mn)$ & $O(mn)$ & 不必連續 \\
-        \hline
-        Longest Increasing Subsequence (LIS) & $O(n^2)$ & $O(n^2)$ & \\
-        \hline
-        Longest Common Substring & $O(mn)$ & $O(mn)$ & 必須連續 \\
-        \hline
-        Minimum Edit Distance & $O(mn)$ & $O(mn)$ & \\
-        \hline
-        Matrix-chain Multiplication & $O(n^3)$ & $O(n^2)$ & \\
-        \hline
-        Traveling Salesperson problem & $\Theta(n^22^n)$ & $O(n2^n)$ & \\
-        \hline
-        Optimal Binary Search Tree (OBST) & $\Theta(n^3)$ & $\Theta(n^2)$ & \\
-        \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|c|c|}
-        \hline
-        \multicolumn{2}{|c|}{Computational Geometry algorithms} \\
-        \Xhline{3\arrayrulewidth}
-        Problem & Time complexity \\
-        \Xhline{2\arrayrulewidth}
-        平面上點的rank & $\Theta(n\log n)$ \\
-        \hline
-        Maximal points & $\Theta(n\log n)$ \\
-        \hline
-        Closest pair & $O(n\log n)$ \\
-        \hline
-        Farthest pair & $O(n\log n)$ \\
-        \hline
-        Graham scan & $\Theta(n\log n)$ \\
+        Push-relabel & $O(|\V|^2|\E|)$ & \\
         \hline
     \end{tabular}
 \end{table}

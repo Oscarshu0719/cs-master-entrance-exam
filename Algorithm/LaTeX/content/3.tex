@@ -1,10 +1,3 @@
-\item \begin{theorem}{(335)} 0/1 Knapsack problem (Branch-and-Bound)：\begin{itemize}
-        \item 依物品的單位價值從大到小排序。
-        \item Bounding function為\textbf{目前價值}加上通過Fractional Knapsack problem在總重不超過限制的情況下，拿\textbf{剩下物品}得到的值。
-        \item 使用Priority queue。
-    \end{itemize}
-\end{theorem}
-
 \item \begin{theorem}{(89)} Longest Common Subsequence (LCS)：\begin{itemize}
         \item \begin{equation}
             c[i, j] = \begin{cases}
@@ -73,39 +66,4 @@
         \item $r[1 \cdots \num(\text{Key})][1 \cdots \num(\text{Key})]$，$r[i, j]$存入$e[i, j]$中最小值對應的$r$。
         \item 理解：$e[i, r - 1]$為左子樹，$e[r + 1, j]$為右子樹，$w[i, j]$為節點權重和，因為計算cost時是節點階層加一。
     \end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(76, 78, 84, 91, 93, 98, 109, 115, 335)} \quad\quad
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{|c|c|c|c|}
-            \hline
-            \multicolumn{4}{|c|}{Dynamic Programming algorithms} \\
-            \Xhline{3\arrayrulewidth}
-            Problem & Time complexity & Space complexity & Remark \\
-            \Xhline{2\arrayrulewidth}
-            Making change & $O(kn)$ & $O(n)$ & \\
-            \hline
-            Fractional Knapsack problem & $\Theta(n\log n)$ & $O(n)$ & Greedy \\
-            \hline
-            0/1 Knapsack problem (DP) & $O(n2^{\log W})$ & $O(n2^{\log W})$ & \\
-            \hline
-            0/1 Knapsack problem (Branch-and-Bound) & $O(2^n)$ & & \\
-            \hline
-            Longest Common Subsequence (LCS) & $O(mn)$ & $O(mn)$ & 不必連續 \\
-            \hline
-            Longest Increasing Subsequence (LIS) & $O(n^2)$ & $O(n^2)$ & \\
-            \hline
-            Longest Common Substring & $O(mn)$ & $O(mn)$ & 必須連續 \\
-            \hline
-            Minimum Edit Distance & $O(mn)$ & $O(mn)$ & \\
-            \hline
-            Matrix-chain Multiplication & $O(n^3)$ & $O(n^2)$ & \\
-            \hline
-            Traveling Salesperson problem & $\Theta(n^22^n)$ & $O(n2^n)$ & \\
-            \hline
-            Optimal Binary Search Tree (OBST) & $\Theta(n^3)$ & $\Theta(n^2)$ & \\
-            \hline
-        \end{tabular}
-    \end{table}
 \end{theorem}

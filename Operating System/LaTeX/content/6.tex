@@ -12,183 +12,69 @@
 
 \subsubsection{Software support}
 
-\begin{theorem}{(171)} Two processes solution：\begin{itemize}
-        \item Algorithm 1（錯誤）：\begin{itemize}
-            \item 共享變數：\begin{lstlisting}[caption={Shared variables of Algorithm 1 (two processes solution).}, captionpos=b, mathescape=true]
-                int turn = $i \lor j$;
-            \end{lstlisting}
-            \item \textbf{Progress：不成立}，當$P_i$在remainder section且$turn = i$，若$P_j$想進入critical section，但被$P_i$阻礙，須等到$P_i$進入critcal section再出來。
-            \begin{algorithm}[H]
-                \caption{$P_i$ of Algorithm 1 (two processes solution).}
-                \begin{algorithmic}[1]
-                    \Function{$P_i$}{}
-                        \Repeat 
-                            \While {$turn \neq i$}
-                            \EndWhile
-                            \State Critical section.
-                            \State $turn$ := $j$
-                            \State Remainder section.
-                        \Until {$False$}
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm}  
-        \end{itemize}
-        \item Algoroithm 2（錯誤）：\begin{itemize}
-            \item 共享變數：\begin{lstlisting}[caption={Shared variables of Algorithm 2 (two processes solution).}, captionpos=b, mathescape=true]
-                // 表示是否想進入critical section。
-                bool flag = $False$;
-            \end{lstlisting}
-            \item \textbf{Progress：不成立}，當$P_i, P_j$依序將$flag := True$，在\code{while}雙方皆會等待，則\textbf{deadlock}，皆無法進入critcal section。
-            \begin{algorithm}[H]
-                \caption{$P_i$ of Algorithm 2 (two processes solution).}
-                \begin{algorithmic}[1]
-                    \Function{$P_i$}{}
-                        \Repeat 
-                            \State $flag[i]$ := $True$
-                            \While {$flag[j]$}
-                            \EndWhile
-                            \State Critical section.
-                            \State $flag[i]$ := $False$
-                            \State Remainder section.
-                        \Until {$False$}
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm} 
-        \end{itemize}
-        \item Algorithm 3 (Peterson's solution)（正確）：\begin{itemize}
-            \item 共享變數：\begin{lstlisting}[caption={Shared variables of Peterson's solution (two processes solution).}, captionpos=b, mathescape=true]
-                int turn = $i \lor j$;
-                bool flag = $False$;
-            \end{lstlisting}
-            \item $flag$或$turn$或兩者值皆互換依然正確，但若將前兩行賦值順序對調，則因為\textbf{mutual exclusion不成立}，而不正確。
-            \item Peterson's solution is NOT guaranteed to work on modern PC, since processors and compiler may reorder read and write operations that have NO dependencies.
-            \begin{algorithm}[H]
-                \caption{$P_i$ of Peterson's solution (two processes solution).}
-                \begin{algorithmic}[1]
-                    \Function{$P_i$}{}
-                        \Repeat 
-                            \State $flag[i]$ := $True$
-                            \State $turn$ := $j$
-                            \While {$flag[j] \land turn = j$}
-                            \EndWhile
-                            \State Critacal section.
-                            \State $flag[i]$ := $False$
-                            \State Remainder section.
-                        \Until {$False$}
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm}
-        \end{itemize}
+\begin{theorem}{(171)} Two processes solution (Peterson's solution)：\begin{itemize}
+        \item 共享變數：\begin{lstlisting}[caption={Shared variables of Peterson's solution (two processes solution).}, captionpos=b, mathescape=true]
+            int turn = $i \lor j$;
+            bool flag = $False$;
+        \end{lstlisting}
+        \item $flag$或$turn$或兩者值皆互換依然正確，但若將前兩行賦值順序對調，則因為\textbf{mutual exclusion不成立}，而不正確。
+        \item Peterson's solution is NOT guaranteed to work on modern PC, since processors and compiler may reorder read and write operations that have NO dependencies.
+        \begin{algorithm}[H]
+            \caption{$P_i$ of Peterson's solution (two processes solution).}
+            \begin{algorithmic}[1]
+                \Function{$P_i$}{}
+                    \Repeat 
+                        \State $flag[i]$ := $True$
+                        \State $turn$ := $j$
+                        \While {$flag[j] \land turn = j$}
+                        \EndWhile
+                        \State Critacal section.
+                        \State $flag[i]$ := $False$
+                        \State Remainder section.
+                    \Until {$False$}
+                \EndFunction
+            \end{algorithmic}
+        \end{algorithm}
     \end{itemize}
 \end{theorem}
 
 \subsubsection{Hardware support}
 
 \begin{theorem}{(176)} Test-and-Set：\begin{itemize}
-        \item \textsc{Test-and-Set}：
-        \begin{lstlisting}[caption={\textsc{Test-and-Set}.}, captionpos=b, mathescape=true]
-            bool Test-and-Set (bool *Target) { // Atomic.
-                bool rv = *Target;
-                *Target = $True$;
-                return rv;
-            }
+        \item 共享變數：\begin{lstlisting}[caption={Shared variables of \textsc{Test-and-Set} solution.}, captionpos=b, mathescape=true]
+            bool lock = $False$;
+            /*
+            True，表示想進但在等；
+            False，表示已在critical section或是初值。
+            */
+            bool waiting[$0 \ \cdots \ (n - 1)$] = $False$;
         \end{lstlisting}
-        \item Algotihm 1（錯誤）：\begin{itemize}
-            \item 共享變數：\begin{lstlisting}[caption={Shared variables of Algorithm 1 (\textsc{Test-and-Set}).}, captionpos=b, mathescape=true]
-                bool lock = $False$; 
-            \end{lstlisting}
-            \item \textbf{Bounded waiting：不成立}，可能一直領先另一個process搶到CPU，導致另一個process starvation。
-            \begin{algorithm}[H]
-                \caption{$P_i$ of Algorithm 1 (Test-and-Set).}
-                \label{algo:test-and-set-algo-1}
-                \begin{algorithmic}[1]
-                    \Function{$P_i$}{}
+        \item 若移除第八行\code{waiting[i] := False}，則\textbf{progress不成立}，若僅$P_i$和$P_j$想進入critical section，此時\code{waiting[i], waiting[j] = True}，且$P_i$先進入critical section，有\code{lock, waiting[i] = True}；
+        當$P_i$離開critical section後，將\code{waiting[j] := False}，$P_j$進入critical section；當$P_j$離開critical section後，因為\code{waiting[i] = True}，$P_j$將\code{waiting[i] := False}，但\code{lock = True}，未來沒有process可以再進入critical section，\textbf{deadlock}。
+        \begin{algorithm}[H]
+            \caption{$P_i$ (Test-and-Set).}
+            \label{algo:test-and-set-algo-2}
+            \begin{algorithmic}[1]
+                \Function{$P_i$}{}
                     \Repeat
-                        \While {\Call{Test-and-set}{$\& lock$}}
+                        \State $waiting[i]$ := $True$
+                        \State $key$ := $True$ \Comment{Local variable.}
+                        \While {$waiting[i] \land key$}
+                            \State $key$ := \Call{Test-and-Set}{$\& lock$}
                         \EndWhile
+                        \State $waiting[i]$ := $False$
                         \State Critical section.
-                        \State $lock$ := $False$
+                        \State $j$ := $i + 1 \Mod{n}$
+                        \While {$j \neq i \land \lnot waiting[j]$} \Comment{找下一個想進入的$P_j$。}
+                            \State $j$ := $j + 1 \Mod{n}$
+                        \EndWhile
+                        \If {$j = i$} \Comment{沒有$P_j$想進入critical section。}
+                            \State $lock$ := $False$
+                        \Else 
+                            \State $waiting[j]$ := $False$
+                        \EndIf
                         \State Remainder section.
                     \Until {$False$}
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm}
-        \end{itemize}
-        \item Algotihm 2（正確）：\begin{itemize}
-            \item 共享變數：\begin{lstlisting}[caption={Shared variables of Algorithm 2 (\textsc{Test-and-Set}).}, captionpos=b, mathescape=true]
-                bool lock = $False$;
-                /*
-                True，表示想進但在等；
-                False，表示已在critical section或是初值。
-                */
-                bool waiting[$0 \ \cdots \ (n - 1)$] = $False$;
-            \end{lstlisting}
-            \item 若移除第八行\code{waiting[i] := False}，則\textbf{progress不成立}，若僅$P_i$和$P_j$想進入critical section，此時\code{waiting[i], waiting[j] = True}，且$P_i$先進入critical section，有\code{lock, waiting[i] = True}；
-            當$P_i$離開critical section後，將\code{waiting[j] := False}，$P_j$進入critical section；當$P_j$離開critical section後，因為\code{waiting[i] = True}，$P_j$將\code{waiting[i] := False}，但\code{lock = True}，未來沒有process可以再進入critical section，\textbf{deadlock}。
-            \begin{algorithm}[H]
-                \caption{$P_i$ of Algorithm 2 (Test-and-Set).}
-                \label{algo:test-and-set-algo-2}
-                \begin{algorithmic}[1]
-                    \Function{$P_i$}{}
-                        \Repeat
-                            \State $waiting[i]$ := $True$
-                            \State $key$ := $True$ \Comment{Local variable.}
-                            \While {$waiting[i] \land key$}
-                                \State $key$ := \Call{Test-and-Set}{$\& lock$}
-                            \EndWhile
-                            \State $waiting[i]$ := $False$
-                            \State Critical section.
-                            \State $j$ := $i + 1 \Mod{n}$
-                            \While {$j \neq i \land \lnot waiting[j]$} \Comment{找下一個想進入的$P_j$。}
-                                \State $j$ := $j + 1 \Mod{n}$
-                            \EndWhile
-                            \If {$j = i$} \Comment{沒有$P_j$想進入critical section。}
-                                \State $lock$ := $False$
-                            \Else 
-                                \State $waiting[j]$ := $False$
-                            \EndIf
-                            \State Remainder section.
-                        \Until {$False$}
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm}
-        \end{itemize}
-    \end{itemize}
-\end{theorem}
-
-\begin{theorem}{(177)} Compare-and-Swap (CAS)：
-    \begin{lstlisting}[caption={\textsc{Compare-and-Swap}.}, captionpos=b, label=algo:comp-and-swap]
-        bool Compare-and-Swap (bool *value, int expected, int new_value) { // Atomic.
-            int tmp = *value;
-            if (*value == expected)
-                *value = new_value;
-            return tmp;
-        }
-    \end{lstlisting}
-\end{theorem}
-
-\subsubsection{Mutex lock}
-
-\begin{theorem}{()} Mutex lock：\begin{itemize}
-        \item OS software tools (system call).
-        \item 共享變數：\begin{lstlisting}[caption={Shared variables of Mutex lock.}, captionpos=b, mathescape=true]
-            bool Available = $True$;
-        \end{lstlisting}
-        \begin{algorithm}[H]
-            \caption{$acquire()$.}
-            \begin{algorithmic}[1]
-                \Function{acquire}{}
-                    \While {$\lnot Available$}
-                    \EndWhile
-                    \State $Available$ := $False$
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-        \begin{algorithm}[H]
-            \caption{$release()$.}
-            \begin{algorithmic}[1]
-                \Function{release}{}
-                    \State $Available$ := $True$
                 \EndFunction
             \end{algorithmic}
         \end{algorithm}
@@ -400,8 +286,8 @@
                         \State \Call{wait}{$mutex$}
                         \If {$waiting < n$} \Comment{入店。}
                             \State $waiting$ := $waiting + 1$
-                            \State \Call{signal}{$mutex$}
                             \State \Call{signal}{$customer$} \Comment{Wake up barber.}
+                            \State \Call{signal}{$mutex$}
                             \State \Call{wait}{$barber$} \Comment{Customer go to sleep if barber is busy.}
                             \State Getting cut.
                         \Else
@@ -416,30 +302,7 @@
 
 \begin{theorem}{(187)} The dining-philosophers problem：\begin{itemize}
         \item 五位哲學家兩兩間放一根筷子吃中餐（筷子），哲學家需取得左右兩根筷子才能吃飯。若吃西餐（刀叉），必須偶數個哲學家，
-        \item Algorithm 1（錯誤）：\begin{itemize}
-            \item 共享變數：\begin{lstlisting}[caption={Shared variables of The dining-philosophers problem.}, captionpos=b, mathescape=true]
-                semaphore chopstick[$0 \ \cdots \ 4$] = $1$;
-            \end{lstlisting}
-            \item 會\textbf{deadlock}，若每位哲學家皆取左手邊的筷子，則每個哲學家皆無法拿起右手邊的筷子。
-            \begin{algorithm}[H]
-                \caption{Algorithm 1 $P_i$ (The dining-philosophers problem).}
-                \label{algo:din-philo-algo-1}
-                \begin{algorithmic}[1]
-                    \Function{$P_i$}{}
-                        \Repeat
-                            \State Hungry.
-                            \State \Call{wait}{$chopstick[i]$}
-                            \State \Call{wait}{$chopstick[(i + 1 \Mod{5})]$}
-                            \State Eating.
-                            \State \Call{signal}{$chopstick[i]$}
-                            \State \Call{signal}{$chopstick[(i + 1 \Mod{5})]$}
-                            \State Thinking.
-                        \Until {$False$}
-                    \EndFunction
-                \end{algorithmic}
-            \end{algorithm}
-        \end{itemize}
-        \item Algorithm 2（正確）：\begin{itemize}
+        \item Algorithm 1：\begin{itemize}
             \item 根據公式 (\ref{eq:deadlock})，人數必須$< 5$才不會deadlock。
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of The dining-philosophers problem.}, captionpos=b, mathescape=true]
                 semaphore chopstick[$0 \ \cdots \ 4$] = $1$;
@@ -447,20 +310,26 @@
                 semaphore no = $4$; 
             \end{lstlisting}
             \begin{algorithm}[H]
-                \caption{Algorithm 2 $P_i$ (The dining-philosophers problem).}
+                \caption{$P_i$ of Algorithm 1 (The dining-philosophers problem).}
                 \begin{algorithmic}[1]
                     \Function{$P_i$}{}
                         \Repeat
                             \State \Call{wait}{$no$}
-                            \State (Same as Algorithm 1.) 
+                            \State Hungry.
+                            \State \Call{wait}{$chopstick[i]$}
+                            \State \Call{wait}{$chopstick[(i + 1 \Mod{5})]$}
+                            \State Eating.
+                            \State \Call{signal}{$chopstick[i]$}
+                            \State \Call{signal}{$chopstick[(i + 1 \Mod{5})]$}
+                            \State Thinking.
                             \State \Call{signal}{$no$}
                         \Until {$False$}
                     \EndFunction
                 \end{algorithmic}
             \end{algorithm}
         \end{itemize}
-        \item Algorithm 3：只有能夠同時拿左右兩根筷子才允許持有筷子，否則不可持有任何筷子，\textbf{破除hold and wait}，不會deadlock。
-        \item Algorithm 4：當有偶數個哲學家時，偶數號的哲學家先取左邊，再取右邊，奇數號的則反之，\textbf{破除circular wait}，不會deadlock。與吃西餐先拿刀再拿叉相似。
+        \item Algorithm 2：只有能夠同時拿左右兩根筷子才允許持有筷子，否則不可持有任何筷子，\textbf{破除hold and wait}，不會deadlock。
+        \item Algorithm 3：當有偶數個哲學家時，偶數號的哲學家先取左邊，再取右邊，奇數號的則反之，\textbf{破除circular wait}，不會deadlock。與吃西餐先拿刀再拿叉相似。
     \end{itemize}
 \end{theorem}
 
@@ -547,7 +416,7 @@
                         \State Enable interrupt.
                         \State $block(p)$ 
                     \Else 
-                        \State Disable interrupt.
+                        \State Enable interrupt.
                     \EndIf
                 \EndFunction
             \end{algorithmic}
@@ -598,17 +467,10 @@
 
 \subsubsection{Monitor}
 
-\begin{theorem}{(189)} Monitor：\begin{itemize}
-        \item High-level abstraction, belongs to programming language.
-        \item Condition variables：在monitor內的condition type變數，用以解決synchronization problem。提供member functions：\begin{itemize}
-            \item \code{wait}：Block process放到各自的waiting queue。
-            \item \code{signal}：若有process在其waiting queue則恢復該process執行，否則無作用。
-            \item \code{wait(c)}：Conditional wait，有時候需要priority queue包含entry和waiting queue，priority越高越先移出，其中$c$表示priority number。
-        \end{itemize}
-        \item Process is NOT active：\begin{itemize}
-            \item Process呼叫的function執行完畢。
-            \item Process執行\code{wait()}被blocked。
-        \end{itemize}
+\begin{theorem}{(189)} 
+    \item Process is NOT active：\begin{itemize}
+        \item Process呼叫的function執行完畢。
+        \item Process執行\code{wait()}被blocked。
     \end{itemize}
 \end{theorem}
 
@@ -655,7 +517,7 @@
         \end{algorithmic}
     \end{algorithm}
     \begin{algorithm}[H]
-        \caption{$initialization\_code(i)$.}
+        \caption{$initialization\_code()$.}
         \begin{algorithmic}[1]
             \Function{initialization\_code}{} \Comment{For non-Condition type.}
                 \For {$i$ := $0$ to $4$}
@@ -668,7 +530,7 @@
         \caption{$P_i$ (The dining philosophers problem (Monitor)).}
         \begin{algorithmic}[1]
             \Function{$P_i$}{}
-                \State Dining\_ph dp \Comment{Shared variable.}
+                \State \Call{Dining\_ph}{} $dp$ \Comment{Shared variable.}
                 \Repeat
                     \State Hungry. \Comment{No active.}
                     \State \Call{$dp$.pickup}{$i$} \Comment{Running: active; Blocked: NOT active.}
@@ -703,7 +565,7 @@
         \end{algorithmic}
     \end{algorithm}
     \begin{algorithm}[H]
-        \caption{$Release()$.}
+        \caption{$Release(n)$.}
         \begin{algorithmic}[1]
             \Function{Release}{$n$}
                 \State $pr[n]$ := $False$
@@ -725,7 +587,7 @@
         \caption{$P_i$ of example of monitor.}
         \begin{algorithmic}[1]
             \Function{$P_i$}{}
-                \State $pa$ := \Call{PrinterAllocation}{}  \Comment{Shared variable.}
+                \State \Call{PrinterAllocation}{} $pa$ \Comment{Shared variable.}
                 \State $n$ := \Call{$pa$.Apply}{$i$}
                 \State Using printer $pr[n]$ .
                 \State \Call{$pa$.Release}{$n$}
@@ -742,7 +604,7 @@
         }
     \end{lstlisting}
     \begin{algorithm}[H]
-        \caption{$Wait()$.}
+        \caption{$Wait$.}
         \begin{algorithmic}[1]
             \Function{Wait}{}
                 \If {$value \le 0$}
@@ -753,7 +615,7 @@
         \end{algorithmic}
     \end{algorithm}
     \begin{algorithm}[H]
-        \caption{$Signal()$.}
+        \caption{$Signal$.}
         \begin{algorithmic}[1]
             \Function{Signal}{}
                 \State $value$ := $value + 1$
@@ -799,7 +661,7 @@
             \end{algorithmic}
         \end{algorithm}
         \begin{algorithm}[H]
-            \caption{$x.wait()$.}
+            \caption{$x.wait$.}
             \begin{algorithmic}[1]
                 \Function{$x$.wait}{}
                     \State $x\_cnt$ := $x\_cnt + 1$
@@ -814,7 +676,7 @@
             \end{algorithmic}
         \end{algorithm}
         \begin{algorithm}[H]
-            \caption{$x.signal()$.}
+            \caption{$x.signal$.}
             \begin{algorithmic}[1]
                 \Function{$x$.signal}{}
                     \If {$x\_cnt > 0$}

@@ -1,0 +1,23 @@
+\item \begin{theorem}{()} \quad\quad
+    \begin{itemize}
+        \item (\textbf{FALSE}) For two functions $f(n)$ and $g(n)$, either $f(n) = O(g(n))$ or $f(n) = \Omega((f(n))$.
+        Counterexample:\begin{equation}
+            \begin{aligned}
+                f(n) & = \begin{cases}
+                    1, \ \text{if} \ n = 2k \\
+                    0, \ \text{if} \ n = 2k + 1
+                \end{cases} \\
+                g(n) & = \begin{cases}
+                    0, \ \text{if} \ n = 2k \\
+                    1, \ \text{if} \ n = 2k + 1
+                \end{cases} 
+            \end{aligned}
+        \end{equation}
+        \item For any uniform cost RAM program $T(n) = \Omega(S(n))$, where $S(n)$ is the space an algorithm uses for an input of size $n$.
+        \item The capacity of each edge of a flow network can be floating-point, and it can be solved by linear programming.
+        \item A flow network of multiple sources can be reduced to a single source.
+        \item (\textbf{FALSE}) The value of any flow of a flow network is bounded by the capacity of only at most $O(n)$ cuts.
+        \item 2-coloring: $O(n^2)$, 3-coloring, 4-coloring: superpolynomial.
+        \item Weighted-union heuristic: Append the \textbf{smaller} list onto the \textbf{longer} list, with ties broken arbitrarily.
+    \end{itemize}
+\end{theorem}

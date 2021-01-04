@@ -1,0 +1,80 @@
+\begin{theorem}{()} Storage： \begin{itemize}
+        \item Smartphones normally do \textbf{NOT} have HDDs.
+        \item Secondary storage is normally \textbf{non-volatile}.
+        \item Wearable devices are normally equipped with \textbf{hard disks} to increase its storage space.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Disk： \begin{itemize}
+        \item \textbf{High-level} formatting creates a file system on a disk partition.
+        \item A disk sector contains a header, a data area, and a trailer.
+        \item In UNIX, disk scheduling algorithm is performed in the \textbf{disk driver}.
+        \item A file system can be created across \textbf{multiple disk partitions}.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Cybersecurity： \begin{itemize}
+        \item Trojan Horse is a code segment that \textbf{misuses} its environment.
+        \item Installing antivirus software is \textbf{NOT} an example of least privileges.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Cryptography： \begin{itemize}
+        \item 公開金鑰加密提供digital signature功能。
+        \item AES：Symmetric, block cipher.
+        \item DES：Symmetric, block cipher.
+        \item RC4：Symmetric, stream cipher.
+        \item RSA：Asymmetric，只要鑰匙夠長，沒有任何可靠的攻擊方法。\begin{itemize}
+            \item Authentication：將message與hash過再用private key加密的message串接。e.g. $M || \{h(M)\}_{K_{sa}}$.
+            \item Confidentiality：將用one-time AES key加密的message與用public key加密的one-time AES key串接。e.g. $\{M\}_{K_{da}} || \{K_{da}\}_{K_{pb}}$.
+            \item Confidentiality and authentication：將authentication的內容用one-time AES key加密，再與用public key加密的one-time AES key串接。e.g. $\{M || \{h(M)\}_{K_{sa}}\}_{K_{da}} || \{K_{da}\}_{K_{pb}}$.
+        \end{itemize}
+        \item Digital certificate contains \textbf{private key} signed by the user.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} \quad\quad \begin{itemize}
+        \item \textbf{Native Windows threads} cause a user-mode to kernel-mode.
+        \item Physical caches do NOT flush at \textbf{context switching}.
+        \item Hyper-threading is \textbf{superscalar} and it can speedup \textbf{context switching}.
+        \item There is \textbf{NO} optimum solution to allocate contiguous memory from free holes.
+        \item Data fault: Access invalid data memory, which is signaled by \textbf{MMU}.
+        \item NUMA is intrinsic in Von Neumann's computer model.
+        \item The TLB cache may require a flush after a page table update.
+        \item \code{kmalloc}: physically contiguous; \code{vmalloc}: virtually contiguous; \code{malloc}: no constraints.
+        \item Linux and Windows XP are \textbf{monolithic}.
+        \item \code{strncpy}相較\code{strcpy}安全，且需要\textbf{預留一格}，可防止buffer overflow。
+        \item Java \textbf{interprets} Java bytecode operations \textbf{one at a time}.
+        \item CLR, which is the implementation of .NET VM, \textbf{compiles} Microsoft intermediate language instructions \textbf{one at a time}.
+        \item Normal instructions for the VM can execute \textbf{directly on the hardware} and \textbf{only the privileged instructions} must be simlated.
+        \item Named pipes are referred to as \textbf{FIFOs} in UNIX systems. Once created, they appear as typical \textbf{files} in the file systems. 
+        \item The main reason for the switch from high-performance uniprocessors to multiprocessors with simpler cores and lower clock rates in recent years is the \textbf{power limit}.
+        \item Kernel processes are \textbf{NOT} allocated through paging and virtual memory interface.
+        \item A \textbf{nonpreemptive} kernel is free from race conditions on kernel data structures.
+        \item \textbf{Preemptive} kernel design can \textbf{NOT} prevent the deadlock problem with kernel data structures from occurring in the kernel.
+        \item \textbf{Disk device driver} can \textbf{NOT} be paged out, but page tables, memory-mapped files, shared memory can.
+        \item Permission bits are stored at inodes.
+        \item Linux kernel is a \textbf{preemptive} kernel and a process running in a kernel mode could \textbf{NOT} be preempted.
+        \item Most operating systems \textbf{downgrade} the thread priority when it runs out of time quantum, but \textbf{boost} the priority when it returns from an I/O request.
+        \item FIFO can outperform LRU.
+        \item A program using asynchronous I/O system calls in \textbf{NOT} simpler to write than using synchronous I/O system calls.
+        \item \textsc{Test-and-Set} still wastes cycles when a process can \textbf{NOT} acquire a lock. 
+        \item Moving files between directories on the \textbf{same} disk partition and \textbf{deleting} files on a hard disk cause little overhead, but moving files between directories on \textbf{different} disk partitions cause much.
+        \item Five classic components: datapath, control unit, memory, input, and output.
+        \item Data center cares more about \textbf{throughput} than response time.
+        \item Cache memories are usually hardware controlled, and OS may \textbf{NOT} even need to know their existence.
+        \item After making system calls, the process is still in running state.
+        \item FIFO may have Convoy effect, which causes low \textbf{I/O} utilization.
+        \item (\textbf{FALSE}) In a time-sharing system, a process \textbf{NOT} leaves running state unless it terminates or is preempted through a timer interrupt. 
+        \item The variation of disk I/O \textbf{latencies} under SSTF can be very high.
+        \item Extent allocation uses \textbf{contiguous physical} blocks, and it also needs defragmentation.
+        \item Arithmetic overflow can be ignored.
+        \item To use shared memory, several system calls have to be invoked.
+        \item OS do \textbf{NOT} need to estimate $MAX$ when a process enters ready queue.
+        \item Memory blocks on the \textbf{stacks} can \textbf{NOT} be freed at any time.
+        \item (\textbf{FALSE}) Use of shared memory can reduce the number of page table entries.
+        \item (\textbf{FALSE}) The page table of Linux process is managed by the C runtime library (.so) in the process.
+        \item For the \textbf{unused regions} in the virtual address space, the space overhead of the corresponding \textbf{page table entries} can be negligible.
+        \item Via HTTPS, ISPs can know the browsing website, but can \textbf{NOT} know the content.
+    \end{itemize}
+\end{theorem}

@@ -1,0 +1,17 @@
+\item \begin{theorem}{()} \quad\quad \begin{itemize}
+        \item (\textbf{FALSE}) For any non-zero real \textbf{symmetric} matrix, its SVD can be the same as its eigenvalue decomposition.
+        \item For any non-zero real matrix $\mat{A}$, $\mat{A}^\intercal\mat{A}$'s SVD can be the same as its eigenvalue decomposition. 
+        因為$\mat{A}^\intercal\mat{A}$正半定，$\mat{A}$可么正對角化，$\exists \ \mat{P}$為么正矩陣，使得 \begin{equation}
+            \begin{aligned}
+                & \mat{P}^\intercal(\mat{A}^\intercal\mat{A})\mat{P} = \mat{D} \\
+                \Rightarrow & \mat{A}^\intercal\mat{A} = \mat{P}\mat{D}\mat{P}^\intercal
+            \end{aligned} 
+        \end{equation} 為$\mat{A}^\intercal\mat{A}$的SVD。
+        \item 可對角化\textbf{不}保證non-singular。
+        \item If $\mat{A}$, $\mat{B}$ and $\mat{A + B}$ are non-singular square matrices, and $\mat{A}\inv + \mat{B}\inv$ is also non-singular.
+        Since $\mat{A}(\mat{A} + \mat{B})\inv\mat{B}$ is invertible, \begin{equation}
+            (\mat{A}(\mat{A} + \mat{B})\inv\mat{B})\inv = \mat{B}\inv(\mat{A} + \mat{B})\mat{A}\inv = \mat{A}\inv + \mat{B}\inv
+        \end{equation}
+        \item The transition matrix from one basis to another must be \textbf{non-singular}, but a linear transformation matrix can be singular.
+    \end{itemize}
+\end{theorem}

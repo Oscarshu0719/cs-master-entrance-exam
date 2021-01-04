@@ -15,10 +15,19 @@
         \item RAID 5：\begin{itemize}
             \item Write就不會有單一disk瓶頸。
             \item $n + 1$ disks，parity被分散到所有disks。
+            \item 可允許$1$個disk故障。
+        \end{itemize}
+        \item RAID 6：\begin{itemize}
+            \item 與RAID 5相比，增加第二個獨立的parity block。
+            \item 通常通過硬體實現。
+            \item $n + 2$ disks。
+            \item 可允許$2$個disk故障。
         \end{itemize}
         \item Read latency：RAID 3最短；Write latency：RAID 0 或 RAID 3最短。
         \item RAID 3 has worst throughput for small writes.
         \item RAID 3, 4, 5 have same throughput for large writes.
-        \item RAID 4, 5 perform same for parallel small reads and small writes, but RAID 3 can NOT for both access.
+        \item RAID 1 can \textbf{NOT} have small writes in parallel.
+        \item RAID 3 can \textbf{NOT} have small writes or reads in parallel. 
+        \item RAID 4, 5 perform same for parallel small reads and small writes. 
     \end{itemize}
 \end{theorem}

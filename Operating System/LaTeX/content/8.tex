@@ -16,7 +16,14 @@
 \end{theorem}
 
 \begin{theorem}{((343)42, (344)44)} \quad\quad \begin{itemize}
-        \item Solaris ZFS uses checksums to provide fault-tolerance in case pointers are wrong.
-        \item In NFS (Network File System), writing to a file by a user are immediately visible to other users, since it does NOT support session semantics.
+        \item Solaris ZFS uses \textbf{checksums} to provide fault-tolerance in case pointers are wrong.
+        \item NFS: \begin{itemize}
+            \item Using RPC for remote file operations.
+            \item Writing to a file by a user are immediately visible to other users, since it does \textbf{NOT} support session semantics.
+            \item Does \textbf{NOT} support \code{open()} and \code{close()} operations.
+            \item Each request must provide a full set of arguments.
+            \item Supported file operations must be idempotent.
+            \item \textbf{NO} special measures are needed to recover a server from crash.
+        \end{itemize}
     \end{itemize}
 \end{theorem}

@@ -1,0 +1,36 @@
+\item \begin{theorem}{()} NAS vs SAN： \begin{itemize}
+        \item NAS operates at \textbf{file} level while SAN operates at \textbf{block} level.
+        \item CIFS/SMB and NFS are examples of NAS.
+        \item SAN is often the preferred choice over NAS.
+        \item Almost any machine running Microsoft Windows with LAN connectivity can be configured to access a NAS.
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} Log-structured file system： \begin{itemize}
+        \item 將要write的data合成一串，再一次write。
+        \item Read都在cache，因為cache夠大。
+        \item Disk access的seek和rotation是bottleneck，sequential access比random access好。
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} \quad\quad \begin{itemize}
+        \item Out-of-order execution in \textbf{cache} level do NOT fail.
+        \item GPGPU usually runs \textbf{SPMT} (Single Program Multiple Thread), and GPU runs SIMT.
+        \item L1 data cache is usually seperated from L1 instruction cache to \textbf{increase bandwidth}.
+        \item Data cache is usually deployed at \textbf{MEM} stage.
+        \item Increasing number of \textbf{used sticky bits} do NOT improve accuracy.
+        \item \textbf{Memory hazard} do NOT cause stall, e.g. \code{sw} after \code{lw}.
+        \item Branch target buffer is used by \textbf{CPU}.
+        \item Program is a \textbf{passive} entity, process is an \textbf{avtive} entity.
+        \item Branch prediction buffer is good to predict the \textbf{branch outcome}, but it does \textbf{NOT} help in predicting the \textbf{branch target}.
+        \item Many routers are equipped with \textbf{firewall} and \textbf{VPN} functions.
+        \item \textbf{Static} power dissipation occurs because of leakage current that flows even when a transistor is \textbf{off}.
+        \item In hash-based page tables using linked list to solve collision, \textbf{each element} contains a frame number and a page number.
+        \item Multiple-cycles CPU requires \textbf{minimum function units}.
+        \item Control hazards can \textbf{NOT} be avoided.
+        \item \code{jr} is R-type.
+        \item Conversion from single-precision to double-precision causes loss of precision.
+        \item Compiler identifies \textbf{basic blocks} for code optimization.
+        \item Vector processors need \textbf{less bandwidth} than conventional processors.
+    \end{itemize}
+\end{theorem}

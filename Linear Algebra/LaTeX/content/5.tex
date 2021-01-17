@@ -31,7 +31,39 @@
 		\item 特徵根
 		\item 特徵多項式
 	\end{itemize}
-	若$\mat{A}, \mat{B}$\textbf{不}為方陣，只能保證$\mat{AB}$與$\mat{BA}$有相同的\textbf{非零}特徵根。
+	若$\mat{A}, \mat{B}$\textbf{不}為方陣，只能保證$\mat{AB}$與$\mat{BA}$有相同的\textbf{非零}特徵根。 \\
+	\begin{proof} \begin{equation}
+			\begin{bmatrix}
+				\mat{I} & \mat{B} \\
+				\mat{O} & \mat{I}
+			\end{bmatrix}
+			\begin{bmatrix}
+				\mat{O} & \mat{O} \\
+				\mat{A} & \mat{AB}
+			\end{bmatrix}
+			\begin{bmatrix}
+				\mat{I} & \mat{-B} \\
+				\mat{O} & \mat{I}
+			\end{bmatrix} = 
+			\begin{bmatrix}
+				\mat{BA} & \mat{O} \\
+				\mat{A} & \mat{O}
+			\end{bmatrix} = \mat{T} = \mat{P}\mat{S}\mat{P}\inv
+		\end{equation}，所以$\mat{S} \sim \mat{T}$，有\begin{equation}
+			\begin{aligned} 
+				& \det(\begin{bmatrix}
+					-x\mat{I} & \mat{O} \\
+					\mat{A} & \mat{AB} - x\mat{I}
+				\end{bmatrix}) = 
+				\det(\begin{bmatrix}
+					\mat{BA} - x\mat{I} & \mat{O} \\
+					\mat{A} & -x\mat{I}
+				\end{bmatrix}) \\
+				\Rightarrow & \det(-x\mat{I})\det(\mat{AB} - x\mat{I}) = \det(\mat{BA} - x\mat{I})\det(-x\mat{I}) \\
+				\Rightarrow & \det(\mat{AB} - x\mat{I}) = \det(\mat{BA} - x\mat{I})
+			\end{aligned}
+		\end{equation} 則$\mat{AB}$與$\mat{BA}$有相同特徵多項式。
+	\end{proof}
 \end{theorem}
 
 \item \begin{theorem}{(5.40, 8.13)} （特徵，方陣，可逆）若$\mat{A}$為方陣，則
@@ -44,6 +76,11 @@
 		\item $\mat{A}\herm$，若$\mat{A}$為正規矩陣，即$\mat{A}\mat{A}\herm = \mat{A}\herm\mat{A}$。
 	\end{itemize}
 	特徵向量\textbf{不}改變。
+\end{theorem}
+
+\item \begin{theorem}{(5.81)} （對角化，方陣）若$\T, \textit{U} \in \L(\V, \V)$皆可對角化，則\begin{equation}
+		\T, \textit{U} \ \text{可同步對角化} \ \iff \T\textit{U} = \textit{U}\T	
+	\end{equation}
 \end{theorem}
 
 \item \begin{theorem}{(5.100, 5.102)} （方陣，特徵，對角化，$\tr$）若$\T \in \L(\V, \V)$，且$\T^2 = \T$，稱$\T$為$\V$上的冪等（idempotent）算子，則
@@ -59,14 +96,5 @@
 		\item $\rnk(\T) = \rnk(\T^2)$
 		\item $\nul(\T) = \nul(\T^2)$
 		\item $\Ker(\T) = \Ker(\T^2) \iff \V = \ker(\T) \oplus \im(\T)$
-	\end{itemize}
-\end{theorem}
-
-\item \begin{theorem}{(5.100)} （方陣）Sylvester第二定理： \\
-	若$\T \in \L(\V, \V)$，以下等價
-	\begin{itemize}
-		\item $\V = \Ker(\T) \oplus \im(\T)$
-		\item $\V = \Ker(\T) + \im(\T)$
-		\item $\Ker(\T) \cap \im(\T) = \{\vec{0}\}$
 	\end{itemize}
 \end{theorem}

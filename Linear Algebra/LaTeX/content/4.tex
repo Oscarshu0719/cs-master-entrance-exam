@@ -6,9 +6,22 @@
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{()} 若$\mat{A}, \mat{B} \in \F^{m \times n}$ \begin{equation}
-		\rnk(\mat{A}) + \rnk(\mat{B}) - n \le \rnk(\mat{AB})
+\item \begin{theorem}{(4.106)} \quad\quad \begin{equation}
+		\begin{aligned}
+			& \mat{A} \in \F^{m \times n} \ \text{s.t.} \ \rnk(\mat{A}) = 1 \\ 
+			\iff & \exists \ \vec{u} \neq \vec{0} \in \F^{m \times 1}, \ \vec{v} \neq 0 \in \F^{1 \times n}, \ \text{s.t.} \ \mat{A} = \vec{uv}	
+		\end{aligned}
 	\end{equation}
+\end{theorem}
+
+\item \begin{theorem}{((4-129)4.237)} （方陣）\begin{itemize}
+		\item 若$\mat{A}, \mat{B} \in \F^{n \times n}$為方陣 \begin{equation}
+			\rnk(\mat{A}) + \rnk(\mat{B}) - n \le \rnk(\mat{AB})
+		\end{equation}
+		\item 若$\mat{A}_1, \ \cdots, \ \mat{A}_k \in \R^{n \times n}$為方陣，且$\mat{A}_1\cdots\mat{A}_k = \mat{O}$，則\begin{equation}
+			\rnk(\mat{A}_1) + \rnk(\mat{A}_2) + \cdots + \rnk(\mat{A}_k) \le (k - 1)n 
+		\end{equation} 
+	\end{itemize}
 \end{theorem}
 
 \item \begin{theorem}{(4.67, 4.71, 4.93, 4.96, 4.97, 7.69, 7.70, 8.163)} （可逆，解）若$\T(x) = \mat{A}\vec{x}, \T \in \L(\V, \V'), \mat{A} \in \F^{m \times n}$，則

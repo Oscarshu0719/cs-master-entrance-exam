@@ -33,6 +33,13 @@
     \end{itemize}
 \end{theorem}
 
+\begin{theorem}{()} Kernel：\begin{itemize}
+        \item Monolithic：UNIX, UNIX-like, Windows 9x, Android.
+        \item Microkernel：Mach.
+        \item Hybrid：Windows NT, Windows XP, macOS.
+    \end{itemize}
+\end{theorem}
+
 \begin{theorem}{()} \quad\quad \begin{itemize}
         \item \textbf{Native Windows threads} cause a user-mode to kernel-mode.
         \item Physical caches do NOT flush at \textbf{context switching}.
@@ -42,18 +49,16 @@
         \item NUMA is intrinsic in Von Neumann's computer model.
         \item The TLB cache may require a flush after a page table update.
         \item \code{kmalloc}: physically contiguous; \code{vmalloc}: virtually contiguous; \code{malloc}: no constraints.
-        \item Linux and Windows XP are \textbf{monolithic}.
         \item \code{strncpy}相較\code{strcpy}安全，且需要\textbf{預留一格}，可防止buffer overflow。
         \item Java \textbf{interprets} Java bytecode operations \textbf{one at a time}.
         \item CLR, which is the implementation of .NET VM, \textbf{compiles} Microsoft intermediate language instructions \textbf{one at a time}.
-        \item Normal instructions for the VM can execute \textbf{directly on the hardware} and \textbf{only the privileged instructions} must be simlated.
+        \item Normal instructions for the VM can execute \textbf{directly on the hardware} and \textbf{only the privileged instructions} must be simulated.
         \item Named pipes are referred to as \textbf{FIFOs} in UNIX systems. Once created, they appear as typical \textbf{files} in the file systems. 
-        \item The main reason for the switch from high-performance uniprocessors to multiprocessors with simpler cores and lower clock rates in recent years is the \textbf{power limit}.
         \item Kernel processes are \textbf{NOT} allocated through paging and virtual memory interface.
-        \item A \textbf{nonpreemptive} kernel is free from race conditions on kernel data structures.
+        \item A \textbf{non-preemptive} kernel is free from race conditions on kernel data structures.
         \item \textbf{Preemptive} kernel design can \textbf{NOT} prevent the deadlock problem with kernel data structures from occurring in the kernel.
         \item \textbf{Disk device driver} can \textbf{NOT} be paged out, but page tables, memory-mapped files, shared memory can.
-        \item Permission bits are stored at inodes.
+        \item Permission bits are stored at \textbf{inodes}.
         \item Linux kernel is a \textbf{preemptive} kernel and a process running in a kernel mode could \textbf{NOT} be preempted.
         \item Most operating systems \textbf{downgrade} the thread priority when it runs out of time quantum, but \textbf{boost} the priority when it returns from an I/O request.
         \item FIFO can outperform LRU.
@@ -65,16 +70,18 @@
         \item Cache memories are usually hardware controlled, and OS may \textbf{NOT} even need to know their existence.
         \item After making system calls, the process is still in running state.
         \item FIFO may have Convoy effect, which causes low \textbf{I/O} utilization.
-        \item (\textbf{FALSE}) In a time-sharing system, a process \textbf{NOT} leaves running state unless it terminates or is preempted through a timer interrupt. 
+        \item (\textbf{FALSE}) In a time-sharing system, a process does \textbf{NOT} leave running state unless it terminates or is preempted through a timer interrupt. 
         \item The variation of disk I/O \textbf{latencies} under SSTF can be very high.
         \item Extent allocation uses \textbf{contiguous physical} blocks, and it also needs defragmentation.
         \item Arithmetic overflow can be ignored.
         \item To use shared memory, several system calls have to be invoked.
-        \item OS do \textbf{NOT} need to estimate $MAX$ when a process enters ready queue.
+        \item OS does \textbf{NOT} need to estimate $MAX$ when a process enters ready queue.
         \item Memory blocks on the \textbf{stacks} can \textbf{NOT} be freed at any time.
         \item (\textbf{FALSE}) Use of shared memory can reduce the number of page table entries.
         \item (\textbf{FALSE}) The page table of Linux process is managed by the C runtime library (.so) in the process.
         \item For the \textbf{unused regions} in the virtual address space, the space overhead of the corresponding \textbf{page table entries} can be negligible.
         \item Via HTTPS, ISPs can know the browsing website, but can \textbf{NOT} know the content.
+        \item \textbf{Two-phase locking protocol (2PL)} ensures \textbf{conflict serializability}, but it may result in \textbf{deadlock}.
+        \item \textbf{Stack} is good for locality.
     \end{itemize}
 \end{theorem}

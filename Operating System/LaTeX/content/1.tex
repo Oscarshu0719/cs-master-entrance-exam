@@ -1,0 +1,9 @@
+\begin{theorem}{(7, 10)} \quad\quad \begin{itemize}
+        \item Time-sharing (Multitasking)：使用virtual memory以及spooling，且對所有users公平對待。
+        \item Real-time：\begin{itemize}
+            \item \textbf{Hard} real-time disk少用，\textbf{不}使用virtual memory；但\textbf{soft} real-time可，但real-time processes的pages在完成前不能被swapped out。
+            \item \textbf{Hard} real-time\textbf{不}與time-sharing並存；但\textbf{soft} real-time可。
+            \item 減少kernel干預時間，因為Linux kernel在執行某些system process時，\textbf{不}允許user process preempts kernel，防止race condition。
+        \end{itemize}
+    \end{itemize}
+\end{theorem}

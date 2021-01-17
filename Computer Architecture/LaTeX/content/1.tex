@@ -4,11 +4,13 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(47)} \quad\quad \begin{itemize}
+\item \begin{theorem}{(28, 47, 59)} \quad\quad \begin{itemize}
         \item \code{srl/sll rd, rt, shamt # rs = 5'0 }
         \item \code{lw/sw rt, imm(rs)}
         \item \code{beq/bne rs, rt, addr}
         \item \code{addi rt, rs, imm}
+        \item \code{lb}: Load最高address（LSB）到最高address（LSB），\code{sb}: Store最高address（LSB）到最低address（MSB）。
+        \item \code{jr rs # rt = rd = shamt = 5'0}：R-type
     \end{itemize}
 \end{theorem}
 

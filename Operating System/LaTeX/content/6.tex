@@ -18,7 +18,7 @@
             bool flag = $False$;
         \end{lstlisting}
         \item $flag$或$turn$或兩者值皆互換依然正確，但若將前兩行賦值順序對調，則因為\textbf{mutual exclusion不成立}，而不正確。
-        \item Peterson's solution is NOT guaranteed to work on modern PC, since processors and compiler may reorder read and write operations that have NO dependencies.
+        \item Peterson's solution is NOT guaranteed to work on modern PC, since processors and compilers may reorder read and write operations that have NO dependencies.
         \begin{algorithm}[H]
             \caption{$P_i$ of Peterson's solution (two processes solution).}
             \begin{algorithmic}[1]
@@ -82,29 +82,6 @@
 \end{theorem}
 
 \subsubsection{Semaphore}
-
-\begin{theorem}{(178)} Semaphore：\begin{itemize}
-        \item OS software tools (system call).
-        \begin{algorithm}[H]
-            \caption{$wait(S)$ ($P(S)$).}
-            \begin{algorithmic}[1]
-                \Function{wait}{$S$} \Comment{Atomic.}
-                    \While {$S \le 0$}
-                    \EndWhile
-                    \State $S$ := $S - 1$
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-        \begin{algorithm}[H]
-            \caption{$signal(S)$ ($V(S)$).}
-            \begin{algorithmic}[1]
-                \Function{signal}{$S$} \Comment{Atomic.}
-                    \State $S$ := $S + 1$
-                \EndFunction
-            \end{algorithmic}
-        \end{algorithm}
-    \end{itemize}
-\end{theorem}
 
 \begin{theorem}{(168)} Producer-consumer problem：\begin{itemize}
         \item 共享變數：\begin{lstlisting}[caption={Shared variables of Producer-consumer problem.}, captionpos=b, mathescape=true]
@@ -301,7 +278,7 @@
 \end{theorem}
 
 \begin{theorem}{(187)} The dining-philosophers problem：\begin{itemize}
-        \item 五位哲學家兩兩間放一根筷子吃中餐（筷子），哲學家需取得左右兩根筷子才能吃飯。若吃西餐（刀叉），必須偶數個哲學家，
+        \item 五位哲學家兩兩間放一根筷子吃中餐（筷子），哲學家需取得左右兩根筷子才能吃飯。若吃西餐（刀叉），必須\textbf{偶數}個哲學家，
         \item Algorithm 1：\begin{itemize}
             \item 根據公式 (\ref{eq:deadlock})，人數必須$< 5$才不會deadlock。
             \item 共享變數：\begin{lstlisting}[caption={Shared variables of The dining-philosophers problem.}, captionpos=b, mathescape=true]
@@ -325,11 +302,11 @@
                             \State \Call{signal}{$no$}
                         \Until {$False$}
                     \EndFunction
-                \end{algorithmic}
+                \end{algorithmic}`'
             \end{algorithm}
         \end{itemize}
         \item Algorithm 2：只有能夠同時拿左右兩根筷子才允許持有筷子，否則不可持有任何筷子，\textbf{破除hold and wait}，不會deadlock。
-        \item Algorithm 3：當有偶數個哲學家時，偶數號的哲學家先取左邊，再取右邊，奇數號的則反之，\textbf{破除circular wait}，不會deadlock。與吃西餐先拿刀再拿叉相似。
+        \item Algorithm 3：當有\textbf{偶數}個哲學家時，偶數號的哲學家先取左邊，再取右邊，奇數號的則反之，\textbf{破除circular wait}，不會deadlock。與吃西餐先拿刀再拿叉相似。
     \end{itemize}
 \end{theorem}
 
@@ -435,7 +412,7 @@
                 \EndFunction
             \end{algorithmic}
         \end{algorithm}
-        \item Algorithm 2 (critacal section design and non-busy waiting)：\label{algo:cs-non-busy}將Algorithm 1 (\ref{algo:inter-non-busy})中的\code{Enable interrupt.}和\code{Disable interrupt.}分別改為\code{Entry section.}和\code{Exit section.}並使用\textsc{Test-and-Set} (\ref{algo:test-and-set-algo-2})或\textsc{Compare-and-Swap} (\ref{algo:comp-and-swap})實現。
+        \item Algorithm 2 (critacal section design and non-busy waiting)：\label{algo:cs-non-busy}將Algorithm 1 (\ref{algo:inter-non-busy})中的\code{Enable interrupt.}和\code{Disable interrupt.}分別改為\code{Entry section.}和\code{Exit section.}並使用\textsc{Test-and-Set} (\ref{algo:test-and-set-algo-2})或\textsc{Compare-and-Swap}實現。
         \item Algorithm 3 (disable interrupt design and busy waiting)：\label{algo:inter-busy}
         \begin{algorithm}[H]
             \caption{$wait(S)$ of Algorithm 3 (disable interrupt design and busy waiting).}
@@ -589,45 +566,8 @@
             \Function{$P_i$}{}
                 \State \Call{PrinterAllocation}{} $pa$ \Comment{Shared variable.}
                 \State $n$ := \Call{$pa$.Apply}{$i$}
-                \State Using printer $pr[n]$ .
+                \State Using printer $pr[n]$.
                 \State \Call{$pa$.Release}{$n$}
-            \EndFunction
-        \end{algorithmic}
-    \end{algorithm}
-\end{theorem}
-
-\begin{theorem}{()} 使用Monitor製作binary semaphore：
-    \begin{lstlisting}[caption={Data structure (Making semaphore using monitor).}, captionpos=b, mathescape=true]
-        Monitor Semaphore {
-            int value;
-            Condition x;
-        }
-    \end{lstlisting}
-    \begin{algorithm}[H]
-        \caption{$Wait$.}
-        \begin{algorithmic}[1]
-            \Function{Wait}{}
-                \If {$value \le 0$}
-                    \State \Call{$x$.wait}{}
-                \EndIf
-                \State $value$ := $value - 1$
-            \EndFunction
-        \end{algorithmic}
-    \end{algorithm}
-    \begin{algorithm}[H]
-        \caption{$Signal$.}
-        \begin{algorithmic}[1]
-            \Function{Signal}{}
-                \State $value$ := $value + 1$
-                \State \Call{$x$.signal}{}
-            \EndFunction
-        \end{algorithmic}
-    \end{algorithm}
-    \begin{algorithm}[H]
-        \caption{$initialization\_code()$.}
-        \begin{algorithmic}[1]
-            \Function{initialization\_code}{}
-                \State $value$ := $1$
             \EndFunction
         \end{algorithmic}
     \end{algorithm}

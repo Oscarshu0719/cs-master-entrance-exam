@@ -23,11 +23,13 @@
             \item $n + 2$ disks。
             \item 可允許$2$個disk故障。
         \end{itemize}
-        \item Read latency：RAID 3最短；Write latency：RAID 0 或 RAID 3最短。
-        \item RAID 3 has worst throughput for small writes.
-        \item RAID 3, 4, 5 have same throughput for large writes.
-        \item RAID 1 can \textbf{NOT} have small writes in parallel.
-        \item RAID 3 can \textbf{NOT} have small writes or reads in parallel. 
-        \item RAID 4, 5 perform same for parallel small reads and small writes. 
+        \item RAID 3 has \textbf{worst} throughput for \textbf{small writes}.
+        \item RAID 3 has \textbf{best small writes latency}.
+        \item RAID 3, 4, 5 have same throughput for \textbf{large writes}.
+        \item RAID 1 can \textbf{NOT} have \textbf{small writes} in parallel.
+        \item RAID 3 can \textbf{NOT} have \textbf{small writes or reads} in parallel. 
+        \item RAID 4, 5 perform same for parallel \textbf{small reads and writes}. 
+        \item RAID 4 does \textbf{NOT} have better \textbf{big reads} performance than RAID 3.
+        \item RAID 1+0 has better \textbf{write throughput} than RAID 0+1.
     \end{itemize}
 \end{theorem}

@@ -6,3 +6,20 @@
         \label{img:single-cycle-cpu}
     \end{figure}
 \end{theorem}
+
+\item \begin{theorem}{(384)} \quad\quad
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Instruction & ALUOp1 & ALUOp2 \\
+            \Xhline{2\arrayrulewidth}
+            \code{lw/sw} & $0$ & $0$ \\
+            \hline
+            \code{beq} & $\texttimes$ & $1$ \\
+            \hline
+            R-type & $1$ & $\texttimes$\\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{theorem}

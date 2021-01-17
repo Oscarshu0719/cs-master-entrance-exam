@@ -71,6 +71,8 @@
         \item Intel IA-64 (EPIC)：\begin{itemize}
             \item 支援利用compiler開發的平行度。
             \item 可以猜測，並利用if-else取代branch。
+            \item Registers比MIPS多很多。
+            \item Instruction group is a sequence of instructions which does \textbf{NOT} have data dependency and can be executed parallelly.
         \end{itemize}
         \item Speculation錯誤復原：\begin{itemize}
             \item 軟體提供修補程式。
@@ -96,5 +98,13 @@
                 \hline
             \end{tabular}
         \end{table}
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{(515)} MIPS exception handling： \begin{itemize}
+        \item 利用cause register儲存exception原因。
+        \item 將造成exception的instruction memory address存在EPC ($PC + 4$)。
+        \item 使用entry point switch to kernel。
+        \item Exception handling routine須將$PC - 4$。
     \end{itemize}
 \end{theorem}

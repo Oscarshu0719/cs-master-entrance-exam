@@ -7,8 +7,25 @@
 
 \begin{theorem}{(70)} Dispatcher： \begin{itemize}
         \item 將CPU真正分配給CPU scheduler選擇的process。
-        \item Context switch.
+        \item Context switching.
         \item Switch mode to user mode.
-        \item Jump to execution entry of process.
+        \item Jump to execution entry of user process.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{(72, 78, 82, 84)} CPU scheduling： \begin{itemize}
+        \item Non-preemptive SJF\textbf{不}適合用在\textbf{short-term} scheduler，因為很難在短時間算出next CPU burst；long-term scheduler較合適。
+        \item MFQ雖然不公平，但\textbf{NO} starvation。
+        \item Linux指定processes\textbf{不要}移轉到某些processors。
+        \item Worst-case CPU utilization for scheduling $n$ processes using Rate-monotonic: \begin{equation}
+            \begin{aligned}
+                & 2 \times (2^{\frac{1}{n}} - 1) \\
+                \Rightarrow & \ (n \rightarrow \infty) = 69\%
+            \end{aligned}
+        \end{equation}
+        \item Dispatch latency：\begin{itemize}
+            \item Conflict phase：preempts kernel，並且low-priority process releases needed resources for high-priority process。
+            \item Dispatch phase：Context switching, change mode to user mode, and jump to the user process.
+        \end{itemize}
     \end{itemize}
 \end{theorem}

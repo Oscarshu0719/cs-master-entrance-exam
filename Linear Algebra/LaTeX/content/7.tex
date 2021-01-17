@@ -10,11 +10,10 @@
 	\end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{(7.73, 7.79, 7.81)} （正交）若$\mat{A} \in \F^{m \times n}$，$\spc{W} = \cs(\mat{A}), \vec{b} \in \F^{m \times 1}$，則
+\item \begin{theorem}{(7.79, 7.81)} （正交）若$\mat{A} \in \F^{m \times n}$，$\spc{W} = \cs(\mat{A}), \vec{b} \in \F^{m \times 1}$，則
 	\begin{itemize}
 		\item 若$\mat{A}$行獨立，且$\mat{A} = \mat{QR}$為$\mat{A}$的QR分解，則
 		$\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\mat{R}\vec{x} = \mat{Q}\herm \vec{b}$。
-		\item 若$\cs(\mat{A})$為單範正交集，則$\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\vec{x} = \mat{A}\herm\vec{b}$。
 		\item 若$\mat{Q}$的行向量為\textbf{單範正交集}，$\spc{W} = \cs(\mat{Q})$，則
 		\begin{equation}
 			\proj{\spc{W}}{b} = \mat{Q}\mat{Q}\herm\vec{b}
@@ -24,24 +23,19 @@
 
 \item \begin{theorem}{(7.80, 7.81)} （正交，方陣）若$\mat{A} \in \F^{n \times n}$為方陣，且$\mat{A}$\textbf{行獨立}，則
 	\begin{itemize}
-		\item $\P^2 = \P$且$\P\herm = \P$$\iff$$\P$為正交投影矩陣
+		\item $\P^2 = \P$為冪等方陣且$\P\herm = \P$$\iff$$\P$為正交投影矩陣
 		\item $\cs(\P) = \cs(\mat{A})$
 		\item $\rnk(\P) = \rnk(\mat{A}) = n$
-		\item $\P$為冪等方陣。
 	\end{itemize}
 \end{theorem}
 
 \item \begin{theorem}{(7.100, 7.103, 7.104)} （正交）若$\spc{W} \subseteq \V$，$\P$為$\V$在$\spc{W}$上的投影算子，則$\Ker(\P) = \spc{W}^{\perp}$。
 \end{theorem}
 
-\item \begin{theorem}{(7.112)} （解，實數）
+\item \begin{theorem}{(7.112)} （解，實數）若$\mat{A}\vec{x} = \vec{b}$有解，則
 	\begin{itemize}
-		\item 若$\mat{A} \in \R^{m \times n}, \vec{b} \in \R^{m \times 1}$，則$\mat{A}\vec{x} = \vec{b}$有解$\iff$$\forall \vec{y}, \mat{A}^\intercal\vec{y} = \vec{0}$，則$\vec{b}^\intercal\vec{y} = \vec{0}$。
-		\item 若$\mat{A}\vec{x} = \vec{b}$有解，則
-			\begin{itemize}
-				\item \textbf{唯一}$\exists \vec{s} \in \cs(\mat{A}\herm)$為$\mat{A}\vec{x} = \vec{b}$之極小解，即$||\vec{x}||_2$為所有解中最小。
-				\item 若$\vec{u}$滿足$(\mat{AA}\herm)\vec{u} = \vec{b}$，則$\vec{s} = \mat{A}\herm\vec{u}$。
-			\end{itemize}
+		\item \textbf{唯一}$\exists \vec{s} \in \cs(\mat{A}\herm)$為$\mat{A}\vec{x} = \vec{b}$之極小解，即$||\vec{x}||_2$為所有解中最小。
+		\item 若$\vec{u}$滿足$(\mat{AA}\herm)\vec{u} = \vec{b}$，則$\vec{s} = \mat{A}\herm\vec{u}$。
 	\end{itemize}
 \end{theorem}
 

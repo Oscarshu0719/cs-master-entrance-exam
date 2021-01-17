@@ -12,7 +12,7 @@
         \hline
         AVL tree & \multicolumn{3}{c|}{\multirow{4}{*}{$O(\log_m n)$}} & $F_{h + 2} - 1 \le n \le 2^h - 1$ \\
         \cline{1-1}\cline{5-5}
-        B tree & \multicolumn{3}{c|}{} & $1 + 2\frac{\ceil{\frac{m}{2}}^{h - 1} - 1}{\ceil{\frac{m}{2}} - 1} \le n \le 2\ceil{\frac{m}{2}}^{h - 1} - 1$ \\
+        B tree & \multicolumn{3}{c|}{} & $1 + 2\frac{\ceil{\frac{m}{2}}^{h - 1} - 1}{\ceil{\frac{m}{2}} - 1} \le n \le \frac{m^h - 1}{m - 1}$ \\
         \cline{1-1}\cline{5-5}
         RBT & \multicolumn{3}{c|}{} & $h \le 2\log (n + 1)$ \\
         \cline{1-1}\cline{5-5}

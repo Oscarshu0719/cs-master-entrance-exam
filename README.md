@@ -23,6 +23,8 @@ This repository is used to keep notes for Computer Science graduate school entra
 
 - [Operating System (OS)](https://github.com/Oscarshu0719/cs-master-entrance-exam/tree/master/Operating%20System/LaTeX)
 
+- [Summary](https://github.com/Oscarshu0719/cs-master-entrance-exam/tree/master/Summary/LaTeX)
+
 ## Requirements
 
 - [MikTeX](https://miktex.org/download) (XeLaTeX is also downloaded).

@@ -1,22 +1,10 @@
-\item \begin{theorem}{(171, 178, 183, 193, 195)} Shortest path： \begin{itemize}
-        \item Floyd-Warshall：sparse時，也不能提升性能。
-        \item Johnson's在sparse時，性能較Floyd-Warshall好；Reweight後圖上所有邊權重皆$>0$，且最短路徑與原圖相同。
-        \item Bellman-Ford：\begin{equation}
-            D[v, k] = \min \{D[v, k - 1], \min_{(u, v) \in \E} \{D[u, k - 1] + wt(u, v)\}\}
-        \end{equation}
-        \item Floyd-Warshall：\begin{equation}
-            D^k[i, j] = \min\{D^{k - 1}[i, j], D^{k - 1}[i, k] + D^{k - 1}[k, j]\}
-        \end{equation}
-    \end{itemize}
-\end{theorem}
-
 \item \begin{theorem}{()} Minimum vertex cover (tree)：\begin{equation}
         \begin{aligned}
             V(v) = \min \{& 1 + \Sum\{V(c), \ \forall c \in v.child\}, \\
             & \len\{v.child\} + \Sum\{V(g), \ \forall c \in v.child \ \forall g \in c.child\}
         \}   
         \end{aligned}
-    \end{equation}
+    \end{equation} First part: root is in the cover; second part: root is NOT in the cover.
 \end{theorem}
 
 \item \begin{theorem}{()} Max-cut： \begin{itemize}

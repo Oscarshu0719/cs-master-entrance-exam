@@ -1,0 +1,579 @@
+\begin{itemize}
+    \item 若$\mat{A}$為對稱矩陣，則$\mat{A}^n$也是對稱矩陣。
+    \item 若$\mat{A}$為可逆上三角矩陣，則$\adj{A}$和$\mat{A}\inv$也是上三角矩陣。
+    \item 若$\mat{A}, \mat{B} \in \F^{n \times n}$為可逆方陣，則$\adj{\mat{AB}} = \adj{\mat{B}}\adj{\mat{A}}$。
+    \item 若$\T \in \L(\V, \V')$，則
+	\begin{itemize}
+		\item $\T$必保相依。
+		\item $\T$保獨立，即若$\spc{S}$為線性獨立，則$\T(\spc{S})$亦是線性獨立$\iff$$\T$為一對一
+		\item $\T$保生成，即若$\spc{S}$為$\V$生成集，則$\T(\spc{S})$亦是$\V$生成集$\iff$$\T$為映成
+    \end{itemize}
+    \item \quad\quad \begin{equation}
+		\begin{aligned}
+			& \mat{A} \in \F^{m \times n} \ \text{s.t.} \ \rnk(\mat{A}) = 1 \\ 
+			\iff & \exists \ \vec{u} \neq \vec{0} \in \F^{m \times 1}, \ \vec{v} \neq 0 \in \F^{1 \times n}, \ \text{s.t.} \ \mat{A} = \vec{uv}	
+		\end{aligned}
+    \end{equation}
+    \item \begin{itemize}
+		\item 若$\mat{A} \in \F^{m \times n}, \mat{B} \in \F^{n \times p}$，則 \begin{equation}
+			\rnk(\mat{A}) + \rnk(\mat{B}) - n \le \rnk(\mat{AB})
+		\end{equation}\begin{equation}
+			\begin{bmatrix}
+				\mat{I} & \mat{O} \\
+				\mat{-A} & \mat{I}
+			\end{bmatrix}
+			\begin{bmatrix}
+				\mat{I} & \mat{B} \\
+				\mat{A} & \mat{O}
+			\end{bmatrix}
+			\begin{bmatrix}
+				\mat{I} & \mat{-B} \\
+				\mat{O} & \mat{I}
+			\end{bmatrix} = 
+			\begin{bmatrix}
+				\mat{I} & \mat{O} \\
+				\mat{O} & \mat{-AB}
+			\end{bmatrix} = \mat{D} = \mat{A}\mat{B}\mat{C}
+		\end{equation} 因為$\mat{A}, \mat{B}$可逆，則\begin{equation}
+			\rnk(\begin{bmatrix}
+				\mat{I} & \mat{B} \\
+				\mat{A} & \mat{O}
+			\end{bmatrix}) = 
+			\rnk(\begin{bmatrix}
+				\mat{I} & \mat{O} \\
+				\mat{O} & \mat{-AB}
+			\end{bmatrix}) = n + \rnk(\mat{-AB}) = n + \rnk(\mat{AB})
+		\end{equation} 有$\rnk(\mat{A}) + \rnk(\mat{B}) \le n + \rnk(\mat{AB})$得證。
+		\item 若$\mat{A}_1, \ \cdots, \ \mat{A}_k \in \R^{n \times n}$為方陣，且$\mat{A}_1\cdots\mat{A}_k = \mat{O}$，則\begin{equation}
+			\rnk(\mat{A}_1) + \rnk(\mat{A}_2) + \cdots + \rnk(\mat{A}_k) \le (k - 1)n 
+		\end{equation} 
+    \end{itemize}
+    \item 若$\T(x) = \mat{A}\vec{x}, \T \in \L(\V, \V'), \mat{A} \in \F^{m \times n}$，則
+	\begin{itemize}
+		\item $\mat{A}$為一對一$\iff$
+		$\mat{A}$有左反矩陣$\iff$
+		$\rnk(\mat{A}) = \dim(\V) = n \le \dim(\V') = m, \ \Ker(\mat{A}) = \{\vec{0}\}$$\iff$
+		$\mat{A}\vec{x} = \vec{0}$只有$\vec{0}$唯一解$\iff$
+		$\mat{A}$行獨立，列生成$\F^{1 \times n}$$\iff$
+		$\mat{A}\vec{x} = \vec{b}$ $\le 1$解$\iff$
+		$\mat{A}\herm \mat{A}$可逆$\iff$
+		$\mat{A}^+ = (\mat{A}^\intercal\mat{A})\inv\mat{A}^\intercal$
+		\item $\mat{A}$為映成$\iff$
+		$\mat{A}$有右反矩陣$\iff$
+		$\rnk(\mat{A}) = \dim(\V') = m \le \dim(\V) = n$$\iff$
+		$\mat{A}$列獨立，行生成$\F^{m \times 1}$$\iff$
+		$\mat{A}\vec{x} = \vec{b}$ $\ge 1$解$\iff$
+		$\mat{A}\mat{A}\herm$可逆$\iff$
+		$\mat{A}^+ = \mat{A}^\intercal(\mat{A}\mat{A}^\intercal)\inv$
+    \end{itemize}
+    \item 若$\mat{A}, \mat{B}$為方陣且$\mat{A} \sim \mat{B}$，則$\mat{A}$與$\mat{B}$的
+	\begin{itemize}
+		\item $\tr$
+		\item $\det$
+		\item $\rnk$
+		\item $\nul$
+		\item 特徵多項式
+		\item 特徵根
+		\item 喬丹型
+	\end{itemize}
+    皆\textbf{相等}，反之不然。但\textbf{特徵向量}不保證相同，且僅\textbf{喬丹型}為充要條件。
+    \item 若$\mat{A}, \mat{B}$為方陣，則$\mat{AB}$與$\mat{BA}$有相同的
+	\begin{itemize}
+		\item 特徵根
+		\item 特徵多項式
+	\end{itemize}
+	若$\mat{A}, \mat{B}$\textbf{不}為方陣，只能保證$\mat{AB}$與$\mat{BA}$有相同的\textbf{非零}特徵根。 \\
+	\begin{proof} \begin{equation}
+			\begin{bmatrix}
+				\mat{I} & \mat{B} \\
+				\mat{O} & \mat{I}
+			\end{bmatrix}
+			\begin{bmatrix}
+				\mat{O} & \mat{O} \\
+				\mat{A} & \mat{AB}
+			\end{bmatrix}
+			\begin{bmatrix}
+				\mat{I} & \mat{-B} \\
+				\mat{O} & \mat{I}
+			\end{bmatrix} = 
+			\begin{bmatrix}
+				\mat{BA} & \mat{O} \\
+				\mat{A} & \mat{O}
+			\end{bmatrix} = \mat{T} = \mat{P}\mat{S}\mat{P}\inv
+		\end{equation}，所以$\mat{S} \sim \mat{T}$，有\begin{equation}
+			\begin{aligned} 
+				& \det(\begin{bmatrix}
+					-x\mat{I} & \mat{O} \\
+					\mat{A} & \mat{AB} - x\mat{I}
+				\end{bmatrix}) = 
+				\det(\begin{bmatrix}
+					\mat{BA} - x\mat{I} & \mat{O} \\
+					\mat{A} & -x\mat{I}
+				\end{bmatrix}) \\
+				\Rightarrow & \det(-x\mat{I})\det(\mat{AB} - x\mat{I}) = \det(\mat{BA} - x\mat{I})\det(-x\mat{I}) \\
+				\Rightarrow & \det(\mat{AB} - x\mat{I}) = \det(\mat{BA} - x\mat{I})
+			\end{aligned}
+		\end{equation} 則$\mat{AB}$與$\mat{BA}$有相同特徵多項式。
+    \end{proof}
+    \item 若$\mat{A}$為方陣，則
+	\begin{itemize}
+		\item $\mat{A}\inv$，若$\mat{A}$可逆
+		\item $\mat{A}^m, \ \forall m \in \N$
+		\item $\alpha\mat{A}$
+		\item $\mat{A} + \alpha\mat{I}$
+		\item $f(\mat{A}), \ f(x) \in \P$
+		\item $\mat{A}\herm$，若$\mat{A}$為正規矩陣，即$\mat{A}\mat{A}\herm = \mat{A}\herm\mat{A}$。
+	\end{itemize}
+    特徵向量\textbf{不}改變。
+    \item 若$\T, \textit{U} \in \L(\V, \V)$皆可對角化，則\begin{equation}
+		\T, \textit{U} \ \text{可同步對角化} \ \iff \T\textit{U} = \textit{U}\T	
+    \end{equation} $\V, \textit{U}$有相同特徵向量。
+    \item 若$\T \in \L(\V, \V)$，且$\T^2 = \T$，稱$\T$為$\V$上的冪等（idempotent）算子，則
+	\begin{itemize}
+		\item $\V = \Ker(\T) \oplus \im(\T)$
+		\item $\V(0) = \Ker(\T), \V(1) = \im(\T)$
+    \end{itemize}
+    \item 若$\T \in \L(\V, \V)$，以下等價
+	\begin{itemize}
+		\item $\im(\T) = \im(\T^2)$
+		\item $\rnk(\T) = \rnk(\T^2)$
+		\item $\nul(\T) = \nul(\T^2)$
+		\item $\Ker(\T) = \Ker(\T^2) \iff \V = \ker(\T) \oplus \im(\T)$
+    \end{itemize}
+    \item 若$\T \in \L(\V, \V)$為冪零算子，且最小正整數$k$為$\T$的指標，則
+	$\exists \vec{v} \in \V \lor \vec{v} \in \Ker(\T^k) - \Ker(\T^{k - 1})$且$\vec{v} \neq \vec{0}$，
+    $\{\vec{v}, \T(\vec{v}), \ \cdots, \T^{k - 1}(\vec{v})\}$線性獨立。
+    \item 若$\T \in \L(\V, \V)$，則
+	\begin{itemize}
+		\item $\{\vec{0}\} \subseteq \Ker(\T) \subseteq \Ker(\T^2) \subseteq \cdots \subseteq \V$
+		\item $\spc{W} = \bigcup\limits_{i = 1}^{\infty} \Ker(\T^i) = \Ker(\T^k)$為最大冪零區。
+		\item $\V \supseteq \im(\T) \supseteq \im(\T^2) \supseteq \cdots \supseteq \{\vec{0}\}$
+		\item $\spc{W} = \bigcap\limits_{i = 1}^{\infty} \im(\T^i) = \im(\T^k)$為最大可逆區。
+    \end{itemize}
+    \item 若$\T \in \L(\V, \V)$，則$\exists \ k \in N$使得$\V = \Ker(\T^k) \oplus \im(\T^k)$。
+    \item 冪零矩陣特徵根全都是$0$。
+    \item 若$\T \in \L(\V, \V), \vec{v} \in \V$，則
+	\begin{itemize}
+		\item $\dim(C_{\vec{v}}(\T)) = k$\textbf{不能}保證$\vec{v} \in \Ker(\T^k) - \Ker(\T^{k - 1})$。
+		\item $\dim(C_{\vec{v}}(\T)) = k$保證$\beta = \{\vec{v}, \T(\vec{v}), \ \cdots, \T^{k - 1}(\vec{v})\}$為$C_{\vec{v}}(\T)$的基底。
+		\item $\dim(C_{\vec{v}}(\T)) = k$\textbf{不能}保證$\T^k(\vec{v}) = 0$。
+    \end{itemize}
+    \item 若$\T \in \L(\V, \V)$，$\spc{W}$為$\T$-不變子空間，則
+	\begin{itemize}
+		\item $\T_\spc{W}$的特徵多項式整除$\T$的特徵多項式。
+		\item $\T_\spc{W}$的極小多項式整除$\T$的極小多項式。
+		\item 若$\T$可對角化，則$\T_{\spc{W}}$也可對角化。
+    \end{itemize}
+    \item 若$\T \in \L(\V, \V)$，且$\lambda_1, \ \cdots, \ \lambda_r$為相異特徵根，則\begin{equation}
+		\T \ \text{可對角化} \ \iff m_{\T}(x) = (x - \lambda_1)\cdots(x - \lambda_r)
+    \end{equation} 
+    \item 若$\mat{A}, \mat{B} \in \R^{n \times n}$為實方陣，當$\mat{AB} = \mat{BA}$時，\begin{equation}
+		e^{A}e^{B} = e^{A + B}
+    \end{equation} 可通過泰勒展開式證明。
+    \item \begin{itemize}
+		\item $\Ker(\mat{A}\herm \mat{A}) = \Ker(\mat{A})$
+		\item $\rnk(\mat{A}\herm \mat{A}) = \rnk(\mat{A})$
+		\item $\lker(\mat{A} \mat{A}\herm) = \lker(\mat{A})$
+		\item 若$\mat{A} \in \R^{m \times n}$，$\rnk(\mat{A}^\intercal \mat{A}) = \rnk(\mat{A}\mat{A}^\intercal)$
+		\item $\cs(\mat{A}^\intercal\mat{A}) = \cs(\mat{A}^\intercal)$
+		\item $\mat{A}$行獨立$\iff$$\mat{A}\herm\mat{A}$可逆
+		\item $\mat{A}$列獨立$\iff$$\mat{A}\mat{A}\herm$可逆
+    \end{itemize}
+    \item 若$\mat{A} \in \F^{m \times n}$，$\spc{W} = \cs(\mat{A}), \vec{b} \in \F^{m \times 1}$，則
+	\begin{itemize}
+		\item 若$\mat{A}$行獨立，且$\mat{A} = \mat{QR}$為$\mat{A}$的QR分解，則
+		$\vec{x} \in \F^{n \times 1}$使得$||\mat{A}\vec{x} - \vec{b}||$最小$\iff$$\mat{R}\vec{x} = \mat{Q}\herm \vec{b}$。
+		\item 若$\mat{Q}$的行向量為\textbf{單範正交集}，$\spc{W} = \cs(\mat{Q})$，則
+		\begin{equation}
+			\proj{\spc{W}}{b} = \mat{Q}\mat{Q}\herm\vec{b}
+		\end{equation}
+    \end{itemize}
+    \item 若$\mat{A} \in \F^{n \times n}$為方陣，且$\mat{A}$\textbf{行獨立}，則
+	\begin{itemize}
+		\item $\P^2 = \P$為冪等方陣且$\P\herm = \P$$\iff$$\P$為正交投影矩陣
+		\item $\cs(\P) = \cs(\mat{A})$
+		\item $\rnk(\P) = \rnk(\mat{A}) = n$
+    \end{itemize}
+    \item 若$\spc{W} \subseteq \V$，$\P$為$\V$在$\spc{W}$上的投影算子，則$\Ker(\P) = \spc{W}^{\perp}$。
+    \item 若$\mat{A}\vec{x} = \vec{b}$有解，則
+	\begin{itemize}
+		\item \textbf{唯一}$\exists \vec{s} \in \cs(\mat{A}\herm)$為$\mat{A}\vec{x} = \vec{b}$之極小解，即$||\vec{x}||_2$為所有解中最小。
+		\item 若$\vec{u}$滿足$(\mat{AA}\herm)\vec{u} = \vec{b}$，則$\vec{s} = \mat{A}\herm\vec{u}$。
+    \end{itemize}
+    \item 證明Cauchy-Schwarz inequality：\begin{equation}
+		|<\vec{u}, \vec{v}>| \le ||\vec{u}|| \times ||\vec{v}||
+	\end{equation} \begin{proof}
+		用數學歸納法證明： \\
+		若$\vec{v} = \vec{0}$，成立。 \\
+		若$\vec{v} \neq \vec{0}$，取\begin{equation}
+			\alpha = \frac{<\vec{u}, \vec{v}>}{<\vec{v}, \vec{v}>}
+		\end{equation} 則 \begin{equation}
+			\begin{aligned}
+				0 & \le ||\vec{u} - \alpha\vec{v}||^2 \\
+				& = <\vec{u}, \vec{u}> - \overline{\alpha}<\vec{u}, \vec{v}> - \alpha<\vec{v}, \vec{u}> + \alpha\overline{\alpha}<\vec{v}, \vec{v}> \\
+				& = <\vec{u}, \vec{u}> - \overline{\frac{<\vec{u}, \vec{v}>}{<\vec{v}, \vec{v}>}}<\vec{u}, \vec{v}> - \frac{<\vec{u}, \vec{v}>}{<\vec{v}, \vec{v}>}<\vec{v}, \vec{u}> \\
+				& + \frac{<\vec{u}, \vec{v}>}{<\vec{v}, \vec{v}>}\overline{\frac{<\vec{u}, \vec{v}>}{<\vec{v}, \vec{v}>}}<\vec{v}, \vec{v}> \\
+				& = ||\vec{u}||^2 - \frac{|<\vec{u}, \vec{v}>|^2}{||\vec{v}||^2} \\
+				\Rightarrow & \frac{|<\vec{u}, \vec{v}>|^2}{||\vec{v}||^2} \le ||\vec{u}||^2 \\
+				\Rightarrow & |<\vec{u}, \vec{v}>|^2 \le ||\vec{u}||^2 \times ||\vec{v}||^2 \\
+			\end{aligned}
+		\end{equation}
+    \end{proof}
+    \item 若$\T \in \L(\V, \V)$，則
+	\begin{table}[H]
+		\renewcommand{\arraystretch}{2}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			定義 & $\lambda$ & $a_{ii}$ & $\det$ \\
+			% \hline
+			\Xhline{3\arrayrulewidth}
+			self-adjoint $\T^* = \T$ & \multirow{3}{*}{$\in \R$} 
+			& \multirow{3}{*}{$\in \R$} & \multirow{3}{*}{$\in \R$} \\
+			Hermitian (over $\C$) $\mat{A}\herm = \mat{A}$ & & & \\
+			\cline{1-1}
+			symmetric (over $\R$) $\mat{A}^\intercal = \mat{A}$ & & & \\
+
+			% \hline
+			\Xhline{3\arrayrulewidth}
+			skew self-adjoint $\T^* = -\T$ & \multirow{2}{*}{$0$或純虛數} 
+			& \multirow{2}{*}{$0$或純虛數} & \multirow{2}{*}{$\begin{cases}
+				\in \R, & \text{if} \ n \in 2k \\
+				0\text{或純虛數}, & \text{if} \ n \in 2k + 1 \\
+			\end{cases}$} \\
+			skew Hermitian (over $\C$) $\mat{A}\herm = -\mat{A}$ & & & \\
+			\hline
+			skew symmetric (over $\R$) $\mat{A}^\intercal = -\mat{A}$ & $0$
+			& $0$ & $\begin{cases}
+				\in \R, & \text{if} \ n \in 2k \\
+				0, & \text{if} \ n \in 2k + 1 \\
+			\end{cases}$ \\
+
+			% \hline
+			\Xhline{3\arrayrulewidth}
+			positive definite $\dotp{\T(\vec{x})}{\vec{x}} > 0, \ \forall \vec{x} \neq \vec{0}$ & \multirow{2}{*}{$> 0$} 
+			& \multirow{2}{*}{$> 0$} & \multirow{2}{*}{$> 0$} \\
+			$\dotp{\mat{A}\vec{x}}{\vec{x}} = \vec{x}\herm\mat{A}\vec{x} > 0, \ \forall \vec{x} \neq \vec{0}$ & & & \\
+			
+			% \hline
+			\Xhline{3\arrayrulewidth}
+			positive semi-definite $\dotp{\T(\vec{x})}{\vec{x}} \ge 0, \ \forall \vec{x}$ & \multirow{2}{*}{$\ge 0$} 
+			& \multirow{2}{*}{$\ge 0$} & \multirow{2}{*}{$\ge 0$} \\
+			$\dotp{\mat{A}\vec{x}}{\vec{x}} = \vec{x}\herm\mat{A}\vec{x} \ge 0, \ \forall \vec{x}$ & & & \\
+			
+			% \hline
+			\Xhline{3\arrayrulewidth}
+			unitary (over $\C$) $\T^*\T = \mat{I}$ & \multirow{2}{*}{$|\lambda| = 1$} 
+			& \multirow{2}{*}{$\texttimes$} & \multirow{2}{*}{$|\det(\mat{A})| = 1$} \\
+			$\mat{A}\herm\mat{A} = \mat{I}$ & & & \\
+
+			% \hline
+			\Xhline{3\arrayrulewidth}
+			orthogonal (over $\R$) $\T^*\T = \mat{I}$ & \multirow{2}{*}{$\pm 1$} 
+			& \multirow{2}{*}{$\texttimes$} & \multirow{2}{*}{$\pm 1$} \\
+			$\mat{A}^\intercal\mat{A} = \mat{I}$ & & & \\
+
+			\hline
+		\end{tabular}
+		\renewcommand{\arraystretch}{1}
+    \end{table}
+    \item 若$\mat{A} \in \C^{n \times n} (\lor \ \R^{n \times n})$，則以下等價\begin{itemize}
+		\item $\mat{A}$為么正（正交）。
+		\item $<\mat{A}\vec{x}, \mat{A}\vec{y}> = <\vec{x}, \vec{y}>$，保內積。
+		\item $||\mat{A}\vec{x}|| = ||\vec{x}||$，保長度。
+    \end{itemize}
+    \item 若$\mat{A} \in \F^{n \times n}$為么正或是正交方陣，則\begin{itemize}
+		\item $\cs(\mat{A})$和$\rs(\mat{A})$皆為單範正交集。
+		\item 若$\mat{A}$\textbf{不為方陣}，則$\rs(\mat{A})$\textbf{未必}為單範正交集。
+    \end{itemize}
+    \item 若$\mat{A}, \mat{B} \in \F^{n \times n}$為方陣，且$\mat{A}$和$\mat{B}$么正相等，則$\tr(\mat{A}\herm\mat{A}) = \tr(\mat{B}\herm\mat{B})$。
+    \item \begin{itemize}
+		\item 若$\mat{A}, \mat{B} \in \C^{n \times n}$為複數方陣，且$\mat{A}$與$\mat{B}$么正相似，則以下$\mat{A}$與$\mat{B}$的性質等價
+			\begin{itemize}
+				\item 正規
+				\item Hermitian
+				\item 斜Hermitian
+				\item 正定
+				\item 半正定
+				\item 么正
+			\end{itemize}
+		\item 若$\mat{A}, \mat{B} \in \R^{n \times n}$為實方陣，且$\mat{A}$與$\mat{B}$正交相似，則以下$\mat{A}$與$\mat{B}$的性質等價
+		\begin{itemize}
+			\item 對稱
+			\item 斜對稱
+			\item 正交
+		\end{itemize}
+		\item 若$\mat{A} \in \C^{n \times n}$為複數方陣，則$\mat{A}$為正規且上三角方陣$\iff$$\mat{A}$為對角方陣。
+		\item 若$\mat{A} \in \C^{n \times n}$為複數方陣，則$\mat{A}$為正規方陣$\iff$$\mat{A}$可么正對角化。
+		\item 若$\mat{A} \in \R^{n \times n}$為實方陣，則$\mat{A}$為對稱方陣$\iff$$\mat{A}$可正交對角化。
+    \end{itemize}
+    \item Cholesky分解必須\textbf{對稱}且\textbf{正定}。
+    \item 若$\mat{A} = \mat{U\Sigma V}\herm$為$\mat{A}$的奇異值分解，則
+	\begin{itemize}
+		\item \begin{equation}
+			\sum_{i = 1}^{r} \sigma^2 = \sum_{i = 1}^{m}\sum_{j = 1}^{n}|a_{ij}|^{2}
+		\end{equation}
+		\item $\cs(\mat{V})$為$\mat{A}\herm\mat{A}$的特徵向量且為單範正交集。
+		\item $\cs(\mat{U})$為$\mat{A}\mat{A}\herm$的特徵向量且為單範正交集。
+		\item 若$\rnk(\mat{A}) = r$為非零奇異值個數，則 \begin{itemize}
+			\item $\vec{v}_1, \vec{v}_2, \ \cdots, \vec{v}_r$為$\cs(\mat{A}\herm)$單範正交基底。
+			\item $\vec{v}_{r + 1}, \ \cdots, \vec{v}_n$為$\Ker(\mat{A})$單範正交基底。
+			\item $\vec{u}_1, \vec{u}_2, \ \cdots, \vec{u}_r$為$\cs(\mat{A})$單範正交基底。
+			\item $\vec{u}_{r + 1}, \ \cdots, \vec{u}_m$為$\Ker(\mat{A}\herm)$單範正交基底。 
+		\end{itemize}
+    \end{itemize}
+    \item 若$\mat{A} = \mat{U\Sigma V}^\intercal \in \R^{m \times n}$，則$\mat{X} = \mat{A}^+$有 \begin{itemize}
+		\item $\mat{AXA} = \mat{A}$
+		\item $\mat{XAX} = \mat{X}$
+		\item $(\mat{AX})^\intercal = \mat{AX}$
+		\item $(\mat{XA})^\intercal = \mat{XA}$
+    \end{itemize} $\mat{X}^+$為\textbf{唯一}滿足這四個條件的矩陣。
+    \item $2^{mn} \Mod{2^m - 1} = 1$。
+    \item 若$p$為質數，$a \in \Z$，則$a^{-1} \equiv a \Mod{p}$即$a^2 \equiv 1 \Mod{p}$$\iff$$a \equiv \pm 1 \Mod{p}$。
+    \item \begin{itemize}
+        \item Wilson's theorem：
+        若$p$為質數，則
+        \begin{equation}
+            (p - 1)! \equiv -1 \Mod{p}
+        \end{equation}
+        \item Fermat's little theorem：
+        若$p$為質數，$m \in Z$，且$\gcd(m, p) = 1$，則
+        \begin{equation}
+            m^{p - 1} \equiv 1 \Mod{p}
+        \end{equation}
+    \end{itemize}
+    \item \begin{itemize}
+        \item 若$m \in \Z, n \in \N$，且$\gcd(m, n) = 1$，則$m^{\phi(n)} \equiv 1 \Mod{n}$。
+        \item 若$p$為質數，$m \in Z$，且$\gcd(m, p) = 1$，則$m^{-1} \equiv m^{p - 2} \Mod{p}$
+    \end{itemize}
+    \item If $2^n - 1$ is prime, then $n$ is prime.
+    \item 證明$\N$中質數個數為$\infty$。 \\
+    \begin{proof}
+        若質數個數為有限個，令\begin{equation}
+            P_1, \ P_2, \ \cdots, \ P_k
+        \end{equation} 為所有質數。
+        取\begin{equation}
+            E = P_1P_2\cdots P_k + 1
+        \end{equation} 所以$E$為composite，則
+        \begin{equation}
+            \exists \ P_j \quad \text{s.t.} \ P_j | E
+        \end{equation} 又
+        \begin{equation}
+            \begin{aligned}
+                & P_j | P_1P_2\cdots P_k  \\
+                \Rightarrow & P_j | (E - P_1P_2\cdots P_k) \\
+                \Rightarrow & P_j | 1
+            \end{aligned} 
+        \end{equation} 但質數$P_j$不可能整除$1$，矛盾，因此$P_j = 1$，$E$為質數。得證，$\N$中質數個數為$\infty$。
+    \end{proof}
+    \item 證明$(0, 1)$為不可數集。 \\
+    \begin{proof}
+        $f: \N \rightarrow (0, 1)$ is bijective，令$f(i) = r_i, \ \forall i = 1, 2, 3, \cdots$其中 \\ \begin{equation}
+            \begin{cases}
+                r_1 = 0.r_{11}r_{12}\cdots \\
+                r_2 = 0.r_{21}r_{22}\cdots \\
+                \quad \quad \quad \vdots \\
+                r_i = 0.r_{i1}r_{i2}\cdots \\
+            \end{cases}
+        \end{equation} 取 \begin{equation}
+            s = 0.s_1s_2\cdots, \ s_i = \begin{cases}
+                4 &, r_{ii} \neq 4 \\
+                5 &, r_{ii} = 4
+            \end{cases}
+        \end{equation} $s_i \in (0, 1)$但$\nexists \ i \in \N$ s.t. $f(i) = s$，因此$(0, 1)$為不可數集。
+    \end{proof}
+    \item \begin{equation}
+        A = \{1, \ 2, \ \cdots, \ 2n\}
+    \end{equation} 在$A$取$N + 1$個數，\begin{equation}
+        \exists \ a, b \quad \text{s.t.} \ a | b \lor b | a
+    \end{equation}
+    \begin{proof}
+        \begin{equation}
+            \forall \ x \in A, \ x = 2^k \times y, \ k \in \Z, \ y = 2l + 1, \ l \in \Z
+        \end{equation} 又$A$中只有$n$個奇數，則取$n + 1$個數時， \begin{equation}
+            \begin{aligned}
+                \exists \ a, b \quad & \text{s.t.} \ a = 2^{k_1} \times y, \ b = 2^{k_2} \times y \\
+                & a | b \lor b | a
+            \end{aligned}
+        \end{equation}
+    \end{proof}
+    \item \quad\quad \begin{itemize}
+        \item 若$A$為一集合，且$|A| = m$，$A$上等價關係的個數，即相異分割數。\begin{equation}
+            \sum_{i = 1}^{m} \text{S}(m, i)
+        \end{equation}
+        \item $m$相異物放入$n$相同箱\textbf{可}空箱的方法。\begin{equation}
+            \sum_{i = 1}^{n} \text{S}(m, i)
+        \end{equation}
+    \end{itemize}
+    \item Ordered sum of positive integers, where each summand is $\ge 2$: \begin{equation}
+        \begin{cases}
+            a_n = a_{n - 1} + a_{n - 2} &, n \ge 2 \\
+            a_1 = 0, a_2 = 1     
+        \end{cases}
+    \end{equation}
+    \item 若$G$與$\overline{G}$同構，且$|\V| = n$，則$n = 4k \lor n = 4k + 1$。
+    \item \quad\quad
+    \begin{itemize}
+        \item 一簡單無向圖，若所有點的度數$\ge k$，則圖上必含一個長度至少為$k + 1$的環路（cycle）。
+        \item 若$A$為一鄰接矩陣，則\begin{itemize}
+            \item $\frac{1}{6}\tr(A^3)$為圖上三角形個數。
+            \item \begin{equation}
+                \sum_{i = 1}^{n}\sum_{j = 1}^{n} A^2[i, j] = \sum_{i = 1}^{n} \deg(v_i)^2
+            \end{equation}
+        \end{itemize}
+    \end{itemize}
+    \item \quad\quad
+    \begin{itemize}
+        \item Maximum length of a \textbf{trail} of $K_n$ is $\binom{2n}{2} - (n - 1)$.
+        \item Maximum length of a \textbf{circuit} of $K_n$ is $\binom{2n}{2} - n$.
+    \end{itemize}
+    \item \quad\quad
+    \begin{itemize}
+        \item 圖中有尤拉迴路$\iff$為連接圖且所有點的度數為偶數。
+        \item $K_n$有尤拉迴路$\iff$$n$為奇數。
+        \item $K_{m, n}$有尤拉迴路$\iff$$m, n$為偶數。
+        \item 圖中有尤拉路線$\iff$為連通圖且圖中恰含$0$個或$2$個點度數為奇數。
+        \item 圖中有尤拉迴路$\iff$為強連通圖且所有點的出度數與入度數相同。
+        \item 若圖中有尤拉迴路，則有尤拉路線。
+    \end{itemize}
+    \item \quad\quad
+    \begin{itemize}
+        \item $K_n^*$必定有有向漢米爾頓路徑。
+        \item 若$G = (\V, \E), \ |\V| = n \ge 3$為一無迴圈無向圖，
+        \begin{itemize}
+            \item 若\begin{equation}
+                \begin{aligned}
+                    \deg(x) + \deg(y) & \ge n - 1, \ \forall x, y \in \V, x \neq y \ \lor \\
+                    \deg(v) & \ge \frac{n - 1}{2}, \ \forall v \in \V
+                \end{aligned}
+            \end{equation}
+            ，則$G$有漢米爾頓\textbf{路徑}。
+            \item 若\begin{equation}
+                \begin{aligned}
+                    \deg(x) + \deg(y) & \ge n, \ \forall x, y \in \V, x, y\ \text{不相鄰} \ \lor \\
+                    \deg(v) & \ge \frac{n}{2}, \ \forall v \in \V
+                \end{aligned}
+            \end{equation}
+            ，則$G$有漢米爾頓\textbf{環路}。
+        \end{itemize}
+        \item $K_n, n \ge 3$必有漢米爾頓\textbf{環路}。
+        \item 若一圖有漢米爾頓環路，則該圖中任兩點至少有兩條路徑相連。
+        \item 一連通雙分圖，若圖中有漢米爾頓\textbf{環路}，則兩邊的頂點數相同。
+        \item 一連通雙分圖，若圖中有漢米爾頓\textbf{路徑}，則兩邊的頂點數相差$\le 1$。
+        \item $K_n$有$\frac{(n - 1)!}{2}$個相異漢米爾頓環路。
+        \item $K_n$，$n$為奇數，有$\le \frac{n - 1}{2}$個\textbf{不共邊}的漢米爾頓環路。
+        \item $K_{n, n}$有$\frac{1}{2}n!(n - 1)!$個相異漢米爾頓環路。
+        \item 若$G = (\V, \E), \ |\V| = n$，則\begin{equation}
+            |\E| \ge \binom{n - 1}{2} + 2
+        \end{equation}
+        時，$G$有漢米爾頓\textbf{環路}。
+    \end{itemize}
+    \item \quad\quad
+    \begin{itemize}
+        \item Euler formula：若$G = (\V, \E), |\V| = v, |\E| = e, r\text{為區域個數}, M\text{為分量圖數}$，且$G$為平面圖，則$v - e + r = 1 + M$。
+        \item 若$G = (\V, \E), |\V| = v, |\E| = e \ge 2, r\text{為區域個數}, M\text{為分量圖數}$，且$G$為無迴圈簡單\textbf{連通}平面圖，則\begin{itemize}
+            \item \begin{equation}
+                \frac{3}{2}r \le e \le 3v - 6
+            \end{equation}
+            \item 若$G$\textbf{不含任何三角形}，則\begin{equation}
+                e \le 2v - 4
+            \end{equation}
+            \item 若每個環路$\ge k \ge 3$邊組成，則\begin{equation}
+                e \le \frac{k}{k - 2}(v - 2M)
+            \end{equation}
+        \end{itemize}
+        \item 一無迴圈簡單平面圖必含一個度數$\le 5$的頂點。
+    \end{itemize}
+    \item \quad\quad
+    \begin{itemize}
+        \item 若$P(G, \lambda)$為著色多項式，則\begin{itemize}
+            \item $P(G, \lambda)$常數項為$0$。
+            \item $P(G, \lambda)$係數和為$0$。
+            \item $P(G, \lambda)$最高次項係數為$1$。
+        \end{itemize}
+    \end{itemize}
+    \item Edge-coloring: \begin{equation}
+        \begin{aligned}
+            \chi'(K_n) & = \begin{cases}
+                n - 1 &, n = 2k \\
+                n &, n = 2k + 1
+            \end{cases} \\
+            \chi'(C_n) & = \begin{cases}
+                2 &, n = 2k \\
+                3 &, n = 2k + 1
+            \end{cases} \\
+            \chi'(K_{n , n}) & = n
+        \end{aligned}
+    \end{equation}
+    \item 若$G = (\V, \E)$ is connected，則\begin{equation}
+        |\E| \ge |\V| - 1    
+    \end{equation} \begin{proof}
+        用數學歸納法證明： \\
+        當$|\V| = 1$時，成立。 \\
+        設$|\V| < n$時成立。考慮$|\V| = n$時，$\forall \ v, \ \deg(v) = m$，則$G - v$形成$k$個components，有\begin{equation}
+            G_1 = (\V_1, \E_1), \ G_2 = (\V_2, \E_2), \ \cdots, \ G_k = (\V_k, \E_k)
+        \end{equation} 又$G_i, \ 1 \le k \le m$ is connected，且$|\V_i| < n$。根據數學歸納法，\begin{equation}
+            |\E_i| \ge |\V_i| - 1, \ \forall \ i = 1, \ \cdots, k
+        \end{equation} 則 \begin{equation}
+            \begin{aligned}
+                |\E| & = |\E_1| + \cdots + |\E_k| + m \\
+                & \ge (|\V_1| - 1) + \cdots + (|\V_k| - 1) + m \\
+                & = (|\V_1| + \cdots + |\V_k|) + (m - k) \\
+                & = |\V| - 1 + (m - k) \\
+                & \ge |\V| - 1
+            \end{aligned}
+        \end{equation}
+    \end{proof}
+    \item \quad\quad
+    \begin{itemize}
+        \item 若$T = (\V, \E), |\V| = n$為$m$-元樹，其中$i, l$分別表示內部節點與樹葉個數，則\begin{itemize}
+            \item \begin{equation}
+                n \le mi + 1
+            \end{equation}
+            \item \begin{equation}
+                l \le (m - 1)i + 1
+            \end{equation}
+            當$T$為\textbf{滿}$m$-元樹時，等號成立。
+        \end{itemize}
+        \item 一滿$m$-元樹，$i$為內部節點個數，$I, E$分別表示內部及外部路徑長，則\begin{equation}
+            E = (m - 1)I + mi
+        \end{equation}
+    \end{itemize}
+    \item \quad\quad
+    \begin{itemize}
+        \item $K_n$相異生成樹個數為$n^{n - 2}$。
+        \item $K_{m, n}$相異生成樹個數為$m^{n - 1}n^{m - 1}$。
+        \item 若$G = (\V, \E)$為無向圖，且$e = \{a, b\} \in \E$，$N(G)$為$G$的相異生成樹個數，則\begin{equation}
+            N(G) = N(G - e) + N(G \cdot e)
+        \end{equation}
+        \item 一無向連通圖，其任意切集與環路必含\textbf{偶數}個共同邊。
+    \end{itemize}
+    \item $\exists x\ (P(x) \land Q(x)) \neq \exists x \ P(x) \land \exists \ x P(x)$
+    \item ($|A| = |B|$) $A$: The set of all programs that terminate. $B$: The set of all programs that do NOT terminate. 
+    \item \quad\quad \begin{itemize}
+		\item $\cs(\mat{A}^+) = \cs(\mat{A}^\intercal) = \rs(\mat{A})$
+		\item $\vec{x}_0 = \mat{A}^+ \vec{b}$為$||\mat{A}\vec{x} - \vec{b}||_2$的最小平方解。
+    \end{itemize}
+    \item \item (\textbf{FALSE}) For any non-zero real \textbf{symmetric} matrix, its SVD can be the same as its eigenvalue decomposition.
+    \item For any non-zero real matrix $\mat{A}$, $\mat{A}^\intercal\mat{A}$'s SVD can be the same as its eigenvalue decomposition. 
+    因為$\mat{A}^\intercal\mat{A}$正半定，$\mat{A}$可么正對角化，$\exists \ \mat{P}$為么正矩陣，使得 \begin{equation}
+        \begin{aligned}
+            & \mat{P}^\intercal(\mat{A}^\intercal\mat{A})\mat{P} = \mat{D} \\
+            \Rightarrow & \mat{A}^\intercal\mat{A} = \mat{P}\mat{D}\mat{P}^\intercal
+        \end{aligned} 
+    \end{equation} 為$\mat{A}^\intercal\mat{A}$的SVD。
+    \item 可對角化\textbf{不}保證non-singular。
+    \item If $\mat{A}$, $\mat{B}$ and $\mat{A + B}$ are non-singular square matrices, and $\mat{A}\inv + \mat{B}\inv$ is also non-singular.
+    Since $\mat{A}(\mat{A} + \mat{B})\inv\mat{B}$ is invertible, \begin{equation}
+        (\mat{A}(\mat{A} + \mat{B})\inv\mat{B})\inv = \mat{B}\inv(\mat{A} + \mat{B})\mat{A}\inv = \mat{A}\inv + \mat{B}\inv
+    \end{equation}
+    \item The transition matrix from one basis to another must be \textbf{non-singular}, but a linear transformation matrix can be singular.
+    \item (\textbf{FALSE}) Let $\spc{S}$ be a subset of an inner product space, then $\spc{S} = (\spc{S}^{\bot})^{\bot}$.
+    \item (\textbf{FALSE}) Let $\spc{S}_1, \spc{S}_2$ be subsets of an inner product space, and $\spc{S}_1^{\bot} = \spc{S}_2^{\bot}$, then $\spc{S}_1 = \spc{S}_2$.
+    \item (\textbf{FALSE}) If $\spc{V}$ is orthogonal to $\spc{W}$, then $\spc{V}^\bot$ is orthogonal to $\spc{W}^\bot$.
+    \item SVD中singular value遞減排序。
+    \item $\mat{A}\vec{x} = \vec{b} \ (\vec{b} \neq \vec{0})$ is consistent, then solution set is \textbf{NOT} a subspace, since $\vec{0}$ is NOT included.
+    \item If $\spc{W}$ is a subset of $\R^n$, but $\spc{W} \cup \spc{W}^\perp \neq \R^n$, since $\spc{W}^\perp$ is NOT a subset.
+    \item If $\V \in \R^{m \times n}$, $<\mat{A}, \mat{B}> = \tr(\mat{B}^\intercal\mat{A})$ does \textbf{NOT} define an inner space in $\V$, since if $m \neq n$, $\mat{B}^\intercal\mat{A}$ may \textbf{NOT} exist.
+\end{itemize}
+
+\pagebreak

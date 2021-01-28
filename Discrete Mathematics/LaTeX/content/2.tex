@@ -1,3 +1,21 @@
+\item \begin{theorem}{(2.101)} 證明$(0, 1)$為不可數集。 \\
+    \begin{proof}
+        $f: \N \rightarrow (0, 1)$ is bijective，令$f(i) = r_i, \ \forall i = 1, 2, 3, \cdots$其中 \\ \begin{equation}
+            \begin{cases}
+                r_1 = 0.r_{11}r_{12}\cdots \\
+                r_2 = 0.r_{21}r_{22}\cdots \\
+                \quad \quad \quad \vdots \\
+                r_i = 0.r_{i1}r_{i2}\cdots \\
+            \end{cases}
+        \end{equation} 取 \begin{equation}
+            s = 0.s_1s_2\cdots, \ s_i = \begin{cases}
+                4 &, r_{ii} \neq 4 \\
+                5 &, r_{ii} = 4
+            \end{cases}
+        \end{equation} $s_i \in (0, 1)$但$\nexists \ i \in \N$ s.t. $f(i) = s$，因此$(0, 1)$為不可數集。
+    \end{proof}
+\end{theorem}
+
 \item \begin{theorem}{(.53)} \begin{equation}
         A = \{1, \ 2, \ \cdots, \ 2n\}
     \end{equation} 在$A$取$N + 1$個數，\begin{equation}

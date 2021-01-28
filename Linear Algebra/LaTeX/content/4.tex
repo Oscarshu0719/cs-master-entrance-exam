@@ -14,10 +14,36 @@
 	\end{equation}
 \end{theorem}
 
-\item \begin{theorem}{((4-129)4.237)} （方陣）\begin{itemize}
-		\item 若$\mat{A}, \mat{B} \in \F^{n \times n}$為方陣 \begin{equation}
+\item \begin{theorem}{((4-129)4.237)} \begin{itemize}
+		\item 若$\mat{A} \in \F^{m \times n}, \mat{B} \in \F^{n \times p}$，則 \begin{equation}
 			\rnk(\mat{A}) + \rnk(\mat{B}) - n \le \rnk(\mat{AB})
-		\end{equation}
+		\end{equation}\begin{equation}
+			\begin{bmatrix}
+				\mat{I} & \mat{O} \\
+				\mat{-A} & \mat{I}
+			\end{bmatrix}
+			\begin{bmatrix}
+				\mat{I} & \mat{B} \\
+				\mat{A} & \mat{O}
+			\end{bmatrix}
+			\begin{bmatrix}
+				\mat{I} & \mat{-B} \\
+				\mat{O} & \mat{I}
+			\end{bmatrix} = 
+			\begin{bmatrix}
+				\mat{I} & \mat{O} \\
+				\mat{O} & \mat{-AB}
+			\end{bmatrix} = \mat{D} = \mat{A}\mat{B}\mat{C}
+		\end{equation} 因為$\mat{A}, \mat{B}$可逆，則\begin{equation}
+			\rnk(\begin{bmatrix}
+				\mat{I} & \mat{B} \\
+				\mat{A} & \mat{O}
+			\end{bmatrix}) = 
+			\rnk(\begin{bmatrix}
+				\mat{I} & \mat{O} \\
+				\mat{O} & \mat{-AB}
+			\end{bmatrix}) = n + \rnk(\mat{-AB}) = n + \rnk(\mat{AB})
+		\end{equation} 有$\rnk(\mat{A}) + \rnk(\mat{B}) \le n + \rnk(\mat{AB})$得證。
 		\item 若$\mat{A}_1, \ \cdots, \ \mat{A}_k \in \R^{n \times n}$為方陣，且$\mat{A}_1\cdots\mat{A}_k = \mat{O}$，則\begin{equation}
 			\rnk(\mat{A}_1) + \rnk(\mat{A}_2) + \cdots + \rnk(\mat{A}_k) \le (k - 1)n 
 		\end{equation} 

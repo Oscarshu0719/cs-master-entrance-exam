@@ -11,21 +11,6 @@
 	皆\textbf{相等}，反之不然。但\textbf{特徵向量}不保證相同，且僅\textbf{喬丹型}為充要條件。
 \end{theorem}
 
-\item \begin{theorem}{(5.10, 5.11, 5.34, 6.7, 6.22, 6.34)} （方陣，特徵）若$\T \in \L(\V, \V)$，$\spc{W}_i, \ \forall i = 1, \ \cdots, k$為$\V$子空間且$\spc{W}_i$為$\T$-不變子空間，$\lambda$為$\T$的特徵根，則
-	\begin{itemize}
-		\item $\{\vec{0}\}$
-		\item $\V$
-		\item $\Ker(\T^k), \ k \in \N$
-		\item $\im(\T^k), \ k \in \N$
-		\item $\spc{W}_1 \cap \spc{W}_2 \cap \cdots \cap \spc{W}_k$
-		\item $\spc{W}_1 + \spc{W}_2 + \cdots + \spc{W}_k$
-		\item 特徵空間$\V(\lambda) = \Ker(\T - \lambda\mat{I})$
-		\item $\T$-循環子空間$C_{\vec{v}}(\T) = \spn\{\vec{v}, \T(\vec{v}), \T^2(\vec{v}), \ \cdots\}$
-		\item 廣義特徵空間$\textit{K}(\lambda) = \bigcup\limits_{i = 1}^{\infty}\Ker((\T - \lambda\mat{I})^i)$
-	\end{itemize}
-	皆為$\T$-不變子空間。
-\end{theorem}
-
 \item \begin{theorem}{(5.38)} （特徵，方陣）若$\mat{A}, \mat{B}$為方陣，則$\mat{AB}$與$\mat{BA}$有相同的
 	\begin{itemize}
 		\item 特徵根
@@ -80,7 +65,7 @@
 
 \item \begin{theorem}{(5.81)} （對角化，方陣）若$\T, \textit{U} \in \L(\V, \V)$皆可對角化，則\begin{equation}
 		\T, \textit{U} \ \text{可同步對角化} \ \iff \T\textit{U} = \textit{U}\T	
-	\end{equation}
+	\end{equation} $\V, \textit{U}$有相同特徵向量。
 \end{theorem}
 
 \item \begin{theorem}{(5.100, 5.102)} （方陣，特徵，對角化，$\tr$）若$\T \in \L(\V, \V)$，且$\T^2 = \T$，稱$\T$為$\V$上的冪等（idempotent）算子，則

@@ -10,17 +10,22 @@
         \item A disk sector contains a header, a data area, and a trailer.
         \item In UNIX, disk scheduling algorithm is performed in the \textbf{disk driver}.
         \item A file system can be created across \textbf{multiple disk partitions}.
+        \item \textbf{Disk device driver} can \textbf{NOT} be paged out, but page tables, memory-mapped files, shared memory can.
+        \item Moving files between directories on the \textbf{same} disk partition and \textbf{deleting} files on a hard disk cause little overhead, but moving files between directories on \textbf{different} disk partitions cause much.
+        \item The variation of disk I/O \textbf{latencies} under SSTF can be very high.
     \end{itemize}
 \end{theorem}
 
 \begin{theorem}{()} Cybersecurity： \begin{itemize}
         \item Trojan Horse is a code segment that \textbf{misuses} its environment.
         \item Installing antivirus software is \textbf{NOT} an example of least privileges.
+        \item Many routers are equipped with \textbf{firewall} and \textbf{VPN} functions.
+        \item Via HTTPS, ISPs can know the browsing website, but can \textbf{NOT} know the content.
     \end{itemize}
 \end{theorem}
 
 \begin{theorem}{()} Cryptography： \begin{itemize}
-        \item 公開金鑰加密提供digital signature功能。
+        \item Public-key (asymmetric) cryptography提供digital signature功能。
         \item AES：Symmetric, block cipher.
         \item DES：Symmetric, block cipher.
         \item RC4：Symmetric, stream cipher.
@@ -37,51 +42,123 @@
         \item Monolithic：UNIX, UNIX-like, Windows 9x, Android.
         \item Microkernel：Mach.
         \item Hybrid：Windows NT, Windows XP, macOS.
+        \item Kernel processes are \textbf{NOT} allocated through paging and virtual memory interface.
+        \item A \textbf{non-preemptive} kernel is free from race conditions on kernel data structures.
+        \item \textbf{Preemptive} kernel design can \textbf{NOT} prevent the deadlock problem with kernel data structures from occurring in the kernel.
+        \item Linux kernel is a \textbf{preemptive} kernel and a process running in a kernel mode could \textbf{NOT} be preempted.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} UID：\begin{itemize}
+        \item Real UID: identify the real owner of the process and affect the permissions for sending signals.
+        \item Effective UID: used for most access checks, including creating and accessing to a file.
+        \item Saved UID: used when a program running with elevated privileges needs to do some unprivileged work temporarily.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} I/O：\begin{itemize}
+        \item Buffered I/O: Read one block to cache when R/W, then copy from cache and return to reduce number of system call. Totally 2 copy operations.
+        \item Unbuffered I/O: Directly transfer from disk without caching. Caching is conducted by the application. Number of copy operations is determined by the transfering method, and it's only 1 copy operation for block-transfering. 
+        \item A program using asynchronous I/O system calls in \textbf{NOT} simpler to write than using synchronous I/O system calls.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} File system： \begin{itemize}
+        \item devfs：\textbf{Virtual} fs。一個file一個device，但該device未必存在，\textbf{不確定device mapping}。
+        \item sysfs：\textbf{Virutal} fs。將real connected devices組織成\textbf{分階層}的file directory，每個device有\textbf{唯一}對應的directory。
+        \item Device tree：每個node用key對應value方式紀錄device properties，其中value可為空。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} GCD (Grand Central Dispatch)： \begin{itemize}
+        \item 自動利用更多CPU cores。
+        \item 自動管理thread life cycles。
+        \item Move thread pool out of hand of developers and closer to OS.
+        \item Dispatch tasks時，可分在相同或不同queues，分別稱作serial和concurrent。Queues間可分為sync和async，前者同時間只允許一個queue執行，後者允許多個queues執行。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Container： \begin{itemize}
+        \item 所有containers共用host OS。
+        \item 相較VM，不須打包OS就能執行，速度較快且空間小。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} MBR, BIOS, GPT, UEFI： \begin{itemize}
+        \item BIOS無法辨識GPT（GUID Partition Table）。
+        \item UEFI用來定義OS和firmware間的software interface。
+        \item UEFI是用模組化，動態連結的形式構建的系統，較BIOS而言更易於實現，容錯和糾錯特性更強，縮短了系統研發的時間。
+        \item UEFI（Unified Extensible Firmware Interface）預啟動時就load OS，且可以同時識別MBR和GPT。
+        \item GPT使用LBA（Logical Block Address）取代早期CHS（Cylinder-head-sector）定址方式。
+        \item GPT的分割區表的位置資訊儲存在GPT header中，但第一個磁區仍然用作MBR，之後才是GPT header。
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Thread： \begin{itemize}
+        \item \textbf{Native Windows threads} cause a user-mode to kernel-mode.
+        \item Hyper-threading is \textbf{superscalar} and it can speedup \textbf{context switching}.
+        \item Each thread of the program receives a \textbf{larger} CPU time with \textbf{many-to-one} thread model.
+        \item Most operating systems \textbf{downgrade} the thread priority when it runs out of time quantum, but \textbf{boost} the priority when it returns from an I/O request.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Cache： \begin{itemize}
+        \item Physical caches do NOT flush at \textbf{context switching}.
+        \item The TLB cache may require a flush after a page table update.
+        \item Cache memories are usually hardware controlled, and OS may \textbf{NOT} even need to know their existence.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Allocation： \begin{itemize}
+        \item There is \textbf{NO} optimum solution to allocate contiguous memory from free holes.
+        \item Extent allocation uses \textbf{contiguous physical} blocks, and it also needs defragmentation.
+        \item Contiguous allocation offers the best R/W performance for \textbf{large} files.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Page table： \begin{itemize}
+        \item (\textbf{FALSE}) Use of shared memory can reduce the number of page table entries.
+        \item (\textbf{FALSE}) The page table of Linux process is managed by the C runtime library (.so) in the process.
+        \item For the \textbf{unused regions} in the virtual address space, the space overhead of the corresponding \textbf{page table entries} can be negligible.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} CPU scheduling： \begin{itemize}
+        \item FIFO can outperform LRU.
+        \item FIFO may have Convoy effect, which causes low \textbf{I/O} utilization.
+        \item After making system calls, the process is still in running state.
+        \item (\textbf{FALSE}) In a time-sharing system, a process does \textbf{NOT} leave running state unless it terminates or is preempted through a timer interrupt. 
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Synchronization： \begin{itemize}
+        \item \textsc{Test-and-Set} still wastes cycles when a process can \textbf{NOT} acquire a lock. 
+        \item To use shared memory, several system calls have to be invoked.
+        \item \textsc{Test-and-Set} can be implementated in \textbf{user space}, provided that the lock variable is in a shared memory region.
+        \item \textbf{Two-phase locking protocol (2PL)} ensures \textbf{conflict serializability}, but it may result in \textbf{deadlock}.
+        \item OS does \textbf{NOT} need to estimate $MAX$ when a process enters ready queue.
     \end{itemize}
 \end{theorem}
 
 \begin{theorem}{()} \quad\quad \begin{itemize}
-        \item \textbf{Native Windows threads} cause a user-mode to kernel-mode.
-        \item Physical caches do NOT flush at \textbf{context switching}.
-        \item Hyper-threading is \textbf{superscalar} and it can speedup \textbf{context switching}.
-        \item There is \textbf{NO} optimum solution to allocate contiguous memory from free holes.
         \item Data fault: Access invalid data memory, which is signaled by \textbf{MMU}.
         \item NUMA is intrinsic in Von Neumann's computer model.
-        \item The TLB cache may require a flush after a page table update.
         \item \code{kmalloc}: physically contiguous; \code{vmalloc}: virtually contiguous; \code{malloc}: no constraints.
         \item \code{strncpy}相較\code{strcpy}安全，且需要\textbf{預留一格}，可防止buffer overflow。
         \item Java \textbf{interprets} Java bytecode operations \textbf{one at a time}.
         \item CLR, which is the implementation of .NET VM, \textbf{compiles} Microsoft intermediate language instructions \textbf{one at a time}.
         \item Normal instructions for the VM can execute \textbf{directly on the hardware} and \textbf{only the privileged instructions} must be simulated.
         \item Named pipes are referred to as \textbf{FIFOs} in UNIX systems. Once created, they appear as typical \textbf{files} in the file systems. 
-        \item Kernel processes are \textbf{NOT} allocated through paging and virtual memory interface.
-        \item A \textbf{non-preemptive} kernel is free from race conditions on kernel data structures.
-        \item \textbf{Preemptive} kernel design can \textbf{NOT} prevent the deadlock problem with kernel data structures from occurring in the kernel.
-        \item \textbf{Disk device driver} can \textbf{NOT} be paged out, but page tables, memory-mapped files, shared memory can.
         \item Permission bits are stored at \textbf{inodes}.
-        \item Linux kernel is a \textbf{preemptive} kernel and a process running in a kernel mode could \textbf{NOT} be preempted.
-        \item Most operating systems \textbf{downgrade} the thread priority when it runs out of time quantum, but \textbf{boost} the priority when it returns from an I/O request.
-        \item FIFO can outperform LRU.
-        \item A program using asynchronous I/O system calls in \textbf{NOT} simpler to write than using synchronous I/O system calls.
-        \item \textsc{Test-and-Set} still wastes cycles when a process can \textbf{NOT} acquire a lock. 
-        \item Moving files between directories on the \textbf{same} disk partition and \textbf{deleting} files on a hard disk cause little overhead, but moving files between directories on \textbf{different} disk partitions cause much.
         \item Five classic components: datapath, control unit, memory, input, and output.
         \item Data center cares more about \textbf{throughput} than response time.
-        \item Cache memories are usually hardware controlled, and OS may \textbf{NOT} even need to know their existence.
-        \item After making system calls, the process is still in running state.
-        \item FIFO may have Convoy effect, which causes low \textbf{I/O} utilization.
-        \item (\textbf{FALSE}) In a time-sharing system, a process does \textbf{NOT} leave running state unless it terminates or is preempted through a timer interrupt. 
-        \item The variation of disk I/O \textbf{latencies} under SSTF can be very high.
-        \item Extent allocation uses \textbf{contiguous physical} blocks, and it also needs defragmentation.
-        \item Arithmetic overflow can be ignored.
-        \item To use shared memory, several system calls have to be invoked.
-        \item OS does \textbf{NOT} need to estimate $MAX$ when a process enters ready queue.
-        \item Memory blocks on the \textbf{stacks} can \textbf{NOT} be freed at any time.
-        \item (\textbf{FALSE}) Use of shared memory can reduce the number of page table entries.
-        \item (\textbf{FALSE}) The page table of Linux process is managed by the C runtime library (.so) in the process.
-        \item For the \textbf{unused regions} in the virtual address space, the space overhead of the corresponding \textbf{page table entries} can be negligible.
-        \item Via HTTPS, ISPs can know the browsing website, but can \textbf{NOT} know the content.
-        \item \textbf{Two-phase locking protocol (2PL)} ensures \textbf{conflict serializability}, but it may result in \textbf{deadlock}.
+        \item Memory blocks on the \textbf{stacks} can \textbf{NOT} be freed at any time, but \textbf{heaps} can.
         \item \textbf{Stack} is good for locality.
+        \item (\textbf{FALSE}) Programs written in different assmebly languages can ONLY be executed on specific hardware.
+        \item Computer system can be divided into four components including hardware, OS, application programs, and users.  
+        \item Normal instructions for the virtual machines can execute directly on the hardware and ONLY the privileged instructions must be simulated.
+        \item Bitmap is NOT a file.
+        \item data section存global和static variables。
+        \item When the block size is very large, the \textbf{spatial locality} within the block is lower.
     \end{itemize}
 \end{theorem}

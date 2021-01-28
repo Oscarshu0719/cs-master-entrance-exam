@@ -102,6 +102,7 @@
 \end{theorem}
 
 \item \begin{theorem}{(515)} MIPS exception handling： \begin{itemize}
+        \item Flush the instruction and let all preceding instructions complete if they can.
         \item 利用cause register儲存exception原因。
         \item 將造成exception的instruction memory address存在EPC ($PC + 4$)。
         \item 使用entry point switch to kernel。

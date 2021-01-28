@@ -32,34 +32,93 @@
     \end{itemize}
 \end{theorem}
 
-\item \begin{theorem}{()} \quad\quad \begin{itemize}
-        \item Out-of-order execution in \textbf{cache} level do NOT fail.
-        \item GPGPU usually runs \textbf{SPMT} (Single Program Multiple Thread), and GPU runs SIMT.
+\item \begin{theorem}{()} Cache： \begin{itemize}
         \item L1 data cache is usually seperated from L1 instruction cache to \textbf{increase bandwidth}.
         \item Data cache is usually deployed at \textbf{MEM} stage.
-        \item Increasing number of \textbf{used sticky bits} do NOT improve accuracy.
-        \item \textbf{Memory hazard} do NOT cause stall, e.g. \code{sw} after \code{lw}.
+        \item In modern preocessors, \textbf{L1} data and instruction caches are split, but L2 does \textbf{NOT}. Both L1 and L2 caches are \textbf{write-back}.
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} Branch prediction： \begin{itemize}
         \item Branch target buffer is used by \textbf{CPU}, which is checked at \textbf{IF} stage.
-        \item Program is a \textbf{passive} entity, process is an \textbf{avtive} entity.
         \item Branch prediction buffer is good to predict the \textbf{branch outcome}, but it does \textbf{NOT} help in predicting the \textbf{branch target}.
-        \item Many routers are equipped with \textbf{firewall} and \textbf{VPN} functions.
-        \item In hash-based page tables using \textbf{linked list} to solve collision, \textbf{each element} contains a frame number and a page number.
-        \item Multiple-cycles CPU requires \textbf{minimum function units}.
+        \item Indirect branch prediction: Dynamic: hybrid predictor; Static: Neural branch predictor.
+        \item \textbf{Virtual program counter prediction} is often used to predict \textbf{conditional/unconditional indirect} branch, which treats indirect branches as \textbf{multiple conditional branches}.
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} Hazards： \begin{itemize}
+        \item \textbf{Memory hazard} do NOT cause stall, e.g. \code{sw} after \code{lw}.
         \item Control hazards can \textbf{NOT} be avoided.
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} Page table： \begin{itemize}
+        \item In hash-based page tables using \textbf{linked list} to solve collision, \textbf{each element} contains a frame number and a page number.
+        \item MIPS uses \textbf{two} seperated page tables and two limit registers, one for \textbf{stack} and the other for \textbf{heap}.
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} Arithmetic： \begin{itemize}
+        \item Increasing number of \textbf{used sticky bits} do NOT improve accuracy.
         \item Conversion from single-precision to double-precision causes loss of precision.
-        \item Compiler identifies \textbf{basic blocks} for code optimization.
-        \item Vector processors need \textbf{less bandwidth} than conventional processors.
         \item Ripple Carry Adder: Critical path delay is $2N$ gate delay (carry out), and sum delay is $2N + 1$ gate delay (actual sum).
+        \item Converting an integer variable to a \textbf{single} precision FP number will lose precision, but \textbf{double} precision does \textbf{NOT}.
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} Multi-threading： \begin{itemize}
+        \item GPGPU usually runs \textbf{SPMT} (Single Program Multiple Thread), and GPU runs SIMT.
+        \item Vector processors need \textbf{less bandwidth} than conventional processors.
+        \item GPUs do \textbf{NOT} rely on \textbf{multilevel caches}.
+    \end{itemize}
+\end{theorem}
+
+\item \begin{theorem}{()} \quad\quad \begin{itemize}
+        \item Out-of-order execution in \textbf{cache} level do NOT fail.
+        \item Program is a \textbf{passive} entity, process is an \textbf{avtive} entity.
+        \item Multiple-cycles CPU requires \textbf{minimum function units}.
+        \item Compiler identifies \textbf{basic blocks} for code optimization.
         \item To form the machine code, the value of label of branch instructions is computed by \textbf{linker} when the label is an \textbf{external} reference.
         \item \textbf{NOT} each computer support \textbf{direct addressing mode}.
-        \item Converting an integer variable to a \textbf{single} precision FP number will lose precision, but \textbf{double} precision does \textbf{NOT}.
-        \item When the block size is very large, the \textbf{spatial locality} within the block is lower.
-        \item MIPS uses \textbf{two} seperated page tables and two limit registers, one for \textbf{stack} and the other for \textbf{heap}.
         \item \textbf{Conflict} misses do \textbf{NOT} occur in \textbf{fully associative} caches.
-        \item In modern preocessors, \textbf{L1} data and instruction caches are split, but L2 does \textbf{NOT}. Both L1 and L2 caches are \textbf{write-back}.
         \item \textbf{MIPS} and \textbf{ARM} use \textbf{memory-mapped I/O}.
         \item Writes are much \textbf{slower} than reads for flash. NAND flash is \textbf{cheaper} than NOR flash.
-        \item False sharing: Irrelative variables are stored in the same block, when one variable is written, the whole block is changed, and other variables are affected.
-        \item GPUs do \textbf{NOT} rely on \textbf{multilevel caches}.
+        \item Difficulty to handle \textbf{exceptions} (from most difficult to simplest): \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|}
+                \hline
+                Superscalar \\
+                \hline
+                Speculative \\
+                \hline
+                Out-of-order \\
+                \hline
+                Pipelined \\
+                \hline
+                Single-issue in-order processor \\
+                \hline
+                Hierarchical data caches \\
+                \hline
+            \end{tabular}
+        \end{table}
+        \item Difficulty to handle \textbf{interrupts} (from most difficult to simplest): \begin{table}[H]
+            \centering
+            \begin{tabular}{|c|}
+                \hline
+                GPGPU \\
+                \hline
+                Containers \\
+                \hline
+                Virtual machines \\
+                \hline
+                Hyper-threaded processor \\
+                \hline
+                Superscalar \\
+                \hline
+                Pipelined \\
+                \hline
+            \end{tabular}
+        \end{table}
     \end{itemize}
 \end{theorem}

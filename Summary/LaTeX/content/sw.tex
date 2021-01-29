@@ -243,6 +243,12 @@
     \end{algorithm}
     \item 尋找articulation point：若root有$\ge 2$子節點，則root為articulation point；
     $\exists$ 非root節點$u$，若$\exists \ v$為$u$子節點，且$low(v) \ge dfn(u)$，則$u$為articulation point。
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.55]{summary/btree_del.png}
+        \caption{Example of B-tree deletion.}
+        \label{img:np-conp}
+    \end{figure}
     \item (\textbf{FALSE}) For two functions $f(n)$ and $g(n)$, either $f(n) = O(g(n))$ or $f(n) = \Omega((f(n))$.
     Counterexample:\begin{equation}
         \begin{aligned}

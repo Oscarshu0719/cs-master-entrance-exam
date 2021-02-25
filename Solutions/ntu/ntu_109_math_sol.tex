@@ -1,0 +1,290 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{../header}
+\newcommand{\school}{ntu}
+\newcommand{\subject}{math}
+\renewcommand{\year}{109}
+\newcommand{\titlename}{\MakeUppercase{\school} \subject \ \year}
+
+\fancypagestyle{mainmatter}{\rhead{\titlename}}
+\pagestyle{mainmatter}
+\CenterWallPaper{.50}{img/logo_ntu_recolor.jpg}
+\newcommand{\ver}{\textsc{Version} 1.0} % Version number.
+
+\begin{document}
+
+\title{\LARGE{\textbf{Solutions}} \\
+	\Huge{\textbf{\titlename}} \\
+	\normalsize{\ver}
+}
+\author{}
+\date{}
+
+\maketitle
+
+% Start of solutions.
+
+\begin{enumerate}
+	\item Generating function: \begin{equation}
+		\begin{aligned}
+			& (x^{a} + x^{a + 1} + \cdots + x^{b})^{n} \\
+			= & [x^{a} (1 + x + x^2 + \cdots + x^{b - a})]^{n} \\
+			= & [x^{a} (\frac{x^{b - a + 1} - 1}{x - 1})]^{n}
+		\end{aligned}
+	\end{equation}
+	\begin{answer}{$\dag$}\begin{equation}
+			[x^{a} (\frac{x^{b - a + 1} - 1}{x - 1})]^{n}
+		\end{equation}
+	\end{answer}
+	\item \begin{answer}{$\dag$}\begin{equation}
+			(i^{j})^{(n^{m})}
+		\end{equation}
+	\end{answer}
+	\item \begin{equation}
+		\Rightarrow x_1 + x_2 + x_3 + x_4 < 8, \ x_i \ge 0, \ \forall \ 1 \le i \le 4
+	\end{equation}
+	Let \begin{equation}
+		\begin{aligned}
+			& x_5 = 8 - (x_1 + x_2 + x_3 + x_4), \ x_5 > 0 \\
+			\Rightarrow & \ y_5 = x_5 - 1, \ y_5 \ge 0
+		\end{aligned}
+	\end{equation}
+	Then, \begin{equation}
+		\Rightarrow x_1 + x_2 + x_3 + x_4 + y_5 = 7, \ x_i \ge 0, \ \forall \ 1 \le i \le 4, \ y_5 \ge 0
+	\end{equation}
+	\begin{answer}{$\dag$}
+		\begin{equation}
+			\binom{5 + 7 - 1}{7} = \binom{11}{7} = 330
+		\end{equation}
+	\end{answer}
+	\item \begin{equation}
+		\begin{aligned}
+			\Rightarrow & \ \alpha = 3 \\
+			\Rightarrow & \ \begin{cases}
+				a_n^{(h)} & = c \times 3^n \\
+				a_n^{(p)} & = d \times n + e
+			\end{cases} \\
+		\end{aligned}
+	\end{equation}
+	We have \begin{equation}
+		\begin{aligned}
+			& d \times n + e = 3 \times (d \times (n - 1) + e) + n \\
+			\Rightarrow & \ \begin{cases}
+				d & = -\frac{1}{2} \\
+				e & = -\frac{3}{4}
+			\end{cases} \\
+			\Rightarrow & \ a_n = c \times 3^n -\frac{1}{2} \times n - \frac{3}{4} \\
+			\Rightarrow & \ a_0 = 1 = c - \frac{3}{4} \\
+			\Rightarrow & \ c = \frac{7}{4} \\
+			\Rightarrow & \ a_n = \frac{7}{4} \times 3^n - \frac{1}{2} \times n - \frac{3}{4}
+		\end{aligned}
+	\end{equation}
+	\begin{answer}{$\dag$}
+		\begin{equation}
+			a_n = \frac{7}{4} \times 3^n - \frac{1}{2} \times n - \frac{3}{4}
+		\end{equation}
+	\end{answer}
+	\item \begin{equation}
+		\Rightarrow \sum_{i = 1}^n a_n x^n = 3 \times \sum_{i = 1}^n a_{n - 1}x^n + \sum_{i = 1}^n nx^n
+	\end{equation} We have \begin{equation}
+		\sum_{i = 1}^n nx^n = x\sum_{i = 1}^n nx^{n - 1}
+	\end{equation} Then, we have \begin{equation}
+		\begin{aligned}
+			\Rightarrow & \ \sum_{i = 1}^n nx^{n - 1} \overset{\text{integral}}= \sum_{i = 1}^n x^n = \frac{x}{1 - x} \\
+			\Rightarrow & \ \frac{x}{1 - x} \overset{\text{derivative}}= \frac{1}{(1 - x)^2} \\ 
+			\Rightarrow & \ \sum_{i = 1}^n nx^n = \frac{x}{(1 - x)^2}
+		\end{aligned}
+	\end{equation} We have the new generating function \begin{equation}
+		\begin{aligned}
+			& A(x) - a_0 = 3x \times A(x) + \frac{x}{(1 - x)^2} \\
+			\Rightarrow & \ A(x) = \frac{x^2 - x  + 1}{(1 - 3x)(1 - x)^2} \\
+			\Rightarrow & \ A(x) = \frac{7}{4} \times \frac{1}{1 - 3x} - \frac{1}{4} \times \frac{1}{1 - x} - \frac{1}{2} \times \frac{1}{(1 - x)^2}
+		\end{aligned}
+	\end{equation}
+	\begin{answer}{$\dag$} \begin{equation}
+			\frac{7}{4} \times \frac{1}{1 - 3x} - \frac{1}{4} \times \frac{1}{1 - x} - \frac{1}{2} \times \frac{1}{(1 - x)^2}
+		\end{equation}
+	\end{answer}
+	\item \begin{answer}{$\dag$}
+		Since \begin{equation}
+			\begin{aligned}
+				& \binom{n}{0} < \binom{n}{1} < \cdots < \binom{n}{\floor*{\frac{n}{2}}} \\
+				\Rightarrow & \ \binom{n}{n} < \binom{n}{n - 1} < \cdots < \binom{n}{\ceil*{\frac{n}{2}}}
+			\end{aligned}
+		\end{equation} We have \begin{equation}
+			\begin{aligned}
+				& 2^n = \binom{n}{0} + \binom{n}{1} + \cdots + \binom{n}{\floor*{\frac{n}{2}}} + \cdots + \binom{n}{n} < 1 + n \times \binom{n}{\floor*{\frac{n}{2}}} \\
+				\Rightarrow & \ n \times \binom{n}{\floor*{\frac{n}{2}}} \ge 2^n \\
+				\Rightarrow & \ \binom{n}{\floor*{\frac{n}{2}}} \ge \frac{2^n}{n}
+			\end{aligned}
+		\end{equation}
+	\end{answer}
+	\item We have \begin{equation}
+		\begin{bmatrix}[ccccc|c]
+			16 & -8 & 4 & -2 & 1 & 150 \\
+			1 & -1 & 1 & -1 & 1 & 16 \\
+			0 & 0 & 0 & 0 & 1 & 2 \\
+			1 & 1 & 1 & 1 & 1 & 18 \\
+			16 & 8 & 4 & 2 & 1 & 166
+		\end{bmatrix}
+	\end{equation}
+	\begin{answer}{$\dag$} $a, \ b, \ c, \ d, \ e$ are \begin{equation}
+			8, \ 1, \ 7, \ 0, \ 2
+		\end{equation}
+	\end{answer}
+	\item We have \begin{equation}
+		\mat{BB}^\intercal = \begin{bmatrix}
+			1 & 0 & 0 & 0 & -1 \\
+			0 & 4 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 1 & 0 \\
+			-1 & 0 & 0 & 0 & 1
+		\end{bmatrix}
+	\end{equation} $\mat{BB}^\intercal$ is \textbf{symmetric}, so it's \textbf{diagonalizable} and $\am(\lambda) = \gm(\lambda)$. We have characteristic polynomial \begin{equation}
+		p_{\mat{BB}^\intercal}(x) = -x^2(x - 1)(x - 2)(x - 4)
+	\end{equation}
+	\begin{answer}{$\dag$} 
+		The nullities of $\mat{BB}^\intercal - \lambda\mat{I}$ for $\lambda = 0, \ 1, \ 2, \ 3, \ 4$ are \begin{equation}
+			2, \ 1, \ 1, \ 0, \ 1
+		\end{equation} since $3$ is NOT its eigenvalue.
+	\end{answer}
+	\item We have \begin{equation}
+		\begin{aligned}
+			& \begin{cases}
+				\forall \ x \in \spc{U}, \ (\mat{B} - \mat{A})\vec{x} = \vec{0} \rightarrow \vec{x} \in \Ker(\mat{B} - \mat{A}) \\
+				\forall \ x \in \spc{U}^\perp, \ \mat{B}\vec{x} = \vec{0} \rightarrow \vec{x} \in \Ker(\mat{B})
+			\end{cases} \\ \Rightarrow & \ 
+			\begin{cases}
+				\Ker(\mat{B} - \mat{A}) = \spc{U} \rightarrow \rs(\mat{B} - \mat{A}) = \spc{U}^\perp \rightarrow \rnk(\mat{B} - \mat{A}) = 1\\
+				\Ker(\mat{B}) = \spc{U}^\perp \rightarrow \rnk(\mat{B}) = 3
+			\end{cases}
+		\end{aligned}
+	\end{equation} Let \begin{equation}
+		\mat{B} - \mat{A} = \begin{bmatrix}
+			\alpha \times (0 & 1 & 0 & -1 ) \\
+			\beta \times (0 & 1 & 0 & -1 ) \\
+			\gamma \times (0 & 1 & 0 & -1 ) \\
+			\delta \times (0 & 1 & 0 & -1 ) 
+		\end{bmatrix} \Rightarrow \mat{B} = \begin{bmatrix}
+			2 & \alpha & 0 & 2 \times \alpha \\
+			0 & \beta & 0 & -\beta \\
+			0 & \gamma & 0 & -\gamma \\
+			2 & \delta & 0 & (2 - \delta)
+		\end{bmatrix}
+	\end{equation} We have \begin{equation}
+		\spc{U}^\perp = \left\{\vec{n} = \begin{bmatrix}
+			0 \\
+			1 \\
+			0 \\
+			-1
+		\end{bmatrix}\right\}
+	\end{equation} Since $\vec{n} \in \Ker(\mat{B})$, $\mat{B}\vec{n} = \vec{0}$. \begin{equation}
+		\begin{aligned}
+			& \begin{bmatrix}
+				2 & \alpha & 0 & 2 \times \alpha \\
+				0 & \beta & 0 & -\beta \\
+				0 & \gamma & 0 & -\gamma \\
+				2 & \delta & 0 & (2 - \delta)
+			\end{bmatrix}\begin{bmatrix}
+				0 \\
+				1 \\
+				0 \\
+				-1
+			\end{bmatrix} = \vec{0} \\
+			\Rightarrow & \ \alpha = 1, \ \beta = 0, \ \gamma = 0, \ \delta = 1 \\
+			\Rightarrow & \ \mat{B} = \begin{bmatrix}
+				2 & 1 & 0 & 1 \\
+				0 & 0 & 0 & 0 \\
+				0 & 0 & 0 & 0 \\
+				2 & 1 & 0 & 1
+			\end{bmatrix}
+		\end{aligned}
+	\end{equation}
+	\begin{answer}{$\dag$} The numbers of $-2, \ -1, \ 0, \ 1, \ 2$ are \begin{equation}
+			0, \ 0, \ 10, \ 4, \ 2
+		\end{equation}
+	\end{answer}
+	\item $\mat{B} = \mat{A}^{+}$. We have characteristic polynomial \begin{equation}
+		p_{\mat{A}^\intercal\mat{A}}(x) = x(x - \frac{1}{4})(x - \frac{1}{2})(x - 1)
+	\end{equation} We have SVD of $\mat{A} = \mat{U}\mat{\Sigma}\mat{V}^\intercal$. \begin{equation}
+		\mat{\Sigma} = \begin{bmatrix}
+			1 & 0 & 0 & 0 & 0 \\
+			0 & \frac{1}{\sqrt{2}} & 0 & 0 & 0 \\
+			0 & 0 & \frac{1}{2} & 0 & 0 \\
+			0 & 0 & 0 & 0 & 0 \\
+		\end{bmatrix}, \ \mat{U} = \begin{bmatrix}
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 1 \\
+			0 & 1 & 0 & 0 \\
+			1 & 0 & 0 & 0
+		\end{bmatrix}, \ \mat{V} = \begin{bmatrix}
+			0 & \frac{1}{\sqrt{2}} & 0 & 0 & \frac{1}{\sqrt{2}} \\
+			0 & 0 & -1 & 0 & 0 \\
+			0 & 0 & 0 & 1 & 0 \\
+			-1 & 0 & 0 & 0 & 0 \\
+			0 & -\frac{1}{\sqrt{2}} & 0 & 0 & \frac{1}{\sqrt{2}}
+		\end{bmatrix} 
+	\end{equation} We have \begin{equation}
+		\mat{\Sigma}^{+} = \begin{bmatrix}
+			1 & 0 & 0 & 0 \\
+			0 & \sqrt{2} & 0 & 0 \\
+			0 & 0 & 2 & 0 \\
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0
+		\end{bmatrix}
+	\end{equation} Then, $\mat{A}^{+} = \mat{V}\mat{\Sigma}^{+}\mat{U}^\intercal$. \begin{equation}
+		\mat{A}^{+} = \begin{bmatrix}
+			0 & \frac{1}{\sqrt{2}} & 0 & 0 & \frac{1}{\sqrt{2}} \\
+			0 & 0 & -1 & 0 & 0 \\
+			0 & 0 & 0 & 1 & 0 \\
+			-1 & 0 & 0 & 0 & 0 \\
+			0 & -\frac{1}{\sqrt{2}} & 0 & 0 & \frac{1}{\sqrt{2}}
+		\end{bmatrix} \begin{bmatrix}
+			1 & 0 & 0 & 0 \\
+			0 & \sqrt{2} & 0 & 0 \\
+			0 & 0 & 2 & 0 \\
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0
+		\end{bmatrix} \begin{bmatrix}
+			0 & 0 & 0 & 1 \\
+			0 & 0 & 1 & 0 \\
+			1 & 0 & 0 & 0 \\
+			0 & 1 & 0 & 0
+		\end{bmatrix} = \begin{bmatrix}
+			0 & 0 & 1 & 0 \\
+			-2 & 0 & 0 & 0 \\
+			0 & 0 & 0 & 0 \\
+			0 & 0 & 0 & -1 \\
+			0 & 0 & -1 & 0
+		\end{bmatrix}
+	\end{equation}
+	\begin{answer}{$\dag$} The numbers of $-2, \ -1, \ 0, \ 1, \ 2$ are \begin{equation}
+			1, \ 2, \ 16, \ 1, \ 0
+		\end{equation}
+	\end{answer}
+	\item We have characteristic polynomial \begin{equation}
+		p_{\mat{A}} = x(x - 1)(x - 3)^2
+	\end{equation} Then, we have \begin{equation}
+		\gm(3) = \nul\left(\begin{bmatrix}
+			1 & 4 & 2 & 1 \\
+			0 & -3 & -1 & -1 \\
+			-1 & -1 & -1 & 0 \\
+			1 & 1 & -1 & -2
+		\end{bmatrix}\right) = 1
+	\end{equation} Then, we have Jordan form \begin{equation}
+		\J{A} = \begin{bmatrix}
+			0 & 0 & 0 & 0 \\
+			0 & 1 & 0 & 0 \\
+			0 & 0 & 3 & 0 \\
+			0 & 0 & 1 & 3
+		\end{bmatrix}
+	\end{equation}
+	\begin{answer}{$\dag$} The numbers of $0, \ 1, \ 2, \ 3, \ 4$ are \begin{equation}
+			12, \ 2, \ 0, \ 2, \ 0
+		\end{equation}
+	\end{answer}
+\end{enumerate}
+
+% End of solutions.
+
+\end{document}

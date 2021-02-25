@@ -1,0 +1,1 @@
+for %%f in (%*) do xelatex.exe "%%f" -output-directory=doc

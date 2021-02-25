@@ -6,6 +6,14 @@
 
 This article is mainly for the solutions of Computer Science graduate school entrance exams of National Taiwan University (NTU), National Yang Ming Chiao Tung University (NYCU), and National Tsing Hua University (NTHU). Most of the solutions are given by the predecessors and the author, instead of the school. FOR REFERENCE ONLY. The author of this article is *TZU-CHUN HSU* (*GitHub*'s name is *Oscar Hsu*), the article and the *LaTeX* code are under **MIT License**. For more, please visit *GitHub* page [Oscarshu0719](https://github.com/Oscarshu0719/).
 
+## Link
+
+-   [root](https://drive.google.com/drive/folders/1IWv8PaqnwXx767kR3tA-u-C6VoG-ZA-I?usp=sharing)
+    -   ntu
+        -   [ntu_math_100_109](https://drive.google.com/drive/folders/1XFHgQQPUaow0_b1hbuGT8vPNksefsUBk?usp=sharing)
+    -   nycu
+    -   nthu
+
 ## Format
 
 ### Filename
@@ -13,7 +21,7 @@ This article is mainly for the solutions of Computer Science graduate school ent
 [*school*]\_[*year*]\_[*subject*]\_[*problem* or *solution*]
 
 -   *school*: ntu, nycu, or nthu.
--   *year*: from 109 to 100.
+-   *year*: from 100 to 109.
 -   *subject*: 
     -   ntu: math, sw, or hw.
     -   nycu: math, sw, or hw.
@@ -31,9 +39,9 @@ e.g. ntu_109_math_sol stands for the solution of 109 math exam of NTU.
 
 ## List of solutions
 
-- ntu_math from 109 to 100.
+- ntu_math from 100 to 109.
 
-- ntu_sw from 109 to 100.
+- ntu_sw from 100 to 109.
 
 ## Requirements
 

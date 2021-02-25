@@ -1,0 +1,280 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{../header}
+\newcommand{\school}{ntu}
+\newcommand{\subject}{math}
+\renewcommand{\year}{102}
+\newcommand{\titlename}{\MakeUppercase{\school} \subject \ \year}
+
+\fancypagestyle{mainmatter}{\rhead{\titlename}}
+\pagestyle{mainmatter}
+\CenterWallPaper{.50}{img/logo_ntu_recolor.jpg}
+\newcommand{\ver}{\textsc{Version} 1.0} % Version number.
+
+\begin{document}
+
+\title{\LARGE{\textbf{Solutions}} \\
+	\Huge{\textbf{\titlename}} \\
+	\normalsize{\ver}
+}
+\author{}
+\date{}
+
+\maketitle
+
+% Start of solutions.
+
+\begin{enumerate}
+	\item \begin{answer}{$\dag$} \textbf{WRONG}. Counterexample: \begin{equation}
+            \begin{aligned}
+                A & = \{1, \ 2, \ 3\} \\
+                R & = \{(1, \ 2), \ (2, \ 1), \ (1, \ 1), \ (2, \ 2) \}    
+            \end{aligned}
+        \end{equation} $R$ is symmetric and transitive, but $R$ is NOT reflexive.
+    \end{answer}
+    \item \begin{answer}{$\dag$} Suppose \begin{equation}
+            \begin{aligned}
+                \Rightarrow & \ \begin{cases}
+                    b_n & = \ n\text{-th character is} \ 0 \\
+                    c_n & = \ n\text{-th character is} \ 1, \ \text{and} \ (n - 1)\text{-th character is} \ 0 \lor 2 \\
+                    d_n & = \ n\text{-th character is} \ 2, \ \text{and} \ (n - 1)\text{-th character is} \ 0 \lor 1 \\
+                \end{cases} \\
+                \Rightarrow & \ a_n = b_n + c_n + d_n \\
+                & \left(\begin{cases}
+                    b_n & = a_{n - 1} \\
+                    c_n & = a_{n - 1} - c_{n - 1} \ (\because \ n\text{-th character can NOT be} \ 1) \\
+                    d_n & = a_{n - 1} - d_{n - 1} \ (\because \ n\text{-th character can NOT be} \ 2)
+                \end{cases}\right)
+            \end{aligned}
+        \end{equation} Then, we have \begin{equation}
+            \begin{aligned}
+                a_n & = b_n + c_n + d_n \\
+                & = a_{n - 1} + (a_{n - 1} - c_{n - 1}) + (a_{n - 1} - d_{n - 1}) \\
+                & = 3 \times a_{n - 1} - c_{n - 1} - d_{n - 1} \ (\because \ a_{n - 1} = b_{n - 1} + c_{n - 1} + d_{n - 1}) \\
+                & = 2 \times a_{n - 1} + b_{n - 1} \\
+                & = 2 \times a_{n - 1} + b_{n - 2}
+            \end{aligned}
+        \end{equation}
+    \end{answer}
+    \item \quad \begin{enumerate}[label=(\alph*)]
+        \item \begin{answer}{$\dag$}\begin{equation}
+                1
+            \end{equation} 
+        \end{answer} Since it needs to contain all edges and all vertices.
+        \item \begin{answer}{$\dag$}\begin{equation}
+                \binom{n}{2}
+            \end{equation} 
+        \end{answer} Since it needs to be \textbf{complete}.
+    \end{enumerate}
+    \item \begin{answer}{$\dag$} Suppose $G$ have $n$ vertices. If $G = (\V, \E)$ is connected, \begin{equation}
+            1 \le \deg(v) \le (n - 1), \ \forall \ v \in \V
+        \end{equation} Since $|\V| = n$, and the possiblities of degree are $(n - 1)$, \begin{equation}
+            \exists \ u, \ v \in \V, \ \text{s.t.} \ \deg(u) = \deg(v)
+        \end{equation} Otherwise, if $G = (\V, \E)$ is NOT connected, suppose there exists $k$ vertices $u \in \V_1$ such that $\deg(u) = 0$, 
+        so other $(n - k)$ vertices $v \in \V_2$ are connected, i.e., $\V = \V_1 + \V_2$. Then, we have \begin{equation}
+            1 \le v \le (n - k - 1), \ \forall \ v \in \V_2
+        \end{equation} Since $|\V_2| = n - k$, and the possiblities of degree are $(n - k - 1)$, \begin{equation}
+            \exists \ v, \ w \in \V_2, \ \text{s.t.} \ \deg(v) = \deg(w)
+        \end{equation} To summary, there are $2$ vertices in $G$ having equal degree.
+    \end{answer}
+    \item \begin{answer}{$\dag$} We have \begin{equation}
+            \begin{aligned}
+                & H \cap K \subseteq H, \ H \cap K \subseteq K \ (|H| = h, \ |K| = k, \ |H \cap K| = m) \\
+                \Rightarrow & \ m | h, \ m | k \ (\text{by Lagrange Theorem}) \\
+                \Rightarrow & \ m | \gcd(h, \ k) = 1 \\
+                \Rightarrow & \ m = 1 \\
+            \end{aligned}
+        \end{equation} 
+    \end{answer}
+    \item We have \begin{equation}
+        \begin{aligned}
+            & \lambda_1\lambda_2 + \lambda_1\lambda_3 + \lambda_1\lambda_4 + \lambda_2\lambda_3 + \lambda_2\lambda_4 + \lambda_3\lambda_4 = \tr_2(\mat{A}) \\
+            & = \begin{vmatrix}
+                1 & 2 \\
+                8 & 7
+            \end{vmatrix} + \begin{vmatrix}
+                1 & 3 \\
+                1 & 5
+            \end{vmatrix} + \begin{vmatrix}
+                1 & 4 \\
+                2 & 7
+            \end{vmatrix} + \begin{vmatrix}
+                7 & 6 \\
+                4 & 5
+            \end{vmatrix} + \begin{vmatrix}
+                7 & 5 \\
+                3 & 7
+            \end{vmatrix} + \begin{vmatrix}
+                5 & 8 \\
+                6 & 7
+            \end{vmatrix}
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            24
+        \end{equation} 
+    \end{answer}
+    \item \begin{answer}{$\dag$} Eigenvalue matrix: \begin{equation}
+            \begin{bmatrix}
+                3 \times \mat{\Lambda} & \mat{0} \\
+                \mat{0} & 2 \times \mat{\Lambda}
+            \end{bmatrix}
+        \end{equation} Eigenvector matrix: \begin{equation}
+            \begin{bmatrix}
+                \mat{S} & \mat{0} \\
+                \mat{0} & \mat{S}
+            \end{bmatrix}
+        \end{equation} 
+    \end{answer}
+    \item We have \begin{equation}
+        \begin{aligned}
+            \Ker(\mat{T}) & = \{\mat{A} \in \R^{n \times n} | \frac{\mat{A} + \mat{A}^\intercal}{2} = \mat{0}\} \\
+            & = \{\mat{A} \in \R^{n \times n} | \mat{A} = -\mat{A}^\intercal\}
+        \end{aligned}
+    \end{equation}
+    \begin{enumerate}[label=(\alph*)]
+        \item \begin{answer}{$\dag$}\begin{equation}
+                \{\mat{A} \in \R^{n \times n} | \mat{A} = -\mat{A}^\intercal\}
+            \end{equation} 
+        \end{answer} 
+        \item \begin{answer}{$\dag$}\begin{equation}
+                (\nul(\T), \ \rnk(\T)) = (\frac{n(n - 1)}{2}, \ \frac{n(n + 1)}{2})
+            \end{equation} 
+        \end{answer} 
+    \end{enumerate}
+    \item We have 
+        \begin{flalign}
+            & = \begin{vmatrix}
+                a_0 & a_0 & \cdots & a_0 \\
+                p_1(x_1) & p_1(x_2) & \cdots & p_1(x_n) \\
+                \vdots & \vdots & \ddots & \vdots \\
+                p_{n - 1}(x_1) & p_{n - 1}(x_2) & \cdots & p_{n - 1}(x_n)
+            \end{vmatrix}_{n \times n}& \nonumber \\
+            & (\because \ c_{n1}^{-1}, \ c_{n2}^{-1}, \ \cdots, \ c_{n(n - 1)}^{-1})& \nonumber \\
+            & = \begin{vmatrix}
+                0 & 0 & \cdots & a_0 \\
+                p_1(x_1) - p_1(x_n) & p_1(x_2) - p_1(x_n) & \cdots & p_1(x_n) \\
+                \vdots & \vdots & \ddots & \vdots \\
+                p_{n - 1}(x_1) - p_{n - 1}(x_n) & p_{n - 1}(x_2) - p_{n - 1}(x_n) & \cdots & p_{n - 1}(x_n)
+            \end{vmatrix}_{n \times n}& \nonumber \\
+            & = (-1)^{n + 1}a_0 \begin{vmatrix}
+                a_1(x_1 - x_n) & a_1(x_2 - x_n) & \cdots & a_1(x_{n - 1} - x_n) \\
+                \sum\limits_{i = 1}^{2}a_i(x_1 - x_n)^i & \sum\limits_{i = 1}^{2}a_i(x_2 - x_n)^i & \cdots & \sum\limits_{i = 1}^{2}a_i(x_{n - 1} - x_n)^i \\
+                \vdots & \vdots & \ddots & \vdots \\
+                \sum\limits_{i = 1}^{n - 1}a_i(x_1 - x_n)^i & \sum\limits_{i = 1}^{n - 1}a_i(x_2 - x_n)^i & \cdots & \sum\limits_{i = 1}^{n - 1}a_i(x_{n - 1} - x_n)^i
+            \end{vmatrix}_{{(n - 1)} \times {(n - 1)}}& \nonumber
+        \end{flalign}
+        \begin{flalign}
+            & (\because \ r_{12}^{-1}, \ r_{13}^{-1}, \ \cdots, \ r_{1(n - 1)}^{-1}, \ r_{23}^{-1}, \ r_{24}^{-1}, \ \cdots, \ r_{2(n - 1)}^{-1}, \ r_{34}^{-1}, \ \cdots, \ r_{(n - 2)(n - 1)}^{-1})& \nonumber \\
+            & = (-1)^{n + 1}a_0 \begin{vmatrix}
+                a_1(x_1 - x_n) & a_1(x_2 - x_n) & \cdots & a_1(x_{n - 1} - x_n) \\
+                a_2(x_1 - x_n)^2 & a_2(x_2 - x_n)^2 & \cdots & a_2(x_{n - 1} - x_n)^2 \\
+                \vdots & \vdots & \ddots & \vdots \\
+                a_{n - 1}(x_1 - x_n)^{n - 1} & a_{n - 1}(x_2 - x_n)^{n - 1} & \cdots & a_{n - 1}(x_{n - 1} - x_n)^{n - 1}
+            \end{vmatrix}_{{(n - 1)} \times {(n - 1)}}& \nonumber \\
+            & (\because \ r_{1}^{\frac{1}{a_1}}, \ r_{2}^{\frac{1}{a_2}}, \ \cdots, \ r_{n - 1}^{\frac{1}{a_{n - 1}}})& \nonumber \\
+            & = (-1)^{n + 1}\displaystyle\prod_{i = 0}^{n - 1}a_i\begin{vmatrix}
+                (x_1 - x_n) & (x_2 - x_n) & \cdots & (x_{n - 1} - x_n) \\
+                (x_1 - x_n)^2 & (x_2 - x_n)^2 & \cdots & (x_{n - 1} - x_n)^2 \\
+                \vdots & \vdots & \ddots & \vdots \\
+                (x_1 - x_n)^{n - 1} & (x_2 - x_n)^{n - 1} & \cdots & (x_{n - 1} - x_n)^{n - 1}
+            \end{vmatrix}_{{(n - 1)} \times {(n - 1)}}& \\
+            & (\because \ c_1^{\frac{1}{x_1 - x_n}}, \ c_2^{\frac{1}{x_2 - x_n}}, \ \cdots, \ c_{n - 1}^{\frac{1}{x_{n - 1} - x_n}})& \nonumber \\
+            & = (-1)^{n + 1}(\displaystyle\prod_{i = 0}^{n - 1}a_i)(\displaystyle\prod_{j = 1}^{n - 1}(x_j - x_n))\begin{vmatrix}
+                1 & 1 & \cdots & 1 \\
+                (x_1 - x_n) & (x_2 - x_n) & \cdots & (x_{n - 1} - x_n) \\
+                \vdots & \vdots & \ddots & \vdots \\
+                (x_1 - x_n)^{n - 2} & (x_2 - x_n)^{n - 2} & \cdots & (x_{n - 1} - x_n)^{n - 2}
+            \end{vmatrix}_{{(n - 1)} \times {(n - 1)}}& \nonumber \\
+            & (\because \ \text{Vandermonde matrix})& \nonumber \\
+            & = (-1)^{n + 1}(\displaystyle\prod_{i = 0}^{n - 1}a_i)[(-1)^{n - 1}\displaystyle\prod_{j = 1}^{n - 1}(x_n - x_j)](\displaystyle\prod_{1 \le i \le j \le (n - 1)}(x_j - x_i))& \nonumber \\
+            & = (\displaystyle\prod_{i = 0}^{n - 1}a_i)(\displaystyle\prod_{1 \le i \le j \le n}(x_j - x_i))& \nonumber
+        \end{flalign}
+    % \item We have \begin{equation}
+    %     \begin{aligned}
+    %         \det(\mat{A}) & = \begin{vmatrix}
+    %             a_0 & a_0 & \cdots & a_0 \\
+    %             p_1(x_1) & p_1(x_2) & \cdots & p_1(x_n) \\
+    %             \vdots & \vdots & \ddots & \vdots \\
+    %             p_{n - 1}(x_1) & p_{n - 1}(x_2) & \cdots & p_{n - 1}(x_n)
+    %         \end{vmatrix} \ (\because \ c_{n1}^{-1}, \ c_{n2}^{-1}, \ \cdots, \ c_{n(n - 1)}^{-1})\\
+    %         & = \begin{vmatrix}
+    %             0 & 0 & \cdots & a_0 \\
+    %             p_1(x_1) - p_1(x_n) & p_1(x_2) - p_1(x_n) & \cdots & p_1(x_n) \\
+    %             \vdots & \vdots & \ddots & \vdots \\
+    %             p_{n - 1}(x_1) - p_{n - 1}(x_n) & p_{n - 1}(x_2) - p_{n - 1}(x_n) & \cdots & p_{n - 1}(x_n)
+    %         \end{vmatrix} \\
+    %         & = (-1)^{n + 1}a_0 \begin{vmatrix}
+    %             a_1(x_1 - x_n) & a_1(x_2 - x_n) & \cdots & a_1(x_{n - 1} - x_n) \\
+    %             \sum\limits_{i = 1}^{2}a_i(x_1 - x_n)^i & \sum\limits_{i = 1}^{2}a_i(x_2 - x_n)^i & \cdots & \sum\limits_{i = 1}^{2}a_i(x_{n - 1} - x_n)^i \\
+    %             \vdots & \vdots & \ddots & \vdots \\
+    %             \sum\limits_{i = 1}^{n - 1}a_i(x_1 - x_n)^i & \sum\limits_{i = 1}^{n - 1}a_i(x_2 - x_n)^i & \cdots & \sum\limits_{i = 1}^{n - 1}a_i(x_{n - 1} - x_n)^i
+    %         \end{vmatrix} \\
+    %         & (\because \ r_{12}^{-1}, \ r_{13}^{-1}, \ \cdots, \ r_{1(n - 1)}^{-1}, \ r_{23}^{-1}, \ r_{24}^{-1}, \ \cdots, \ r_{2(n - 1)}^{-1}, \ r_{34}^{-1}, \ \cdots, \ r_{(n - 2)(n - 1)}^{-1}) \\
+    %         & = (-1)^{n + 1}a_0 \begin{vmatrix}
+    %             a_1(x_1 - x_n) & a_1(x_2 - x_n) & \cdots & a_1(x_{n - 1} - x_n) \\
+    %             a_2(x_1 - x_n)^2 & a_2(x_2 - x_n)^2 & \cdots & a_2(x_{n - 1} - x_n)^2 \\
+    %             \vdots & \vdots & \ddots & \vdots \\
+    %             a_{n - 1}(x_1 - x_n)^{n - 1} & a_{n - 1}(x_2 - x_n)^{n - 1} & \cdots & a_{n - 1}(x_{n - 1} - x_n)^{n - 1}
+    %         \end{vmatrix} \\
+    %         & = (-1)^{n + 1}\displaystyle\prod_{i = 0}^{n - 1}a_i\begin{vmatrix}
+    %             (x_1 - x_n) & (x_2 - x_n) & \cdots & (x_{n - 1} - x_n) \\
+    %             (x_1 - x_n)^2 & (x_2 - x_n)^2 & \cdots & (x_{n - 1} - x_n)^2 \\
+    %             \vdots & \vdots & \ddots & \vdots \\
+    %             (x_1 - x_n)^{n - 1} & (x_2 - x_n)^{n - 1} & \cdots & (x_{n - 1} - x_n)^{n - 1}
+    %         \end{vmatrix} \\
+    %         & \overset{c_1^{\frac{1}{x_1 - x_n}}, \ c_2^{\frac{1}{x_2 - x_n}}, \ \cdots, \ c_{n - 1}^{\frac{1}{x_{n - 1} - x_n}}}= \\
+    %         & (-1)^{n + 1}(\displaystyle\prod_{i = 0}^{n - 1}a_i)(\displaystyle\prod_{j = 1}^{n - 1}(x_j - x_n))\begin{vmatrix}
+    %             1 & 1 & \cdots & 1 \\
+    %             (x_1 - x_n) & (x_2 - x_n) & \cdots & (x_{n - 1} - x_n) \\
+    %             \vdots & \vdots & \ddots & \vdots \\
+    %             (x_1 - x_n)^{n - 2} & (x_2 - x_n)^{n - 2} & \cdots & (x_{n - 1} - x_n)^{n - 2}
+    %         \end{vmatrix} \\
+    %         & = (-1)^{n + 1}(\displaystyle\prod_{i = 0}^{n - 1}a_i)[(-1)^{n - 1}\displaystyle\prod_{j = 1}^{n - 1}(x_n - x_j)](\displaystyle\prod_{1 \le i \le j \le (n - 1)}(x_j - x_i)) \\
+    %         & (\because \ \text{Vandermonde matrix}) \\
+    %         & = (\displaystyle\prod_{i = 0}^{n - 1}a_i)(\displaystyle\prod_{1 \le i \le j \le n}(x_j - x_i))           
+    %     \end{aligned}
+    % \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            (\displaystyle\prod_{i = 0}^{n - 1}a_i)(\displaystyle\prod_{1 \le i \le j \le n}(x_j - x_i))
+        \end{equation} 
+    \end{answer}
+    \item We have \begin{equation}
+        \begin{aligned}
+            \Rightarrow & \ \alpha^2 = \frac{1}{2} \times \alpha - \frac{1}{2} \\
+            \Rightarrow & \ \alpha = -\frac{1}{2} \lor \alpha = 1 \\
+            \Rightarrow & \ B_n = c \times (-\frac{1}{2})^n + d \times (1)^n
+        \end{aligned}
+    \end{equation} And, we have \begin{equation}
+        \begin{aligned}
+            & \begin{cases}
+                B_0 = 0 = c + d \\
+                B_1 = \frac{1}{2} = -\frac{1}{2} \times c + d
+            \end{cases} \\
+            \Rightarrow & \ c = -\frac{1}{3}, \ d = \frac{1}{3}
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            B_k = \frac{1}{3} - \frac{1}{3} \times (-\frac{1}{2})^k, \ \lim_{k \rightarrow \infty} B_k = \frac{1}{3}
+        \end{equation} 
+    \end{answer}
+    \item We have \begin{enumerate}[label=(\alph*)]
+        \item True.
+        \item False.
+        \item False, since $\vec{0} \in \spc{W}_1 \rightarrow \vec{0} \neq (\V - \spc{W}_1)$.
+        \item False, since $\vec{0} \in \spc{W}_1 \rightarrow \vec{0} \neq (\V - \spc{W}_1)$.
+        \item False.
+    \end{enumerate}
+    \item We have \begin{enumerate}[label=(\alph*)]
+        \item True.
+        \item True.
+        \item True.
+        \item False.
+        \item False.
+    \end{enumerate}
+\end{enumerate}
+
+% End of solutions.
+
+\end{document}
+

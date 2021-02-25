@@ -1,0 +1,219 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{../header}
+\newcommand{\school}{ntu}
+\newcommand{\subject}{math}
+\renewcommand{\year}{107}
+\newcommand{\titlename}{\MakeUppercase{\school} \subject \ \year}
+
+\fancypagestyle{mainmatter}{\rhead{\titlename}}
+\pagestyle{mainmatter}
+\CenterWallPaper{.50}{img/logo_ntu_recolor.jpg}
+\newcommand{\ver}{\textsc{Version} 1.0} % Version number.
+
+\begin{document}
+
+\title{\LARGE{\textbf{Solutions}} \\
+	\Huge{\textbf{\titlename}} \\
+	\normalsize{\ver}
+}
+\author{}
+\date{}
+
+\maketitle
+
+% Start of solutions.
+
+\begin{enumerate}
+	\item We have new question \begin{equation}
+        \begin{aligned}
+            & (x_1 + x_2 + \cdots + x_n \le H) - (x_1 + x_2 + \cdots + x_n < L), \ \forall \ x_i \ge 0, \ 1 \le i \le n \\
+            & (\text{Let} \ x_{n + 1} = H - (x_1 + x_2 + \cdots + x_n), \ x_{n + 1} \ge 0, \\
+            & y_{n + 1} = L - (x_1 + x_2 + \cdots + x_n), \ y_{n + 1} > 0) \\
+            \Rightarrow & \ (x_1 + x_2 + \cdots + x_n + x_{n + 1} = H, \ \forall \ x_i \ge 0, \ 1 \le i \le (n + 1)) \\
+            & \ - (x_1 + x_2 + \cdots + x_n + y_{n + 1} = L, \ \forall \ x_i \ge 0, \ 1 \le i \le n, \ y_{n + 1} > 0) \\
+            \Rightarrow & \ (x_1 + x_2 + \cdots + x_n + x_{n + 1} = H, \ \forall \ x_i \ge 0, \ 1 \le i \le (n + 1)) \\
+            & \ - (x_1 + x_2 + \cdots + x_n + z_{n + 1} = L - 1, \ \forall \ x_i \ge 0, \ 1 \le i \le n, \ z_{n + 1} \ge 0) \\
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            \binom{(n + 1) + H - 1}{H} - \binom{(n + 1) + (L - 1) - 1}{L - 1}
+        \end{equation}
+    \end{answer}
+    \item We have \begin{equation}
+        \begin{aligned}
+            & \alpha^2 = 2 \times \alpha + 3 \\
+            \Rightarrow & \ \alpha = 3 \lor \alpha = -1 \\
+            \Rightarrow & \ a_n = c \times 3^n + d \times (-1)^n
+        \end{aligned}
+    \end{equation} Then, we have \begin{equation}
+        \begin{aligned}
+            & \begin{cases}
+                a_0 = 1 = c + d \\
+                a_1 = 1 = 3 \times c - d
+            \end{cases} \\
+            \Rightarrow & \ c = \frac{1}{2}, \ d = \frac{1}{2}
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            a_n = \frac{1}{2} \times 3^n + \frac{1}{2} \times (-1)^n    
+        \end{equation}
+    \end{answer}
+    \item We have \begin{equation}
+        \begin{aligned}
+            & \sum_{n = 0}^{\infty}(n + 1)^2 x^n \\
+            \overset{\text{integral}}= & \ \sum_{n = 0}^{\infty}(n + 1)x^{n + 1} = x\sum_{n = 0}^{\infty}(n + 1)x^{}
+        \end{aligned}
+    \end{equation} Then, we have \begin{equation}
+        \begin{aligned}
+            & \sum_{n = 0}^{\infty}(n + 1)x^{n} \\
+            \overset{\text{integral}}= & \ \sum_{n = 0}^{\infty}x^{n + 1} = \frac{x}{1 - x}
+        \end{aligned}
+    \end{equation} Then, we have \begin{equation}
+        \begin{aligned}
+            & \frac{x}{1 - x} \overset{\text{derivative}}= \frac{1}{(1 - x)^2} \\
+            \Rightarrow & \ \sum_{n = 0}^{\infty}(n + 1)x^{n + 1} = \frac{x}{(1 - x)^2}
+        \end{aligned}
+    \end{equation} And, we have \begin{equation}
+        \begin{aligned}
+            & \frac{x}{(1 - x)^2} \overset{\text{derivative}}= \frac{1 + x}{(1 - x)^3} \\
+            \Rightarrow & \ \sum_{n = 0}^{\infty}(n + 1)^2 x^n = \frac{1 + x}{(1 - x)^3}
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+        \frac{1 + x}{(1 - x)^3}
+        \end{equation}
+    \end{answer}
+    \item \begin{answer}{$\dag$}\begin{equation}
+            2^{\binom{m}{2}}    
+        \end{equation}
+    \end{answer}
+    \item \begin{answer}{$\dag$}\begin{equation}
+            2^{\frac{n(n + 1)}{2}}, \ \binom{\binom{n}{2}}{m}    
+        \end{equation}
+    \end{answer}
+    \item We have characteristic polynomial \begin{equation}
+        p_{\mat{A}}(x) = x^2 - 5 \times x + 4
+    \end{equation} Then, we have \begin{equation}
+        \begin{aligned}
+            f(\mat{A}) & = \mat{A}^4 - 3 \times \mat{A}^3 - 6 \times \mat{A}^2 + 7 \times \mat{A} + 2 \times \mat{I} \\
+            & = (\mat{A}^2 + 2 \times \mat{A})(\mat{A}^2 - 5 \times \mat{A} + 4 \times \mat{I}) + (-\mat{A} + 2 \times \mat{I}) \\
+            & = (-\mat{A} + 2 \times \mat{I})
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            \begin{bmatrix}
+                0 & -2 \\
+                -1 & -1
+            \end{bmatrix}    
+        \end{equation}
+    \end{answer}
+    \item We have \begin{equation}
+        \begin{aligned}
+            \det(\mat{A} + t\mat{I}) & = \begin{bmatrix}
+                t & 0 & 0 & \cdots & a_0 \\
+                -1 & t & 0 & \cdots & a_1 \\
+                0 & -1 & t & \cdots & a_2 \\
+                \vdots & \vdots & \vdots & \ddots & \vdots \\
+                0 & 0 & 0 & \cdots & a_{n - 1} + t
+            \end{bmatrix}_{n \times n} \\
+            & = t^{n - 1}[(a_{n - 1} + t) + \frac{1}{t}a_{n - 2} + \frac{1}{t^2}a_{n - 3} + \cdots + a_0] \\
+            & = t^n + t^{n - 1}a_{n - 1} + t^{n - 2}a_{n - 2} + \cdots + a_0 \\
+            & = t^n + \sum_{i = 0}^{n - 1}a_it^{i}
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            t^n + \sum_{i = 0}^{n - 1}a_it^{i}
+        \end{equation}
+    \end{answer}
+    \item By Gram–Schmidt process, we have \begin{equation}
+        \begin{aligned}
+            u_1 = & \ 1, \ ||u_1|| = \int_{0}^{1}1 \times 1dt = 1 \\
+            u_2 = & \ t - \frac{\int_{0}^{1}1 \times tdt}{1} \times 1= t - \frac{1}{2}, \ ||u_2|| = \int_{0}^{1}(t - \frac{1}{2})^2dt = \frac{1}{12} \\
+            u_3 = & \ t^2 - \frac{\int_{0}^{1}1 \times t^2dt}{1} \times 1 - \frac{\int_{0}^{1}(t - \frac{1}{2}) \times t^2dt}{\frac{1}{12}} \times (t - \frac{1}{2})= t^2 - t + \frac{1}{6}, \\
+            & \ ||u_3|| = \int_{0}^{1}(t^2 - t + \frac{1}{6})^2dt = \frac{1}{180}
+        \end{aligned}
+    \end{equation} We have projection \begin{equation}
+        \begin{aligned}
+            & \frac{\int_{0}^{1}1 \times t^3dt}{1} \times 1 + \frac{\int_{0}^{1}(t - \frac{1}{2}) \times t^3dt}{\frac{1}{12}}(t - \frac{1}{2}) + \frac{\int_{0}^{1}(t^2 - t + \frac{1}{6}) \times t^3dt}{\frac{1}{180}} \times (t^2 - t + \frac{1}{6}) \\
+            = & \frac{3}{2} \times t^2 - \frac{3}{5} \times t + \frac{1}{20}
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            \frac{3}{2} \times t^2 - \frac{3}{5} \times t + \frac{1}{20}
+        \end{equation}
+    \end{answer}
+    \item \begin{answer}{$\dag$} We have \begin{itemize}
+            \item False.
+            \item False. We have $\det(\mat{A}^\intercal) = \det(-\mat{A})$ $\iff$ $\det(\mat{A}) = (-1)^n \times \det(\mat{A})$. ONLY if the dimension of $\mat{A}$, i.e. $n$, is odd, then $\mat{A}$ is singular; otherwise, it's non-singular.
+            \item False. $(\mat{A} + \mat{I})^n = (2^n - 1) \times \mat{A}$.
+            \item True, since symmetric matrix is \textbf{orthogonally diagonalizable}, and it's also \textbf{diagonalizable}.
+            \item True. Suppose \begin{equation}
+                \mat{A}^{-1} = \begin{bmatrix}
+                    \mat{P} & \mat{Q} \\
+                    \mat{R} & \mat{S}
+                \end{bmatrix}
+            \end{equation} Then, we have \begin{equation}
+                \begin{aligned}
+                    \Rightarrow & \ \begin{bmatrix}
+                        \mat{B} & \mat{C} \\
+                        \mat{O} & \mat{D}
+                    \end{bmatrix} \begin{bmatrix}
+                        \mat{P} & \mat{Q} \\
+                        \mat{R} & \mat{S}
+                    \end{bmatrix} = \begin{bmatrix}
+                        \mat{I} & \mat{O} \\
+                        \mat{O} & \mat{I}
+                    \end{bmatrix} \\
+                    \Rightarrow & \ \begin{cases}
+                        \mat{BP} + \mat{CR} = \mat{I} \\
+                        \mat{BQ} + \mat{CS} = \mat{O} \\
+                        \mat{DR} = \mat{O} \rightarrow \mat{R} = \mat{O} \\
+                        \mat{DS} = \mat{I} \rightarrow \mat{S} = \mat{D}^{-1}
+                    \end{cases} \\
+                    \Rightarrow & \ \begin{cases}
+                        \mat{P} = \mat{B}^{-1} \\
+                        \mat{Q} = -\mat{B}^{-1}\mat{CD}^{-1} \\
+                        \mat{R} = \mat{O} \\
+                        \mat{S} = \mat{D}^{-1}
+                    \end{cases} \\
+                    \Rightarrow & \ \mat{A}^{-1} = \begin{bmatrix}
+                        \mat{B}^{-1} & -\mat{B}^{-1}\mat{CD}^{-1} \\
+                        \mat{O} & \mat{D}^{-1}
+                    \end{bmatrix}
+                \end{aligned}
+            \end{equation}
+        \end{itemize}
+    \end{answer}
+    \item \begin{answer}{$\dag$} We have 
+        \begin{itemize}
+            \item True. We have \begin{equation}
+                \begin{bmatrix}
+                    1 & 1 & 0 \\
+                    0 & 1 & 1 \\
+                    1 & 0 & 1
+                \end{bmatrix} \begin{bmatrix}
+                    u \\
+                    v \\
+                    w
+                \end{bmatrix}
+            \end{equation} And, we have \begin{equation}
+                \det\left(\begin{bmatrix}
+                    1 & 1 & 0 \\
+                    0 & 1 & 1 \\
+                    1 & 0 & 1
+                \end{bmatrix}\right) = 2
+            \end{equation} is non-singular, so $\{u + v, \ v + w, \ w + u\}$ is linearly independent.
+            \item True. $\mat{A} \sim \mat{B} \rightarrow p_{\mat{A}} = p_{\mat{B}}$, so $\mat{A}$ and $\mat{B}$ have the same eigenvalues.
+            \item False. $\mat{A} \sim \mat{B} \rightarrow p_{\mat{A}} = p_{\mat{B}}$, but the eigenvectors may differ.
+            \item False, since if $m \neq n$, $\mat{B}^\intercal\mat{A}$ may NOT exist.
+            \item False, since \begin{equation}
+                (\spc{U} + \spc{W})^{\perp} = \spc{U}^{\perp} \cap \spc{W}^{\perp}
+            \end{equation}
+        \end{itemize}
+    \end{answer}
+\end{enumerate}
+
+% End of solutions.
+
+\end{document}

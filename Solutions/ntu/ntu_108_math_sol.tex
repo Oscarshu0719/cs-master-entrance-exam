@@ -1,0 +1,192 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{../header}
+\newcommand{\school}{ntu}
+\newcommand{\subject}{math}
+\renewcommand{\year}{108}
+\newcommand{\titlename}{\MakeUppercase{\school} \subject \ \year}
+
+\fancypagestyle{mainmatter}{\rhead{\titlename}}
+\pagestyle{mainmatter}
+\CenterWallPaper{.50}{img/logo_ntu_recolor.jpg}
+\newcommand{\ver}{\textsc{Version} 1.0} % Version number.
+
+\begin{document}
+
+\title{\LARGE{\textbf{Solutions}} \\
+	\Huge{\textbf{\titlename}} \\
+	\normalsize{\ver}
+}
+\author{}
+\date{}
+
+\maketitle
+
+% Start of solutions.
+
+\begin{enumerate}
+	\item \begin{answer}{$\dag$} $1, \ 3, \ 7, \ 9$.
+    \end{answer}
+    \item We have recurrence function \begin{equation}
+        \begin{cases}
+            a_n = 2 \times a_{n - 2}, \ n \ge 3 \\
+            a_1 = 2, \ a_2 = 2
+        \end{cases}
+    \end{equation} Then, we have \begin{equation}
+        \begin{aligned}
+            & \alpha^2 = 2 \\
+            \Rightarrow & \ \alpha = \pm \sqrt{2} \\
+            \Rightarrow & \ a_n = c \times (\sqrt{2})^n + d \times (-\sqrt{2})^n
+        \end{aligned}
+    \end{equation} Then, we have \begin{equation}
+        \begin{aligned}
+            & \begin{cases}
+                a_1 = 2 = \sqrt{2} \times c - \sqrt{2} \times d \\
+                a_2 = 2 = 2 \times c + 2 \times d
+            \end{cases} \\
+            \Rightarrow & \ c = \frac{\sqrt{2} + 2}{2\sqrt{2}}, \ d = \frac{\sqrt{2} - 2}{2\sqrt{2}}
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            a_n = \frac{\sqrt{2} + 2}{2\sqrt{2}} \times (\sqrt{2})^n + \frac{\sqrt{2} - 2}{2\sqrt{2}} \times (-\sqrt{2})^n
+        \end{equation}
+    \end{answer}
+    \item We have \begin{equation}
+        \binom{2n}{n + 1} + \binom{2n}{n} = \binom{2n + 1}{n + 1} = 2 \times \binom{2n + 2}{n + 1}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            A = 2n + 2, \ B = n + 1
+        \end{equation}
+    \end{answer}
+    \item We have \begin{equation}
+        \sum_{k = 1}^{n}\binom{n}{k}\binom{n}{k - 1} = \sum_{k = 1}^{n}\binom{n}{k}\binom{n}{n - (k - 1)} = \binom{2n}{n + 1}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            A = 2n, \ B = n + 1
+        \end{equation}
+    \end{answer}
+    \item We have \begin{equation}
+        \begin{aligned}
+            & \alpha^2 = \alpha + 2 \\
+            \Rightarrow & \ \alpha = 2 \lor \alpha = -1 \\
+            \Rightarrow & \ a_n = c \times 2^n + d \times (-1)^n \\
+        \end{aligned}
+    \end{equation} We have \begin{equation}
+        \begin{aligned}
+            & \begin{cases}
+                a_0 = c + d \\
+                a_1 = 2 \times c - d
+            \end{cases} \\
+            \Rightarrow & \ c = \frac{a_0 + a_1}{3}, \ d = \frac{2 \times a_0 - a_1}{3} \\
+            \Rightarrow & \ a_n = \frac{2 \times a_0 - a_1}{3} \times (-1)^n + \frac{a_0 + a_1}{3} \times 2^n 
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            A = \frac{2 \times a_0 - a_1}{3}, \ B = \frac{a_0 + a_1}{3}, \ X = 1, \ Y = 2
+        \end{equation}
+    \end{answer} 
+    \item We have \begin{equation}
+        \begin{aligned}
+            & x_1 + x_2 + \cdots + x_n = r, \ \forall \ x_i \ge n_i + 1, \ 1 \le i \le n \\
+            \Rightarrow & \ y_1 + y_2 + \cdots + y_n = r - ((\sum_{i = 1}^n n_i) + n), \ \forall \ y_i \ge 0, \ 1 \le i \le n
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            \binom{n + r - (\sum_{i = 1}^{n}n_i) - n - 1}{r - (\sum_{i = 1}^{n}n_i) - n}
+        \end{equation}
+    \end{answer}
+    \item \begin{answer}{$\dag$}\begin{equation}
+            \begin{aligned}
+                & [(p \rightarrow q) \land \neg p] \rightarrow \neg q \\
+                \iff & \ [(\neg p \lor q) \land \neg p] \rightarrow \neg q \\
+                \iff & \ \neg [(\neg p \lor q) \land \neg p] \lor \neg q \\
+                \iff & \ [(p \land \neg q) \lor p] \lor \neg q \\
+                \iff & \ p \land (\neg q \lor p) \lor \neg q \\
+                \iff & \ (p \lor \neg q) \land [(p \lor \neg q) \lor \neg q] \\
+                \iff & \ (p \lor \neg q) \land [(p \lor \neg q) \lor \neg q] \\
+                \iff & \ (p \lor \neg q) 
+            \end{aligned}
+        \end{equation} So, it's NOT tautology.
+    \end{answer}
+    \item We have \begin{itemize}
+        \item True. Let \begin{equation}
+            \begin{aligned}
+                & \spc{S} = \{a, \ b\} \subset \spc{U} \\
+                \Rightarrow & \ \spn(s) = c_1a + c_2b \subset \spc{U}
+            \end{aligned}
+        \end{equation}
+        \item False. Counterexample: \begin{equation}
+            \begin{aligned}
+                & \spc{R} = \{(1, \ 0), \ (0, \ 1), \ (0, \ 2)\} \\
+                \Rightarrow & \ (1, \ 0) \ \nexists \ \spn(\spc{R} \ \backslash \ \{(1, \ 0)\} )                
+            \end{aligned}
+        \end{equation}
+        \item True.
+        \item False. Counterexample: $\spn(\vec{0}) = \emptyset$, but $\emptyset$ is NOT orthonormal.
+        \item True.
+    \end{itemize}
+    \begin{answer}{$\dag$}\begin{equation}
+            3    
+        \end{equation}
+    \end{answer}
+    \item We have \begin{itemize}
+        \item True.
+        \item True. $\mat{A}$ is invertible $\iff$ $\det(\mat{A}) \neq 0$ $\iff$ $\det(\mat{A}\herm) \neq 0$
+        \item True.
+        \item True. $\mat{A}$ is invertible, so $\rnk(\mat{A}) = m = n = \rnk(\mat{A}^{-1})$.
+        \item True. $\det(\mat{A}\herm) = \det(\overline{\mat{A}^\intercal}) = \overline{\det(\mat{A}^\intercal)} = \overline{\det(\mat{A})}$
+    \end{itemize}
+    \begin{answer}{$\dag$}\begin{equation}
+            5   
+        \end{equation}
+    \end{answer}
+    \item We have \begin{itemize}
+        \item True. $\mathbb{Q}^n$ is the direct sum of eigenspace of $\mat{A}$ $\iff$ there are $n$ linearly independent eigenvectores of $\mat{A}$ $\iff$ $\mat{A}$ is diagonalizable
+        \item True.
+        \item False. $\mat{A}$ may NOT be split.
+        \item False. If the $\mat{A}$ is \textbf{real} and symmetric, all of its eigenvalues are always real. It can NOT be ensured if $\mat{A}$ is \textbf{complex}.
+        \item True. 
+    \end{itemize}
+    \begin{answer}{$\dag$}\begin{equation}
+            3   
+        \end{equation}
+    \end{answer}
+    \item We have inverse \begin{equation}
+        \begin{bmatrix}
+            \frac{529}{12167} & 0 & \frac{529}{12167} & \frac{529}{12167} \\
+            0 & \frac{1587}{12167} & 0 & \frac{1058}{12167} \\
+            \frac{2116}{12167} & 0 & \frac{1587}{12167} & 0 \\
+            \frac{1058}{12167} & \frac{1058}{12167} & 0 & \frac{1587}{12167}
+        \end{bmatrix}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            6
+        \end{equation}
+    \end{answer}
+    \item \begin{answer}{$\dag$}\begin{equation}
+            \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 0 & 0
+            \end{bmatrix}, \ \begin{bmatrix}
+                0 & 1 & 0 \\
+                0 & 0 & 0
+            \end{bmatrix}, \ \begin{bmatrix}
+                0 & 0 & 1 \\
+                0 & 0 & 0
+            \end{bmatrix}, \ \begin{bmatrix}
+                0 & 0 & 0 \\
+                1 & 0 & 0
+            \end{bmatrix}, \ \begin{bmatrix}
+                0 & 0 & 0 \\
+                0 & 1 & 0
+            \end{bmatrix}, \ \begin{bmatrix}
+                0 & 0 & 0 \\
+                0 & 0 & 1
+            \end{bmatrix}
+        \end{equation}
+    \end{answer}
+\end{enumerate}
+
+% End of solutions.
+
+\end{document}

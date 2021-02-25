@@ -1,0 +1,306 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage{../header}
+\newcommand{\school}{ntu}
+\newcommand{\subject}{math}
+\renewcommand{\year}{101}
+\newcommand{\titlename}{\MakeUppercase{\school} \subject \ \year}
+
+\fancypagestyle{mainmatter}{\rhead{\titlename}}
+\pagestyle{mainmatter}
+\CenterWallPaper{.50}{img/logo_ntu_recolor.jpg}
+\newcommand{\ver}{\textsc{Version} 1.0} % Version number.
+
+\begin{document}
+
+\title{\LARGE{\textbf{Solutions}} \\
+	\Huge{\textbf{\titlename}} \\
+	\normalsize{\ver}
+}
+\author{}
+\date{}
+
+\maketitle
+
+% Start of solutions.
+
+\begin{enumerate}
+	\item \begin{answer}{$\dag$}\begin{equation}
+            \begin{bmatrix}
+                1 \\
+                1 \\
+                9
+            \end{bmatrix}    
+        \end{equation}
+    \end{answer}
+    \item \begin{answer}{$\dag$}\begin{equation}
+            3    
+        \end{equation}
+    \end{answer}
+    \item We have \begin{equation}
+        \mat{B} \overset{\text{rref}}= \begin{bmatrix}
+            0 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 & -3 & 0 \\
+            0 & 1 & 1 & -1 & 2 & 2 \\
+            1 & 1 & 2 & 0 & 2 & 3 \\
+        \end{bmatrix}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            3    
+        \end{equation}
+    \end{answer}
+    \item We have \begin{equation}
+        \mat{A} = \begin{bmatrix}
+            \frac{1}{2} & \frac{\sqrt{3}}{2} \\
+            -\frac{\sqrt{3}}{2} & \frac{1}{2}
+        \end{bmatrix}
+    \end{equation} $\mat{A}$ is a rotation matrix, which rotates $\frac{\pi}{3}$ \textbf{clockwisely}. Then, we have \begin{equation}
+        \mat{A}^{300} = \begin{bmatrix}
+            \cos(100\pi) & \sin(100\pi) \\
+            -\sin(100\pi) & \cos(100\pi) \\
+        \end{bmatrix}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            \begin{bmatrix}
+                1 & 0 \\
+                0 & 1
+            \end{bmatrix}
+        \end{equation}
+    \end{answer}
+    \item We have characteristic polynomial \begin{equation}
+        p_{\mat{A}}(x) = -x^3 + x^2 - 3 \times x + 2
+    \end{equation} Suppose $\lambda_{\mat{A}} = a, \ b, \ c$, then we have, \begin{equation}
+        \begin{aligned}
+            & \begin{cases}
+                a + b + c = 1 \\
+                ab + bc + ac = 3 \\
+                abc = 2
+            \end{cases} \\
+            \Rightarrow & \ \begin{cases}
+                a^2 + b^2 + c^2 = (a + b + c)^2 - 2 \times (ab + bc + ac) = -5 \\
+                a^2b^2 + b^2c^2 + a^2c^2 = (ab + bc + ac)^2 - 2 \times (abc) \times (a + b + c) = 5 \\
+                a^2b^2c^2 = (abc)^2 = 4
+            \end{cases}
+        \end{aligned}
+    \end{equation} Then, we have characteristic polynomial \begin{equation}
+        p_{\mat{A}^2} = \det(\mat{A}^2 - \mat{I}\vec{x}) = -x^3 + (-5) \times x^2 - (5) \times x + 4
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            \det(\vec{x}\mat{I} - \mat{A}^2) = -(-x^3 + (-5) \times x^2 - (5) \times x + 4) = x^3 + 5 \times x^2 + 5 \times x - 4
+        \end{equation}
+    \end{answer}
+    \item \begin{answer}{$\dag$}\begin{equation}
+            \begin{bmatrix}
+                1 & 1 \\
+                -1 & 2
+            \end{bmatrix}
+        \end{equation}
+    \end{answer}
+    \item We have \begin{equation}
+        \begin{aligned}
+            & -\mat{H}^3 + \alpha \mat{H}^2 + \beta \mat{H} + \gamma \mat{I} = \mat{O} \\
+            \Rightarrow & \ \begin{cases}
+                \alpha = \tr(\mat{H}) = 34 \\
+                \begin{aligned} \beta & = -\tr_2(\mat{H}) \\ 
+                & = -(\begin{vmatrix}
+                    1 & 2 \\
+                    5 & 6
+                \end{vmatrix} + \begin{vmatrix}
+                    1 & 3 \\
+                    9 & 11
+                \end{vmatrix} + \begin{vmatrix}
+                    1 & 4 \\
+                    13 & 16
+                \end{vmatrix} + \begin{vmatrix}
+                    6 & 7 \\
+                    10 & 11
+                \end{vmatrix} + \begin{vmatrix}
+                    6 & 8 \\
+                    14 & 16
+                \end{vmatrix} + \begin{vmatrix}
+                    11 & 12 \\
+                    15 & 16
+                \end{vmatrix}) = 80 \end{aligned} \\
+                \gamma = \det(\mat{H}) = 0
+            \end{cases}
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            \begin{bmatrix}
+                34 \\
+                80 \\
+                0
+            \end{bmatrix}
+        \end{equation}
+    \end{answer}
+    \item We have \begin{equation}
+        \begin{aligned}
+            % & (\because \ r_{12}^{1}, \ r_{23}^{1}, \ \cdots, \ r_{56}^{1}) \\
+            & \overset{r_{12}^{1}, \ r_{23}^{1}, \ \cdots, \ r_{56}^{1}}= \begin{vmatrix}
+                1 & 2 & 2^2 & 2^3 & 2^4 & 2^5 \\
+                3 & 3 & 3 \times 2 & 3 \times 2^2 & 3 \times 2^3 & 3 \times 2^4 \\
+                3 \times 2 & 3 & 3 & 3 \times 2 & 3 \times 2^2 & 3 \times 2^3 \\
+                3 \times 2^2 & 3 \times 2 & 3 & 3 & 3 \times 2 & 3 \times 2^2 \\
+                3 \times 2^3 & 3 \times 2^2 & 3 \times 2 & 3 & 3 & 3 \times 2 \\
+                3 \times 2^4 & 3 \times 2^3 & 3 \times 2^2 & 3 \times 2 & 3 & 3
+            \end{vmatrix} \\
+            % & (\because \ r_{2}^{\frac{1}{3}}, \ r_{3}^{\frac{1}{3}}, \ \cdots, r_{6}^{\frac{1}{3}}) \\
+            & \overset{r_{2}^{\frac{1}{3}}, \ r_{3}^{\frac{1}{3}}, \ \cdots, r_{6}^{\frac{1}{3}}}= 3^5 \times \begin{vmatrix}
+                1 & 2 & 2^2 & 2^3 & 2^4 & 2^5 \\
+                1 & 1 & 2 & 2^2 & 2^3 & 2^4 \\
+                2 & 1 & 1 & 2 & 2^2 & 2^3 \\
+                2^2 & 2 & 1 & 1 & 2 & 2^2 \\
+                2^3 & 2^2 & 2 & 1 & 1 & 2 \\
+                2^4 & 2^3 & 2^2 & 2 & 1 & 1
+            \end{vmatrix} \\
+            % & (\because \ r_{12}^{-1}, \ r_{23}^{-1}, \ \cdots, \ r_{56}^{-1}) \\
+            & \overset{r_{12}^{-1}, \ r_{23}^{-1}, \ \cdots, \ r_{56}^{-1}}= 3^5 \times \begin{vmatrix}
+                1 & 2 & 2^2 & 2^3 & 2^4 & 2^5 \\
+                0 & -1 & -2 & -2^2 & -2^3 & -2^4 \\
+                1 & 0 & -1 & -2 & -2^2 & -2^3 \\
+                2 & 1 & 0 & -1 & -2 & -2^2 \\
+                2^2 & 2 & 1 & 0 & -1 & -2 \\
+                2^3 & 2^2 & 2 & 1 & 0 & -1 
+            \end{vmatrix} \\
+            % & (\because \ r_{65}^{-2}, \ r_{54}^{-2}, \ \cdots, \ r_{21}^{-2}) \\
+            & \overset{r_{65}^{-2}, \ r_{54}^{-2}, \ \cdots, \ r_{21}^{-2}}= 3^5 \begin{vmatrix}
+                1 & 0 & 0 & 0 & 0 & 0 \\
+                -2 & -1 & 0 & 0 & 0 & 0 \\
+                -3 & -2 & -1 & 0 & 0 & 0 \\
+                -6 & -3 & -2 & -1 & 0 & 0 \\
+                -12 & -6 & -3 & -2 & -1 & 0 \\
+                2^3 & 2^2 & 2 & 1 & 0 & -1 
+            \end{vmatrix}
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            -3^5
+        \end{equation}
+    \end{answer}
+    \item Suppose \begin{equation}
+        \begin{aligned}
+            & \vec{x} = \begin{bmatrix}
+                x_1 \\
+                x_2 \\
+                \vdots \\
+                x_{100}
+            \end{bmatrix}, \ \mat{A}_{100} = \begin{bmatrix}
+                0 & \frac{1}{2} & 0 & \cdots & 0 & 0 \\
+                \frac{1}{2} & 0 & \frac{1}{2} & \cdots & 0 & 0 \\
+                0 & \frac{1}{2} & 0 & \cdots & 0 & 0 \\
+                \vdots & \vdots & \vdots & \ddots & 0 & \frac{1}{2} \\
+                0 & 0 & 0 & \cdots & \frac{1}{2} & 0
+            \end{bmatrix}_{100 \times 100} \\
+            \Rightarrow & \ q(x_1, \ x_2, \ \cdots, \ x_{100}) = \sum_{k = 1}^{99}x_kx_{k + 1}  = \vec{x}^\intercal\mat{A}_{100}\vec{x}\\
+        \end{aligned}
+    \end{equation} By Rayleigh principle, $\max_{||\vec{x}|| = 1}\vec{x}^\intercal\mat{A}_n\vec{x} = \lambda_{\max}(\mat{A}_n)$. And, we have general tridiagnoal matrix \begin{equation}
+        B_n = \begin{bmatrix}
+            a & b & 0 & 0 & 0 & \cdots & 0 & 0 & 0 & 0 \\
+            b & a & b & 0 & 0 & \cdots & 0 & 0 & 0 & 0 \\
+            0 & b & a & b & 0 & \cdots & 0 & 0 & 0 & 0 \\
+            0 & 0 & b & a & b & \cdots & 0 & 0 & 0 & 0 \\
+            \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots \\
+            0 & 0 & 0 & 0 & 0 & \cdots & 0 & b & a & b \\
+            0 & 0 & 0 & 0 & 0 & \cdots & 0 & 0 & b & a \\
+        \end{bmatrix}_{n \times n}
+    \end{equation} By solving the recurrence function, we have general eigenvalues formula for $\mat{B}_n$ \begin{equation}
+        \lambda_k = a + 2 \times b \cos(\frac{k \times \pi}{n + 1}), \ k = 1, \ 2, \ \cdots, \ n
+    \end{equation} Then, we have $a = 0, \ b = \frac{1}{2}$, and get $\mat{A}_n$'s eigenvalues \begin{equation}
+        \lambda_k = \cos(\frac{k \times \pi}{n + 1}), \ k = 1, \ 2, \ \cdots, \ n
+    \end{equation} And, we have \begin{equation}
+        \cos(\frac{1 \times \pi}{100 + 1})
+    \end{equation} as largest eigenvalue of $\mat{A}_{100}$.
+    \begin{answer}{$\dag$}\begin{equation}
+            \cos(\frac{\pi}{101})
+        \end{equation}
+    \end{answer}
+    \item $(a)$ has $2$ degree-$3$ vertice and $3$ degree-$2$ vertices, when $(b)$, $(c)$, and $(d)$ have same $4$ degree-$3$ vertice and $1$ degree-$2$ vertices, so $(a)$ can NOT be an isomorphism of others. \\
+    And, we have correspondence \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            $(b)$ & $(c)$ & $(d)$ \\
+            \Xhline{2\arrayrulewidth}
+            $1$ & $4$ & $5$ \\
+            \hline
+            $2$ & $1$ & $2$ \\
+            \hline
+            $3$ & $5$ & $1$ \\
+            \hline
+            $4$ & $3$ & $4$ \\
+            \hline
+            $5$ & $2$ & $3$ \\
+            \hline
+        \end{tabular}
+    \end{table} So, $(b)(c)(d)$ are isomorphic.
+    \begin{answer}{$\dag$}\begin{equation}
+            (b)(c)(d)
+        \end{equation}
+    \end{answer}
+    \item \begin{enumerate}[label=(\alph*)]
+        \item \begin{answer}{$\dag$}\begin{equation}
+                s_n = s_{n - 1} + \frac{n(n - 1)}{2}
+            \end{equation}
+        \end{answer}
+        \item \begin{answer}{$\dag$}\begin{equation}
+                a_0 + a_1 + a_2 + a_3 + \cdots = s_1 = 1
+            \end{equation}
+        \end{answer}
+    \end{enumerate}
+    \item Suppose \begin{equation}
+        \begin{aligned}
+            \Rightarrow & \ \begin{cases}
+                x_1 = a - 1 \ge 0 \\
+                x_2 = b - a \ge 2 \\
+                x_3 = c - b \ge 2 \\
+                x_4 = d - c \ge 2 \\
+                x_5 = 12 - d \ge 0
+            \end{cases} , \ \sum_{i = 1}^{5}x_i = 11 \\
+            \Rightarrow & \ \begin{cases}
+                y_1 = x_1 \ge 0 \\
+                y_2 = x_2 - 2 \ge 0 \\
+                y_3 = x_3 - 2 \ge 0 \\
+                y_4 = x_4 - 2 \ge 0 \\
+                y_5 = x_5 \ge 0
+            \end{cases} , \ \sum_{i = 1}^{5}y_i = 11 - 3 \times 2
+        \end{aligned}
+    \end{equation}
+    \begin{answer}{$\dag$}\begin{equation}
+            \binom{5 + (11 - 6) - 1}{(11 - 6)} = 126
+        \end{equation}
+    \end{answer}
+    \item \begin{enumerate}[label=(\alph*)]
+        \item We have constraints: $m$ and $n$ must be \textbf{even} ($\ge 1$ Euler circuits), and $m \neq n$ (NO Hamilton cycle).
+        \begin{answer}{$\dag$}\begin{equation}
+                2, \ 8
+            \end{equation}
+        \end{answer}
+        \item \begin{answer}{$\dag$}\begin{equation}
+                m \ \text{and} \ n \ \text{is even}, \ \text{and} \ m \neq n
+            \end{equation}
+        \end{answer}
+    \end{enumerate}
+    \item \begin{answer}{$\triangle$}\begin{equation}
+            \begin{aligned}
+                & \begin{aligned}
+                    (\Rightarrow) \ & \because \ (S, \ +, \ \cdot) \ \text{is a ring} \\
+                    & \therefore \ \forall \ a, \ b \in S, \ a + b \in S, \ a \cdot b \in S
+                \end{aligned} \\
+                & \begin{aligned}
+                    (\Leftarrow) \ & \forall \ a \in S, \ -a \in S \\
+                    & \because (S, \ +, \ \cdot) \ \text{is closed}, \ \forall \ a \in S, \ a, \ 2a, \ \cdots \in S \\
+                    & \exists \ i < j, \ ia = ja \rightarrow (j - i)a = 0 \rightarrow a + (j - i - 1)a = 0 \\
+                    & \therefore \ -a = \begin{cases}
+                        0 (= a) \in S &, \ j = i + 1 \\
+                        (j - i - 1)a \in S &, \ j > i + 1 \\
+                    \end{cases}
+                \end{aligned}
+            \end{aligned}
+        \end{equation}
+    \end{answer}
+\end{enumerate}
+
+% End of solutions.
+
+\end{document}
+

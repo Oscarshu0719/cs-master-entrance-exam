@@ -1,0 +1,1 @@
+for %%f in (ntu_*_sw_sol.tex) do xelatex.exe "%%f" -output-directory=doc

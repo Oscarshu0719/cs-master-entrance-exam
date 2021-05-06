@@ -20,5 +20,18 @@
         \item $\mat{A}\vec{x} = \vec{b} \ (\vec{b} \neq \vec{0})$ is consistent, then solution set is \textbf{NOT} a subspace, since $\vec{0}$ is NOT included.
         \item If $\spc{W}$ is a subset of $\R^n$, but $\spc{W} \cup \spc{W}^\perp \neq \R^n$, since $\spc{W}^\perp$ is NOT a subset.
         \item If $\V \in \R^{m \times n}$, $<\mat{A}, \mat{B}> = \tr(\mat{B}^\intercal\mat{A})$ does \textbf{NOT} define an inner space in $\V$, since if $m \neq n$, $\mat{B}^\intercal\mat{A}$ may \textbf{NOT} exist.
+        \item (101NTU-10) If \begin{equation}
+            \mat{A} = 
+            \begin{bmatrix} 
+				0 & 1 & 0 & \cdots & 0 & 0 \\
+                1 & 0 & 1 & \cdots & 0 & 0 \\
+                0 & 1 & 0 & \cdots & 0 & 0 \\
+                \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+                0 & 0 & 0 & \cdots & 0 & 1 \\
+                0 & 0 & 0 & \cdots & 1 & 0
+			\end{bmatrix}
+        \end{equation}, then \begin{equation}
+            \lambda_{\mat{A}} = 2 \times \cos(\frac{k\pi}{n + 1}), \ k = 1,\ 2, \ \cdots, \ n
+        \end{equation}
     \end{itemize}
 \end{theorem}

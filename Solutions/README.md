@@ -8,11 +8,27 @@ This article is mainly for the solutions of Computer Science graduate school ent
 
 ## Link
 
--   [root](https://drive.google.com/drive/folders/1IWv8PaqnwXx767kR3tA-u-C6VoG-ZA-I?usp=sharing)
-    -   ntu
-        -   [ntu_math_100_109](https://drive.google.com/drive/folders/1XFHgQQPUaow0_b1hbuGT8vPNksefsUBk?usp=sharing)
-    -   nycu
-    -   nthu
+-   [cs-master-entrance-exam](https://drive.google.com/drive/folders/1fF52seSxcd-afUI3NZg1hJMyKK4wilrA?usp=sharing)
+    - [Solutions](https://drive.google.com/drive/folders/11tc-YBaXcekanwIl5Wm18hZsheG2Ejvc?usp=sharing)
+        -   [nthu](https://drive.google.com/drive/folders/1WqHwBg0b-VsUjRqhGsCfz_nYScWRNrbe?usp=sharing)
+            -   hw
+            -   math
+            -   sw
+        -   [ntu](https://drive.google.com/drive/folders/19ADSJYKYJNtzK9ex36MsNG9xLZ5Fn3IQ?usp=sharing)
+            -   hw
+            -   [math](https://drive.google.com/drive/folders/1giAspC-q6aup0vwssiV4SSABJmLkEiyp?usp=sharing)
+                -   prob
+                    -   ...
+                    -   [ntu_math_100_109_prob](https://drive.google.com/file/d/1u9OKxVCEjla1hjtKeF7U81m1M4sTRcoe/view?usp=sharing)
+                -   sol
+                    -   ...
+                    -   [ntu_math_100_109_sol](https://drive.google.com/file/d/1KvDpfyJA7cM18Nyx0BgxG0Ga11h_E6WQ/view?usp=sharing)
+                -   [ntu_math_100_109_all](https://drive.google.com/file/d/1nAZnW4Z2VSy38ZV2ZSUoJvMemRIscVad/view?usp=sharing)
+            -   sw
+        -   [nycu](https://drive.google.com/drive/folders/1J_BwZoByA5DmFitFuTWvLQ8C4R3_a6-i?usp=sharing)
+            -   hw
+            -   math
+            -   sw
 
 ## Format
 

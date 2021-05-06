@@ -2,7 +2,7 @@
         \item \begin{equation}
             m[i, j] = \begin{cases}
                 0 &, i = j \\
-                \min_{i \le k \le j - 1}\{m[i, k] + m[k + 1, j] + p_{i - 1}p_kp_j\} &, i < j
+                \min\limits_{i \le k \le j - 1}\{m[i, k] + m[k + 1, j] + p_{i - 1}p_kp_j\} &, i < j
             \end{cases}
         \end{equation} 
         \item $p[0 \cdots \num(\text{Matrices})]$，存入矩陣大小。
@@ -17,7 +17,7 @@
             \begin{aligned}
                 e[i, j] & = \begin{cases}
                     q_{i - 1} &, j = i - 1 \\
-                    \min_{i \le r \le j}\{e[i, r - 1] + e[r + 1, j] + w[i, j]\} &, i \le j
+                    \min\limits_{i \le r \le j}\{e[i, r - 1] + e[r + 1, j] + w[i, j]\} &, i \le j
                 \end{cases} \\
                 w[i, j] & = w[i, j - 1] + p_j + q_j
             \end{aligned}

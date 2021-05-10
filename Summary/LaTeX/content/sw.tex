@@ -354,26 +354,7 @@
                 \label{img:hanoi-tower-graph}
             \end{figure}
     \end{itemize}
-    \item Fibonacci search: \begin{lstlisting}[caption={Fibonacci search.}, captionpos=b, language=Python]
-        def fibSearch(arr, data):
-            max = len(arr) - 1
-            y = getY(fib, max + 1) # Find the largest index, which its value is smaller than data.
-            m = max - fib[y] 
-            x = y - 1
-            i = x
-            if arr[i] < data: # Check at first.
-                i += m
-            while fib[x] > 0:
-                if arr[i] < data:
-                    x -= 1
-                    i += fib[x]
-                elif arr[i] > data:
-                    x -= 1
-                    i -= fib[x]
-                else:
-                    return i
-            return -1
-    \end{lstlisting}
+    \item Fibonacci search: \lstinputlisting[caption={Fibonacci search.}, captionpos=b, language=Python]{code/fib_search.py}
     \item Box stacking: create a stack of boxes which is as tall as possible, but you can only stack a box on top of another box if the dimensions of the 2-D base of the lower box are each strictly larger than those of the 2-D base of the higher box. \begin{enumerate}
         \item Generate all $3$ rotations of all boxes. We consider width as always smaller than or equal to depth.
         \item Sort the above generated $3n$ boxes in \textbf{decreasing} order of \textbf{base area}.
@@ -414,7 +395,7 @@
     \end{equation} result is \begin{equation}
         \min_{j} \{dp(k, j) \ge n\}
     \end{equation}
-    \item (TIOJ-1471) Skyline: \\ 
+    \item $\bigtriangleup$ (TIOJ-1471) Skyline: \\ 
     $dp(i, j)$: number of legal path till the end through walking distance $i$ and temporary height is $j$. \begin{equation}
         \begin{cases}
             dp(i, j) & = dp(i - 1, j - 1) + sum(j) \\
@@ -428,8 +409,8 @@
         \item Maximal rectangle: Similarly, for each column, the count of $1$ of each row, can be seen as the element.
     \end{itemize}
     \item AOV network topological order is \textbf{NOT} unique.
-    \item Interleaving string: \\
-    $dp(i, j)$: represents if $s_1[0: i - 1]$ and $s_2[0: i - 1]$ can be combined as $s_3[0: i + j - 1]$. \begin{equation}
+    \item (leetcode-97) Interleaving string: \\
+    $dp(i, j)$: if $s_1[0: i - 1]$ and $s_2[0: i - 1]$ can be combined as $s_3[0: i + j - 1]$. \begin{equation}
         dp(i, j) = \begin{cases}
             \text{true} &, i = j = 0 \\
             \begin{aligned}
@@ -438,16 +419,17 @@
             \end{aligned} &, \text{otherwise}
         \end{cases}
     \end{equation}
-    \item Distinct subsequences: \begin{equation}
+    \item (leetcode-115) Distinct subsequences: \\
+    $dp(i, j)$: number of subsequence of $t[1: i]$ equals $s[1: j]$ (strings start from index $1$). \begin{equation}
         dp(i, j) = \begin{cases}
             1 &, i = 0 \\
-            dp(i, j - 1) + dp(i - 1, j - 1) &, t(i - 1) = s(j - 1) \\
+            dp(i, j - 1) + dp(i - 1, j - 1) &, t[i] = s[j] \\
             dp(i, j - 1) &, \text{otherwise}
         \end{cases}            
     \end{equation} result is \begin{equation}
         dp(n, m)
-    \end{equation}
-    \item (109NYCU-9) Prefix sum: \\
+    \end{equation} where $n$ and $m$ are lengths of strings $t$ and $s$, respectively.
+    \item $\bigtriangleup$ (109NYCU-9) Prefix sum: \\
     $D(i, s)$: max number of elements that can be selected from first $i$ integers with sum $\le s$. \begin{equation}
         \begin{aligned}
             D(i, s) & = \max\{D(i - 1, s), D(i - 1, \min(s - a_i, 6 \times a_i)) + 1\}, \\
@@ -457,7 +439,8 @@
         D(n, 6 \times a_{n + 1})
     \end{equation}
     \item (109NYCU-15) 0/1 Knapsack problem: if $W = \Theta(n^2)$, and $w_i \in \{1\} \lor w_i \in \{1, 2\}$, then $T(n) = O(n)$.
-    \item \quad\quad \begin{itemize}
+    \item (leetcode-84) Largest Rectangle in Histogram: \lstinputlisting[caption={Largest Rectangle in Histogram.}, captionpos=b, language=Python]{code/largest_rect.py}
+    \item \begin{itemize}
         \item AVL trees are ideal for sorting items of an \textbf{ordered dictionary}.
         \item Different number binary trees of height $h$: \begin{equation}
             H_n = \begin{cases}

@@ -1,1 +1,2 @@
 *.aux *.bbl *.blg *.log *.out *.toc
+*/res/summary_* *.ini

@@ -48,7 +48,7 @@ e.g. ntu_109_math_sol stands for the solution of 109 math exam of NTU.
 
 ### Correctness
 
--   $\surd$: solution is given by school.
+-   $\surd$: solution is given.
 -   $\dag$: very sure about the solution.
 -   $\triangle$: NOT very sure about the solution.
 -   $\times$: do NOT know the solution.

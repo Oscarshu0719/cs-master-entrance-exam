@@ -82,7 +82,7 @@
 		\item 特徵根
 		\item 特徵多項式
 	\end{itemize}
-	若$\mat{A}, \mat{B}$\textbf{不}為方陣，只能保證$\mat{AB}$與$\mat{BA}$有相同的\textbf{非零}特徵根。 \\
+	但未必有相同特徵向量。若$\mat{A}, \mat{B}$\textbf{不}為方陣，只能保證$\mat{AB}$與$\mat{BA}$有相同的\textbf{非零}特徵根。 \\
 	\begin{proof} \begin{equation}
 			\begin{bmatrix}
 				\mat{I} & \mat{B} \\
@@ -553,8 +553,8 @@
 		\item $\cs(\mat{A}^+) = \cs(\mat{A}^\intercal) = \rs(\mat{A})$
 		\item $\vec{x}_0 = \mat{A}^+ \vec{b}$為$||\mat{A}\vec{x} - \vec{b}||_2$的最小平方解。
     \end{itemize}
-    \item \item (\textbf{FALSE}) For any non-zero real \textbf{symmetric} matrix, its SVD can be the same as its eigenvalue decomposition.
-    \item For any non-zero real matrix $\mat{A}$, $\mat{A}^\intercal\mat{A}$'s SVD can be the same as its eigenvalue decomposition. 
+    \item (102NYCU-6c) (\textbf{FALSE}) For any non-zero real \textbf{symmetric} matrix, its SVD can be the same as its eigenvalue decomposition.
+    \item (102NYCU-6d) For any non-zero real matrix $\mat{A}$, $\mat{A}^\intercal\mat{A}$'s SVD can be the same as its eigenvalue decomposition. 
     因為$\mat{A}^\intercal\mat{A}$正半定，$\mat{A}$可么正對角化，$\exists \ \mat{P}$為么正矩陣，使得 \begin{equation}
         \begin{aligned}
             & \mat{P}^\intercal(\mat{A}^\intercal\mat{A})\mat{P} = \mat{D} \\
@@ -567,12 +567,10 @@
         (\mat{A}(\mat{A} + \mat{B})\inv\mat{B})\inv = \mat{B}\inv(\mat{A} + \mat{B})\mat{A}\inv = \mat{A}\inv + \mat{B}\inv
     \end{equation}
     \item The transition matrix from one basis to another must be \textbf{non-singular}, but a linear transformation matrix can be singular.
-    \item (\textbf{FALSE}) Let $\spc{S}$ be a subset of an inner product space, then $\spc{S} = (\spc{S}^{\bot})^{\bot}$.
-    \item (\textbf{FALSE}) Let $\spc{S}_1, \spc{S}_2$ be subsets of an inner product space, and $\spc{S}_1^{\bot} = \spc{S}_2^{\bot}$, then $\spc{S}_1 = \spc{S}_2$.
+    \item (\textbf{FALSE}) Let $\spc{S}_1, \spc{S}_2$ be \textbf{subsets} of an inner product space, and $\spc{S}_1^{\bot} = \spc{S}_2^{\bot}$, then $\spc{S}_1 = \spc{S}_2$.
     \item (\textbf{FALSE}) If $\spc{V}$ is orthogonal to $\spc{W}$, then $\spc{V}^\bot$ is orthogonal to $\spc{W}^\bot$.
     \item SVD中singular value遞減排序。
     \item $\mat{A}\vec{x} = \vec{b} \ (\vec{b} \neq \vec{0})$ is consistent, then solution set is \textbf{NOT} a subspace, since $\vec{0}$ is NOT included.
-    \item If $\spc{W}$ is a subset of $\R^n$, but $\spc{W} \cup \spc{W}^\perp \neq \R^n$, since $\spc{W}^\perp$ is NOT a subset.
     \item If $\V \in \R^{m \times n}$, $<\mat{A}, \mat{B}> = \tr(\mat{B}^\intercal\mat{A})$ does \textbf{NOT} define an inner space in $\V$, since if $m \neq n$, $\mat{B}^\intercal\mat{A}$ may \textbf{NOT} exist.
     \item (101NTU-10) If \begin{equation}
         \mat{A} = 
@@ -587,6 +585,20 @@
     \end{equation}, then \begin{equation}
         \lambda_{\mat{A}} = 2 \times \cos(\frac{k\pi}{n + 1}), \ k = 1,\ 2, \ \cdots, \ n
     \end{equation}
+    \item \textbf{Non-zero} nilpotent matrix is \textbf{NOT} diagonalizable.
+    \item For a \textbf{singular}{singular} square matrix, it can be represented by multiplication of some \textbf{nilpotent} matrix.
+    \item Strict upper/lower triangle matrices are nilpotent.
+    \item If $\mat{A} \in \R^{n \times n} = \mat{B}^\intercal\mat{B}$ is Cholesky Factorization, then $\mat{A}$ must be square, symmetric, postive-definite, has linearly independent columns, and has linearly independent eigenvectors. 
+    \item (110NYCU-8c) $\{(0, 0, 0)\}$ is the orthogonal complement of $\R^3$ in $\R^3$.
+    \item (110NYCU-8h) (\textbf{FALSE}) Let $\spc{U}$ be a subspace of a vector space $\spc{V}$, then $(\spc{U}^{\bot})^{\bot} = \spc{U}$.
+    \item (109NCU-20) If $\mat{A} \sim \mat{B}$ and both are invertible, then $\mat{A}\mat{B} \sim \mat{B}\mat{A}$.
+    \item (109NCU-27.28.30) If $\spc{W}$ is a \textbf{subset} of $\R^n$, \begin{itemize}
+        \item (\textbf{TRUE}) $\spc{W}^{\bot}$ is always a subspace.
+        \item (\textbf{FALSE}) $(\spc{W}^{\bot})^{\bot} = \spc{W}$.
+        \item (\textbf{FALSE}) $\spc{W} \cup \spc{W}^\perp = \R^n$.
+    \end{itemize}
+    \item (108NCU-12c) If $\mat{A}$ and $\mat{B}$ are $m \times n$ matrices and $\mat{A}$ is invertible, then $\mat{A}\mat{B} \sim \mat{B}\mat{A}$, since $\mat{A}\mat{B} = \mat{A}\mat{B}(\mat{A}\mat{A}\inv)$.
+    \item (108NCU-12d) (\textbf{FALSE}) If $\mat{A}$ and $\mat{B}$ are diagonalizable, then $\mat{A}\mat{B}$ is also diagonalizable.
 \end{itemize}
 
 \pagebreak

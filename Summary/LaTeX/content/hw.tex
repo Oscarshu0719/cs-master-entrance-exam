@@ -855,17 +855,17 @@
         \item MIPS uses \textbf{two} seperated page tables and two limit registers, one for \textbf{stack} and the other for \textbf{heap}.
         \item (\textbf{FALSE}) Use of shared memory can reduce the number of page table entries.
         \item (\textbf{FALSE}) The page table of Linux process is managed by the C runtime library (.so) in the process.
-        \item For the \textbf{unused regions} in the virtual address space, the space overhead of the corresponding \textbf{page table entries} can be negligible.
+        \item (109NYCU-8d) For the \textbf{unused regions} in the virtual address space, the space overhead of the corresponding \textbf{page table entries} can be negligible.
     \end{itemize}
     \item Arithmetic： \begin{itemize}
         \item Increasing number of \textbf{used sticky bits} do NOT improve accuracy.
-        \item Conversion from single-precision to double-precision causes loss of precision.
+        \item (109NYCU109-15d) Conversion from single-precision to double-precision causes loss of precision.
         \item Ripple Carry Adder: Critical path delay is $2N$ gate delay (carry out), and sum delay is $2N + 1$ gate delay (actual sum).
         \item Converting an integer variable to a \textbf{single} precision FP number will lose precision, but \textbf{double} precision does \textbf{NOT}.
     \end{itemize}
     \item Multi-threading： \begin{itemize}
         \item GPGPU usually runs \textbf{SPMT} (Single Program Multiple Thread), and GPU runs SIMT.
-        \item Vector processors need \textbf{less bandwidth} than conventional processors.
+        \item (109NYCU-17a) Vector processors need \textbf{less bandwidth} than conventional processors.
         \item GPUs do \textbf{NOT} rely on \textbf{multilevel caches}.
     \end{itemize}
     \item Storage： \begin{itemize}
@@ -886,7 +886,7 @@
         \item Trojan Horse is a code segment that \textbf{misuses} its environment.
         \item Installing antivirus software is \textbf{NOT} an example of least privileges.
         \item Many routers are equipped with \textbf{firewall} and \textbf{VPN} functions.
-        \item Via HTTPS, ISPs can know the browsing website, but can \textbf{NOT} know the content.
+        \item (109NYCU-10) Via HTTPS, ISPs can know the browsing website, but can \textbf{NOT} know the content by looking at the netwrok traffic.
     \end{itemize}
     \item Cryptography： \begin{itemize}
         \item Public-key (asymmetric) cryptography提供digital signature功能。
@@ -964,7 +964,13 @@
         \item To use shared memory, several system calls have to be invoked.
         \item \textsc{Test-and-Set} can be implementated in \textbf{user space}, provided that the lock variable is in a shared memory region.
         \item \textbf{Two-phase locking protocol (2PL)} ensures \textbf{conflict serializability}, but it may result in \textbf{deadlock}.
-        \item OS does \textbf{NOT} need to estimate $MAX$ when a process enters ready queue.
+        \item (109NYCU-4c) OS needs to estimate $MAX$ when a process enters \textbf{running} queue.
+    \end{itemize}
+    \item Port： \begin{itemize}
+        \item $0$: reserved.
+        \item $1 \sim 1023$: reserved by system, can be used by root.
+        \item $1024 \sim 4999$: used by client.
+        \item $5000 \sim 65535$: used by server. 
     \end{itemize}
     \item Out-of-order execution in \textbf{cache} level do NOT fail.
     \item Program is a \textbf{passive} entity, process is an \textbf{avtive} entity.
@@ -975,6 +981,7 @@
     \item \textbf{Conflict} misses do \textbf{NOT} occur in \textbf{fully associative} caches.
     \item \textbf{MIPS} and \textbf{ARM} use \textbf{memory-mapped I/O}.
     \item Writes are much \textbf{slower} than reads for flash. NAND flash is \textbf{cheaper} than NOR flash.
+    \item (109NYCU-20a) (\textbf{FALSE}) It's NOT necessary to speculate two instructions with a \textbf{store preceding a load} that reference the same memory location, where this kind of speculation allows to perform a load before a store, since sometimes we can NOT determine if two locations refferenced by a store and a load are the same due to the pointer aliasing problem.
     \item Difficulty to handle \textbf{exceptions} (from most difficult to simplest): \begin{table}[H]
         \centering
         \begin{tabular}{|c|}
@@ -1022,7 +1029,7 @@
     \item Permission bits are stored at \textbf{inodes}.
     \item Five classic components: datapath, control unit, memory, input, and output.
     \item Data center cares more about \textbf{throughput} than response time.
-    \item Memory blocks on the \textbf{stacks} can \textbf{NOT} be freed at any time, but \textbf{heaps} can.
+    \item (109NYCU-6a.6b) Memory blocks on the \textbf{stacks} can \textbf{NOT} be freed at any time, but \textbf{heaps} can.
     \item \textbf{Stack} is good for locality.
     \item (\textbf{FALSE}) Programs written in different assmebly languages can ONLY be executed on specific hardware.
     \item Computer system can be divided into four components including hardware, OS, application programs, and users.  

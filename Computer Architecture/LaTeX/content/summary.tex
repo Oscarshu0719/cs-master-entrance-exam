@@ -63,7 +63,7 @@
         \item Increasing number of \textbf{used sticky bits} do NOT improve accuracy.
         \item Conversion from single-precision to double-precision causes loss of precision.
         \item Ripple Carry Adder: Critical path delay is $2N$ gate delay (carry out), and sum delay is $2N + 1$ gate delay (actual sum).
-        \item Converting an integer variable to a \textbf{single} precision FP number will lose precision, but \textbf{double} precision does \textbf{NOT}.
+        \item (109NYCU109-15d) Converting an integer variable to a \textbf{single} precision FP number will lose precision, but \textbf{double} precision does \textbf{NOT}.
     \end{itemize}
 \end{theorem}
 
@@ -84,6 +84,7 @@
         \item \textbf{Conflict} misses do \textbf{NOT} occur in \textbf{fully associative} caches.
         \item \textbf{MIPS} and \textbf{ARM} use \textbf{memory-mapped I/O}.
         \item Writes are much \textbf{slower} than reads for flash. NAND flash is \textbf{cheaper} than NOR flash.
+        \item (109NYCU-20a) (\textbf{FALSE}) It's NOT necessary to speculate two instructions with a \textbf{store preceding a load} that reference the same memory location, where this kind of speculation allows to perform a load before a store, since sometimes we can NOT determine if two locations refferenced by a store and a load are the same due to the pointer aliasing problem.
         \item Difficulty to handle \textbf{exceptions} (from most difficult to simplest): \begin{table}[H]
             \centering
             \begin{tabular}{|c|}

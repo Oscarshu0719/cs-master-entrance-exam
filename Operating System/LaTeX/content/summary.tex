@@ -20,7 +20,7 @@
         \item Trojan Horse is a code segment that \textbf{misuses} its environment.
         \item Installing antivirus software is \textbf{NOT} an example of least privileges.
         \item Many routers are equipped with \textbf{firewall} and \textbf{VPN} functions.
-        \item Via HTTPS, ISPs can know the browsing website, but can \textbf{NOT} know the content.
+        \item (109NYCU-10) Via HTTPS, ISPs can know the browsing website, but can \textbf{NOT} know the content by looking at the netwrok traffic.
     \end{itemize}
 \end{theorem}
 
@@ -119,7 +119,7 @@
 \begin{theorem}{()} Page table： \begin{itemize}
         \item (\textbf{FALSE}) Use of shared memory can reduce the number of page table entries.
         \item (\textbf{FALSE}) The page table of Linux process is managed by the C runtime library (.so) in the process.
-        \item For the \textbf{unused regions} in the virtual address space, the space overhead of the corresponding \textbf{page table entries} can be negligible.
+        \item (109NYCU-8d) For the \textbf{unused regions} in the virtual address space, the space overhead of the corresponding \textbf{page table entries} can be negligible.
     \end{itemize}
 \end{theorem}
 
@@ -136,7 +136,25 @@
         \item To use shared memory, several system calls have to be invoked.
         \item \textsc{Test-and-Set} can be implementated in \textbf{user space}, provided that the lock variable is in a shared memory region.
         \item \textbf{Two-phase locking protocol (2PL)} ensures \textbf{conflict serializability}, but it may result in \textbf{deadlock}.
-        \item OS does \textbf{NOT} need to estimate $MAX$ when a process enters ready queue.
+        \item (109NYCU-4c) OS needs to estimate $MAX$ when a process enters \textbf{running} queue.
+    \end{itemize}
+\end{theorem}
+
+\begin{theorem}{()} Networks: \begin{itemize}
+        \item Port： \begin{itemize}
+            \item $0$: reserved.
+            \item $1 \sim 1023$: reserved by system, can be used by root.
+            \item $1024 \sim 4999$: used by client.
+            \item $5000 \sim 65535$: used by server. 
+        \end{itemize}
+        \item IP： \begin{itemize}
+            \item IPv6 routers can \textbf{NOT} perform a fragmentation.
+            \item Headers length: IPv4: $20$B $\sim$ $60$B; IPv6: fixed $40$B.
+            \item IPv6 does \textbf{NOT} support broadcast, replaced by multicast.
+            \item ARP is used to discover a MAC address, associated with a given IP address.
+            \item IPSec can be used in VPNs.
+            \item ICMP messages can used to diagnose errors in IP operations.
+        \end{itemize}
     \end{itemize}
 \end{theorem}
 
@@ -152,7 +170,7 @@
         \item Permission bits are stored at \textbf{inodes}.
         \item Five classic components: datapath, control unit, memory, input, and output.
         \item Data center cares more about \textbf{throughput} than response time.
-        \item Memory blocks on the \textbf{stacks} can \textbf{NOT} be freed at any time, but \textbf{heaps} can.
+        \item (109NYCU-6a.6b) Memory blocks on the \textbf{stacks} can \textbf{NOT} be freed at any time, but \textbf{heaps} can.
         \item \textbf{Stack} is good for locality.
         \item (\textbf{FALSE}) Programs written in different assmebly languages can ONLY be executed on specific hardware.
         \item Computer system can be divided into four components including hardware, OS, application programs, and users.  
